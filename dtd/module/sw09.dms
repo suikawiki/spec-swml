@@ -1,0 +1,391 @@
+#?SuikaWikiConfig/2.0
+
+ModuleSet:
+  @Name: SuikaWiki/0.9 Simple Documentation Format Vocabulary
+  @Version: 2.9
+  @Description:
+    This is a markup vocabulary used in SuikaWiki/0.9 XML representation.
+  @ID: rfc2629ja
+  @BaseURI:
+    **work-in-progress**
+  
+  @Namespace:
+    @@Name:
+      urn:x-suika-fam-cx:markup:suikawiki:0:9:
+    @@DefaultPrefix: sw09
+    @@UsePrefix: 1
+  
+  @Copyright: Wakaba <w@suika.fam.cx>
+  @RCSDate: $Date: 2004/01/30 10:05:26 $
+
+Datatype:
+  @Type:
+    @@Name:
+      :URI
+    @@XMLType: CDATA
+    @@Description: URI Reference
+  
+  @Type:
+    @@Name: name
+    @@XMLType: CDATA
+    @@Description: A name. Name := 1*(small-basic-latin / "-")
+  
+  @Type:
+    @@Name: entity-name
+    @@XMLType: CDATA
+    @@Description: An entity name.  entity-name := 1*(graphic-char - "&")
+  
+  @Type:
+    @@Name: form-name
+    @@XMLType: CDATA
+    @@Description: A form name.  form-name := 1*graphic-char ;; not yet well-defined
+  
+  @Type:
+    @@Name: anchor-number
+    @@XMLType: CDATA
+    @@Description: Numeral anchor index.  anchor-number := 1*DIGIT
+  
+  @Type:
+    @@Name: class-list
+    @@XMLType: CDATA
+    @@Description: Class names.  class-list := class 1*(1*WSP class)
+  
+Attribute:
+  @AttributeSet:
+    @@Name: common
+    
+  @AttributeSet:
+    @@Name: reference
+    @@Attribute:
+      @@@Name: anchor
+      @@@Type: anchor-number
+      @@@Default: #IMPLIED
+      @@@Description: Numeral anchor index referring to.
+    @@Attribute:
+      @@@Name: resScheme
+      @@@Type: CDATA
+      @@@Default: #IMPLIED
+      @@@Description:
+        External resource referring scheme.  resScheme := 1*capital-basic-latin
+      \
+        Defaulted to 'URI' if @resParameter specified but @resScheme not.
+    @@Attribute:
+      @@@Name: resParameter
+      @@@Type: CDATA
+      @@@Default: #IMPLIED
+      @@@Description:
+        External resource referring to.
+        resParameter := 1*(graphic-char - ("<" / ">" / <">) / quoted-string)
+
+Module:
+  @ID: blkstruct
+  
+  @Element:
+    @@Name: document
+    @@Content:
+      (
+        XHTML2:head,
+        XHTML2:body
+      )*
+    
+    @@Description:
+      A SuikaWiki/0.9 document.
+  
+  @Element:
+    @@Name: replace
+    @@Content: EMPTY
+    @@Description:
+      Inclusion of predefined document fragment.
+    @@Attribute:
+      @@@Attribute:
+        @@@@Name: "by"
+        @@@@Type: entity-name
+        @@@@Default: #REQUIRED
+        @@@@Description: Referred entity name.
+
+Module:
+  @Name: Form
+  @ID: form
+  
+  @Element:
+    @@Name: form
+    @@Content: EMPTY
+    @@Description:
+      A WikiForm.
+    @@Attribute:
+      @@@Attribute:
+        @@@@Name: "id"
+        @@@@Type: form-name
+        @@@@Default: #IMPLIED
+        @@@@Description:
+          Form name.  It must be document-unique, including other identifiers,
+          although it is NOT an XML ID attribute.
+      @@@Attribute:
+        @@@@Name: "ref"
+        @@@@Type: name
+        @@@@Default: "form"
+        @@@@Description:
+          "Specific form" type.  "form", default value, means it is a "general form."
+          For more information about standardized "specific form" types,
+          see SuikaWiki/0.9 specification.
+      @@@Attribute:
+        @@@@Name: "parameter"
+        @@@@Type: "CDATA"
+        @@@@Default: #IMPLIED
+        @@@@Description:
+          "Specific form parameter."  Interpretation of the value depends on
+          "ref" attribute value.
+      @@Attribute:
+        @@@@Name: "input"
+        @@@@Type: "CDATA"
+        @@@@Default: #IMPLIED
+        @@@@Description:
+          "'Input' parameter."  Interpretation of the value depends on "ref"
+          attribute value.
+      @@Attribute:
+        @@@@Name: "template"
+        @@@@Type: "CDATA"
+        @@@@Default: #IMPLIED
+        @@@@Description:
+          "'Template' parameter."  Interpretation of the value depends on "ref"
+          attribute value.
+      @@Attribute:
+        @@@@Name: "option"
+        @@@@Type: "CDATA"
+        @@@@Default: #IMPLIED
+        @@@@Description:
+          "'option' parameter."  Interpretation of the value depends on "ref"
+          attribute value.
+
+Module:
+  @Name: Inline
+  @ID: inline
+  
+  @Element:
+    @@Name: rubyb
+    @@Content:
+      (
+        XHTML2:rb,
+        XHTML2:rt
+      )
+    @@Description:
+      Additional information as ruby.
+    @@Attribute:
+      @@@ref: reference
+  
+  @Element:
+    @@Name: weak
+    @@Content:
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Description: "Less important" phrase.
+    @@Attribute:
+      @@@ref: reference
+  
+  @Element:
+    @@Name: anchor
+    @@Content:
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Description: Word grouping.
+  
+  @Element:
+    @@Name: anchor-end
+    @@Content:
+      (
+        \#PCDATA
+      )*
+    @@Description:
+      Destination anchor.
+    @@Attribute:
+      @@@Attribute:
+        @@@@Name: anchor
+        @@@@Type: anchor-number
+        @@@@Default: #REQUIRED
+        @@@@Description: Anchor index number.
+  
+  @Attribute:
+    @@Name: abbr.reference
+    @@ElementType:
+      XHTML2:abbr
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: code.reference
+    @@ElementType:
+      XHTML2:code
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: del.reference
+    @@ElementType:
+      XHTML1:del
+    @@ref: reference
+    @@Description:
+      Description for editing (XHTML del/@cite).
+  @Attribute:
+    @@Name: dfn.reference
+    @@ElementType:
+      XHTML2:dfn
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: ins.reference
+    @@ElementType:
+      XHTML1:ins
+    @@ref: reference
+    @@Description:
+      Description for editing (XHTML ins/@cite).
+  @Attribute:
+    @@Name: kbd.reference
+    @@ElementType:
+      XHTML2:kbd
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: q.reference
+    @@ElementType:
+      XHTML1:q
+    @@ref: reference
+    @@Description:
+      Source of quotation.
+  @Attribute:
+    @@Name: ruby.reference
+    @@ElementType:
+      XHTML2:ruby
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: samp.reference
+    @@ElementType:
+      XHTML2:samp
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: sup.reference
+    @@ElementType:
+      XHTML2:sup
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: sub.reference
+    @@ElementType:
+      XHTML2:sub
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  @Attribute:
+    @@Name: var.reference
+    @@ElementType:
+      XHTML2:var
+    @@ref: reference
+    @@Description:
+      Reserved for possible future use
+  
+  @Element:
+    @@Name: anchor-external
+    @@Content:
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Description: External reference
+    @@Attribute:
+      @@@Attribute:
+        @@@@Name: resScheme
+        @@@@Type: CDATA
+        @@@@Default: "URI"
+        @@@@Description:
+          External resource referring scheme.  resScheme := 1*capital-basic-latin
+      @@@Attribute:
+        @@@@Name: resParameter
+        @@@@Type: CDATA
+        @@@@Default: #REQUIRED
+        @@@@Description:
+          External resource referring to.
+          resParameter := 1*(graphic-char - ("<" / ">" / <">) / quoted-string)
+  
+  @Element:
+    @@Name: anchor-internal
+    @@Content:
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Description: Internal (same document) reference
+    @@Attribute:
+      @@@Attribute:
+        @@@@Name: anchor
+        @@@@Type: anchor-number
+        @@@@Default: #REQUIRED
+        @@@@Description: Anchor index number.
+
+Module:
+  @Name: Metainformational
+  @ID: metainfo
+  
+  @Element:
+    @@Name: parameter
+    @@Content:
+      (value)*
+    @@Description: Document parameter
+    @@Attribute:
+      @@@Attribute:
+        @@@@Name: "name"
+        @@@@Type: name
+        @@@@Default: #REQUIRED
+  
+  @Element:
+    @@Name: value
+    @@Content: 
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Description: A parameter value.
+
+Module:
+  @Name: List
+  @ID: list
+  
+  @Element:
+    @@Name: dr
+    @@Content:
+      (
+        XHTML2:dt*,
+        XHTML2:dd*
+      )
+    @@Description: A "dl" item.
+
+Module:
+  @Name: Editing
+  @ID: edit
+  
+  @Element:
+    @@Name: insert
+    @@Content:
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Description: Block-level insertation (XHTML1:ins).
+  
+  @Element:
+    @@Name: delete
+    @@Content:
+      (
+        \#PCDATA
+      | $:Inline.mix
+      )*
+    @@Description: Block-level deletion (XHTML1:del).
