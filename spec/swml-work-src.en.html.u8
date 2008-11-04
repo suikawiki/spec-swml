@@ -1,0 +1,1242 @@
+<!DOCTYPE HTML>
+<html class="formal-specification status-work-in-progress" lang=en>
+<title>SuikaWiki Markup Language</title>
+<link rel=stylesheet href="/www/style/html/spec">
+
+<p class=ed>...
+
+<div class=section>
+<h2>Parsing SWML Text Format Document</h2>
+
+<p>This section specifies how to convert a string of characters into a
+DOM tree, assuming the string is written in the <span>SWML text
+format</span>.  This process is referred to as <dfn title="parsing an
+SWML text format document">parsing</dfn> and an implementation that
+performes this process is referred to as <dfn title="SWML text format
+parser">parser</dfn>.
+
+<div class="note memo">
+
+<p>How to convert a string of bytes into a string of characters is
+outside of the scope of this specification.
+
+</div>
+
+<p>The <span title="parsing an SWML text format document">parsing
+process</span> is divided into two stages: <span>tokenization</span>
+and <span>tree construction</span>.
+
+<div class=section>
+<h3>Definitions</h3>
+
+<p><dfn>White space characters</dfn> are U+0009 <span
+class=charname>CHARACTER TABULATION</span> and U+0020 <span
+class=charname>SPACE</span>.
+
+<p><dfn>Digits</dfn> are characters in the range U+0030 <code
+class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
+NINE</code>.
+
+<p><dfn>Uppercase letters</dfn> are characters in the range U+0041
+<code class=charname>LATIN CAPITAL LETTER A</code> .. U+005A <code
+class=charname>LATIN CAPITAL LETTER Z</code>.
+
+<p><dfn>Lowercase letters</dfn> are characters in the range U+0061
+<code class=charname>LATIN SMALL LETTER A</code> .. U+007A <code
+class=charname>LATIN SMALL LETTER Z</code>.
+
+<p><dfn>Language tag characters</dfn> are <span>digits</span>,
+<span>uppercase letters</span>, <span>lowercase letters</span>, and
+U+002D <code class=charname>HYPHEN-MINUS</code>.
+
+<p><dfn>Scheme characters</dfn> are <span>digits</span>,
+<span>uppercase letters</span>, <span>lowercase letters</span>, U+0025
+<code class=charname>PERCENT SIGN</code>, U+002A <code
+class=charname>PLUS SIGN</code>, U+002D <code
+class=charname>HYPHEN-MINUS</code>, U+002E <code class=charname>FULL
+STOP</code> and U+005F <code class=charname>LOW LINE</code>.
+
+<p>A <dfn>class specification</dfn> is a string consist of a
+<code>(</code> character, followed by zero or more character that is
+<em>not</em> one of <code>)</code>, <code>)</code>, or <span>white
+space characters</span>, and finally followed by a <code>)</code>
+character.  <!-- Though the SuikaWiki3 implementation of the parser
+support quoted-pair in class specification in [PRE[ block start tag
+and inline start tags, it is not allowed in [INS[ and [DEL[, and is
+not part of SuikaWiki/0.9 specification, and it should not appear in
+any existing SuikaWiki article afaict, this version of the SWML
+specification does not support such escaping syntax. --> The <dfn>body
+of a class specification</dfn> is the substring of the <span>class
+specification</span> between parentheses (exclusive).  It might be the
+empty string.
+
+<p>A <dfn>language specification</dfn> is a string consist of a
+<code>@</code> character followed by zero or more <!-- one or more in
+SuikaWiki3 implementation --> <span>language tag characters</span>.
+<!-- SuikaWiki/0.10 addition --> The <dfn>body of a language
+specification</dfn> is the substring in the <span>language
+specification</span> except for the first <code>@</code> character.
+It might be the empty string.
+
+<p>When the <span title="SWML text format parser">parser</span> <dfn
+title="append a character">appends a character</dfn> <var>char</var>
+to node <var>node</var>, the following steps <em
+class=rfc2119>MUST</em> be followed:
+
+<ol>
+
+<li>If the last child node of <var>node</var> is a <code>Text</code>
+or <code>CharacterData</code> node, append a character <var>char</var>
+to the <code>data</code> attribute of the last child node of
+<var>node</var>.
+
+<li>Otherwise, create a <code>Text</code> node whose <code>data</code>
+attribute is set to a character <var>char</var> and append the
+<code>Text</code> node to <var>node</var>.
+
+</ol>
+
+<p>The <dfn>AA namespace</dfn> is
+<code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
+
+<p>The <dfn>HTML namespace</dfn> is
+<code>http://www.w3.org/1999/xhtml</code>.
+
+<p>The <dfn>HTML3 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
+
+<p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.
+
+<p>The <dfn>SuikaWiki/0.10 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.
+
+<p>The <dfn>XHTML2 namespace</dfn> is
+<code>http://www.w3.org/2002/06/xhtml2/</code>.
+
+<p>The <dfn>XML namespace</dfn> is
+<code>http://www.w3.org/XML/1998/namespace </code>.
+
+<p>The <dfn>XMLNS namespace</dfn> is
+<code>http://www.w3.org/2000/xmlns/</code>.
+
+</div>
+
+<div class=section>
+<h3>Tokenization of lines</h3>
+
+<p>When a string of characters is <dfn
+title=tokenization>tokenized</dfn>, the string <var>s</var> <em
+class=rfc2119>MUST</em> be processed as follows:
+
+<ol>
+
+<li>Let <var>pos</var> be zero (0).  It represents the index in
+<var>s</var>.  The index of the first character in <var>data</var> is
+zero (0).
+
+<li>If <var>pos</var> is greater than or equal to the length of
+<var>s</var>, then emit an <span>end-of-file token</span> and abort
+these steps.
+
+<li>Let <var>line</var> be the empty string.
+
+<li>If the <var>pos</var>th character of <var>s</var> is U+000D <code
+class=charname>CARRIAGE RETURN</code>, <span
+title=process-line>process</span> <var>line</var>.  Set
+<var>line</var> to the empty string.  If the (<var>pos</var> + 1)th
+character of <var>s</var> is U+000A <code>LINE FEED</code>, increment
+<var>pos</var> by one (1).
+
+<li>Otherwise, if the <var>pos</var>th character of <var>s</var> is
+U+000A <code>LINE FEED</code>, <span
+title=process-line</span>process</span> <var>line</var> according to
+the current <span>mode</span>.  Set <var>line</var> to the empty
+string.
+
+<li>Otherwise, append the <var>pos</var>th character of <var>s</var>
+to <var>line</var>.
+
+<li>Increase <var>pos</var> by one (1).
+
+<li>Go back to the fourth step of these steps.
+
+</ol>
+
+<p><dfn>Mode</dfn> is a state of the <span
+title=tokenization>tokenizer</span> and is one of
+"<span>initial</span>" (the initial value used when the
+<span>tokenization</span> starts), "<span>body</span>",
+"<span>preformatted</span>", and "<span>image</span>".
+
+<p><dfn>Continuous line flag</dfn> is another flag of the <span
+title=tokenization>tokenizer</span>, representing whether a new line
+character should be appended to the data, and takes either true or
+false.  This flag is mainly used in the "<span>body</span>"
+<span>mode</span>.
+
+<p>When a <dfn title=process-line><var>line</var> is processed</dfn>,
+rules specified in the following subsections is used according to the
+appropriate <span>mode</span>.  Rules below sometimes require the <dfn
+title=reprocess-line><var>line</var> be reprocessed</dfn>.  In such a
+case, rules for the appropriate <span>mode</span> <em
+class=rfc2119>MUST</em> be followed with the same <var>line</var>.
+
+<div class=section>
+<h4>The "<span>initial</span>" mode</h4>
+
+<p>In the "<dfn>initial</dfn>" mode, <var>line</var> <em
+class=rfc2119>MUST</em> be processed as follows:
+
+<dl class=switch>
+
+<dt>If <var>line</var> starts with <code>#?</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+<li>Remove the first two characters from <var>data</var>.  (The
+removed characters will be <code>#?</code>.)
+
+<li>Emit a <span>processing instruction token</span> whose <span
+title=processing-instruction-data>data</span> set to <var>data</var>.
+
+</ol>
+
+<dt>Otherwise
+
+<dd>
+
+<ol>
+
+<li>Set the <span>continuous line flag</span> to false.
+
+<li>Switch to the "<span>body</span>" <span>mode</span> and <span
+title=reprocess-line>reprocess</span> <var>line</var>.
+
+</ol>
+
+</dl>
+
+</div>
+
+<div class=section>
+<h4>The "<span>body</span>" mode</h4>
+
+<p>In the "<dfn>body</body>" mode, <var>line</var> <em
+class=rfc2119>MUST</em> be processed as follows:
+
+<dl class=switch>
+
+<dt>If <var>line</var> is empty
+
+<dd>
+
+<ol>
+
+<li>Set the <span>continuous line flag</span> to false.
+
+<li>Emit an <span>empty line token</span>.
+
+</ol>
+
+<dt>If <var>line</var> starts with a <span title="white space
+characters">white space character</span>
+
+<dd>
+
+<ol>
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>line</var>.
+
+<li>Switch to the "<span>preformatted</span>" mode.
+
+</ol>
+
+<dt>If <var>line</var> starts with <code>*</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+<li>Let <var>level</var> be zero (0).
+
+<li>While the first character of <var>data</var>, if any, is
+<code>*</code>, run the following substeps:
+
+<ol>
+
+<li>Increase <var>level</var> by one (1).
+
+<li>Remove the first character of <var>data</var>.  (The removed
+character will be <code>*</code>.)
+
+</ol>
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>data</var>, if any.
+
+<li>Emit a <span>heading start token</span> whose <span
+title=heading-start-level>level</span> set to <var>level</var>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with <var>data</var>.
+
+<li>Emit a <span>heading end token</span>.
+
+<li>Finally, set the <span>continuous line flag</span> to false.
+
+</ol>
+
+<dt>If <var>line</var> starts with <code>-</code> or <code>=</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+<li>Let <var>depth</var> be the empty string.
+
+<li>While the first character of <var>data</var>, if any, is
+<code>-</code> or <code>=</code>, run the following substeps:
+
+<ol>
+
+<li>Append the first character of <var>data</var> to <var>depth</var>.
+
+<li>Remove the first character of <var>data</var>.
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>data</var>, if any.
+
+<li>Emit a <span>list start token</span> whose <span
+title=list-start-token-depth>depth</span> set to <var>depth</var>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with <var>data</var>.
+
+</ol>
+
+<li>Finally, set the <span>continuous line flag</span> to true.
+
+</ol>
+
+<dt>If <var>line</var> starts with <code>:</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>name</var> be the empty string.
+
+<li>Let <var>data</var> be <var>line</var>.
+
+<li>Remove the first character of <var>data</var>.  (The removed
+character will be <code>:</code>.)
+
+<li>While <var>data</var> is not empty and the first character of
+<var>data</var> is <em>not</em> <code>:</code>, run the following
+substeps:
+
+<ol>
+
+<li>Append the first character of <var>data</var> to <var>name</var>.
+
+<li>Remove the first character of <var>data</var>.
+
+</ol>
+
+<li>If <var>name</var> is the empty string, run the following
+substeps:
+
+<ol>
+
+<li>Emit a <span>character token</span> whose <span
+title=character-data>data</span> is a <code>:</code> character.
+
+<li>Run the <span>algorithm to tokenize a text</span> with <var>name</var>.
+
+</ol>
+
+<div class="note memo">
+
+<p>In this case, the line does not represent a description list.  <!--
+For compatibility with previous implementations. -->
+
+</div>
+
+<li>Otherwise, run the following substeps:
+
+<ol>
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>name</var>, if any.
+
+<li>Remove <span>white space characters</span> at the end of
+<var>name</var>, if any.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>name</var>.
+
+<li>Remove <span>white space characters</span> at the end of
+<var>data</var>, if any.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>data</var>.
+
+</ol>
+
+<li>Finally, set the <span>continuous line flag</span> to true.
+
+</ol>
+
+<dt>If <var>line</var> starts with <code>></code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+<li>Let <var>depth</var> be zero (0).
+
+<li>While the first character of <var>data</var>, if any, is
+<code>></code>, run the following substeps:
+
+<ol>
+
+<li>Increase <var>depth</var> by one (1).
+
+<li>Remove the first character of <var>data</var>.  (The removed
+character will be <code>></code>.
+
+</ol>
+
+<li>If <var>depth</var> is two (2), <var>data</var> is not empty, and
+the first character of <var>data</var> is in the range U+0030 <span
+class=charname>DIGIT ZERO</span> .. U+0039 <span class=charname>DIGIT
+NINE</span>, run the following substeps:
+
+<ol>
+
+<li>Prepend two <code>></code> characters to <var>data</var>.
+
+<li>If the <span>continuous line flag</span> is true, preprend a
+U+000A <code class=charname>LINE FEED</code> character to
+<var>data</var>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>data</var>.
+
+</ol>
+
+<li>Otherwise, run the following substeps:
+
+<ol>
+
+<li>Emit a <span>quotation start token</span> whose <span
+title=quotation-start-depth>depth</span> set to <var>depth</var>.
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>data</var>, if any.
+
+<li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>@@</code>, run the
+following substeps: <!-- SuikaWiki/0.10 addition -->
+
+<ol>
+
+<li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>@@</code>).
+
+<li>Emit a <span>editorial note start token</span>.
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>data</var>, if any.
+
+</ol>
+
+<li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>;;</code>, run the
+following substeps: <!-- SuikaWiki/0.10 addition -->
+
+<ol>
+
+<li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>;;</code>).
+
+<li>Emit a <span>comment paragraph start token</span>.
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>data</var>, if any.
+
+</ol>
+
+<li>In any case, run the <span>algorithm to tokenize a text</span>
+with <var>data</var>.
+
+</ol>
+
+<li>Finally, set the <span>continuous line flag</span> to true.
+
+</ol>
+
+<dt>If <var>line</var> is a string consist of a <code>[</code>
+character, followed by one of <code>INS</code>, <code>DEL</code>, or
+<code>PRE</code>, optionally followed by <span>class
+specification</span>, followed by a <code>[</code> character, followed
+by zero or more <span>white space characters</span>
+
+<!-- No more block start tag with this syntax should be added in
+future revisions. -->
+
+<dd>
+
+<ol>
+
+<li>Set the <span>continuous line flag</span> to false.
+
+<li>Emit a <span>block start tag token</span> whose <span
+title=block-start-tag-tag-name>tag name</span> is one of
+<code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
+in <code>line</code>.
+
+</ol>
+
+<dt>If <var>line</var> starts with <code>@@</code>
+<!-- SuikaWiki/0.10 addition -->
+
+<dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+<li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>@@</code>.)
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>data</var>, if any.
+
+<li>Set the <span>continuous line flag</span> to true.
+
+<li>Emit a <span>editorial note start token</span>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>data</var>.
+
+</ol>
+
+<dt>If <var>line</var> starts with <code>;;</code>
+<!-- SuikaWiki/0.10 addition -->
+
+<dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+<li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>;;</code>.)
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>data</var>, if any.
+
+<li>Set the <span>continuous line flag</span> to true.
+
+<li>Emit a <span>comment paragraph start token</span>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>data</var>.
+
+</ol>
+
+<!--
+
+Though the SuikaWiki3's parser recognizes "[[# ...]] @@" or "[[#
+... ]] ;;" as comment paragraph or editorial note preceded by a form
+block, it considered as a bug and this specification treates these
+characters as character data.
+
+-->
+
+<dt>If <var>line</var> is a string consist of a <code>]</code>
+character, followed by one of <code>INS</code>, <code>DEL</code>, or
+<code>PRE</code>, followed by a <code>]</code> character, followed by
+zero or more <span>white space characters</span>
+
+<dd>
+
+<ol>
+
+<li>Set the <span>continuous line flag</span> to false.
+
+<li>Emit a <span>block end tag token</span> whoes <span
+title=block-end-tag-tag-name>tag name</span> is one of
+<code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
+in <code>line</code>.
+
+</ol>
+
+<dt>If <var>line</var> starts with <code>,</code>
+
+<dd>
+
+<ol>
+
+<li>Run the <span>algorithm to tokenize a table row</span> with
+<var>line</var>.
+
+<li>Set the <span>continuous line flag</span> to false.
+
+</ol>
+
+<dt>If <var>line</var> is <code>__IMAGE__</code>
+
+<dd>Switch to the "<span>image</code>" <span>mode</span>.
+<!-- SuikaWikiImage/0.9 addition -->
+
+<dt>Otherwise
+
+<dd>
+
+<ol>
+
+<li>If the <span>continuous line flag</span> is true, emit a
+<span>character token</span> whose <span
+title=character-data>data</span> is a U+000A <code class=charname>LINE
+FEED</code> character.
+
+<li>Set the <span>continuous line flag</span> to true.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>line</var>.
+
+</ol>
+
+</dl>
+
+</div>
+
+<div class=section>
+<h4>The "<span>preformatted</span>" mode</h4>
+
+<p>In the "<dfn>preformatted</dfn>" mode, <var>line</var> <em
+class=rfc2119>MUST</em> be processed as follows:
+
+<dl class=switch>
+
+<dt>If <var>line</var> is the empty string
+
+<dd>
+
+<ol>
+
+<li>Emit a <span>block end tag token</span> whose <span
+title=block-end-tag-tag-name</span> is <code>PRE</code>.
+
+<li>Switch to the "<span>body</span>" <span>mode</span>.
+
+</ol>
+
+<dt>If <var>line</var> is a string consist of a <code>]</code>
+character, followed by one of <code>INS</code> or <code>DEL</code>,
+followed by a <code>]</code> character, followed by zero or more
+<span>white space characters</span>
+
+<dd>
+
+<ol>
+
+<li>Set the <span>continuous line flag</span> to false.
+
+<li>Emit a <span>block end tag token</span> whoes <span
+title=block-end-tag-tag-name>tag name</span> is one of
+<code>INS</code> or <code>DEL</code>, that appears in
+<code>line</code>.
+
+</ol>
+
+<dt>Otherwise
+
+<dd>
+
+<ol>
+
+<li>Emit a <span>character token</span> whose <span
+title=character-data>data</span> is a U+000A <code class=charname>LINE
+FEED</code> character.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>line</var>.
+
+</ol>
+
+</dl>
+
+</div>
+
+<div class=section>
+<h4>The "<span>image</span>" mode</h4>
+
+<p>In the "<dfn>image</dfn>" mode, <var>line</var> <em
+class=rfc2119>MUST</em> be processed as follows:
+
+<ol>
+
+<li>If the <span>image element</span> is null, then create an
+<code>image</code> element in the <span>SuikaWiki/0.9 namespace</span>
+and set the <span>image element</span> to that element.
+
+<li>Otherwise, <span>append a character</span> U+000A <code
+class=charname>LINE FEED</code> to the <span>image element</span>.
+
+<li>Then, <span title="append a character">append each
+character</span> in <var>line</var> in the same order to the
+<span>image element</span>.
+
+</ol>
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Tokenization of a table row</h3>
+
+<p>The <dfn>algorithm to tokenize a table row</span> <var>data</var>
+is as follows:
+
+<ol>
+
+<li>Let <var>pos</var> be zero (0).  It represents the index in
+<var>data</var>.  The index of the first character in <var>data</var>
+is zero (0).
+
+<li>Emit a <span>table row start token</span>.
+
+<li><dfn title=tokenize-table-row-loop><i>LOOP</i></dfn>: If
+<var>pos</var> is greater than or equal to the length of
+<var>data</var>, emit a <span>table row end token</span> and abort
+this algorithm.
+
+<li>Increase <var>pos</var> by one (1). <!-- Skip "," -->
+
+<li>Let <var>cell</var> be the empty string.
+
+<li>Let <var>cell quoted</var> be the empty string.
+
+<li>If <var>pos</var> is greater than or equal to the length of
+<var>data</var>, emit a <span>table row end token</span> and abort
+this algorithm.
+
+<li>If the <var>pos</var>th character in <var>data</var> is a <span
+title="white space characters">white space character</span>, increase
+<var>pos</var> by one (1) and go back to the previous step.
+
+<li>If the <var>pos</var>th character in <var>data</var> is
+<code>"</code>, follow the substeps below:
+
+<ol>
+
+<li>Increase <var>pos</var> by one (1).
+
+<li>If <var>pos</var> is greater than or equal to the length of
+<var>data</var>, abort these substeps.
+
+<li>Otherwise, if the <var>pos</var>th character in <var>data</var> is
+<code>"</code>, abort these substeps.
+
+<li>Otherwise, if the <var>pos</var>th character in <var>data</var> is
+<code>\</code>, follow the substeps below:
+
+<ol>
+
+<li>Increase <var>pos</var> by one (1).
+
+<li>If <var>pos</var> is greater than or equal to the length of
+<var>data</var>, abort these substeps.
+
+<li>Otherwise, append the <var>pos</var>th character in
+<var>data</var> to <var>cell quoted</var>.
+
+</ol>
+
+<li>Otherwise, append the <var>pos</var>th character in
+<var>data</var> to <var>cell quoted</var>.
+
+<li>Go back to the first substep in these substeps.
+
+</ol>
+
+<li>While <var>pos</var> is less than the length of <var>data</var>, run
+the following substeps:
+
+<ol>
+
+<li>If the <var>pos</var>th character in <code>data</code> is
+<code>,</code>, abort these substeps. <!-- without increasing
+<var>pos</var> -->
+
+<li>Append the <var>pos</var>th character in <code>data</code> to
+<var>cell</var>.
+
+<li>Increase <var>pos</var> by one (1).
+
+</ol>
+
+<li>Remove <span>white space characters</span> at the end of
+<var>data</var>, if any.
+
+<li>If <var>cell</var> is equal to <code>==</code>, emit a <span>table
+colspan cell token</span> and go back to the step labeled <span
+title=tokenize-table-row-loop><i>LOOP</i></span>.
+
+<li>Prepend <var>cell quoted</var> to <var>cell</var>.
+
+<li>Emit a <span>table cell start token</span>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>cell</var>.
+
+<li>Emit a <span>table cell end token</span>.
+
+<li>Go back to the step labeled <span
+title=tokenize-table-row-loop><i>LOOP</i></span>.
+
+</ol>
+
+</div>
+
+<div class=section>
+<h3>Tokenization of a text</h3>
+
+<p>The <dfn>algorithm to tokenize a text</dfn> <var>data</var> is to
+run the following steps while the length of <var>data</var> is not
+zero (0):
+
+<dl class=switch>
+
+<dt>If <var>data</var> begins with <code>[[#</code>, followed by one
+or more <span>lowercase letters</span> or U+002D <code
+class=charname>HYPHEN-MINUS</span>
+
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Let <var>id</var> be null.
+
+<li>Let <var>parameters</var> be an empty list.
+
+<li>If <var>data</var> begins with a <span>class specification</span>,
+run the following substeps:
+
+<ol>
+
+<li>Set the <var>id</var> to the <span title="body of a class
+specification">body</span> of the <span>class specification</span>.
+
+<li>Remove the class specification from <var>data</var>.
+
+</ol>
+
+<li>While the first character of <var>data</var> is <code>:</code>,
+run the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+<li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>]]</code>, abort
+these substeps.
+
+<li>Let <var>parameter</var> be the empty string.
+
+<li>If <var>data</var> is empty, append <var>parameter</var> to
+<var>parameters</var> and abort these substeps.
+
+<li>If the first character of <var>data</var> is <code>'</code>, run
+the following steps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+<li>If <var>data</var> is empty, abort these substeps.
+
+<li>If the first character of <var>data</var> is <code>'</code>, abort
+these substeps.
+
+<li>If the first character of <var>data</var> is <code>\</code>, run
+the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+<li>If <var>data</var> is empty, abort these substeps.
+
+<li>Append the first character of <var>data</var> to
+<var>parameter</var>.
+
+</ol>
+
+<li>Otherwise, append the first character of <var>data</var> to
+<var>parameter</var>.
+
+<li>Go back to the first substep in these substeps.
+
+</ol>
+
+<li>Otherwise, run the following steps:
+
+<ol>
+
+<li>If <var>data</var> is empty, or if the first character of
+<var>data</var> is <code>:</code>, abort these substeps.
+
+<li>Append the first character of <var>data</var> to
+<var>parameter</var>.
+
+<li>Remove the first character of <var>data</var>.
+
+<li>Go back to the first substep of these substeps.
+
+</ol>
+
+<li>Append <var>parameter</var> to <var>parameters</var>.
+
+</ol>
+
+<li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>]]</code>, remove
+these characters from <var>data</var>.
+
+<li>Emit a <span>form token</span> whose <span title=form-id>id</span>
+is <var>id</var> and <span title=form-parameters>parameters</span> is
+<var>parameters</span>.
+
+</ol>
+
+<dt>Otherwise, if the <var>data</var> begins with <code>[[</code>
+
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit an <span>inline start tag</span>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>[</code>, followed by one or
+more <span>uppercase letters</span>, optionally followed by a
+<span>class specification</span>, optionally followed by a
+<span>language specification</span>, followed by <code>[</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>tag name</var> be the <span>uppercase letters</span> in
+the matched substring of <var>data</var>.
+
+<li>Let <var>classes</var> be the <span title="body of a class
+specification">body</span> of the <span>class specification</span> in
+the matched substring of <var>data</var>, if any, or null, otherwise.
+
+<li>Let <var>language</var> be the <span title="body of a language
+specification">body</span> of the <span>language specification</span>
+in the matched substring of <var>data</var>, if any, or null,
+otherwise.
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit an <span>inline start tag token</span> whose <span
+title=inline-start-tag-tag-name>tag name</span> is <var>tag
+name</var>, <span title=inline-start-tag-classes>classes</span> is
+<var>classes</var>, and <span
+title=inline-start-tag-language>language</span> is
+<var>language</var>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>]]</code>
+
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit an <span>inline end tag token</span>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>]&lt;</code>, followed by one
+or more <span>scheme characters</span>, followed by <code>:</code>
+
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var> and then act as
+if the first two character of the original <var>data</var> before the
+removal were <code>&lt;</code> instead of <code>]&lt;</code>, except
+that the emitted token is an <span>inline end tag token</span> instead
+of an <span>element token</span>.  The <span
+title=inline-end-tag-res-scheme-attribute>resScheme attribute</span>
+of the token <em class=rfc2119>MUST</em> be the <span
+title=element-res-scheme-attribute>resScheme attribute</span> of the
+token that would be emitted if the first two character were
+<code>&lt;</code>.  The <span
+title=inline-end-tag-res-parameter-attribute>resParameter
+attribute</span> of the token <em class=rfc2119>MUST</em> be the <span
+title=element-res-parameter-attribute>resParameter attribute</span> of
+the token that would be emitted if the first two character were
+<code>&lt;</code>.
+
+<li>Emit an <span>inline end tag token</span> whose <span
+title=inline-end-tag-anchor>anchor</span> is <var>number</var>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>]>></code> followed by one or
+more <span>digits</span>, followed by <code>]</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>number</var> be the <span>digits</span> in the matched
+substring.
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit an <span>inline end tag token</span> whose <span
+title=inline-end-tag-anchor>anchor</span> is <var>number</var>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>]</code> followed by zero or
+more <span>white space characters</span> followed by <code>[</code>
+
+<dt>If <var>data</var> begins with <code>]</code> followed by zero or
+more <span>white space characters</span> followed by a <span>language
+specification</span> followed by <code>[</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>lang</var> be the <span title="body of a language
+specification">body</span> of the <span>language specification</span>
+in the matched substring of <var>data</var>, if any, or null,
+otherwise.
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit a <span>middle tag token</code> whose <span
+title=middle-tag-language>language</span> is <var>lang</var>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>&lt;</code>, followed by one
+or more <span>scheme characters</span>, followed by <code>:</code>
+
+<dd>
+
+<ol>
+
+<li>Let <var>scheme</var> be the <span>scheme characters</span> part
+of the matched substring.
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Let <var>value</var> be the empty string.
+
+<li>Run the following steps:
+
+<ol>
+
+<li>If <var>data</var> is empty, abort these steps.
+
+<li>If the first character of <var>data</var> is <code>></code>,
+remove the first character of <var>data</var> and abort these steps.
+
+<li>If the first character of <var>data</var> is <code>"</code>, run
+the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+<li>If <var>data</var> is empty, abort these steps.
+
+<li>If the first character of <var>data</var> is <code>"</code>,
+remove the first character of <var>data</var> and abort these
+substeps.
+
+<li>If the first character of <var>data</var> is <code>\</code>, run
+the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+<li>If <var>data</var> is empty, abort these steps.
+
+<li>Append the first character of <var>data</var> to <var>value</var>.
+
+</ol>
+
+<li>Otherwise, append the first character of <var>data</var> to
+<var>value</var>.
+
+<li>Return back to the first substep of these substeps.
+
+</ol>
+
+<li>Otherwise, run the following substeps:
+
+<ol>
+
+<li>Append the first character of <var>data</var> to <var>value</var>.
+
+<li>Remove the first character of <var>data</var>.
+
+</ol>
+
+<li>Go back to the first substeps in these substeps.
+
+</ol>
+
+<li>Let <var>content</var> be <var>scheme</var> followed by
+<code>:</code> followed by <var>value</var>.
+
+<li>If <var>scheme</var> does <em>not</em> contain one of
+<span>uppercase letters</span>, set <var>value</var> to
+<var>content</var> and set <var>scheme</var> to <code>URI</code>.
+
+<li>Emit an <span>element token</span> whose <span
+title=element-local-name>local name</span> is
+<code>anchor-external</code>, <span
+title=element-namespace>namespace</span> is the <span>SuikaWiki/0.9
+namespace</span>, <span title=element-res-scheme>resScheme
+attribute</span> is <var>scheme</var>, <span
+title=element-res-parameter>resParameter attribute</span> is
+<var>value</var>, and <span title=element-content>content</span> is
+<var>content</var>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>'''</code>
+
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit an <span>element token</span> whose <span
+title=element-local-name>local name</span> is <code>strong</code> and
+<span title=element-namespace>namespace</span> is the <span>XHTML2
+namespace</span>.
+
+</ol>
+
+<dt>Otherwise, if <var>data</var> begins with <code>''</code>
+
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit an <span>element token</span> whose <span
+title=element-local-name>local name</span> is <code>em</code> and
+<span title=element-namespace>namespace</span> is the <span>XHTML2
+namespace</span>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>>></code> followed by one or
+more <span>digits</span>
+
+<dd>
+
+<ol>
+
+<li>Emit an <span>element token</span> whose <span
+title=element-local-name>local name</span> is
+<code>anchor-internal</code>, <span
+title=element-namespace>namespace</span> is the <span>SuikaWiki/0.9
+namespace</span>, <span title=element-anchor-attribute>anchor
+attribute</span> is the <span>digits</span> part of the matched
+substring, and <span title=element-content>content</span> is the
+matched substring.
+
+<li>Remove the matched substring from <var>data</var>.
+
+</ol>
+
+<dt>If <var>data</var> begins with <code>__&amp;&amp;</code>
+
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>If <var>data</var> begins with <code>&amp;&amp;__</code>, or if
+<var>data</var> does not contain <var>&amp;&amp;__</code> as a
+substring, emit four <span title="character token">character
+tokens</span> whose <span title=character-data>data</span> are
+<code>_</code>, <code>_</code>, <code>&amp;</code>, and
+<code>&amp;</code> respectively and remove the first four characters
+of <var>data</var> and abort these steps.
+
+<li>Let <var>name</var> be the substring of <var>data</var> between
+the beginning of the string and the first occurence of
+<code>&amp;&amp;__</code> (exclusive).
+
+<li>Remove the first occurence of <code>&amp;&amp;__</code> and any
+character before it from <var>data</var>.
+
+<li>Emit an <span>element token</span> whose <span
+title=element-local-name</span> is <code>replace</code>, <span
+title=element-namespace>namespace</span> is the <span>SuikaWiki/0.9
+namespace</span>, <span title=element-by-attribute>by attribute</span>
+is <var>name</var>.
+
+</ol>
+
+<dt>Otherwise
+
+<dd>
+
+<ol>
+
+<li>Emit a <span>character token</span> whose <span
+title=character-data>data</span> set to the first character of
+<var>data</var>.
+
+<li>Remove the first character of <var>data</var>.
+
+</ol>
+
+</dl>
+
+</div>
+
+</div>
