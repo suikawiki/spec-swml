@@ -300,7 +300,8 @@ attribute</dfn> properties.  Default for these properties is null.
 title=tokenization>tokenizer</span> and is one of
 "<span>initial</span>" (the initial value used when the
 <span>tokenization</span> starts), "<span>body</span>",
-"<span>preformatted</span>", and "<span>image</span>".
+"<span>preformatted</span>", "<span>preformatted block</span>", and
+"<span>image</span>".
 
 <p><dfn>Continuous line flag</dfn> is another flag of the <span
 title=tokenization>tokenizer</span>, representing whether a new line
@@ -629,6 +630,10 @@ title=block-start-tag-tag-name>tag name</span> is one of
 <code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
 in <code>line</code>.
 
+<li>If the <span title=block-start-tag-tag-name>tag name</span> is
+<code>PRE</code>, switch to the "<span>preformatted block</span>"
+<span>mode</span>.
+
 </ol>
 
 <dt>If <var>line</var> starts with <code>@@</code>
@@ -689,9 +694,9 @@ characters as character data.
 -->
 
 <dt>If <var>line</var> is a string consist of a <code>]</code>
-character, followed by one of <code>INS</code>, <code>DEL</code>, or
-<code>PRE</code>, followed by a <code>]</code> character, followed by
-zero or more <span>white space characters</span>
+character, followed by one of <code>INS</code> or <code>DEL</code>,
+followed by a <code>]</code> character, followed by zero or more
+<span>white space characters</span>
 
 <dd>
 
@@ -784,6 +789,8 @@ title=block-end-tag-tag-name>tag name</span> is one of
 <code>INS</code> or <code>DEL</code>, that appears in
 <code>line</code>.
 
+<li>Switch to the "<span>body</span>" <span>mode</span>.
+
 </ol>
 
 <dt>Otherwise
@@ -795,6 +802,52 @@ title=block-end-tag-tag-name>tag name</span> is one of
 <li>Emit a <span>character token</span> whose <span
 title=character-data>data</span> is a U+000A <code class=charname>LINE
 FEED</code> character.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>line</var>.
+
+</ol>
+
+</dl>
+
+</div>
+
+<div class=section>
+<h4>The "<span>preformatted block</span>" mode</h4>
+
+<p>In the "<dfn>preformatted block</dfn>" mode, <var>line</var> <em
+class=rfc2119>MUST</em> be processed as follows:
+
+<dl class=switch>
+
+<dt>If <var>line</var> is a string consist of <code>]PRE]</code>
+followed by zero or more <span>white space characters</span>
+
+<dd>
+
+<ol>
+
+<li>Set the <span>continuous line flag</span> to false.
+
+<li>Emit a <span>block end tag token</span> whoes <span
+title=block-end-tag-tag-name>tag name</span> is <code>PRE</code>.
+
+<li>Switch to the "<span>body</span>" <span>mode</span>.
+
+</ol>
+
+<dt>Otherwise
+
+<dd>
+
+<ol>
+
+<li>If the <span>continuous line flag</span> is true, emit a
+<span>character token</span> whose <span
+title=character-data>data</span> is a U+000A <code class=charname>LINE
+FEED</code> character.
+
+<li>Set <span>continuous line flag</span> to true.
 
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>line</var>.
