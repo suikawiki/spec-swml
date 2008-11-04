@@ -994,9 +994,35 @@ title=tokenize-table-row-loop><i>LOOP</i></span>.
 <div class=section>
 <h3>Tokenization of a text</h3>
 
-<p>The <dfn>algorithm to tokenize a text</dfn> <var>data</var> is to
-run the following steps while the length of <var>data</var> is not
-zero (0):
+<p>The <dfn>algorithm to tokenize a text</dfn> <var>data</var> is as
+follows:
+
+<ol>
+
+<li>If <var>data</var> begins with <code>[</code> followed by one or
+more <span>digits</span> followed by <span>]</span>, run the following
+steps:
+
+<ol>
+
+<li>Let <var>number</var> be the <span>digits</span> in the matched
+substring.
+
+<li>Remove the matched substring from <var>data</var>.
+
+<li>Emit an <span>element token</span> whose <span
+title=element-local-name>local name</span> is <code>anchor-end</code>,
+<span title=element-namespace>namespace</span> is the
+<span>SuikaWiki/0.9 namespace</span>, <span
+title=element-anchor-attribute>anchor attribute</span> is
+<var>number</var>, and <span title=element-content>content</span> is
+<code>[</code> followed by <var>number</var> followed by
+<code>]</code>.
+
+</ol>
+
+<li>While the length of <var>data</var> is not zero (0), run the
+appropriate steps:
 
 <dl class=switch>
 
@@ -1406,6 +1432,8 @@ title=character-data>data</span> set to the first character of
 
 </dl>
 
+</ol>
+
 </div>
 
 <div class=section>
@@ -1516,6 +1544,243 @@ in the <span>SuikaWiki/0.9 namespace</span>, set the
 </ol>
 
 </ol>
+
+</div>
+
+<div class=section>
+<h3>Tree construction</h3>
+
+<p class=ed><dfn>tree construction</dfn> stage.
+
+<p class=ed><dfn title="insertion mode">insertion modes</dfn>,
+initially "<span>in section</span>".
+
+<div class=section>
+<h4>The "<span>in section</span>" <span>insertion mode</span></h4>
+
+<p>In the "<dfn>in section</dfn>" <span>insertion mode</span>, a
+<span>token</span> <em class=rfc2119>MUST</em> be processed as
+follows:
+
+<dl class=switch>
+
+<dt>A <span>block start tag token</span> whose <span
+title=block-start-tag-tag-name>tag name</span> is <code>PRE</code>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>pre</code> element in the <span>XHTML2
+namespace</span>.
+
+<li>Append the element to the <span>current node</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+<li>If the <span>token</span>'s <span
+title=block-start-tag-classes>classes</span> is not null, set the
+<code>class</code> <span>content attribute</span> of the element to
+<span title=block-start-tag-classes>classes</span>.
+
+<li>Set the <code>xml:space</code> <span>content attribute</span> to
+<code>preserve</code>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+
+<dt>A <span>block start tag token</span> whose <span
+title=block-start-tag-tag-name>tag name</span> is <code>INS</code> or
+<code>DEL</code>
+
+<dd>
+
+<ol>
+
+<li>Create an element in the <span>SuikaWiki/0.9 namespace</span>.
+The local name of the element is <code>insert</code> if <span
+title=block-start-tag-tag-name>tag name</span> is <code>INS</code>, or
+<code>delete</code> otherwise.
+
+<li>Append the element to the <span>current node</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+<li>If the <span>token</span>'s <span
+title=block-start-tag-classes>classes</span> is not null, set the
+<code>class</code> <span>content attribute</span> of the element to
+<span title=block-start-tag-classes>classes</span>.
+
+</ol>
+
+<dt>A <span>comment paragraph start token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>comment-p</code> element in the
+<span>SuikaWiki/0.10 namespace</span>.
+
+<li>Append the element to the <span>current node</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+<dt>A <span>editorial note start token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>ed</code> element in the <span>SuikaWiki/0.10
+namespace</span>.
+
+<li>Append the element to the <span>current node</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+<dt>A <span>heading start token</span>
+
+<dd>
+
+<ol>
+
+<li>While the local name of the <span>current element</span> is not
+one of <code>section</code>, <code>body</code>, <code>insert</code>,
+or <code>delete</code>, pop the element off the <span>stack of the
+open elements</span>.
+
+<li>If <span title=heading-start-depth>depth</span> is less than or
+equal to the <span>section depth</span>, repreat the following
+substeps <span>section depth</span> - <span
+title=heading-start-depth>depth</span> + 1 times:
+
+<ol>
+
+<li>While the local name of the <span>current element</span> is not
+one of <code>section</code>, <code>body</code>, <code>insert</code>,
+or <code>delete</code>, pop the element off the <span>stack of the
+open elements</span>.
+
+<li>Pop the <span>current element</span> off the <span>stack of the
+open elements</span>.
+
+</ol>
+
+<li>Otherwise, if <span title=heading-start-depth>depth</span> is
+greater than <span>section depth</span> + 1, repeat the following
+substeps <span title=heading-start-depth>depth</span> - <span>section
+depth</span> - 1 times:
+
+<ol>
+
+<li>Create a <code>section</code> element in the <span>XHTML2
+namespace</span>.
+
+<li>Append the element to the <span>current element</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+</ol>
+
+<li>Create a <code>section</code> element in the <span>XHTML2
+namespace</span>.
+
+<li>Append the element to the <span>current element</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+<li>Set the <span>section depth</span> to <span
+title=heading-start-depth>depth</span>.
+
+<li>Set the <span>quote depth</span> to zero (0).
+
+<li>Set the <span>list depth</span> to the empty string.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+<dt>A <span>preformatted start token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>pre</code> element in the <span>XHTML2
+namespace</span>.
+
+<li>Append the element to the <span>current node</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+<li>Set the <code>xml:space</code> <span>content attribute</span> to
+<code>preserve</code>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+<dt>An <span>empty line token</span>
+
+<dd>
+
+<ol>
+
+<li>While the local name of the <span>current element</span> is not
+one of <code>section</code>, <code>body</code>, <code>insert</code>,
+or <code>delete</code>, pop the element off the <span>stack of the
+open elements</span>.
+
+<li>Set the <span>quote depth</span> to zero (0).
+
+<li>Set the <span>list depth</span> to the empty string.
+
+</ol>
+
+<dt>An <span>end-of-file token</span>
+
+<dd>Now the <code>Document</code> has been constructed.  Abort the
+<span title="SWML text format parser">parser</span>.
+
+<dt>Anything else
+
+<dd>
+
+<ol>
+
+<li>Create a <code>p</code> element in the <span>XHTML2
+namespace</span>.
+
+<li>Append the element to the <span>current node</span>.
+
+<li>Push the element to the <span>stack of open elements</span>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+</dl>
+
+</div>
+
+"in paragraph"
 
 </div>
 
