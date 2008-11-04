@@ -5,6 +5,8 @@
 
 <p class=ed>...
 
+<dfn>content attribute</dfn>, <dfn>DOM attribute</dfn>
+
 <div class=section>
 <h2>Parsing SWML Text Format Document</h2>
 
@@ -24,7 +26,33 @@ outside of the scope of this specification.
 
 <p>The <span title="parsing an SWML text format document">parsing
 process</span> is divided into two stages: <span>tokenization</span>
-and <span>tree construction</span>.
+and <span>tree construction</span>.  The <span>tokenization</span>
+stage emits a sequence of <span title=token>tokens</span>, which are
+used as inputs for the <span>tree construction</span> stage.  The
+<span>tree construction</span> stage constructs a DOM tree.  Some
+steps invoked in the <span>tokenization</span> stage might also
+construct a part of the DOM tree.  During the <span title="parsing an
+SWML text format document">parsing</span>, mutation events <em
+class=rfc2119>MUST NOT</em> be invoked.
+
+<p>Before the actual <span title="parsing an SWML text format
+document">parsing</span> starts, a new <code>Document</code> object
+<em class=rfc2119>MUST</em> be created.  It represents the DOM tree
+constructed as a result of the <span title="parsing an SWML text
+format document">parsing</span>.  The <code>innerHTML</code> <span>DOM
+attribute</span> of the <code>Document</code> <em
+class=rfc2119>MUST</em> be initially set to
+<code>&lt;html&#x20;xmlns="http://www.w3.org/2002/06/xhtml2/">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
+The <dfn>document element</dfn> is what the
+<code>documentElement</code> <span>DOM attribute</span> of the
+<code>Document</code> returns.  The <dfn>head element</dfn> is what
+the <code>firstChild</code> <span>DOM attribute</span> of the
+<span>document element</span> returns at the time immediately after
+the <code>innerHTML</code> is set.  The <dfn>body element</dfn> is
+what the <code>lastChild</code> <span>DOM attribute</span> of the
+<span>document element</span> returns at the time immediately after
+the <code>innerHTML</code> is set.  The <dfn>image element</dfn> is
+initially null.
 
 <div class=section>
 <h3>Definitions</h3>
@@ -297,19 +325,7 @@ class=rfc2119>MUST</em> be processed as follows:
 
 <dt>If <var>line</var> starts with <code>#?</code>
 
-<dd>
-
-<ol>
-
-<li>Let <var>data</var> be <var>line</var>.
-
-<li>Remove the first two characters from <var>data</var>.  (The
-removed characters will be <code>#?</code>.)
-
-<li>Emit a <span>processing instruction token</span> whose <span
-title=processing-instruction-data>data</span> set to <var>data</var>.
-
-</ol>
+<dd><span>Parse a magic line</span> <var>line</var>.
 
 <dt>Otherwise
 
@@ -799,7 +815,8 @@ class=rfc2119>MUST</em> be processed as follows:
 
 <li>If the <span>image element</span> is null, then create an
 <code>image</code> element in the <span>SuikaWiki/0.9 namespace</span>
-and set the <span>image element</span> to that element.
+and set the <span>image element</span> to that element.  Append the
+<span>image element</span> to the <span>document element</span>.
 
 <li>Otherwise, <span>append a character</span> U+000A <code
 class=charname>LINE FEED</code> to the <span>image element</span>.
@@ -1335,6 +1352,117 @@ title=character-data>data</span> set to the first character of
 </ol>
 
 </dl>
+
+</div>
+
+<div class=section>
+<h3>Parsing a magic line</h3>
+
+<p>To <dfn>parse a magic line</dfn> <var>data</var>, the following
+steps <em class=rfc2119>MUST</em> be used:
+
+<ol>
+
+<li>Remove the first two characters of <var>data</var>.  (It will be
+<code>#?</code>.)
+
+<li>If there are one or more characters that are not <span>white space
+charactes</span>, run the following substeps:
+
+<ol>
+
+<li>Let <var>name</var> be those characters.
+
+<li>Let <var>version</var> be null.
+
+<li>Remove those characters from <var>data</var>.
+
+<li>If <var>name</var> contains <code>/</code>, set the substring
+after the first occurence of the character to <var>version</var>.
+Note that <var>version</var> might become the empty string.  Remove
+the <code>/</code> character and the substring after the character
+from <var>name</var>.
+
+<li>Set the <code>Name</code> <span>content attribute</span> of the
+<span>document element</span> in the <span>SuikaWiki/0.9
+namespace</span> to <var>name</var>.
+
+<li>If <var>version</var> is <em>not</em> null, set the
+<var>Version</var> <span>content attribute</span> of the
+<span>document element</span> in the <span>SuikaWiki/0.9
+namespace</span> to <var>version</var>.
+
+</ol>
+
+<li>Run the following substeps:
+
+<ol>
+
+<li>If <var>data</var> is empty, abort these substeps.
+
+<li>If the first character of <var>data</var> is a <span title="white
+space characters">white space character</span>, remove the character
+from <var>data</var> and go back to the first substep of these
+substeps.
+
+<li>Let <var>name</var> be the empty string.
+
+<li>If <var>data</var> begins with one or more characters that are not
+<code>=</code>, set <var>name</var> to those characters and remove
+those characters from <var>data</var>.
+
+<li>Let <var>parameter</var> be a newly created <code>parameter</code>
+element in the <span>SuikaWiki/0.9 namespace</span> and set the
+<code>name</code> <span>content attribute</code> of
+<var>parameter</var> to <var>name</var>.
+
+<li>Remove the first character of <var>data</var>.  (It will be
+<code>=</code>.)
+
+<li>If the first character of <var>data</var>, if any, is
+<code>"</code>, remove that character from <var>data</var>.
+
+<li>Run the following substeps:
+
+<ol>
+
+<li>Let <var>value</var> be the empty string.
+
+<li>If <var>data</var> is empty, or if the first character of
+<var>data</var> is <code>"</code>, create a <code>value</code> element
+in the <span>SuikaWiki/0.9 namespace</span>, set the
+<code>textContent</code> <span>DOM attribute</span> of the node to
+<var>value</var>, and append the node to <var>parameter</var>.
+
+<li>If the first character of <var>data</var>, if any, is
+<code>\</code>, run the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+<li>Append the first character of <var>data</var>, if any, to
+<var>value</var>.
+
+</ol>
+
+<li>Otherwise, append the first character of <var>data</var> to
+<var>value</var>.
+
+<li>Go back to the second substep of these substeps.
+
+</ol>
+
+<li>If the first character of <var>data</var>, if any, is
+<code>"</code>, remove that character from <var>data</var>.
+
+<li>Append <var>parameter</var> to the <span>head element</span>.
+
+<li>Go back to the first substep of these substeps.
+
+</ol>
+
+</ol>
 
 </div>
 
