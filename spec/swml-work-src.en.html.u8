@@ -80,21 +80,9 @@ It might be the empty string.
 
 <p>When the <span title="SWML text format parser">parser</span> <dfn
 title="append a character">appends a character</dfn> <var>char</var>
-to node <var>node</var>, the following steps <em
-class=rfc2119>MUST</em> be followed:
-
-<ol>
-
-<li>If the last child node of <var>node</var> is a <code>Text</code>
-or <code>CharacterData</code> node, append a character <var>char</var>
-to the <code>data</code> attribute of the last child node of
-<var>node</var>.
-
-<li>Otherwise, create a <code>Text</code> node whose <code>data</code>
-attribute is set to a character <var>char</var> and append the
-<code>Text</code> node to <var>node</var>.
-
-</ol>
+to node <var>node</var>, the <code>manakai_append_text</code> method
+<cite class=ed>...</cite> <em class=rfc2119>MUST</em> be invoked on
+<var>node</var> with the argument <var>char</var>.
 
 <p>The <dfn>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
@@ -150,9 +138,8 @@ character of <var>s</var> is U+000A <code>LINE FEED</code>, increment
 
 <li>Otherwise, if the <var>pos</var>th character of <var>s</var> is
 U+000A <code>LINE FEED</code>, <span
-title=process-line</span>process</span> <var>line</var> according to
-the current <span>mode</span>.  Set <var>line</var> to the empty
-string.
+title=process-line</span>process</span> <var>line</var>.  Set
+<var>line</var> to the empty string.
 
 <li>Otherwise, append the <var>pos</var>th character of <var>s</var>
 to <var>line</var>.
@@ -162,6 +149,124 @@ to <var>line</var>.
 <li>Go back to the fourth step of these steps.
 
 </ol>
+
+<p>The steps above <dfn>emit</dfn> one or more sequence of <dfn
+title=token>tokens</dfn>, which are inputs to the <span>tree
+construction</span> stage.  A <span>token</span> can have zero or more
+properties, depending on the kind of the <span>token</span>.  There
+are several kinds of <span title=token>tokens</span> and properties as
+follows:
+
+<dl>
+
+<dt><dfn>Block start tag token</dfn>
+
+<dd><dfn>Tag name</dfn> property.
+
+<dt><dfn>Block end tag token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Character token</dfn>
+
+<dd><dfn title=character-data>Data</dfn> property.
+
+<dt><dfn>Comment paragraph start token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Editorial note start token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Element token</dfn>
+
+<dd><dfn title=element-local-name>Local name</dfn>, <dfn
+title=element-namespace>namespace</dfn>, <dfn
+title=element-anchor-attribute>anchor attribute</dfn>, <dfn
+title=element-by-attribute>by attribute</dfn>, <dfn
+title=element-res-scheme-attribute>resScheme attribute</dfn>, <dfn
+title=element-res-parameter-attribute>resParameter attribute</dfn>,
+and <dfn title=element-content>content</dfn> attribute.  Default for
+these properties are null.
+
+<dt><dfn>Empty line token</dfn>
+
+<dd>No property.
+
+<dt><dfn>End-of-file token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Form token</dfn>
+
+<dd><dfn title=form-id>Id</dfn> and <dfn
+title=form-parameters>parameters</dfn> properties.
+
+<dt><dfn>Heading start token</dfn>
+
+<dd><dfn title=heading-start-level>Level</dfn> property.
+
+<dt><dfn>Heading end token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Inline start tag token</dfn>
+
+<dd><dfn title=inline-start-tag-tag-name>Tag name</dfn>,
+title=inline-start-tag-classes>classes</dfn>, and <dfn
+title=inline-start-tag-language>language</dfn> properties.  Default
+for these properties is null.
+
+<dt><dfn>Inline middle tag token</dfn>
+
+<dd><dfn title=inline-middle-tag-language</dfn> property, whose
+default is null.
+
+<dt><dfn>Inline end tag token</dfn>
+
+<dd><dfn title=inline-end-tag-anchor>Anchor</dfn>, <dfn
+title=inline-end-tag-res-scheme-attribute>resScheme attribute</dfn>,
+and <dfn title=inline-end-tag-res-parameter-attribute>resParameter
+attribute</dfn> properties.  Default for these properties is null.
+
+<dt><dfn>List start token</dfn>
+
+<dd><dfn title=list-start-depth>Depth</dfn> property.
+
+<dt><dfn>Preformatted start token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Preformatted end token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Quotation start token</dfn>
+
+<dd><dfn title=quotation-start-depth>Depth</dfn> property.
+
+<dt><dfn>Table row start token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Table row end token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Table cell start token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Table cell end token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Table colspan cell token</dfn>
+
+<dd>No property.
+
+</dl>
 
 <p><dfn>Mode</dfn> is a state of the <span
 title=tokenization>tokenizer</span> and is one of
@@ -249,6 +354,8 @@ characters">white space character</span>
 <dd>
 
 <ol>
+
+<li>Emit a <span>preformatted start token</span>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>line</var>.
@@ -637,8 +744,7 @@ class=rfc2119>MUST</em> be processed as follows:
 
 <ol>
 
-<li>Emit a <span>block end tag token</span> whose <span
-title=block-end-tag-tag-name</span> is <code>PRE</code>.
+<li>Emit a <span>preformatted end token</span>.
 
 <li>Switch to the "<span>body</span>" <span>mode</span>.
 
@@ -654,6 +760,8 @@ followed by a <code>]</code> character, followed by zero or more
 <ol>
 
 <li>Set the <span>continuous line flag</span> to false.
+
+<li>Emit a <span>preformatted end token</span>.
 
 <li>Emit a <span>block end tag token</span> whoes <span
 title=block-end-tag-tag-name>tag name</span> is one of
@@ -986,11 +1094,7 @@ title=inline-start-tag-language>language</span> is
 <dt>If <var>data</var> begins with <code>]&lt;</code>, followed by one
 or more <span>scheme characters</span>, followed by <code>:</code>
 
-<dd>
-
-<ol>
-
-<li>Remove the matched substring from <var>data</var> and then act as
+<dd>Remove the matched substring from <var>data</var> and then act as
 if the first two character of the original <var>data</var> before the
 removal were <code>&lt;</code> instead of <code>]&lt;</code>, except
 that the emitted token is an <span>inline end tag token</span> instead
@@ -1005,11 +1109,6 @@ attribute</span> of the token <em class=rfc2119>MUST</em> be the <span
 title=element-res-parameter-attribute>resParameter attribute</span> of
 the token that would be emitted if the first two character were
 <code>&lt;</code>.
-
-<li>Emit an <span>inline end tag token</span> whose <span
-title=inline-end-tag-anchor>anchor</span> is <var>number</var>.
-
-</ol>
 
 <dt>If <var>data</var> begins with <code>]>></code> followed by one or
 more <span>digits</span>, followed by <code>]</code>
@@ -1046,8 +1145,8 @@ otherwise.
 
 <li>Remove the matched substring from <var>data</var>.
 
-<li>Emit a <span>middle tag token</code> whose <span
-title=middle-tag-language>language</span> is <var>lang</var>.
+<li>Emit an <span>inline middle tag token</code> whose <span
+title=inline-middle-tag-language>language</span> is <var>lang</var>.
 
 </ol>
 
@@ -1199,7 +1298,7 @@ matched substring.
 <li>Remove the matched substring from <var>data</var>.
 
 <li>If <var>data</var> begins with <code>&amp;&amp;__</code>, or if
-<var>data</var> does not contain <var>&amp;&amp;__</code> as a
+<var>data</var> does not contain <code>&amp;&amp;__</code> as a
 substring, emit four <span title="character token">character
 tokens</span> whose <span title=character-data>data</span> are
 <code>_</code>, <code>_</code>, <code>&amp;</code>, and
