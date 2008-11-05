@@ -82,9 +82,10 @@ non-normative, as are all sections explicitly marked
 non-normative. Everything else in this specification is normative.
 
 <p>The key words “<em class=rfc2119>MUST</em>”, “<em
-class=rfc2119>MUST NOT</em>”, and “<em class=rfc2119>MAY</em>” in
-the normative parts of this document are to be interpreted as
-described in RFC 2119 <span class=ed>[RFC2119]</span>.
+class=rfc2119>MUST NOT</em>”, “<em class=rfc2119>SHOULD</em>”, and 
+“<em class=rfc2119>MAY</em>” in the normative parts of this document
+are to be interpreted as described in RFC 2119 <span
+class=ed>[RFC2119]</span>.
 
 <p>Requirements phrased in the imperative as part of algorithms (such
 as “strip any leading space characters” or “return false and abort
@@ -2839,7 +2840,20 @@ of open elements</span> and follow this substep again.
 and in the <span>SuikaWiki/0.10 namespace</span>, as well as
 attributes in no namespace for elements in the <span>SuikaWiki/0.9
 namespace</span> and in the <span>SuikaWiki/0.10 namespace</span>, <em
-class=rfc2119>MUST NOT</em> be used in context where they are allowed.
+class=rfc2119>MUST NOT</em> be used in context where they are <dfn
+title="allowed attributes">allowed</dfn>.
+
+<div class="note memo">
+
+<p>A namespaced attribute allowed in another specification can be used
+on elements in the <span>SuikaWiki/0.9 namespace</span> and in the
+<span>SuikaWiki/0.10 namespace</span>.  For example, a
+<code>lang</code> attribute in the <span>XML namespace</span> is
+allowed in the XML specification <span class=ed>...</span>.  The
+<span>allowed attributes</span> entry in the subsections below only
+lists attributes defined in this specification.
+
+</div>
 
 <p>Elements in the <span>SuikaWiki/0.9 namespace</span> and in the
 <span>SuikaWiki/0.10 namespace</span> defined in this specification
@@ -2862,6 +2876,21 @@ element described in that subsection.
 Categories <dfn>flow content</dfn>, <dfn>phrasing content</dfn>, and
 <dfn>metadata content</dfn> are defined in the HTML5 specification
 <span class=ed>...</span>.
+
+<p>Terms and algorithms <dfn>valid integer</dfn>, <dfn>rules for
+parsing integers</dfn> are defined in the HTML5 specification <span
+class=ed>...</span>.
+
+<p>An attribute is said to be <dfn>specified</dfn> to an element if
+the <code>hasAttributeNS</code> method invoked on the element with
+appropriate arguments would return true.
+
+<div class="note memo">
+
+<p>That is, the term <span>specified</span> is irrelevant from the
+<code title>specified</code> <span>DOM attribute</span>.
+
+</div>
 
 <div class=section>
 
@@ -2905,7 +2934,7 @@ Categories <dfn>flow content</dfn>, <dfn>phrasing content</dfn>, and
 
 <dt><span>Allowed attributes</span>
 
-<dd>...
+<dd><code>anchor</code> in the <span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -2955,7 +2984,8 @@ Categories <dfn>flow content</dfn>, <dfn>phrasing content</dfn>, and
 
 <dt><span>Allowed attributes</span>
 
-<dd class=ed>...
+<dd><code>refParameter</code> in the <span>SuikaWiki/0.9 namespace</span>
+<dd><code>refScheme</code> in the <span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -3343,7 +3373,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code>class</code>
 
 </dl>
 
@@ -3393,7 +3423,7 @@ namespace</span></h3>
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code>class</code>
 
 </dl>
 
@@ -3445,7 +3475,7 @@ namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code></code>
 
 </dl>
 
@@ -3495,7 +3525,7 @@ namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code>class</code>
 
 </dl>
 
@@ -3528,30 +3558,98 @@ namespace</span>.
 
 </div>
 
+<div class=section>
+<h3>The <code>aa</code> element in the <span>AA namespace</span></h3>
+
+<p>The <code>aa</code> element in the <span>AA namespace</span> <span
+class=ed>...</span> falls into the <span>phrasing content</span>
+category for the purpose of the content models in this specification.
+
+<p>The <span>content model</span> of this element <em
+class=rfc2119>MAY</em> be considered as <span>phrasing content</span>.
+
+</div>
+
+<div class=section>
+<h3>The <code>class</code> attribute</h3>
+
+<p>The <code>class</code> attribute of an element in the
+<span>SuikaWiki/0.9 namespace</span> and <span>SuikaWiki/0.10
+namespace</span> has the same semantics and requirements as the <a
+href="http://www.whatwg.org/specs/web-apps/current-work/#classes"><code
+title>class</code></a> attribute of HTML5 <span class=ed>...</span>.
+
+<p>The <code>class</code> attribute of an element in the <span>AA
+namespace</span> <em class=rfc2119>SHOULD</em> be considered as having
+the same semantics and requirements as the <a
+href="http://www.whatwg.org/specs/web-apps/current-work/#classes"><code
+title>class</code></a> attribute of HTML5 <span class=ed>...</span>.
+
+</div>
+
+<div class=section>
+<h3>The <code>id</code> attribute</h3>
+
+<p>The <code>id</code> attribute of an element in the
+<span>SuikaWiki/0.9 namespace</span> and <span>SuikaWiki/0.10
+namespace</span> has the same semantics and requirements as the <a
+href="http://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute"><code
+title>id</code></a> attribute of HTML5 <span class=ed>...</span>.
+
+</div>
 
 <div class=section>
 
 <h3>The <dfn><code>anchor</code></dfn> attribute in the
 <span>SuikaWiki/0.9 namespace</span></h3>
 
-<dl class=element>
+<p>The <code>anchor</code> attribute in the <span>SuikaWiki/0.9
+namespace</span>, when specified to an <code>anchor-internal</code>
+element, defines an <dfn>anchor number</dfn> for the parent element of
+the <code>anchor-internal</code> element, if any.
 
-<dt><span>Category</span>
+<p>The attribute <em class=rfc2119>MUST</em> be specified and its
+value <em class=rfc2119>MUST</em> be a <span>valid integer</span>.
+The integer <em class=rfc2119>MUST</em> have different value from any
+other <code>anchor</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> specified in an <code>anchor-internal</code> element
+in the <span>SuikaWiki/0.9 namespace</span> that belongs to the same
+tree as the first attribute.
 
-<dd><span>Flow content</span>.
+<hr>
 
-<dt><span>Content model</span>
+<p>The <code>anchor</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> <em class=rfc2119>MAY</em> be specified to
+<code>q</code> elements in the <span>HTML namespace</span> and in the
+<span>XHTML2 namespace</span>, as well as <code>ins</code> and
+<code>del</code> elements in the <span>HTML namespace</span>.  The
+attribute can also be specified to an <code>anchor</code> element in
+the <span>SuikaWiki/0.9 namespace</span>.
 
-<dd>Text.
+<p>In these cases, the attribute represents the <span>anchor
+number</span> of the element referenced.  If the element on which the
+attribute is specified is an <code>anchor</code> element, the element
+referenced might be found in the document referenced by the element.
+Otherwise, the element is in the tree the element belongs to.
 
-<dt><span>Allowed attributes</span>
+<p>If the element on which the attribute is specified is <em>not</em>
+an <code>anchor</code> attribute, the attribute has similar semantics
+to that of the <code title>cite</code> attribute on the element.  In
+such a case, the <code>anchor</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MUST NOT</em>
+be specified when the <code title>cite</code> attribute is specified.
+A user agent <em class=rfc2119>MUST</em> ignore the
+<code>anchor</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> if the <code title>cite</code> attribute is
+specified.
 
-<dd><code>id</code>
-<dd><code>input</code>
-
-</dl>
-
-<p class=ed>...
+<p>The attribute value <em class=rfc2119>MUST</em> be a <span>valid
+integer</span>.  Unless the element is <code>anchor</code>, the
+integer <em class=rfc2119>MUST</em> be equal to one of the integer
+represented by the <code>anchor</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span> specified to an
+<code>anchor-internal</code> element in the <span>SuikaWiki/0.9
+namespace</span> that belongs to the same tree.
 
 </div>
 
@@ -3560,22 +3658,13 @@ namespace</span>.
 <h3>The <dfn><code>resScheme</code></dfn> attribute in the
 <span>SuikaWiki/0.9 namespace</span></h3>
 
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Flow content</span>.
-
-<dt><span>Content model</span>
-
-<dd>Text.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code>id</code>
-<dd><code>input</code>
-
-</dl>
+<p>The <code>resScheme</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> <em class=rfc2119>MAY</em> be specified to
+<code>q</code> elements in the <span>HTML namespace</span> and in the
+<span>XHTML2 namespace</span>, as well as <code>ins</code> and
+<code>del</code> elements in the <span>HTML namespace</span>.  The
+attribute can also be specified to an <code>anchor-external</code>
+element in the <span>SuikaWiki/0.9 namespace</span>.
 
 <p class=ed>...
 
@@ -3586,22 +3675,13 @@ namespace</span>.
 <h3>The <dfn><code>resParameter</code></dfn> attribute in the
 <span>SuikaWiki/0.9 namespace</span></h3>
 
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Flow content</span>.
-
-<dt><span>Content model</span>
-
-<dd>Text.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code>id</code>
-<dd><code>input</code>
-
-</dl>
+<p>The <code>resParameter</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> <em class=rfc2119>MAY</em> be specified to
+<code>q</code> elements in the <span>HTML namespace</span> and in the
+<span>XHTML2 namespace</span>, as well as <code>ins</code> and
+<code>del</code> elements in the <span>HTML namespace</span>.  The
+attribute can also be specified to an <code>anchor-external</code>
+element in the <span>SuikaWiki/0.9 namespace</span>.
 
 <p class=ed>...
 
@@ -3612,22 +3692,11 @@ namespace</span>.
 <h3>The <dfn><code>Name</code></dfn> attribute in the
 <span>SuikaWiki/0.9 namespace</span></h3>
 
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Flow content</span>.
-
-<dt><span>Content model</span>
-
-<dd>Text.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code>id</code>
-<dd><code>input</code>
-
-</dl>
+<p>The <code>Name</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> <em class=rfc2119>MAY</em> be specified to an
+<code>html</code> element in the <span>HTML namespace</span>.  The
+attribute can also be specified to an <code>document</code> element in
+the <span>SuikaWiki/0.9 namespace</span>.
 
 <p class=ed>...
 
@@ -3638,22 +3707,11 @@ namespace</span>.
 <h3>The <dfn><code>Version</code></dfn> attribute in the
 <span>SuikaWiki/0.9 namespace</span></h3>
 
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Flow content</span>.
-
-<dt><span>Content model</span>
-
-<dd>Text.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code>id</code>
-<dd><code>input</code>
-
-</dl>
+<p>The <code>Version</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> <em class=rfc2119>MAY</em> be specified to an
+<code>html</code> element in the <span>HTML namespace</span>.  The
+attribute can also be specified to an <code>document</code> element in
+the <span>SuikaWiki/0.9 namespace</span>.
 
 <p class=ed>...
 
@@ -3665,6 +3723,10 @@ namespace</span>.
 <h2>References</h2>
 
 <dl>
+
+<dt id=ref-AAVOCAB>AAVOCAB
+
+<dd class=ed>...
 
 <dt id=ref-DOM>DOM
 
@@ -3680,6 +3742,14 @@ Draft Recommendation.
 <dd class=ed>manakai's DOM extensions.
 
 <dt id=ref-RFC2119>RFC2119
+
+<dd class=ed>...
+
+<dt id=ref-XHTML2>XHTML2
+
+<dd class=ed>...
+
+<dt id=ref-XML>XML
 
 <dd class=ed>...
 
