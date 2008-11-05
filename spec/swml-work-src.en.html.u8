@@ -2476,6 +2476,9 @@ elements</span>.
 
 <li>Let <var>local name</var> be <code>title</code>.
 
+<li>Let <var>namespace</var> be the <span>SuikaWiki/0.10
+namespace</span>.
+
 <li>If the local name of the <span>current element</span> is
 <code>title</code> or <code>nsuri</code>, set <var>local name</var> to
 <code>attrvalue</code> and pop the <span>current element</span> off
@@ -2484,8 +2487,13 @@ the <span>stack of open elements</span>.
 <li>If the local name of the <span>current element</span> is
 <code>qn</code>, set <var>local name</var> to <code>nsuri</code>.
 
+<li>If the local name of the <span>current element</span> is
+<code>ruby</code> or <code>rubyb</code>, set <var>local name</var> to
+<code>rt</code> and set <var>namespace</var> to the <span>HTML
+namespace</span>.
+
 <li>Create an element whose local name <var>local name</var> in the
-<span>SuikaWiki/0.10 namespace</span>.
+<var>namespace</var>.
 
 <li>If the <span>token</span>'s <span
 title=inline-middle-tag-language>language</span> is not null, set the
@@ -2507,8 +2515,9 @@ elements</span>.
 <ol>
 
 <li>If the local name of the <span>current element</span> is one of
-<code>title</code>, <code>nsuri</code>, or <code>attrvalue</code>, pop
-the element off the <span>stack of open elements</span>.
+<code>rt</code>, <code>title</code>, <code>nsuri</code>, or
+<code>attrvalue</code>, pop the element off the <span>stack of open
+elements</span>.
 
 <li>If the <span>current element</span> is one of <span>structural
 elements</span>, or if the local name of the <span>current
