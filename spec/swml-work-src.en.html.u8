@@ -42,7 +42,7 @@ constructed as a result of the <span title="parsing an SWML text
 format document">parsing</span>.  The <code>innerHTML</code> <span>DOM
 attribute</span> of the <code>Document</code> <em
 class=rfc2119>MUST</em> be initially set to
-<code>&lt;html&#x20;xmlns="http://www.w3.org/2002/06/xhtml2/">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
+<code>&lt;html&#x20;xmlns="http://www.w3.org/1999/xhtml">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
 The <dfn>document element</dfn> is what the
 <code>documentElement</code> <span>DOM attribute</span> of the
 <code>Document</code> returns.  The <dfn>head element</dfn> is what
@@ -118,23 +118,14 @@ to node <var>node</var>, the <code>manakai_append_text</code> method
 <p>The <dfn>HTML namespace</dfn> is
 <code>http://www.w3.org/1999/xhtml</code>.
 
-<p>The <dfn>HTML3 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
-
 <p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.
 
 <p>The <dfn>SuikaWiki/0.10 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.
 
-<p>The <dfn>XHTML2 namespace</dfn> is
-<code>http://www.w3.org/2002/06/xhtml2/</code>.
-
 <p>The <dfn>XML namespace</dfn> is
 <code>http://www.w3.org/XML/1998/namespace </code>.
-
-<p>The <dfn>XMLNS namespace</dfn> is
-<code>http://www.w3.org/2000/xmlns/</code>.
 
 </div>
 
@@ -1569,7 +1560,19 @@ in the <span>SuikaWiki/0.9 namespace</span>, set the
 <div class=section>
 <h3>Tree construction</h3>
 
-<p class=ed><dfn>tree construction</dfn> stage.
+<p>The <dfn>tree construction</dfn> stage constructs a DOM tree from a
+series of <span title=token>tokens</span> emitted by the
+<span>tokenization</span> stage.  The <span>tree construction</span>
+stage has two state variables: <span>insertion mode</span> and
+<span>stack of open elements</span>.
+
+<p>The <dfn>insertion mode</dfn> is one of "<span>in section</span>",
+"<span>in table row</span>", or "<span>in paragraph</span>".  The
+default that <em class=rfc2119>MUST</em> be used when the <span>tree
+construction</span> begins is the "<span>in section</span>"
+<span>insertion mode</span>.  The rules for these <span
+title="insertion mode">insertion modes</span> are described in the
+subsections below.
 
 <p>When the algorithm below says that the <span title="SWML text
 format parser">parser</span> is to do something “<dfn>using the rules
@@ -2143,6 +2146,10 @@ follows:
 <dl class=switch>
 
 <dt>A <span>character token</span>
+
+<dd><span title="append a character">Append the character</span> in
+<span title=character-data>data</span> of the <span>token</span> to
+the <span>current element</span>.
 
 <dt>An <span>inline start tag token</span> whose <span
 title=inline-start-tag-tag-name>tag name</span> is null
