@@ -4,8 +4,8 @@
 <link rel=stylesheet href="/www/style/html/spec">
 
 <div class="header">
-<h1>SuikaWiki Markup Language (SWML)</h1>
-<h2>Working Draft [DATE]</h2>
+<h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
+<h2 class="no-toc no-num">Working Draft [DATE]</h2>
 
 <dl class="versions-uri">
 <dt>This Version</dt>
@@ -34,14 +34,14 @@ this document.
 
 </div>
 
-<div class="no-toc section" id=abstract>
-<h2>Abstract</h2>
+<div class=section id=abstract>
+<h2 class="no-toc no-num">Abstract</h2>
 
 <p class=ed>...
 </div>
 
-<div id="status" class="section no-toc">
-<h2>Status of this document</h2>
+<div id="status" class=section>
+<h2 class="no-toc no-num">Status of this document</h2>
 
 <p class=section-info><em>This section describes the status of this
 document at the time of its publication.  Other documents might
@@ -60,8 +60,8 @@ version of the document is the only normative version.</p>
 
 </div>
 
-<div class="no-toc section">
-<h2>Table of contents</h2>
+<div class=section>
+<h2 class="no-toc no-num">Table of contents</h2>
 
 <!-- toc -->
 </div>
@@ -201,30 +201,31 @@ SWML text serialization">parsing</span>, mutation events <em
 class=rfc2119>MUST NOT</em> be invoked.
 
 <p>Before the actual <span title="parsing an SWML text
-serialization">parsing</span> starts, a new <code>Document</code>
-object <em class=rfc2119>MUST</em> be created.  It represents the DOM
-tree constructed as a result of the <span title="parsing an SWML text
-format document">parsing</span>.  The <code>innerHTML</code> <span>DOM
-attribute</span> of the <code>Document</code> object <em
-class=rfc2119>MUST</em> be initially set to
+serialization">parsing</span> starts, a new <code
+title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
+be created.  It represents the DOM tree constructed as a result of the
+<span title="parsing an SWML text serialization">parsing</span>.  The
+<code>innerHTML</code> <span>DOM attribute</span> of the <code
+title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
+be initially set to
 <code>&lt;html&#x20;xmlns="http://www.w3.org/1999/xhtml">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
 The <dfn>document element</dfn> is what the
-<code>documentElement</code> <span>DOM attribute</span> of the
-<code>Document</code> returns.  The <dfn>head element</dfn> is what
-the <code>firstChild</code> <span>DOM attribute</span> of the
-<span>document element</span> returns at the time immediately after
-the <code>innerHTML</code> is set.  The <dfn>body element</dfn> is
-what the <code>lastChild</code> <span>DOM attribute</span> of the
-<span>document element</span> returns at the time immediately after
-the <code>innerHTML</code> is set.  The <dfn>image element</dfn> is
-initially null.
+<code>documentElement</code> <span>DOM attribute</span> of the <code
+title=dom-document>Document</code> returns.  The <dfn>head
+element</dfn> is what the <code>firstChild</code> <span>DOM
+attribute</span> of the <span>document element</span> returns at the
+time immediately after the <code>innerHTML</code> is set.  The
+<dfn>body element</dfn> is what the <code>lastChild</code> <span>DOM
+attribute</span> of the <span>document element</span> returns at the
+time immediately after the <code>innerHTML</code> is set.  The
+<dfn>image element</dfn> is initially null.
 
 <div class=section>
 <h4>Definitions</h4>
 
-<p><dfn>White space characters</dfn> are U+0009 <span
-class=charname>CHARACTER TABULATION</span> and U+0020 <span
-class=charname>SPACE</span>.
+<p><dfn>White space characters</dfn> are U+0009 <code
+class=charname>CHARACTER TABULATION</code> and U+0020 <code
+class=charname>SPACE</code>.
 
 <p><dfn>Digits</dfn> are characters in the range U+0030 <code
 class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
@@ -322,7 +323,7 @@ character of <var>s</var> is U+000A <code>LINE FEED</code>, increment
 
 <li>Otherwise, if the <var>pos</var>th character of <var>s</var> is
 U+000A <code>LINE FEED</code>, <span
-title=process-line</span>process</span> <var>line</var>.  Set
+title=process-line>process</span> <var>line</var>.  Set
 <var>line</var> to the empty string.
 
 <li>Otherwise, append the <var>pos</var>th character of <var>s</var>
@@ -345,11 +346,12 @@ follows:
 
 <dt><dfn>Block start tag token</dfn>
 
-<dd><dfn>Tag name</dfn> property.
+<dd><dfn title=block-start-tag-classes>Classes</dfn> and <dfn
+title=block-start-tag-tag-name>tag name</dfn> properties.
 
 <dt><dfn>Block end tag token</dfn>
 
-<dd>No property.
+<dd><dfn title=block-end-tag-tag-name>Tag name</dfn> property.
 
 <dt><dfn>Character token</dfn>
 
@@ -393,7 +395,7 @@ these properties are null.
 
 <dt><dfn>Heading start token</dfn>
 
-<dd><dfn title=heading-start-level>Level</dfn> property.
+<dd><dfn title=heading-start-depth>Depth</dfn> property.
 
 <dt><dfn>Heading end token</dfn>
 
@@ -408,14 +410,15 @@ for these properties is null.
 
 <dt><dfn>Inline middle tag token</dfn>
 
-<dd><dfn title=inline-middle-tag-language</dfn> property, whose
-default is null.
+<dd><dfn title=inline-middle-tag-language>language</dfn> property,
+whose default is null.
 
 <dt><dfn>Inline end tag token</dfn>
 
-<dd><dfn title=inline-end-tag-anchor>Anchor</dfn>, <dfn
-title=inline-end-tag-res-scheme-attribute>resScheme attribute</dfn>,
-and <dfn title=inline-end-tag-res-parameter-attribute>resParameter
+<dd><dfn title=inline-end-tag-anchor-attribute>Anchor attribute</dfn>,
+<dfn title=inline-end-tag-res-scheme-attribute>resScheme
+attribute</dfn>, and <dfn
+title=inline-end-tag-res-parameter-attribute>resParameter
 attribute</dfn> properties.  Default for these properties is null.
 
 <dt><dfn>Labeled list start token</dfn>
@@ -473,7 +476,7 @@ title=tokenization>tokenizer</span> and is one of
 "<span>initial</span>" (the initial value used when the
 <span>tokenization</span> starts), "<span>body</span>",
 "<span>preformatted</span>", "<span>preformatted block</span>", and
-"<span>image</span>".
+"<span>image data</span>".
 
 <p><dfn>Continuous line flag</dfn> is another flag of the <span
 title=tokenization>tokenizer</span>, representing whether a new line
@@ -520,7 +523,7 @@ title=reprocess-line>reprocess</span> <var>line</var>.
 <div class=section>
 <h5>The "<span>body</span>" mode</h5>
 
-<p>In the "<dfn>body</body>" mode, <var>line</var> <em
+<p>In the "<dfn>body</dfn>" mode, <var>line</var> <em
 class=rfc2119>MUST</em> be processed as follows:
 
 <dl class=switch>
@@ -561,14 +564,14 @@ characters">white space character</span>
 
 <li>Let <var>data</var> be <var>line</var>.
 
-<li>Let <var>level</var> be zero (0).
+<li>Let <var>depth</var> be zero (0).
 
 <li>While the first character of <var>data</var>, if any, is
 <code>*</code>, run the following substeps:
 
 <ol>
 
-<li>Increase <var>level</var> by one (1).
+<li>Increase <var>depth</var> by one (1).
 
 <li>Remove the first character of <var>data</var>.  (The removed
 character will be <code>*</code>.)
@@ -579,7 +582,7 @@ character will be <code>*</code>.)
 <var>data</var>, if any.
 
 <li>Emit a <span>heading start token</span> whose <span
-title=heading-start-level>level</span> set to <var>level</var>.
+title=heading-start-depth>depth</span> set to <var>depth</var>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with <var>data</var>.
 
@@ -612,7 +615,7 @@ title=heading-start-level>level</span> set to <var>level</var>.
 <var>data</var>, if any.
 
 <li>Emit a <span>list start token</span> whose <span
-title=list-start-token-depth>depth</span> set to <var>depth</var>.
+title=list-start-depth>depth</span> set to <var>depth</var>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with <var>data</var>.
 
@@ -628,9 +631,9 @@ title=list-start-token-depth>depth</span> set to <var>depth</var>.
 
 <ol>
 
-<li>Let <var>name</var> be the empty string.
+<li>Let <var title>name</var> be the empty string.
 
-<li>Let <var>data</var> be <var>line</var>.
+<li>Let <var title>data</var> be <var>line</var>.
 
 <li>Remove the first character of <var>data</var>.  (The removed
 character will be <code>:</code>.)
@@ -641,13 +644,14 @@ substeps:
 
 <ol>
 
-<li>Append the first character of <var>data</var> to <var>name</var>.
+<li>Append the first character of <var title>data</var> to <var
+title>name</var>.
 
-<li>Remove the first character of <var>data</var>.
+<li>Remove the first character of <var title>data</var>.
 
 </ol>
 
-<li>If <var>name</var> is the empty string, run the following
+<li>If <var title>name</var> is the empty string, run the following
 substeps:
 
 <ol>
@@ -655,7 +659,8 @@ substeps:
 <li>Emit a <span>character token</span> whose <span
 title=character-data>data</span> is a <code>:</code> character.
 
-<li>Run the <span>algorithm to tokenize a text</span> with <var>name</var>.
+<li>Run the <span>algorithm to tokenize a text</span> with <var
+title>name</var>.
 
 </ol>
 
@@ -671,15 +676,15 @@ list.  <!-- For compatibility with previous implementations. -->
 <ol>
 
 <li>Remove <span>white space characters</span> at the beginning of
-<var>name</var>, if any.
+<var title>name</var>, if any.
 
-<li>Remove <span>white space characters</span> at the end of
-<var>name</var>, if any.
+<li>Remove <span>white space characters</span> at the end of <var
+title>name</var>, if any.
 
 <li>Emit a <span>labeled list start token</span>.
 
-<li>Run the <span>algorithm to tokenize a text</span> with
-<var>name</var>.
+<li>Run the <span>algorithm to tokenize a text</span> with <var
+title>name</var>.
 
 <li>Remove <span>white space characters</span> at the end of
 <var>data</var>, if any.
@@ -718,9 +723,8 @@ character will be <code>></code>.
 </ol>
 
 <li>If <var>depth</var> is two (2), <var>data</var> is not empty, and
-the first character of <var>data</var> is in the range U+0030 <span
-class=charname>DIGIT ZERO</span> .. U+0039 <span class=charname>DIGIT
-NINE</span>, run the following substeps:
+the first character of <var>data</var> is one of <span>digits</span>,
+run the following substeps:
 
 <ol>
 
@@ -902,8 +906,8 @@ in <code>line</code>.
 
 <dt>If <var>line</var> is <code>__IMAGE__</code>
 
-<dd>Switch to the "<span>image</code>" <span>mode</span>.
-<!-- SuikaWikiImage/0.9 addition -->
+<dd>Switch to the "<span>image data</span>" <span>mode</span>.  <!--
+SuikaWikiImage/0.9 addition -->
 
 <dt>Otherwise
 
@@ -1035,9 +1039,9 @@ FEED</code> character.
 </div>
 
 <div class=section>
-<h5>The "<span>image</span>" mode</h5>
+<h5>The "<span>image data</span>" mode</h5>
 
-<p>In the "<dfn>image</dfn>" mode, <var>line</var> <em
+<p>In the "<dfn>image data</dfn>" mode, <var>line</var> <em
 class=rfc2119>MUST</em> be processed as follows:
 
 <ol>
@@ -1063,8 +1067,8 @@ character</span> in <var>line</var> in the same order to the
 <div class=section>
 <h4>Tokenization of a table row</h4>
 
-<p>The <dfn>algorithm to tokenize a table row</span> <var>data</var>
-is as follows:
+<p>The <dfn>algorithm to tokenize a table row</dfn> <var>data</var> is
+as follows:
 
 <ol>
 
@@ -1176,7 +1180,7 @@ follows:
 <ol>
 
 <li>If <var>data</var> begins with <code>[</code> followed by one or
-more <span>digits</span> followed by <span>]</span>, run the following
+more <span>digits</span> followed by <code>]</code>, run the following
 steps:
 
 <ol>
@@ -1184,7 +1188,7 @@ steps:
 <li>Let <var>number</var> be the <span>digits</span> in the matched
 substring.
 
-<li>Remove the matched substring from <var>data</var>.
+<li>Remove the matched substring frm <var>data</var>.
 
 <li>Emit an <span>element token</span> whose <span
 title=element-local-name>local name</span> is <code>anchor-end</code>,
@@ -1210,13 +1214,13 @@ class=charname>HYPHEN-MINUS</span>
 
 <ol>
 
-<li>Let <var>name</var> be the <span>lowercase letter</span> and
-U+002D <code class=charname>HYPHEN-MINUS</span> in the matched
+<li>Let <var title>name</var> be the <span>lowercase letters</span>
+and U+002D <code class=charname>HYPHEN-MINUS</code> in the matched
 substring.
 
 <li>Remove the matched substring from <var>data</var>.
 
-<li>Let <var>id</var> be null.
+<li>Let <var title>id</var> be null.
 
 <li>Let <var>parameters</var> be an empty list.
 
@@ -1225,7 +1229,7 @@ run the following substeps:
 
 <ol>
 
-<li>Set the <var>id</var> to the <span title="body of a class
+<li>Set the <var title>id</var> to the <span title="body of a class
 specification">body</span> of the <span>class specification</span>.
 
 <li>Remove the class specification from <var>data</var>.
@@ -1243,13 +1247,14 @@ run the following substeps:
 first two characters of <var>data</var> are <code>]]</code>, abort
 these substeps.
 
-<li>Let <var>parameter</var> be the empty string.
+<li>Let <var title>parameter</var> be the empty string.
 
-<li>If <var>data</var> is empty, append <var>parameter</var> to
-<var>parameters</var> and abort these substeps.
+<li>If <var title>data</var> is empty, append <var
+title>parameter</var> to <var title>parameters</var> and abort these
+substeps.
 
-<li>If the first character of <var>data</var> is <code>'</code>, run
-the following steps:
+<li>If the first character of <var title>data</var> is <code>'</code>,
+run the following steps:
 
 <ol>
 
@@ -1265,17 +1270,17 @@ the following substeps:
 
 <ol>
 
-<li>Remove the first character of <var>data</var>.
+<li>Remove the first character of <var title>data</var>.
 
-<li>If <var>data</var> is empty, abort these substeps.
+<li>If <var title>data</var> is empty, abort these substeps.
 
-<li>Append the first character of <var>data</var> to
-<var>parameter</var>.
+<li>Append the first character of <var>data</var> to <var
+title>parameter</var>.
 
 </ol>
 
-<li>Otherwise, append the first character of <var>data</var> to
-<var>parameter</var>.
+<li>Otherwise, append the first character of <var title>data</var> to
+<var title>parameter</var>.
 
 <li>Go back to the first substep in these substeps.
 
@@ -1285,19 +1290,19 @@ the following substeps:
 
 <ol>
 
-<li>If <var>data</var> is empty, or if the first character of
-<var>data</var> is <code>:</code>, abort these substeps.
+<li>If <var title>data</var> is empty, or if the first character of
+<var title>data</var> is <code>:</code>, abort these substeps.
 
-<li>Append the first character of <var>data</var> to
-<var>parameter</var>.
+<li>Append the first character of <var title>data</var> to <var
+title>parameter</var>.
 
-<li>Remove the first character of <var>data</var>.
+<li>Remove the first character of <var title>data</var>.
 
 <li>Go back to the first substep of these substeps.
 
 </ol>
 
-<li>Append <var>parameter</var> to <var>parameters</var>.
+<li>Append <var title>parameter</var> to <var title>parameters</var>.
 
 </ol>
 
@@ -1306,9 +1311,10 @@ first two characters of <var>data</var> are <code>]]</code>, remove
 these characters from <var>data</var>.
 
 <li>Emit a <span>form token</span> whose <span
-title=form-name>name</span> is <var>name</var>, <span
-title=form-id>id</span> is <var>id</var>, and <span
-title=form-parameters>parameters</span> is <var>parameters</span>.
+title=form-name>name</span> is <var title>name</var>, <span
+title=form-id>id</span> is <var title>id</var>, and <span
+title=form-parameters>parameters</span> is <var
+title>parameters</span>.
 
 </ol>
 
@@ -1320,7 +1326,7 @@ title=form-parameters>parameters</span> is <var>parameters</span>.
 
 <li>Remove the matched substring from <var>data</var>.
 
-<li>Emit an <span>inline start tag</span>.
+<li>Emit an <span>inline start tag token</span>.
 
 </ol>
 
@@ -1415,15 +1421,16 @@ specification</span> followed by <code>[</code>
 
 <ol>
 
-<li>Let <var>lang</var> be the <span title="body of a language
+<li>Let <var title>lang</var> be the <span title="body of a language
 specification">body</span> of the <span>language specification</span>
-in the matched substring of <var>data</var>, if any, or null,
+in the matched substring of <var title>data</var>, if any, or null,
 otherwise.
 
 <li>Remove the matched substring from <var>data</var>.
 
-<li>Emit an <span>inline middle tag token</code> whose <span
-title=inline-middle-tag-language>language</span> is <var>lang</var>.
+<li>Emit an <span>inline middle tag token</span> whose <span
+title=inline-middle-tag-language>language</span> is <var
+title>lang</var>.
 
 </ol>
 
@@ -1439,7 +1446,7 @@ of the matched substring.
 
 <li>Remove the matched substring from <var>data</var>.
 
-<li>Let <var>value</var> be the empty string.
+<li>Let <var title>value</var> be the empty string.
 
 <li>Run the following steps:
 
@@ -1468,16 +1475,17 @@ the following substeps:
 
 <ol>
 
-<li>Remove the first character of <var>data</var>.
+<li>Remove the first character of <var title>data</var>.
 
-<li>If <var>data</var> is empty, abort these steps.
+<li>If <var title>data</var> is empty, abort these steps.
 
-<li>Append the first character of <var>data</var> to <var>value</var>.
+<li>Append the first character of <var title>data</var> to <var
+title>value</var>.
 
 </ol>
 
-<li>Otherwise, append the first character of <var>data</var> to
-<var>value</var>.
+<li>Otherwise, append the first character of <var title>data</var> to
+<var title>value</var>.
 
 <li>Return back to the first substep of these substeps.
 
@@ -1487,9 +1495,10 @@ the following substeps:
 
 <ol>
 
-<li>Append the first character of <var>data</var> to <var>value</var>.
+<li>Append the first character of <var title>data</var> to <var
+title>value</var>.
 
-<li>Remove the first character of <var>data</var>.
+<li>Remove the first character of <var title>data</var>.
 
 </ol>
 
@@ -1497,22 +1506,23 @@ the following substeps:
 
 </ol>
 
-<li>Let <var>content</var> be <var>scheme</var> followed by
-<code>:</code> followed by <var>value</var>.
+<li>Let <var title>content</var> be <var title>scheme</var> followed
+by <code>:</code> followed by <var title>value</var>.
 
-<li>If <var>scheme</var> does <em>not</em> contain one of
-<span>uppercase letters</span>, set <var>value</var> to
-<var>content</var> and set <var>scheme</var> to <code>URI</code>.
+<li>If <var title>scheme</var> does <em>not</em> contain one of
+<span>uppercase letters</span>, set <var title>value</var> to <var
+title>content</var> and set <var title>scheme</var> to
+<code>URI</code>.
 
 <li>Emit an <span>element token</span> whose <span
 title=element-local-name>local name</span> is
 <code>anchor-external</code>, <span
 title=element-namespace>namespace</span> is the <span>SuikaWiki/0.9
 namespace</span>, <span title=element-res-scheme-attribute>resScheme
-attribute</span> is <var>scheme</var>, <span
+attribute</span> is <var title>scheme</var>, <span
 title=element-res-parameter-attribute>resParameter attribute</span> is
-<var>value</var>, and <span title=element-content>content</span> is
-<var>content</var>.
+<var title>value</var>, and <span title=element-content>content</span>
+is <var title>content</var>.
 
 </ol>
 
@@ -1576,18 +1586,19 @@ tokens</span> whose <span title=character-data>data</span> are
 <code>&amp;</code> respectively and remove the first four characters
 of <var>data</var> and abort these steps.
 
-<li>Let <var>name</var> be the substring of <var>data</var> between
-the beginning of the string and the first occurence of
-<code>&amp;&amp;__</code> (exclusive).
+<li>Let <var title>name</var> be the substring of <var
+title>data</var> between the beginning of the string and the first
+occurence of <code>&amp;&amp;__</code> (exclusive).
 
 <li>Remove the first occurence of <code>&amp;&amp;__</code> and any
-character before it from <var>data</var>.
+character before it from <var title>data</var>.
 
 <li>Emit an <span>element token</span> whose <span
-title=element-local-name</span> is <code>replace</code>, <span
-title=element-namespace>namespace</span> is the <span>SuikaWiki/0.9
-namespace</span>, <span title=element-by-attribute>by attribute</span>
-is <var>name</var>.
+title=element-local-name>local name</span> is <code>replace</code>,
+<span title=element-namespace>namespace</span> is the
+<span>SuikaWiki/0.9 namespace</span>, <span
+title=element-by-attribute>by attribute</span> is <var
+title>name</var>.
 
 </ol>
 
@@ -1623,30 +1634,30 @@ steps <em class=rfc2119>MUST</em> be used:
 <code>#?</code>.)
 
 <li>If there are one or more characters that are not <span>white space
-charactes</span>, run the following substeps:
+characters</span>, run the following substeps:
 
 <ol>
 
-<li>Let <var>name</var> be those characters.
+<li>Let <var title>name</var> be those characters.
 
-<li>Let <var>version</var> be null.
+<li>Let <var title>version</var> be null.
 
-<li>Remove those characters from <var>data</var>.
+<li>Remove those characters from <var title>data</var>.
 
-<li>If <var>name</var> contains <code>/</code>, set the substring
-after the first occurence of the character to <var>version</var>.
-Note that <var>version</var> might become the empty string.  Remove
-the <code>/</code> character and the substring after the character
-from <var>name</var>.
+<li>If <var title>name</var> contains <code>/</code>, set the
+substring after the first occurence of the character to <var
+title>version</var>.  Note that <var title>version</var> might become
+the empty string.  Remove the <code>/</code> character and the
+substring after the character from <var title>name</var>.
 
-<li>Set the <code>Name</code> <span>content attribute</span> of the
-<span>document element</span> in the <span>SuikaWiki/0.9
-namespace</span> to <var>name</var>.
+<li>Set the <code title=attr-sw-name>Name</code> <span>content
+attribute</span> of the <span>document element</span> in the
+<span>SuikaWiki/0.9 namespace</span> to <var title>name</var>.
 
-<li>If <var>version</var> is <em>not</em> null, set the
-<var>Version</var> <span>content attribute</span> of the
-<span>document element</span> in the <span>SuikaWiki/0.9
-namespace</span> to <var>version</var>.
+<li>If <var>version</var> is <em>not</em> null, set the <code
+title=attr-sw-name>Version</code> <span>content attribute</span> of
+the <span>document element</span> in the <span>SuikaWiki/0.9
+namespace</span> to <var title>version</var>.
 
 </ol>
 
@@ -1661,16 +1672,18 @@ space characters">white space character</span>, remove the character
 from <var>data</var> and go back to the first substep of these
 substeps.
 
-<li>Let <var>name</var> be the empty string.
+<li>Let <var title>name</var> be the empty string.
 
-<li>If <var>data</var> begins with one or more characters that are not
-<code>=</code>, set <var>name</var> to those characters and remove
-those characters from <var>data</var>.
+<li>If <var title>data</var> begins with one or more characters that
+are not <code>=</code>, set <var title>name</var> to those characters
+and remove those characters from <var title>data</var>.
 
-<li>Let <var>parameter</var> be a newly created <code>parameter</code>
-element in the <span>SuikaWiki/0.9 namespace</span> and set the
-<code>name</code> <span>content attribute</code> of
-<var>parameter</var> to <var>name</var>.
+<li>Let <var title>parameter</var> be a newly created <code
+title=element-sw-parameter>parameter</code> element in the
+<span>SuikaWiki/0.9 namespace</span> and set the <code
+title=attr-sw-parameter-name>name</code> <span>content
+attribute</span> of <var title>parameter</var> to <var
+title>name</var>.
 
 <li>Remove the first character of <var>data</var>.  (It will be
 <code>=</code>.)
@@ -1682,15 +1695,16 @@ element in the <span>SuikaWiki/0.9 namespace</span> and set the
 
 <ol>
 
-<li>Let <var>value</var> be the empty string.
+<li>Let <var title>value</var> be the empty string.
 
-<li>If <var>data</var> is empty, or if the first character of
-<var>data</var> is <code>"</code>, create a <code>value</code> element
-in the <span>SuikaWiki/0.9 namespace</span>, set the
-<code>textContent</code> <span>DOM attribute</span> of the node to
-<var>value</var>, and append the node to <var>parameter</var>.
+<li>If <var title>data</var> is empty, or if the first character of
+<var title>data</var> is <code>"</code>, create a <code
+title=element-sw-value>value</code> element in the <span>SuikaWiki/0.9
+namespace</span>, set the <code>textContent</code> <span>DOM
+attribute</span> of the node to <var title>value</var>, and append the
+node to <var title>parameter</var>.
 
-<li>If the first character of <var>data</var>, if any, is
+<li>If the first character of <var title>data</var>, if any, is
 <code>\</code>, run the following substeps:
 
 <ol>
@@ -1698,12 +1712,12 @@ in the <span>SuikaWiki/0.9 namespace</span>, set the
 <li>Remove the first character of <var>data</var>.
 
 <li>Append the first character of <var>data</var>, if any, to
-<var>value</var>.
+<var title>value</var>.
 
 </ol>
 
 <li>Otherwise, append the first character of <var>data</var> to
-<var>value</var>.
+<var title>value</var>.
 
 <li>Go back to the second substep of these substeps.
 
@@ -1712,7 +1726,8 @@ in the <span>SuikaWiki/0.9 namespace</span>, set the
 <li>If the first character of <var>data</var>, if any, is
 <code>"</code>, remove that character from <var>data</var>.
 
-<li>Append <var>parameter</var> to the <span>head element</span>.
+<li>Append <var title>parameter</var> to the <span>head
+element</span>.
 
 <li>Go back to the first substep of these substeps.
 
@@ -1740,9 +1755,9 @@ title="insertion mode">insertion modes</span> are described in the
 subsections below.
 
 <p>When the algorithm below says that the <span title="SWML text
-format parser">parser</span> is to do something “<dfn>using the rules
-for</dfn> the <var>m</var> <span>insertion mode</span>”, the <span
-title="SWML text serialization parser">parser</span> <em
+serialization parser">parser</span> is to do something “<dfn>using
+the rules for</dfn> the <var>m</var> <span>insertion mode</span>”,
+the <span title="SWML text serialization parser">parser</span> <em
 class=rfc2119>MUST</em> use the rules described under the <var>m</var>
 <span>insertion mode</span>'s section, but <em class=rfc2119>MUST</em>
 leave the <span>insertion mode</span> unchanged.
@@ -1758,14 +1773,14 @@ an entry is pushed to the <span>stack of open elements</span>, the
 items of the new tupple is set to the same values as the bottommost
 tuple unless otherwise specified.
 
-<p>The <span>current element</span> is the <span>element node</span>
+<p>The <dfn>current element</dfn> is the <span>element node</span>
 of the bottommost entry in the <span>stack of open elements</span>.
 
 <p><dfn>Structural elements</dfn> are elements whose local name is one
-of <code>body</code>, <code>section</code>, <code>insert</code>,
-<code>delete</code>, <code>blockquote</code>, <code>h1</code>,
-<code>ul</code>, <code>ol</code>, <code>dl</code>, <code>li</code>,
-<code>dt</code>, <code>dd</code>, <code>table</code>,
+of <code title=element-body>body</code>, <code>section</code>,
+<code>insert</code>, <code>delete</code>, <code>blockquote</code>,
+<code>h1</code>, <code>ul</code>, <code>ol</code>, <code>dl</code>,
+<code>li</code>, <code>dt</code>, <code>dd</code>, <code>table</code>,
 <code>tbody</code>, <code>tr</code>, <code>td</code>, <code>p</code>,
 <code>comment-p</code>, <code>ed</code>, or <code>pre</code>.
 
@@ -1785,17 +1800,18 @@ follows:
 <ol>
 
 <li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code>body</code>, <code>section</code>,
-<code>insert</code>, or <code>delete</code>, pop the element off the
-<span>stack of open elements</span> and follow this substep again.
+<em>not</em> one of <code title=element-body>body</code>,
+<code>section</code>, <code>insert</code>, or <code>delete</code>, pop
+the element off the <span>stack of open elements</span> and follow
+this substep again.
 
 <li>Let <var>current depth</var> be the <span>section depth</span> of
 the bottommost entry in the <span>stack of open elements</span>.
 
 <li>If <span title=heading-start-depth>depth</span> is less than or
 equal to the <var>current depth</var>, pop the element off the
-<span>stack of the open elements</span> and go back to the first
-substep of these substeps.
+<span>stack of open elements</span> and go back to the first substep
+of these substeps.
 
 <li>Otherwise, if <span title=heading-start-depth>depth</span> is
 greater than <var>current depth</var> + 1, create a
@@ -1843,14 +1859,15 @@ namespace</span>.
 <li>Append the element created to the <span>current element</span>.
 
 <li>Push the element created to the <span>stack of open
-elements</span> with <span>section level</span> set to zero (0),
-<span>quotation level</span> set to zero (0), and <span>list
-level</span> set to zero (0).
+elements</span> with <span>section depth</span> set to zero (0),
+<span>quotation depth</span> set to zero (0), and <span>list
+depth</span> set to zero (0).
 
 <li>If the <span>token</span>'s <span
 title=block-start-tag-classes>classes</span> is not null, set the
-<code>class</code> <span>content attribute</span> of the element
-created to <span title=block-start-tag-classes>classes</span>.
+<code title=attr-class>class</code> <span>content attribute</span> of
+the element created to <span
+title=block-start-tag-classes>classes</span>.
 
 </ol>
 
@@ -1867,14 +1884,15 @@ namespace</span>.
 <li>Append the element created to the <span>current element</span>.
 
 <li>Push the element created to the <span>stack of open
-elements</span> with <span>section level</span> set to zero (0),
-<span>quotation level</span> set to zero (0), and <span>list
-level</span> set to zero (0).
+elements</span> with <span>section depth</span> set to zero (0),
+<span>quotation depth</span> set to zero (0), and <span>list
+depth</span> set to zero (0).
 
 <li>If the <span>token</span>'s <span
 title=block-start-tag-classes>classes</span> is not null, set the
-<code>class</code> <span>content attribute</span> of the element
-created to <span title=block-start-tag-classes>classes</span>.
+<code title=attr-class>class</code> <span>content attribute</span> of
+the element created to <span
+title=block-start-tag-classes>classes</span>.
 
 </ol>
 
@@ -1885,18 +1903,18 @@ created to <span title=block-start-tag-classes>classes</span>.
 <ol>
 
 <li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code>blockquote</code>, <code>body</code>,
-<code>section</code>, <code>insert</code>, or <code>delete</code>, pop
-the element off the <span>stack of open elements</span> and follow
-this substep again.
+<em>not</em> one of <code>blockquote</code>, <code
+title=element-body>body</code>, <code>section</code>,
+<code>insert</code>, or <code>delete</code>, pop the element off the
+<span>stack of open elements</span> and follow this substep again.
 
 <li>Let <var>current depth</var> be the <span>quotation depth</span>
 of the bottommost entry in the <span>stack of open elements</span>.
 
 <li>If <span title=quotation-start-depth>depth</span> is less than or
 equal to the <var>current depth</var>, pop the element off the
-<span>stack of the open elements</span> and go back to the first
-substep of these substeps.
+<span>stack of open elements</span> and go back to the first substep
+of these substeps.
 
 <li>Otherwise, if <span title=quotation-start-depth>depth</span> is
 greater than <var>current depth</var> + 1, create a
@@ -2058,7 +2076,7 @@ namespace</span>.
 <li>Push the element created to the <span>stack of open
 elements</span>.
 
-<li>Switch to the "<span>table row</span>" <span>insertion
+<li>Switch to the "<span>in table row</span>" <span>insertion
 mode</span>.
 
 </ol>
@@ -2080,8 +2098,9 @@ elements</span>.
 
 <li>If the <span>token</span>'s <span
 title=block-start-tag-classes>classes</span> is not null, set the
-<code>class</code> <span>content attribute</span> of the element
-created to <span title=block-start-tag-classes>classes</span>.
+<code title=attr-class>class</code> <span>content attribute</span> of
+the element created to <span
+title=block-start-tag-classes>classes</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -2104,8 +2123,9 @@ elements</span>.
 
 <li>If the <span>token</span>'s <span
 title=block-start-tag-classes>classes</span> is not null, set the
-<code>class</code> <span>content attribute</span> of the element
-created to <span title=block-start-tag-classes>classes</span>.
+<code title=attr-class>class</code> <span>content attribute</span> of
+the element created to <span
+title=block-start-tag-classes>classes</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -2158,9 +2178,10 @@ mode</span> and reprocess the <span>token</span>.
 <ol>
 
 <li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code>body</code>, <code>section</code>,
-<code>insert</code>, or <code>delete</code>, pop the element off the
-<span>stack of open elements</span> and follow this substep again.
+<em>not</em> one of <code title=element-body>body</code>,
+<code>section</code>, <code>insert</code>, or <code>delete</code>, pop
+the element off the <span>stack of open elements</span> and follow
+this substep again.
 
 </ol>
 
@@ -2192,8 +2213,9 @@ paragraph</span>" <span>insertion mode</span>.
 
 <dt>An <span>end-of-file token</span>
 
-<dd>Now the <code>Document</code> has been constructed.  Abort the
-<span title="SWML text serialization parser">parser</span>.
+<dd>Now the <code title=dom-document>Document</code> has been
+constructed.  Abort the <span title="SWML text serialization
+parser">parser</span>.
 
 <dt>A <span>labeled list middle token</span>, <span>heading end
 token</span>, <span>preformatted end token</span>, <span>table row end
@@ -2304,7 +2326,7 @@ mode</span> and reprocess the <span>token</span>.
 <div class=sectio5>
 <h5>The "<span>in paragraph</span>" <span>insertion mode</span></h5>
 
-<p>In the "<dfn>in paragrapg</dfn>" <span>insertion mode</span>, a
+<p>In the "<dfn>in paragraph</dfn>" <span>insertion mode</span>, a
 <span>token</span> <em class=rfc2119>MUST</em> be processed as
 follows:
 
@@ -2478,13 +2500,14 @@ following table:
 
 <li>If the <span>token</span>'s <span
 title=inline-start-tag-classes>classes</span> is not null, set the
-<code>class</code> <span>content attribute</span> of the element
-created to <span title=inline-start-tag-classes>classes</span>.
+<code title=attr-class>class</code> <span>content attribute</span> of
+the element created to <span
+title=inline-start-tag-classes>classes</span>.
 
 <li>If the <span>token</span>'s <span
 title=inline-start-tag-language>language</span> is not null, set the
-<code>lang</code> <span>content attribute</span> in the <span>XML
-namespace</span> of the element created to <span
+<code title=attr-xml-lang>lang</code> <span>content attribute</span>
+in the <span>XML namespace</span> of the element created to <span
 title=inline-start-tag-language>language</span>.
 
 <li>Append the element created to the <span>current element</span>.
@@ -2523,11 +2546,11 @@ namespace</span>.
 
 <li>If the <span>token</span>'s <span
 title=inline-middle-tag-language>language</span> is not null, set the
-<code>lang</code> <span>content attribute</span> in the <span>XML
-namespace</span> of the element created to <span
+<code title=attr-xml-lang>lang</code> <span>content attribute</span>
+in the <span>XML namespace</span> of the element created to <span
 title=inline-middle-tag-language>language</span>.
 
-<li>Append the element created to the <span>current node</span>.
+<li>Append the element created to the <span>current element</span>.
 
 <li>Push the element created to the <span>stack of open
 elements</span>.
@@ -2572,24 +2595,25 @@ elements</span>.
 
 <li>If <span title=inline-end-tag-anchor-attribute>anchor
 attribute</span> of the <span>token</span> is <em>not</em> null, set
-the <code>anchor</code> <span>content attribute</span> in the
-<span>SuikaWiki/0.9 namespace</span> of the <span>current
-element</span> to <span title=inline-end-tag-anchor-attribute>anchor
-attribute</span> of the <span>token</span>.
+the <code title=attr-sw-anchor>anchor</code> <span>content
+attribute</span> in the <span>SuikaWiki/0.9 namespace</span> of the
+<span>current element</span> to <span
+title=inline-end-tag-anchor-attribute>anchor attribute</span> of the
+<span>token</span>.
 
 <li>If <span title=inline-end-tag-res-scheme-attribute>resScheme
 attribute</span> of the <span>token</span> is <em>not</em> null, set
-the <code>resScheme</code> <span>content attribute</span> in the
-<span>SuikaWiki/0.9 namespace</span> of the <span>current
-element</span> to <span
+the <code title=attr-sw-res-scheme>resScheme</code> <span>content
+attribute</span> in the <span>SuikaWiki/0.9 namespace</span> of the
+<span>current element</span> to <span
 title=inline-end-tag-res-scheme-attribute>resScheme attribute</span>
 of the <span>token</span>.
 
 <li>If <span title=inline-end-tag-res-parameter-attribute>resParameter
 attribute</span> of the <span>token</span> is <em>not</em> null, set
-the <code>resParameter</code> <span>content attribute</span> in the
-<span>SuikaWiki/0.9 namespace</span> of the <span>current
-element</span> to <span
+the <code title=attr-sw-res-parameter>resParameter</code>
+<span>content attribute</span> in the <span>SuikaWiki/0.9
+namespace</span> of the <span>current element</span> to <span
 title=inline-end-tag-res-parameter-attribute>resParameter
 attribute</span> of the <span>token</span>.
 
@@ -2638,7 +2662,7 @@ elements</span>.
 
 </ol>
 
-<dt>A <span>form token</span> whose <span title=form-name>name</form>
+<dt>A <span>form token</span> whose <span title=form-name>name</span>
 is <code>form</code>
 
 <dd>
@@ -2649,30 +2673,31 @@ is <code>form</code>
 namespace</span>.
 
 <li>If <span title=form-id>id</span> of the <span>form token</span> is
-<em>not</em> null, set the <code>id</code> <span>content
-attribute</span> of the element created to <span
+<em>not</em> null, set the <code title=attr-sw-id>id</code>
+<span>content attribute</span> of the element created to <span
 title=form-id>id</span> of the <span>form token</span>.
 
-<li>Set the <code>input</code> <span>content attribute</span> of the
-element created to the first item in <span
+<li>Set the <code title=attr-sw-form-input>input</code> <span>content
+attribute</span> of the element created to the first item in <span
 title=form-parameters>parameters</span> of the <span>form
 token</span>, if any, or the empty string otherwise.
 
-<li>Set the <code>template</code> <span>content attribute</span> of
-the element created to the second item in <span
-title=form-parameters>parameters</span> of the <span>form
-token</span>, if any, or the empty string otherwise.
+<li>Set the <code title=attr-sw-form-template>template</code>
+<span>content attribute</span> of the element created to the second
+item in <span title=form-parameters>parameters</span> of the
+<span>form token</span>, if any, or the empty string otherwise.
 
-<li>Set the <code>option</code> <span>content attribute</span> of the
-element created to the third item in <span
-title=form-parameters>parameters</span> of the <span>form
-token</span>, if any, or the empty string otherwise.
+<li>Set the <code title=attr-sw-form-option>option</code>
+<span>content attribute</span> of the element created to the third
+item in <span title=form-parameters>parameters</span> of the
+<span>form token</span>, if any, or the empty string otherwise.
 
-<li>If the <span title=form-parameters</span> contains four or more
-items, set the <code>parameter</code> <span>content attribute</span>
-of the element created to the concatenation of items in <span
-title=form-parameters>parameters</span>, separated by a <code>:</code>
-character, in the same order.
+<li>If the <span title=form-parameters>parameters</span> contains four
+or more items, set the <code
+title=attr-sw-form-parameter>parameter</code> <span>content
+attribute</span> of the element created to the concatenation of items
+in <span title=form-parameters>parameters</span>, separated by a
+<code>:</code> character, in the same order.
 
 <li>Append the element created to the <span>current element</span>.
 
@@ -2687,22 +2712,23 @@ character, in the same order.
 <li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
 namespace</span>.
 
-<li>Set the <code>ref</code> <span>content attribute</span> of the
-element created to <span title=form-name>name</span> of the <span>form
+<li>Set the <code title=attr-sw-form-ref>ref</code> <span>content
+attribute</span> of the element created to <span
+title=form-name>name</span> of the <span>form token</span>.
+
+<li>Set the <code title=form-id>id</code> of the <span>form
+token</span> is <em>not</em> null, set the <code
+title=attr-sw-id>id</code> <span>content attribute</span> of the
+element created to <span title=form-id>id</span> of the <span>form
 token</span>.
 
-<li>Set the <code>id</code> of the <span>form token</span> is
-<em>not</em> null, set the <code>id</code> <span>content
-attribute</span> of the element created to <span
-title=form-id>id</span> of the <span>form token</span>.
-
 <li>If <span title=form-parameters>parameters</span> of <span>form
-token</span> is not empty, set the <code>parameter</code>
-<span>content attribute</span> of the element created to the
-concatenation of items in <span
-title=form-parameters>parameters</span>, separated by a <code>:</code>
-character, in the same order.  The result value might be the empty
-string.
+token</span> is not empty, set the <code
+title=attr-sw-form-parameter>parameter</code> <span>content
+attribute</span> of the element created to the concatenation of items
+in <span title=form-parameters>parameters</span>, separated by a
+<code>:</code> character, in the same order.  The result value might
+be the empty string.
 
 <li>Append the element created to the <span>current element</span>.
 
@@ -2721,31 +2747,33 @@ title=element-namespace>namespace</span> of the <span>element
 token</span>.
 
 <li>If <span title=element-anchor-attribute>anchor attribute</span> of
-the <span>element token</span> is <em>not</em> null, set the
-<code>anchor</code> <span>content attribute</span> in the
-<span>SuikaWiki/0.9 namespace</span> of the element created to <span
-title=element-anchor-attribute>anchor attribute</span> of the
+the <span>element token</span> is <em>not</em> null, set the <code
+title=attr-sw-anchor>anchor</code> <span>content attribute</span> in
+the <span>SuikaWiki/0.9 namespace</span> of the element created to
+<span title=element-anchor-attribute>anchor attribute</span> of the
 <span>element token</span>.
 
 <li>If <span title=element-by-attribute>by attribute</span> of the
-<span>element token</span> is <em>not</em> null, set the
-<code>by</code> <span>content attribute</span> of the element created
-to <span title=element-by-attribute>by attribute</span> of the
-<span>element token</span>.
+<span>element token</span> is <em>not</em> null, set the <code
+title=attr-sw-replace-by>by</code> <span>content attribute</span> of
+the element created to <span title=element-by-attribute>by
+attribute</span> of the <span>element token</span>.
 
 <li>If <span title=element-res-scheme-attribute>resScheme
 attribute</span> of the <span>element token</span> is <em>not</em>
-null, set the <code>resScheme</code> <span>content attribute</span> in
-the <span>SuikaWiki/0.9 namespace</span> of the element created to
-<span title=element-res-scheme-attribute>resScheme attribute</span> of
-the <span>element token</span>.
+null, set the <code title=attr-sw-res-scheme>resScheme</code>
+<span>content attribute</span> in the <span>SuikaWiki/0.9
+namespace</span> of the element created to <span
+title=element-res-scheme-attribute>resScheme attribute</span> of the
+<span>element token</span>.
 
 <li>If <span title=element-res-parameter-attribute>resParameter
 attribute</span> of the <span>element token</span> is <em>not</em>
-null, set the <code>resParameter</code> <span>content attribute</span>
-in the <span>SuikaWiki/0.9 namespace</span> of the element created to
-<span title=element-res-parameter-attribute>resParameter
-attribute</span> of the <span>element token</span>.
+null, set the <code title=attr-sw-res-parameter>resParameter</code>
+<span>content attribute</span> in the <span>SuikaWiki/0.9
+namespace</span> of the element created to <span
+title=element-res-parameter-attribute>resParameter attribute</span> of
+the <span>element token</span>.
 
 <li>If <span title=element-content>content</span> of the <span>element
 token</span> is <em>not</em> null, set the <code>textContent</code>
@@ -2872,11 +2900,11 @@ title="allowed attributes">allowed</dfn>.
 
 <p>A namespaced attribute allowed in another specification can be used
 on elements in the <span>SuikaWiki/0.9 namespace</span> and in the
-<span>SuikaWiki/0.10 namespace</span>.  For example, a
-<code>lang</code> attribute in the <span>XML namespace</span> is
-allowed in the XML specification <span class=ed>...</span>.  The
-<span>allowed attributes</span> entry in the subsections below only
-lists attributes defined in this specification.
+<span>SuikaWiki/0.10 namespace</span>.  For example, a <dfn
+title=attr-xml-lang><code>lang</code></dfn> attribute in the <span>XML
+namespace</span> is allowed in the XML specification <span
+class=ed>...</span>.  The <span>allowed attributes</span> entry in the
+subsections below only lists attributes defined in this specification.
 
 </div>
 
@@ -2886,16 +2914,16 @@ lists attributes defined in this specification.
 
 <p>Inter-element whitespace <span class=ed>HTML5</span>, comment
 nodes, and processing instruction nodes <em class=rfc2119>MUST</em> be
-<span title=ignore>ignored</span> when establishing whether an element
-matches its content model or not.
+<span>ignored</span> when establishing whether an element matches its
+content model or not.
 
 <p>Elements in the <span>SuikaWiki/0.9 namespace</span> and in the
 <span>SuikaWiki/0.10 namespace</span> <em class=rfc2119>MAY</em> be
 orphan nodes (i.e. without a parent node).
 
-<p>In the following subsections, attributes listed in the <dfn>allowed
-attributes</dfn> entry <em class=rfc2119>MAY</em> be specified to an
-element described in that subsection.
+<p>In the following subsections, attributes listed in the
+<span>allowed attributes</span> entry <em class=rfc2119>MAY</em> be
+specified to an element described in that subsection.
 
 <p>Some elements belong to <dfn title=category>categories</dfn>.
 Categories <dfn>flow content</dfn>, <dfn>phrasing content</dfn>, and
@@ -2934,7 +2962,8 @@ appropriate arguments would return true.
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code title=attr-sw-anchor>anchor</code> in the
+<span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -2959,7 +2988,8 @@ appropriate arguments would return true.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>anchor</code> in the <span>SuikaWiki/0.9 namespace</span>
+<dd><code title=attr-sw-anchor>anchor</code> in the
+<span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -2984,7 +3014,8 @@ appropriate arguments would return true.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>anchor</code> in the <span>SuikaWiki/0.9 namespace</span>.
+<dd><code title=attr-sw-anchor>anchor</code> in the
+<span>SuikaWiki/0.9 namespace</span>.
 
 </dl>
 
@@ -3009,8 +3040,11 @@ appropriate arguments would return true.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>refParameter</code> in the <span>SuikaWiki/0.9 namespace</span>
-<dd><code>refScheme</code> in the <span>SuikaWiki/0.9 namespace</span>
+<dd><code title=attr-sw-res-parameter>resParameter</code> in the
+<span>SuikaWiki/0.9 namespace</span>
+
+<dd><code title=attr-sw-res-scheme>resScheme</code> in the
+<span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -3045,8 +3079,8 @@ appropriate arguments would return true.
 
 <div class=section>
 
-<h3>The <dfn><code>document</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h3>The <dfn title=element-sw-document><code>document</code></dfn>
+element in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 <dl class=element>
 
@@ -3056,15 +3090,19 @@ appropriate arguments would return true.
 
 <dt><span>Content model</span>
 
-<dd>A <code>head</code> element in the <span>XHTML2 namespace</span>,
-followed by a <code>body</code> element in the <span>XHTML2
+<dd>A <code title=element-xhtml2-head>head</code> element in the
+<span>XHTML2 namespace</span>, followed by a <code
+title=element-xhtml2-body>body</code> element in the <span>XHTML2
 namespace</span>, optionally followed by a <code>image</code> element
 in the <span>SuikaWiki/0.9 namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>Name</code> in the <span>SuikaWiki/0.9 namespace</span>
-<dd><code>Version</code> in the <span>SuikaWiki/0.9 namespace</span>
+<dd><code title=attr-sw-name>Name</code> in the <span>SuikaWiki/0.9
+namespace</span>
+
+<dd><code title=attr-sw-version>Version</code> in the
+<span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -3116,16 +3154,24 @@ namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>id</code>
-<dd><code>input</code>
-<dd><code>option</code>
-<dd><code>parameter</code>
-<dd><code>ref</code>
-<dd><code>template</code>
+<dd><code title=attr-sw-id>id</code>
+<dd><code title=attr-sw-form-input>input</code>
+<dd><code title=attr-sw-form-option>option</code>
+<dd><code title=attr-sw-form-parameter>parameter</code>
+<dd><code title=attr-sw-form-ref>ref</code>
+<dd><code title=attr-sw-form-template>template</code>
 
 </dl>
 
-<p class=ed>...
+<p class=ed>... <dfn title=attr-sw-form-ref><code>ref</code></dfn>,
+<dfn title=attr-sw-form-parameter><code>parameter</code></dfn>.
+
+<hr>
+
+<p class=ed>... <dfn
+title=attr-sw-form-input><code>input</code></dfn>, <dfn
+title=attr-sw-form-template><code>template</code></dfn>, <dfn
+title=attr-sw-form-option><code>option</code>
 
 </div>
 
@@ -3181,8 +3227,8 @@ namespace</span>.
 
 <div class=section>
 
-<h3>The <dfn><code>parameter</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h3>The <dfn title=element-sw-parameter><code>parameter</code></dfn>
+element in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 <dl class=element>
 
@@ -3192,16 +3238,16 @@ namespace</span>.
 
 <dt><span>Content model</span>
 
-<dd>Zero or more <code>value</code> element in the <span>SuikaWiki/0.9
-namespace</span>.
+<dd>Zero or more <code title=element-sw-value>value</code> element in
+the <span>SuikaWiki/0.9 namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code title=attr-sw-parameter-name>name</code>
 
 </dl>
 
-<p class=ed>...
+<p class=ed>... <dfn title=attr-sw-parameter-name>name</dfn>
 
 </div>
 
@@ -3222,11 +3268,11 @@ namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>by</code>
+<dd><code title=attr-sw-replace-by>by</code>
 
 </dl>
 
-<p class=ed>...
+<p class=ed>... <dfn title=attr-sw-replace-by><code>by</code></dfn>
 
 </div>
 
@@ -3248,7 +3294,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>class</code>
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3283,8 +3329,8 @@ element in the <span>HTML namespace</span>.
 
 <div class=section>
 
-<h3>The <dfn><code>value</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h3>The <dfn title=element-sw-value><code>value</code></dfn> element
+in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 <dl class=element>
 
@@ -3323,7 +3369,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>class</code>
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3398,7 +3444,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>class</code>
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3448,7 +3494,7 @@ namespace</span></h3>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>class</code>
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3500,7 +3546,7 @@ namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code></code>
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3550,7 +3596,7 @@ namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code>class</code>
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3596,28 +3642,34 @@ class=rfc2119>MAY</em> be considered as <span>phrasing content</span>.
 </div>
 
 <div class=section>
-<h3>The <code>class</code> attribute</h3>
+<h3>The <dfn title=attr-class><code>class</code></dfn> attribute</h3>
 
-<p>The <code>class</code> attribute of an element in the
-<span>SuikaWiki/0.9 namespace</span> and <span>SuikaWiki/0.10
-namespace</span> has the same semantics and requirements as the <a
-href="http://www.whatwg.org/specs/web-apps/current-work/#classes"><code
-title>class</code></a> attribute of HTML5 <span class=ed>...</span>.
+<p>All elements in the <span>HTML namespace</span> have <a
+href="http://www.whatwg.org/specs/web-apps/current-work/#classes"><dfn
+title=attr-html-class><code>class</code></dfn></a> attribute <span
+class=ed>...</span>.
 
-<p>The <code>class</code> attribute of an element in the <span>AA
-namespace</span> <em class=rfc2119>SHOULD</em> be considered as having
-the same semantics and requirements as the <a
-href="http://www.whatwg.org/specs/web-apps/current-work/#classes"><code
-title>class</code></a> attribute of HTML5 <span class=ed>...</span>.
+<p>The <dfn title=attr-sw-class><code>class</code></dfn> attribute of
+an element in the <span>SuikaWiki/0.9 namespace</span> and
+<span>SuikaWiki/0.10 namespace</span> has the same semantics and
+requirements as the HTML <code title=attr-html-class>class</code>
+attribute.
+
+<p>The <dfn title=attr-aa-class><code>class</code></dfn> attribute of
+an element in the <span>AA namespace</span> <em
+class=rfc2119>SHOULD</em> be considered as having the same semantics
+and requirements as the HTML <code title=attr-html-class>class</code>
+attribute.
 
 </div>
 
 <div class=section>
-<h3>The <code>id</code> attribute</h3>
+<h3>The <code title=attr-sw-id>id</code> attribute</h3>
 
-<p>The <code>id</code> attribute of an element in the
-<span>SuikaWiki/0.9 namespace</span> and <span>SuikaWiki/0.10
-namespace</span> has the same semantics and requirements as the <a
+<p>The <dfn title=attr-sw-id><code>id</code></dfn> attribute of an
+element in the <span>SuikaWiki/0.9 namespace</span> and
+<span>SuikaWiki/0.10 namespace</span> has the same semantics and
+requirements as the <a
 href="http://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute"><code
 title>id</code></a> attribute of HTML5 <span class=ed>...</span>.
 
@@ -3625,31 +3677,32 @@ title>id</code></a> attribute of HTML5 <span class=ed>...</span>.
 
 <div class=section>
 
-<h3>The <dfn><code>anchor</code></dfn> attribute in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h3>The <dfn title=attr-sw-anchor><code>anchor</code></dfn> attribute
+in the <span>SuikaWiki/0.9 namespace</span></h3>
 
-<p>The <code>anchor</code> attribute in the <span>SuikaWiki/0.9
-namespace</span>, when specified to an <code>anchor-internal</code>
-element, defines an <dfn>anchor number</dfn> for the parent element of
-the <code>anchor-internal</code> element, if any.
+<p>The <code title=attr-sw-anchor>anchor</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span>, when specified to an
+<code>anchor-end</code> element, defines an <dfn>anchor number</dfn>
+for the parent element of the <code>anchor-end</code> element, if any.
 
 <p>The attribute <em class=rfc2119>MUST</em> be specified and its
 value <em class=rfc2119>MUST</em> be a <span>valid integer</span>.
 The integer <em class=rfc2119>MUST</em> have different value from any
-other <code>anchor</code> attribute in the <span>SuikaWiki/0.9
-namespace</span> specified in an <code>anchor-internal</code> element
-in the <span>SuikaWiki/0.9 namespace</span> that belongs to the same
-tree as the first attribute.
+other <code title=attr-sw-anchor>anchor</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span> specified in an
+<code>anchor-end</code> element in the <span>SuikaWiki/0.9
+namespace</span> that belongs to the same tree as the first attribute.
 
 <hr>
 
-<p>The <code>anchor</code> attribute in the <span>SuikaWiki/0.9
-namespace</span> <em class=rfc2119>MAY</em> be specified to
-<code>q</code> elements in the <span>HTML namespace</span> and in the
-<span>XHTML2 namespace</span>, as well as <code>ins</code> and
-<code>del</code> elements in the <span>HTML namespace</span>.  The
-attribute can also be specified to an <code>anchor</code> element in
-the <span>SuikaWiki/0.9 namespace</span>.
+<p>The <code title=attr-sw-anchor>anchor</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
+specified to <code>q</code> elements in the <span>HTML
+namespace</span> and in the <span>XHTML2 namespace</span>, as well as
+<code>ins</code> and <code>del</code> elements in the <span>HTML
+namespace</span>.  The attribute can also be specified to
+<code>anchor</code> and <code>anchor-internal</code> elements in the
+<span>SuikaWiki/0.9 namespace</span>.
 
 <p>In these cases, the attribute represents the <span>anchor
 number</span> of the element referenced.  If the element on which the
@@ -3658,21 +3711,23 @@ referenced might be found in the document referenced by the element.
 Otherwise, the element is in the tree the element belongs to.
 
 <p>If the element on which the attribute is specified is <em>not</em>
-an <code>anchor</code> attribute, the attribute has similar semantics
-to that of the <code title>cite</code> attribute on the element.  In
-such a case, the <code>anchor</code> attribute in the
+an <code>anchor</code> or <code>anchor-internal</code> element, the
+attribute has similar semantics to that of the <code title>cite</code>
+attribute on the element.  In such a case, the <code
+title=attr-sw-anchor>anchor</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MUST NOT</em>
 be specified when the <code title>cite</code> attribute is specified.
 A user agent <em class=rfc2119>MUST</em> <span
-title=ignored>ignore</span> the <code>anchor</code> attribute in the
+title=ignored>ignore</span> the <code
+title=attr-sw-anchor>anchor</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> if the <code title>cite</code>
 attribute is specified.
 
 <p>The attribute value <em class=rfc2119>MUST</em> be a <span>valid
 integer</span>.  Unless the element is <code>anchor</code>, the
 integer <em class=rfc2119>MUST</em> be equal to one of the integer
-represented by the <code>anchor</code> attribute in the
-<span>SuikaWiki/0.9 namespace</span> specified to an
+represented by the <code title=attr-sw-anchor>anchor</code> attribute
+in the <span>SuikaWiki/0.9 namespace</span> specified to an
 <code>anchor-internal</code> element in the <span>SuikaWiki/0.9
 namespace</span> that belongs to the same tree.
 
@@ -3680,33 +3735,17 @@ namespace</span> that belongs to the same tree.
 
 <div class=section>
 
-<h3>The <dfn><code>resScheme</code></dfn> attribute in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h3>The <dfn title=attr-sw-res-scheme><code>resScheme</code></dfn>
+attribute in the <span>SuikaWiki/0.9 namespace</span></h3>
 
-<p>The <code>resScheme</code> attribute in the <span>SuikaWiki/0.9
-namespace</span> <em class=rfc2119>MAY</em> be specified to
-<code>q</code> elements in the <span>HTML namespace</span> and in the
-<span>XHTML2 namespace</span>, as well as <code>ins</code> and
-<code>del</code> elements in the <span>HTML namespace</span>.  The
-attribute can also be specified to an <code>anchor-external</code>
-element in the <span>SuikaWiki/0.9 namespace</span>.
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>resParameter</code></dfn> attribute in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<p>The <code>resParameter</code> attribute in the <span>SuikaWiki/0.9
-namespace</span> <em class=rfc2119>MAY</em> be specified to
-<code>q</code> elements in the <span>HTML namespace</span> and in the
-<span>XHTML2 namespace</span>, as well as <code>ins</code> and
-<code>del</code> elements in the <span>HTML namespace</span>.  The
-attribute can also be specified to an <code>anchor-external</code>
-element in the <span>SuikaWiki/0.9 namespace</span>.
+<p>The <code title=attr-sw-res-scheme>resScheme</code> attribute in
+the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
+specified to <code>q</code> elements in the <span>HTML
+namespace</span> and in the <span>XHTML2 namespace</span>, as well as
+<code>ins</code> and <code>del</code> elements in the <span>HTML
+namespace</span>.  The attribute can also be specified to an
+<code>anchor-external</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
 
 <p class=ed>...
 
@@ -3714,14 +3753,34 @@ element in the <span>SuikaWiki/0.9 namespace</span>.
 
 <div class=section>
 
-<h3>The <dfn><code>Name</code></dfn> attribute in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h3>The <dfn
+title=attr-sw-res-parameter><code>resParameter</code></dfn> attribute
+in the <span>SuikaWiki/0.9 namespace</span></h3>
 
-<p>The <code>Name</code> attribute in the <span>SuikaWiki/0.9
-namespace</span> <em class=rfc2119>MAY</em> be specified to an
-<code>html</code> element in the <span>HTML namespace</span>.  The
-attribute can also be specified to an <code>document</code> element in
-the <span>SuikaWiki/0.9 namespace</span>.
+<p>The <code title=attr-sw-res-parameter>resParameter</code> attribute
+in the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em>
+be specified to <code>q</code> elements in the <span>HTML
+namespace</span> and in the <span>XHTML2 namespace</span>, as well as
+<code>ins</code> and <code>del</code> elements in the <span>HTML
+namespace</span>.  The attribute can also be specified to an
+<code>anchor-external</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn title=attr-sw-name><code>Name</code></dfn> attribute in
+the <span>SuikaWiki/0.9 namespace</span></h3>
+
+<p>The <code title=attr-sw-version>Name</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
+specified to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be specified to an <code
+title=element-sw-document>document</code> element in the
+<span>SuikaWiki/0.9 namespace</span>.
 
 <p class=ed>...
 
@@ -3735,8 +3794,9 @@ the <span>SuikaWiki/0.9 namespace</span>.
 <p>The <code>Version</code> attribute in the <span>SuikaWiki/0.9
 namespace</span> <em class=rfc2119>MAY</em> be specified to an
 <code>html</code> element in the <span>HTML namespace</span>.  The
-attribute can also be specified to an <code>document</code> element in
-the <span>SuikaWiki/0.9 namespace</span>.
+attribute can also be specified to an <code
+title=element-sw-document>document</code> element in the
+<span>SuikaWiki/0.9 namespace</span>.
 
 <p class=ed>...
 
@@ -3744,8 +3804,8 @@ the <span>SuikaWiki/0.9 namespace</span>.
 
 </div>
 
-<div class="section no-toc reference normative">
-<h2>References</h2>
+<div class="section reference normative">
+<h2 class=no-num>References</h2>
 
 <dl>
 

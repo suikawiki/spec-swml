@@ -1,0 +1,3768 @@
+<!DOCTYPE html><html class="formal-specification status-work-in-progress anolis" lang=en><head><title>SuikaWiki Markup Language (SWML)</title>
+<link href=/www/style/html/spec rel=stylesheet>
+
+</head><body><div class=header>
+<h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
+<h2 class="no-toc no-num" id=working-draft-date>Working Draft 5 November 2008</h2>
+
+<dl class=versions-uri>
+<dt>This Version</dt>
+  <dd><code class=URI>&lt;<a href=http://suika.fam.cx/www/markup/suikawiki/spec/swml-work>http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
+<dt>Latest Version</dt>
+  <dd><code class=URI>&lt;<a href=http://suika.fam.cx/www/markup/suikawiki/spec/swml-work>http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
+<dt>Latest Working Draft</dt>
+  <dd><code class=URI>&lt;<a href=http://suika.fam.cx/www/markup/suikawiki/spec/swml-work>http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
+<!-- <dt>Previous Version</dt> -->
+<dt>Version History</dt>
+  <dd><code class=URI>&lt;<a href=http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8>http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8</a>&gt;</code></dd>
+<dt id=author>Author</dt>
+  <dd><a href=http://suika.fam.cx/~wakaba/who? lang=ja rel=author>Wakaba</a>
+  <code class=mail>&lt;<a href=mailto:w@suika.fam.cx rel=author>w@suika.fam.cx</a>&gt;</code></dd>
+</dl>
+
+<p class=copyright lang=en>© 2008 <a href=http://suika.fam.cx/~wakaba/who? rel=author>Wakaba</a>.  You
+are granted a license to use, reproduce and create derivative works of
+this document.
+
+</p></div>
+
+<div class=section id=abstract>
+<h2 class="no-toc no-num" id=abstract-0>Abstract</h2>
+
+<p class=ed>...
+</p></div>
+
+<div class=section id=status>
+<h2 class="no-toc no-num" id=status-of-this-document>Status of this document</h2>
+
+<p class=section-info><em>This section describes the status of this
+document at the time of its publication.  Other documents might
+supersede this document.</em></p>
+
+<p>This document is a working draft, produced as part of the SuikaWiki
+project.  It might be updated, replaced, or obsoleted by other
+documents at any time.  It is inappropriate to cite this document as
+other than <q>work in progress</q>.</p>
+
+<p>Comments on this document are welcome and may be sent to the <a href=#author>author</a>.</p>
+
+<p>Translations of thie document might be available.  The English
+version of the document is the only normative version.</p>
+
+</div>
+
+<div class=section>
+<h2 class="no-toc no-num" id=table-of-contents>Table of contents</h2>
+
+
+<!--begin-toc-->
+<ol class=toc>
+	<li><a href=#introduction><span class=secno>1 </span>Introduction</a></li>
+	<li><a href=#terminology><span class=secno>2 </span>Terminology</a>
+		<ol>
+			<li><a href=#namespaces><span class=secno>2.1 </span>Namespaces</a></li></ol></li>
+	<li><a href=#the-swml-text-serialization><span class=secno>3 </span>The SWML text serialization</a>
+		<ol>
+			<li><a href=#writing-swml-text-serialization-documents><span class=secno>3.1 </span>Writing <span>SWML text serialization</span> documents</a></li>
+			<li><a href=#parsing-swml-text-serialization-documents><span class=secno>3.2 </span>Parsing <span>SWML text serialization</span> documents</a>
+				<ol>
+					<li><a href=#definitions><span class=secno>3.2.1 </span>Definitions</a></li>
+					<li><a href=#tokenization-of-lines><span class=secno>3.2.2 </span>Tokenization of lines</a>
+						<ol>
+							<li><a href=#the-initial-mode><span class=secno>3.2.2.1 </span>The "<span>initial</span>" mode</a></li>
+							<li><a href=#the-body-mode><span class=secno>3.2.2.2 </span>The "<span>body</span>" mode</a></li>
+							<li><a href=#the-preformatted-mode><span class=secno>3.2.2.3 </span>The "<span>preformatted</span>" mode</a></li>
+							<li><a href=#the-preformatted-block-mode><span class=secno>3.2.2.4 </span>The "<span>preformatted block</span>" mode</a></li>
+							<li><a href=#the-image-data-mode><span class=secno>3.2.2.5 </span>The "<span>image data</span>" mode</a></li></ol></li>
+					<li><a href=#tokenization-of-a-table-row><span class=secno>3.2.3 </span>Tokenization of a table row</a></li>
+					<li><a href=#tokenization-of-a-text><span class=secno>3.2.4 </span>Tokenization of a text</a></li>
+					<li><a href=#parsing-a-magic-line><span class=secno>3.2.5 </span>Parsing a magic line</a></li>
+					<li><a href=#tree-construction><span class=secno>3.2.6 </span>Tree construction</a>
+						<ol>
+							<li><a href=#the-in-section-insertion-mode><span class=secno>3.2.6.1 </span>The "<span>in section</span>" <span>insertion mode</span></a></li>
+							<li><a href=#the-in-table-row-insertion-mode><span class=secno>3.2.6.2 </span>The "<span>in table row</span>" <span>insertion mode</span></a></li>
+							<li><a href=#the-in-paragraph-insertion-mode><span class=secno>3.2.6.3 </span>The "<span>in paragraph</span>" <span>insertion mode</span></a></li></ol></li></ol></li>
+			<li><a href=#serializing-swml-text-serialization-documents><span class=secno>3.3 </span>Serializing <span>SWML text serialization</span> documents</a></li>
+			<li><a href=#the-text/x-suikawiki-internet-media-type><span class=secno>3.4 </span>The <code>text/x-suikawiki</code> Internet Media Type</a></li></ol></li>
+	<li><a href=#the-swml-xml-serialization><span class=secno>4 </span>The SWML XML serialization</a>
+		<ol>
+			<li><a class=ed href=#...-xml-media-type><span class=secno>4.1 </span>... xml media type</a></li></ol></li>
+	<li><a href=#semantics-of-elements-and-attributes><span class=secno>5 </span>Semantics of Elements and Attributes</a>
+		<ol>
+			<li><a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><span class=secno>5.1 </span>The <code>anchor</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><span class=secno>5.2 </span>The <code>anchor-internal</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><span class=secno>5.3 </span>The <code>anchor-end</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><span class=secno>5.4 </span>The <code>anchor-external</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-delete-element-in-the-suikawiki/0.9-namespace><span class=secno>5.5 </span>The <code>delete</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-document-element-in-the-suikawiki/0.9-namespace><span class=secno>5.6 </span>The <code>document</code>
+element in the <span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-dr-element-in-the-suikawiki/0.9-namespace><span class=secno>5.7 </span>The <code>dr</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-form-element-in-the-suikawiki/0.9-namespace><span class=secno>5.8 </span>The <code>form</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-image-element-in-the-suikawiki/0.9-namespace><span class=secno>5.9 </span>The <code>image</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-insert-element-in-the-suikawiki/0.9-namespace><span class=secno>5.10 </span>The <code>insert</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-parameter-element-in-the-suikawiki/0.9-namespace><span class=secno>5.11 </span>The <code>parameter</code>
+element in the <span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-replace-element-in-the-suikawiki/0.9-namespace><span class=secno>5.12 </span>The <code>replace</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>5.13 </span>The <code>rubyb</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-text-element-in-the-suikawiki/0.9-namespace><span class=secno>5.14 </span>The <code>text</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-value-element-in-the-suikawiki/0.9-namespace><span class=secno>5.15 </span>The <code>value</code> element
+in the <span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>5.16 </span>The <code>weak</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>5.17 </span>The <code>attrvalue</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><span class=secno>5.18 </span>The <code>comment-p</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><span class=secno>5.19 </span>The <code>csection</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-ed-element-in-the-suikawiki/0.10-namespace><span class=secno>5.20 </span>The <code>ed</code> element in the <span>SuikaWiki/0.10
+namespace</span></a></li>
+			<li><a href=#the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>5.21 </span>The <code>key</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><span class=secno>5.22 </span>The <code>nsuri</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><span class=secno>5.23 </span>The <code>qn</code> element in the <span>SuikaWiki/0.10
+namespace</span></a></li>
+			<li><a href=#the-qname-element-in-the-suikawiki/0.10-namespace><span class=secno>5.24 </span>The <code>qname</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-src-element-in-the-suikawiki/0.10-namespace><span class=secno>5.25 </span>The <code>src</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>5.26 </span>The <code>title</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+			<li><a href=#the-aa-element-in-the-aa-namespace><span class=secno>5.27 </span>The <code>aa</code> element in the <span>AA namespace</span></a></li>
+			<li><a href=#the-class-attribute><span class=secno>5.28 </span>The <code>class</code> attribute</a></li>
+			<li><a href=#the-id-attribute><span class=secno>5.29 </span>The <code title=attr-sw-id>id</code> attribute</a></li>
+			<li><a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.30 </span>The <code>anchor</code> attribute
+in the <span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.31 </span>The <code>resScheme</code>
+attribute in the <span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.32 </span>The <code>resParameter</code> attribute
+in the <span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.33 </span>The <code>Name</code> attribute in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+			<li><a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <code>Version</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
+	<li><a class=no-num href=#references>References</a></li></ol>
+<!--end-toc-->
+</div>
+
+<div class=section>
+<h2 id=introduction><span class=secno>1 </span>Introduction</h2>
+
+<p><em>This section is non‐normative.</em>
+
+</p><p class=ed>...
+</p></div>
+
+<div class=section>
+<h2 id=terminology><span class=secno>2 </span>Terminology</h2>
+
+<p>All diagrams, examples, and notes in this specification are
+non-normative, as are all sections explicitly marked
+non-normative. Everything else in this specification is normative.
+
+</p><p>The key words “<em class=rfc2119>MUST</em>”, “<em class=rfc2119>MUST NOT</em>”, “<em class=rfc2119>SHOULD</em>”, and 
+“<em class=rfc2119>MAY</em>” in the normative parts of this document
+are to be interpreted as described in RFC 2119 <span class=ed>[RFC2119]</span>.
+
+</p><p>Requirements phrased in the imperative as part of algorithms (such
+as “strip any leading space characters” or “return false and abort
+these steps”) are to be interpreted with the meaning of the key word
+(e.g. <em class=rfc2119>MUST</em>”) used in introducing the
+algorithm.
+
+</p><p>Conformance requirements phrased as algorithms or specific steps
+<em class=rfc2119>MAY</em> be implemented in any manner, so long as
+the end result is equivalent. (In particular, the algorithms defined
+in this specification are intended to be easy to follow, and not
+intended to be performant.)
+
+</p><p>This specification refers to both XML attributes and DOM
+attributes, often in the same context. When it is not clear which is
+being referred to, they are referred to as <dfn id=content-attribute title="content
+attribute">content attributes</dfn> for XML attributes, and <dfn id=dom-attribute title="DOM attribute">DOM attributes</dfn> for those from the DOM.
+
+</p><p>When it is stated that some element or attribute is
+<dfn id=ignored>ignored</dfn>, or treated as some other value, or handled as if
+it was something else, this refers only to the processing of the node
+after it is in the DOM. A user agent <em class=rfc2119>MUST NOT</em>
+mutate the DOM in such situations.
+
+</p><p>The language in this specification assumes that the user agent
+expands all entity references, and therefore does not include entity
+reference nodes in the DOM. If user agents do include entity reference
+nodes in the DOM, then user agents <em class=rfc2119>MUST</em> handle
+them as if they were fully expanded when implementing this
+specification.  Entity references to unknown entities <em class=rfc2119>MUST</em> be treated as if they contained just an empty
+text node for the purposes of the algorithms defined in this
+specification.
+
+</p><div class=section>
+<h3 id=namespaces><span class=secno>2.1 </span>Namespaces</h3>
+
+
+<p>The <dfn id=aa-namespace>AA namespace</dfn> is
+<code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
+The <a href=#preferred-prefix>preferred prefix</a> is <code>aa</code>.
+
+</p><p>The <dfn id=html-namespace>HTML namespace</dfn> is
+<code>http://www.w3.org/1999/xhtml</code>.  The <a href=#preferred-prefix>preferred
+prefix</a> is <code>html</code>.
+
+</p><p>The <dfn id=suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.  The
+<a href=#preferred-prefix>preferred prefix</a> is <code>sw</code>.
+
+</p><p>The <dfn id=suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
+<a href=#preferred-prefix>preferred prefix</a> is <code>sw10</code>.
+
+</p><p>The <dfn id=xhtml2-namespace>XHTML2 namespace</dfn> is
+<code>http://www.w3.org/2002/06/xhtml2/</code>.
+
+</p><p>The <dfn id=xml-namespace>XML namespace</dfn> is
+<code>http://www.w3.org/XML/1998/namespace </code>.  The
+<a href=#preferred-prefix>preferred prefix</a> is <code>xml</code>.
+
+</p></div>
+
+</div>
+
+<div class=section>
+<h2 id=the-swml-text-serialization><span class=secno>3 </span>The <dfn>SWML text serialization</dfn></h2>
+
+<p class=ed>...
+
+</p><div class=section>
+<h3 id=writing-swml-text-serialization-documents><span class=secno>3.1 </span>Writing <a href=#the-swml-text-serialization>SWML text serialization</a> documents</h3>
+
+<p><em>This section is non‐normative.</em>
+
+</p><p class=ed>...
+</p></div>
+
+<div class=section>
+<h3 id=parsing-swml-text-serialization-documents><span class=secno>3.2 </span>Parsing <a href=#the-swml-text-serialization>SWML text serialization</a> documents</h3>
+
+<p>This section specifies how to convert a string of characters into a
+DOM <span class=ed>[DOM]</span> tree, assuming the string is written
+in the <a href=#the-swml-text-serialization>SWML text serialization</a>.  This process is referred
+to as <dfn id=parsing-an-swml-text-serialization title="parsing an SWML text serialization">parsing</dfn>
+and an implementation that performes this process is referred to as
+<dfn id=swml-text-serialization-parser title="SWML text serialization parser">parser</dfn>.
+
+</p><div class="note memo">
+
+<p>How to convert a string of bytes into a string of characters is
+outside of the scope of this specification.
+
+</p></div>
+
+<p>The <a href=#parsing-an-swml-text-serialization title="parsing an SWML text serialization">parsing
+process</a> is defined in terms of DOM and relies on HTML5 <span class=ed>...</span> and manakai's extensions to DOM <span class=ed>...</span>.  However, a conforming <a href=#swml-text-serialization-parser title="SWML text
+serialization parser">parser</a> don't have to implement them, as
+long as the end result is equivalent.
+
+</p><p>The <a href=#parsing-an-swml-text-serialization title="parsing an SWML text serialization">parsing
+process</a> is divided into two stages: <a href=#tokenization>tokenization</a>
+and <a href=#tree-construction-0>tree construction</a>.  The <a href=#tokenization>tokenization</a>
+stage emits a sequence of <a href=#token title=token>tokens</a>, which are
+used as inputs for the <a href=#tree-construction-0>tree construction</a> stage.  The
+<a href=#tree-construction-0>tree construction</a> stage constructs a DOM tree.  Some
+steps invoked in the <a href=#tokenization>tokenization</a> stage might also
+construct a part of the DOM tree.  During the <a href=#parsing-an-swml-text-serialization title="parsing an
+SWML text serialization">parsing</a>, mutation events <em class=rfc2119>MUST NOT</em> be invoked.
+
+</p><p>Before the actual <a href=#parsing-an-swml-text-serialization title="parsing an SWML text
+serialization">parsing</a> starts, a new <code title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
+be created.  It represents the DOM tree constructed as a result of the
+<a href=#parsing-an-swml-text-serialization title="parsing an SWML text serialization">parsing</a>.  The
+<code>innerHTML</code> <a href=#dom-attribute>DOM attribute</a> of the <code title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
+be initially set to
+<code>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</code>.
+The <dfn id=document-element>document element</dfn> is what the
+<code>documentElement</code> <a href=#dom-attribute>DOM attribute</a> of the <code title=dom-document>Document</code> returns.  The <dfn id=head-element>head
+element</dfn> is what the <code>firstChild</code> <a href=#dom-attribute>DOM
+attribute</a> of the <a href=#document-element>document element</a> returns at the
+time immediately after the <code>innerHTML</code> is set.  The
+<dfn id=body-element>body element</dfn> is what the <code>lastChild</code> <a href=#dom-attribute>DOM
+attribute</a> of the <a href=#document-element>document element</a> returns at the
+time immediately after the <code>innerHTML</code> is set.  The
+<dfn id=image-element>image element</dfn> is initially null.
+
+</p><div class=section>
+<h4 id=definitions><span class=secno>3.2.1 </span>Definitions</h4>
+
+<p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
+
+</p><p><dfn id=digits>Digits</dfn> are characters in the range U+0030 <code class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
+NINE</code>.
+
+</p><p><dfn id=uppercase-letters>Uppercase letters</dfn> are characters in the range U+0041
+<code class=charname>LATIN CAPITAL LETTER A</code> .. U+005A <code class=charname>LATIN CAPITAL LETTER Z</code>.
+
+</p><p><dfn id=lowercase-letters>Lowercase letters</dfn> are characters in the range U+0061
+<code class=charname>LATIN SMALL LETTER A</code> .. U+007A <code class=charname>LATIN SMALL LETTER Z</code>.
+
+</p><p><dfn id=language-tag-characters>Language tag characters</dfn> are <a href=#digits>digits</a>,
+<a href=#uppercase-letters>uppercase letters</a>, <a href=#lowercase-letters>lowercase letters</a>, and
+U+002D <code class=charname>HYPHEN-MINUS</code>.
+
+</p><p><dfn id=scheme-characters>Scheme characters</dfn> are <a href=#digits>digits</a>,
+<a href=#uppercase-letters>uppercase letters</a>, <a href=#lowercase-letters>lowercase letters</a>, U+0025
+<code class=charname>PERCENT SIGN</code>, U+002A <code class=charname>PLUS SIGN</code>, U+002D <code class=charname>HYPHEN-MINUS</code>, U+002E <code class=charname>FULL
+STOP</code> and U+005F <code class=charname>LOW LINE</code>.
+
+</p><p>A <dfn id=class-specification>class specification</dfn> is a string consist of a
+<code>(</code> character, followed by zero or more character that is
+<em>not</em> one of <code>)</code>, <code>)</code>, or <a href=#white-space-characters>white
+space characters</a>, and finally followed by a <code>)</code>
+character.  <!-- Though the SuikaWiki3 implementation of the parser
+support quoted-pair in class specification in [PRE[ block start tag
+and inline start tags, it is not allowed in [INS[ and [DEL[, and is
+not part of SuikaWiki/0.9 specification, and it should not appear in
+any existing SuikaWiki article afaict, this version of the SWML
+specification does not support such escaping syntax. --> The <dfn id=body-of-a-class-specification>body
+of a class specification</dfn> is the substring of the <a href=#class-specification>class
+specification</a> between parentheses (exclusive).  It might be the
+empty string.
+
+</p><p>A <dfn id=language-specification>language specification</dfn> is a string consist of a
+<code>@</code> character followed by zero or more <!-- one or more in
+SuikaWiki3 implementation --> <a href=#language-tag-characters>language tag characters</a>.
+<!-- SuikaWiki/0.10 addition --> The <dfn id=body-of-a-language-specification>body of a language
+specification</dfn> is the substring in the <a href=#language-specification>language
+specification</a> except for the first <code>@</code> character.
+It might be the empty string.
+
+</p><p>When the <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a>
+<dfn id=append-a-character title="append a character">appends a character</dfn>
+<var>char</var> to node <var>node</var>, the
+<code>manakai_append_text</code> method <cite class=ed>...</cite> <em class=rfc2119>MUST</em> be invoked on <var>node</var> with the
+argument <var>char</var>.
+
+</p><p>When an element is created, its <code>prefix</code> <a href=#dom-attribute>DOM
+attribute</a> <em class=rfc2119>MUST</em> be set to
+<code>null</code>.
+
+</p><p>When an attribute is created, unless otherwise specified, its
+<code>prefix</code> and <code>namespaceURI</code> <a href=#dom-attribute title="DOM
+attribute">DOM attributes</a> <em class=rfc2119>MUST</em> both set
+to <code>null</code>.
+
+</p><p>When an attribute is created in a namespace, its
+<code>prefix</code> <a href=#dom-attribute>DOM attribute</a> <em class=rfc2119>MUST</em> be set to the <dfn id=preferred-prefix>preferred prefix</dfn> for
+the namespace.
+
+</p></div>
+
+<div class=section>
+<h4 id=tokenization-of-lines><span class=secno>3.2.2 </span>Tokenization of lines</h4>
+
+<p>When a string of characters is <dfn id=tokenization title=tokenization>tokenized</dfn>, the string <var>s</var> <em class=rfc2119>MUST</em> be processed as follows:
+
+</p><ol>
+
+<li>Let <var>pos</var> be zero (0).  It represents the index in
+<var>s</var>.  The index of the first character in <var>data</var> is
+zero (0).
+
+</li><li>If <var>pos</var> is greater than or equal to the length of
+<var>s</var>, then emit an <a href=#end-of-file-token>end-of-file token</a> and abort
+these steps.
+
+</li><li>Let <var>line</var> be the empty string.
+
+</li><li>If the <var>pos</var>th character of <var>s</var> is U+000D <code class=charname>CARRIAGE RETURN</code>, <a href=#process-line title=process-line>process</a> <var>line</var>.  Set
+<var>line</var> to the empty string.  If the (<var>pos</var> + 1)th
+character of <var>s</var> is U+000A <code>LINE FEED</code>, increment
+<var>pos</var> by one (1).
+
+</li><li>Otherwise, if the <var>pos</var>th character of <var>s</var> is
+U+000A <code>LINE FEED</code>, <a href=#process-line title=process-line>process</a> <var>line</var>.  Set
+<var>line</var> to the empty string.
+
+</li><li>Otherwise, append the <var>pos</var>th character of <var>s</var>
+to <var>line</var>.
+
+</li><li>Increase <var>pos</var> by one (1).
+
+</li><li>Go back to the fourth step of these steps.
+
+</li></ol>
+
+<p>The steps above <dfn id=emit>emit</dfn> one or more sequence of <dfn id=token title=token>tokens</dfn>, which are inputs to the <a href=#tree-construction-0>tree
+construction</a> stage.  A <a href=#token>token</a> can have zero or more
+properties, depending on the kind of the <a href=#token>token</a>.  There
+are several kinds of <a href=#token title=token>tokens</a> and properties as
+follows:
+
+</p><dl>
+
+<dt><dfn id=block-start-tag-token>Block start tag token</dfn>
+
+</dt><dd><dfn id=block-start-tag-classes title=block-start-tag-classes>Classes</dfn> and <dfn id=block-start-tag-tag-name title=block-start-tag-tag-name>tag name</dfn> properties.
+
+</dd><dt><dfn id=block-end-tag-token>Block end tag token</dfn>
+
+</dt><dd><dfn id=block-end-tag-tag-name title=block-end-tag-tag-name>Tag name</dfn> property.
+
+</dd><dt><dfn id=character-token>Character token</dfn>
+
+</dt><dd><dfn id=character-data title=character-data>Data</dfn> property.
+
+</dd><dt><dfn id=comment-paragraph-start-token>Comment paragraph start token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=editorial-note-start-token>Editorial note start token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=element-token>Element token</dfn>
+
+</dt><dd><dfn id=element-local-name title=element-local-name>Local name</dfn>, <dfn id=element-namespace title=element-namespace>namespace</dfn>, <dfn id=element-anchor-attribute title=element-anchor-attribute>anchor attribute</dfn>, <dfn id=element-by-attribute title=element-by-attribute>by attribute</dfn>, <dfn id=element-res-scheme-attribute title=element-res-scheme-attribute>resScheme attribute</dfn>, <dfn id=element-res-parameter-attribute title=element-res-parameter-attribute>resParameter attribute</dfn>,
+and <dfn id=element-content title=element-content>content</dfn> attribute.  Default for
+these properties are null.
+
+</dd><dt><dfn id=emphasis-token>Emphasis token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=empty-line-token>Empty line token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=end-of-file-token>End-of-file token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=form-token>Form token</dfn>
+
+</dt><dd><dfn id=form-name title=form-name>Name</dfn>, <dfn id=form-id title=form-id>id</dfn>, and
+<dfn id=form-parameters title=form-parameters>parameters</dfn> properties.
+
+</dd><dt><dfn id=heading-start-token>Heading start token</dfn>
+
+</dt><dd><dfn id=heading-start-depth title=heading-start-depth>Depth</dfn> property.
+
+</dd><dt><dfn id=heading-end-token>Heading end token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=inline-start-tag-token>Inline start tag token</dfn>
+
+</dt><dd><dfn id=inline-start-tag-tag-name title=inline-start-tag-tag-name>Tag name</dfn>, <dfn id=inline-start-tag-classes title=inline-start-tag-classes>classes</dfn>, and <dfn id=inline-start-tag-language title=inline-start-tag-language>language</dfn> properties.  Default
+for these properties is null.
+
+</dd><dt><dfn id=inline-middle-tag-token>Inline middle tag token</dfn>
+
+</dt><dd><dfn id=inline-middle-tag-language title=inline-middle-tag-language>language</dfn> property,
+whose default is null.
+
+</dd><dt><dfn id=inline-end-tag-token>Inline end tag token</dfn>
+
+</dt><dd><dfn id=inline-end-tag-anchor-attribute title=inline-end-tag-anchor-attribute>Anchor attribute</dfn>,
+<dfn id=inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme
+attribute</dfn>, and <dfn id=inline-end-tag-res-parameter-attribute title=inline-end-tag-res-parameter-attribute>resParameter
+attribute</dfn> properties.  Default for these properties is null.
+
+</dd><dt><dfn id=labeled-list-start-token>Labeled list start token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=labeled-list-middle-token>Labeled list middle token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=list-start-token>List start token</dfn>
+
+</dt><dd><dfn id=list-start-depth title=list-start-depth>Depth</dfn> property.
+
+</dd><dt><dfn id=preformatted-start-token>Preformatted start token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=preformatted-end-token>Preformatted end token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=quotation-start-token>Quotation start token</dfn>
+
+</dt><dd><dfn id=quotation-start-depth title=quotation-start-depth>Depth</dfn> property.
+
+</dd><dt><dfn id=strong-token>Strong token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=table-row-start-token>Table row start token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=table-row-end-token>Table row end token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=table-cell-start-token>Table cell start token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=table-cell-end-token>Table cell end token</dfn>
+
+</dt><dd>No property.
+
+</dd><dt><dfn id=table-colspan-cell-token>Table colspan cell token</dfn>
+
+</dt><dd>No property.
+
+</dd></dl>
+
+<p><dfn id=mode>Mode</dfn> is a state of the <a href=#tokenization title=tokenization>tokenizer</a> and is one of
+"<a href=#initial>initial</a>" (the initial value used when the
+<a href=#tokenization>tokenization</a> starts), "<a href=#body>body</a>",
+"<a href=#preformatted>preformatted</a>", "<a href=#preformatted-block>preformatted block</a>", and
+"<a href=#image-data>image data</a>".
+
+</p><p><dfn id=continuous-line-flag>Continuous line flag</dfn> is another flag of the <a href=#tokenization title=tokenization>tokenizer</a>, representing whether a new line
+character should be appended to the data, and takes either true or
+false.  This flag is mainly used in the "<a href=#body>body</a>"
+<a href=#mode>mode</a>.
+
+</p><p>When a <dfn id=process-line title=process-line><var>line</var> is processed</dfn>,
+rules specified in the following subsections is used according to the
+appropriate <a href=#mode>mode</a>.  Rules below sometimes require the <dfn id=reprocess-line title=reprocess-line><var>line</var> be reprocessed</dfn>.  In such a
+case, rules for the appropriate <a href=#mode>mode</a> <em class=rfc2119>MUST</em> be followed with the same <var>line</var>.
+
+</p><div class=section>
+<h5 id=the-initial-mode><span class=secno>3.2.2.1 </span>The "<a href=#initial>initial</a>" mode</h5>
+
+<p>In the "<dfn id=initial>initial</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
+
+</p><dl class=switch>
+
+<dt>If <var>line</var> starts with <code>#?</code>
+
+</dt><dd><a href=#parse-a-magic-line>Parse a magic line</a> <var>line</var>.
+
+</dd><dt>Otherwise
+
+</dt><dd>
+
+<ol>
+
+<li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li><li>Switch to the "<a href=#body>body</a>" <a href=#mode>mode</a> and <a href=#reprocess-line title=reprocess-line>reprocess</a> <var>line</var>.
+
+</li></ol>
+
+</dd></dl>
+
+</div>
+
+<div class=section>
+<h5 id=the-body-mode><span class=secno>3.2.2.2 </span>The "<a href=#body>body</a>" mode</h5>
+
+<p>In the "<dfn id=body>body</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
+
+</p><dl class=switch>
+
+<dt>If <var>line</var> is empty
+
+</dt><dd>
+
+<ol>
+
+<li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li><li>Emit an <a href=#empty-line-token>empty line token</a>.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with a <a href=#white-space-characters title="white space
+characters">white space character</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Emit a <a href=#preformatted-start-token>preformatted start token</a>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>line</var>.
+
+</li><li>Switch to the "<a href=#preformatted>preformatted</a>" mode.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with <code>*</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+</li><li>Let <var>depth</var> be zero (0).
+
+</li><li>While the first character of <var>data</var>, if any, is
+<code>*</code>, run the following substeps:
+
+<ol>
+
+<li>Increase <var>depth</var> by one (1).
+
+</li><li>Remove the first character of <var>data</var>.  (The removed
+character will be <code>*</code>.)
+
+</li></ol>
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>data</var>, if any.
+
+</li><li>Emit a <a href=#heading-start-token>heading start token</a> whose <a href=#heading-start-depth title=heading-start-depth>depth</a> set to <var>depth</var>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with <var>data</var>.
+
+</li><li>Emit a <a href=#heading-end-token>heading end token</a>.
+
+</li><li>Finally, set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with <code>-</code> or <code>=</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+</li><li>Let <var>depth</var> be the empty string.
+
+</li><li>While the first character of <var>data</var>, if any, is
+<code>-</code> or <code>=</code>, run the following substeps:
+
+<ol>
+
+<li>Append the first character of <var>data</var> to <var>depth</var>.
+
+</li><li>Remove the first character of <var>data</var>.
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>data</var>, if any.
+
+</li><li>Emit a <a href=#list-start-token>list start token</a> whose <a href=#list-start-depth title=list-start-depth>depth</a> set to <var>depth</var>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with <var>data</var>.
+
+</li></ol>
+
+</li><li>Finally, set the <a href=#continuous-line-flag>continuous line flag</a> to true.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with <code>:</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var title="">name</var> be the empty string.
+
+</li><li>Let <var title="">data</var> be <var>line</var>.
+
+</li><li>Remove the first character of <var>data</var>.  (The removed
+character will be <code>:</code>.)
+
+</li><li>While <var>data</var> is not empty and the first character of
+<var>data</var> is <em>not</em> <code>:</code>, run the following
+substeps:
+
+<ol>
+
+<li>Append the first character of <var title="">data</var> to <var title="">name</var>.
+
+</li><li>Remove the first character of <var title="">data</var>.
+
+</li></ol>
+
+</li><li>If <var title="">name</var> is the empty string, run the following
+substeps:
+
+<ol>
+
+<li>Emit a <a href=#character-token>character token</a> whose <a href=#character-data title=character-data>data</a> is a <code>:</code> character.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with <var title="">name</var>.
+
+</li></ol>
+
+<div class="note memo">
+
+<p>In this case, <var>line</var> does not represent a description
+list.  <!-- For compatibility with previous implementations. -->
+
+</p></div>
+
+</li><li>Otherwise, run the following substeps:
+
+<ol>
+
+<li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var title="">name</var>, if any.
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the end of <var title="">name</var>, if any.
+
+</li><li>Emit a <a href=#labeled-list-start-token>labeled list start token</a>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with <var title="">name</var>.
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the end of
+<var>data</var>, if any.
+
+</li><li>Emit a <a href=#labeled-list-middle-token>labeled list middle token</a>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>data</var>.
+
+</li></ol>
+
+</li><li>Finally, set the <a href=#continuous-line-flag>continuous line flag</a> to true.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with <code>&gt;</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+</li><li>Let <var>depth</var> be zero (0).
+
+</li><li>While the first character of <var>data</var>, if any, is
+<code>&gt;</code>, run the following substeps:
+
+<ol>
+
+<li>Increase <var>depth</var> by one (1).
+
+</li><li>Remove the first character of <var>data</var>.  (The removed
+character will be <code>&gt;</code>.
+
+</li></ol>
+
+</li><li>If <var>depth</var> is two (2), <var>data</var> is not empty, and
+the first character of <var>data</var> is one of <a href=#digits>digits</a>,
+run the following substeps:
+
+<ol>
+
+<li>Prepend two <code>&gt;</code> characters to <var>data</var>.
+
+</li><li>If the <a href=#continuous-line-flag>continuous line flag</a> is true, preprend a
+U+000A <code class=charname>LINE FEED</code> character to
+<var>data</var>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>data</var>.
+
+</li></ol>
+
+</li><li>Otherwise, run the following substeps:
+
+<ol>
+
+<li>Emit a <a href=#quotation-start-token>quotation start token</a> whose <a href=#quotation-start-depth title=quotation-start-depth>depth</a> set to <var>depth</var>.
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>data</var>, if any.
+
+</li><li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>@@</code>, run the
+following substeps: <!-- SuikaWiki/0.10 addition -->
+
+<ol>
+
+<li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>@@</code>).
+
+</li><li>Emit a <a href=#editorial-note-start-token>editorial note start token</a>.
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>data</var>, if any.
+
+</li></ol>
+
+</li><li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>;;</code>, run the
+following substeps: <!-- SuikaWiki/0.10 addition -->
+
+<ol>
+
+<li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>;;</code>).
+
+</li><li>Emit a <a href=#comment-paragraph-start-token>comment paragraph start token</a>.
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>data</var>, if any.
+
+</li></ol>
+
+</li><li>In any case, run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a>
+with <var>data</var>.
+
+</li></ol>
+
+</li><li>Finally, set the <a href=#continuous-line-flag>continuous line flag</a> to true.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> is a string consist of a <code>[</code>
+character, followed by one of <code>INS</code>, <code>DEL</code>, or
+<code>PRE</code>, optionally followed by <a href=#class-specification>class
+specification</a>, followed by a <code>[</code> character, followed
+by zero or more <a href=#white-space-characters>white space characters</a>
+
+<!-- No more block start tag with this syntax should be added in
+future revisions. -->
+
+</dt><dd>
+
+<ol>
+
+<li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li><li>Emit a <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is one of
+<code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
+in <code>line</code>.
+
+</li><li>If the <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
+<code>PRE</code>, switch to the "<a href=#preformatted-block>preformatted block</a>"
+<a href=#mode>mode</a>.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with <code>@@</code>
+<!-- SuikaWiki/0.10 addition -->
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+</li><li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>@@</code>.)
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>data</var>, if any.
+
+</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to true.
+
+</li><li>Emit a <a href=#editorial-note-start-token>editorial note start token</a>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>data</var>.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with <code>;;</code>
+<!-- SuikaWiki/0.10 addition -->
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>data</var> be <var>line</var>.
+
+</li><li>Remove the first two characters of <var>data</var>.  (The removed
+characters will be <code>;;</code>.)
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>data</var>, if any.
+
+</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to true.
+
+</li><li>Emit a <a href=#comment-paragraph-start-token>comment paragraph start token</a>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>data</var>.
+
+</li></ol>
+
+<!--
+
+Though the SuikaWiki3's parser recognizes "[[# ...]] @@" or "[[#
+... ]] ;;" as comment paragraph or editorial note preceded by a form
+block, it considered as a bug and this specification treates these
+characters as character data.
+
+-->
+
+</dd><dt>If <var>line</var> is a string consist of a <code>]</code>
+character, followed by one of <code>INS</code> or <code>DEL</code>,
+followed by a <code>]</code> character, followed by zero or more
+<a href=#white-space-characters>white space characters</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li><li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is one of
+<code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
+in <code>line</code>.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> starts with <code>,</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Run the <a href=#algorithm-to-tokenize-a-table-row>algorithm to tokenize a table row</a> with
+<var>line</var>.
+
+</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> is <code>__IMAGE__</code>
+
+</dt><dd>Switch to the "<a href=#image-data>image data</a>" <a href=#mode>mode</a>.  <!--
+SuikaWikiImage/0.9 addition -->
+
+</dd><dt>Otherwise
+
+</dt><dd>
+
+<ol>
+
+<li>If the <a href=#continuous-line-flag>continuous line flag</a> is true, emit a
+<a href=#character-token>character token</a> whose <a href=#character-data title=character-data>data</a> is a U+000A <code class=charname>LINE
+FEED</code> character.
+
+</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to true.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>line</var>.
+
+</li></ol>
+
+</dd></dl>
+
+</div>
+
+<div class=section>
+<h5 id=the-preformatted-mode><span class=secno>3.2.2.3 </span>The "<a href=#preformatted>preformatted</a>" mode</h5>
+
+<p>In the "<dfn id=preformatted>preformatted</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
+
+</p><dl class=switch>
+
+<dt>If <var>line</var> is the empty string
+
+</dt><dd>
+
+<ol>
+
+<li>Emit a <a href=#preformatted-end-token>preformatted end token</a>.
+
+</li><li>Switch to the "<a href=#body>body</a>" <a href=#mode>mode</a>.
+
+</li></ol>
+
+</dd><dt>If <var>line</var> is a string consist of a <code>]</code>
+character, followed by one of <code>INS</code> or <code>DEL</code>,
+followed by a <code>]</code> character, followed by zero or more
+<a href=#white-space-characters>white space characters</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li><li>Emit a <a href=#preformatted-end-token>preformatted end token</a>.
+
+</li><li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is one of
+<code>INS</code> or <code>DEL</code>, that appears in
+<code>line</code>.
+
+</li><li>Switch to the "<a href=#body>body</a>" <a href=#mode>mode</a>.
+
+</li></ol>
+
+</dd><dt>Otherwise
+
+</dt><dd>
+
+<ol>
+
+<li>Emit a <a href=#character-token>character token</a> whose <a href=#character-data title=character-data>data</a> is a U+000A <code class=charname>LINE
+FEED</code> character.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>line</var>.
+
+</li></ol>
+
+</dd></dl>
+
+</div>
+
+<div class=section>
+<h5 id=the-preformatted-block-mode><span class=secno>3.2.2.4 </span>The "<a href=#preformatted-block>preformatted block</a>" mode</h5>
+
+<p>In the "<dfn id=preformatted-block>preformatted block</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
+
+</p><dl class=switch>
+
+<dt>If <var>line</var> is a string consist of <code>]PRE]</code>
+followed by zero or more <a href=#white-space-characters>white space characters</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li><li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>PRE</code>.
+
+</li><li>Switch to the "<a href=#body>body</a>" <a href=#mode>mode</a>.
+
+</li></ol>
+
+</dd><dt>Otherwise
+
+</dt><dd>
+
+<ol>
+
+<li>If the <a href=#continuous-line-flag>continuous line flag</a> is true, emit a
+<a href=#character-token>character token</a> whose <a href=#character-data title=character-data>data</a> is a U+000A <code class=charname>LINE
+FEED</code> character.
+
+</li><li>Set <a href=#continuous-line-flag>continuous line flag</a> to true.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>line</var>.
+
+</li></ol>
+
+</dd></dl>
+
+</div>
+
+<div class=section>
+<h5 id=the-image-data-mode><span class=secno>3.2.2.5 </span>The "<a href=#image-data>image data</a>" mode</h5>
+
+<p>In the "<dfn id=image-data>image data</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
+
+</p><ol>
+
+<li>If the <a href=#image-element>image element</a> is null, then create an
+<a href=#the-image-element-in-the-suikawiki/0.9-namespace><code>image</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+and set the <a href=#image-element>image element</a> to that element.  Append the
+<a href=#image-element>image element</a> to the <a href=#document-element>document element</a>.
+
+</li><li>Otherwise, <a href=#append-a-character>append a character</a> U+000A <code class=charname>LINE FEED</code> to the <a href=#image-element>image element</a>.
+
+</li><li>Then, <a href=#append-a-character title="append a character">append each
+character</a> in <var>line</var> in the same order to the
+<a href=#image-element>image element</a>.
+
+</li></ol>
+
+</div>
+
+</div>
+
+<div class=section>
+<h4 id=tokenization-of-a-table-row><span class=secno>3.2.3 </span>Tokenization of a table row</h4>
+
+<p>The <dfn id=algorithm-to-tokenize-a-table-row>algorithm to tokenize a table row</dfn> <var>data</var> is
+as follows:
+
+</p><ol>
+
+<li>Let <var>pos</var> be zero (0).  It represents the index in
+<var>data</var>.  The index of the first character in <var>data</var>
+is zero (0).
+
+</li><li>Emit a <a href=#table-row-start-token>table row start token</a>.
+
+</li><li><dfn id=tokenize-table-row-loop title=tokenize-table-row-loop><i>LOOP</i></dfn>: If
+<var>pos</var> is greater than or equal to the length of
+<var>data</var>, emit a <a href=#table-row-end-token>table row end token</a> and abort
+this algorithm.
+
+</li><li>Increase <var>pos</var> by one (1). <!-- Skip "," -->
+
+</li><li>Let <var>cell</var> be the empty string.
+
+</li><li>Let <var>cell quoted</var> be the empty string.
+
+</li><li>If <var>pos</var> is greater than or equal to the length of
+<var>data</var>, emit a <a href=#table-row-end-token>table row end token</a> and abort
+this algorithm.
+
+</li><li>If the <var>pos</var>th character in <var>data</var> is a <a href=#white-space-characters title="white space characters">white space character</a>, increase
+<var>pos</var> by one (1) and go back to the previous step.
+
+</li><li>If the <var>pos</var>th character in <var>data</var> is
+<code>"</code>, follow the substeps below:
+
+<ol>
+
+<li>Increase <var>pos</var> by one (1).
+
+</li><li>If <var>pos</var> is greater than or equal to the length of
+<var>data</var>, abort these substeps.
+
+</li><li>Otherwise, if the <var>pos</var>th character in <var>data</var> is
+<code>"</code>, abort these substeps.
+
+</li><li>Otherwise, if the <var>pos</var>th character in <var>data</var> is
+<code>\</code>, follow the substeps below:
+
+<ol>
+
+<li>Increase <var>pos</var> by one (1).
+
+</li><li>If <var>pos</var> is greater than or equal to the length of
+<var>data</var>, abort these substeps.
+
+</li><li>Otherwise, append the <var>pos</var>th character in
+<var>data</var> to <var>cell quoted</var>.
+
+</li></ol>
+
+</li><li>Otherwise, append the <var>pos</var>th character in
+<var>data</var> to <var>cell quoted</var>.
+
+</li><li>Go back to the first substep in these substeps.
+
+</li></ol>
+
+</li><li>While <var>pos</var> is less than the length of <var>data</var>, run
+the following substeps:
+
+<ol>
+
+<li>If the <var>pos</var>th character in <code>data</code> is
+<code>,</code>, abort these substeps. <!-- without increasing
+<var>pos</var> -->
+
+</li><li>Append the <var>pos</var>th character in <code>data</code> to
+<var>cell</var>.
+
+</li><li>Increase <var>pos</var> by one (1).
+
+</li></ol>
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the end of
+<var>data</var>, if any.
+
+</li><li>If <var>cell</var> is equal to <code>==</code>, emit a <a href=#table-colspan-cell-token>table
+colspan cell token</a> and go back to the step labeled <a href=#tokenize-table-row-loop title=tokenize-table-row-loop><i>LOOP</i></a>.
+
+</li><li>Prepend <var>cell quoted</var> to <var>cell</var>.
+
+</li><li>Emit a <a href=#table-cell-start-token>table cell start token</a>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>cell</var>.
+
+</li><li>Emit a <a href=#table-cell-end-token>table cell end token</a>.
+
+</li><li>Go back to the step labeled <a href=#tokenize-table-row-loop title=tokenize-table-row-loop><i>LOOP</i></a>.
+
+</li></ol>
+
+</div>
+
+<div class=section>
+<h4 id=tokenization-of-a-text><span class=secno>3.2.4 </span>Tokenization of a text</h4>
+
+<p>The <dfn id=algorithm-to-tokenize-a-text>algorithm to tokenize a text</dfn> <var>data</var> is as
+follows:
+
+</p><ol>
+
+<li>If <var>data</var> begins with <code>[</code> followed by one or
+more <a href=#digits>digits</a> followed by <code>]</code>, run the following
+steps:
+
+<ol>
+
+<li>Let <var>number</var> be the <a href=#digits>digits</a> in the matched
+substring.
+
+</li><li>Remove the matched substring frm <var>data</var>.
+
+</li><li>Emit an <a href=#element-token>element token</a> whose <a href=#element-local-name title=element-local-name>local name</a> is <a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><code>anchor-end</code></a>,
+<a href=#element-namespace title=element-namespace>namespace</a> is the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>, <a href=#element-anchor-attribute title=element-anchor-attribute>anchor attribute</a> is
+<var>number</var>, and <a href=#element-content title=element-content>content</a> is
+<code>[</code> followed by <var>number</var> followed by
+<code>]</code>.
+
+</li></ol>
+
+</li><li>While the length of <var>data</var> is not zero (0), run the
+appropriate steps:
+
+<dl class=switch>
+
+<dt>If <var>data</var> begins with <code>[[#</code>, followed by one
+or more <a href=#lowercase-letters>lowercase letters</a> or U+002D <code class=charname>HYPHEN-MINUS
+
+</code></dt><dd>
+
+<ol>
+
+<li>Let <var title="">name</var> be the <a href=#lowercase-letters>lowercase letters</a>
+and U+002D <code class=charname>HYPHEN-MINUS</code> in the matched
+substring.
+
+</li><li>Remove the matched substring from <var>data</var>.
+
+</li><li>Let <var title="">id</var> be null.
+
+</li><li>Let <var>parameters</var> be an empty list.
+
+</li><li>If <var>data</var> begins with a <a href=#class-specification>class specification</a>,
+run the following substeps:
+
+<ol>
+
+<li>Set the <var title="">id</var> to the <a href=#body-of-a-class-specification title="body of a class
+specification">body</a> of the <a href=#class-specification>class specification</a>.
+
+</li><li>Remove the class specification from <var>data</var>.
+
+</li></ol>
+
+</li><li>While the first character of <var>data</var> is <code>:</code>,
+run the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+</li><li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>]]</code>, abort
+these substeps.
+
+</li><li>Let <var title="">parameter</var> be the empty string.
+
+</li><li>If <var title="">data</var> is empty, append <var title="">parameter</var> to <var title="">parameters</var> and abort these
+substeps.
+
+</li><li>If the first character of <var title="">data</var> is <code>'</code>,
+run the following steps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+</li><li>If <var>data</var> is empty, abort these substeps.
+
+</li><li>If the first character of <var>data</var> is <code>'</code>, abort
+these substeps.
+
+</li><li>If the first character of <var>data</var> is <code>\</code>, run
+the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var title="">data</var>.
+
+</li><li>If <var title="">data</var> is empty, abort these substeps.
+
+</li><li>Append the first character of <var>data</var> to <var title="">parameter</var>.
+
+</li></ol>
+
+</li><li>Otherwise, append the first character of <var title="">data</var> to
+<var title="">parameter</var>.
+
+</li><li>Go back to the first substep in these substeps.
+
+</li></ol>
+
+</li><li>Otherwise, run the following steps:
+
+<ol>
+
+<li>If <var title="">data</var> is empty, or if the first character of
+<var title="">data</var> is <code>:</code>, abort these substeps.
+
+</li><li>Append the first character of <var title="">data</var> to <var title="">parameter</var>.
+
+</li><li>Remove the first character of <var title="">data</var>.
+
+</li><li>Go back to the first substep of these substeps.
+
+</li></ol>
+
+</li><li>Append <var title="">parameter</var> to <var title="">parameters</var>.
+
+</li></ol>
+
+</li><li>If the length of <var>data</var> is greater than one (1) and the
+first two characters of <var>data</var> are <code>]]</code>, remove
+these characters from <var>data</var>.
+
+</li><li>Emit a <a href=#form-token>form token</a> whose <a href=#form-name title=form-name>name</a> is <var title="">name</var>, <a href=#form-id title=form-id>id</a> is <var title="">id</var>, and <a href=#form-parameters title=form-parameters>parameters</a> is <var title="">parameters.
+
+</var></li></ol>
+
+</dd><dt>Otherwise, if the <var>data</var> begins with <code>[[</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+</li><li>Emit an <a href=#inline-start-tag-token>inline start tag token</a>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>[</code>, followed by one or
+more <a href=#uppercase-letters>uppercase letters</a>, optionally followed by a
+<a href=#class-specification>class specification</a>, optionally followed by a
+<a href=#language-specification>language specification</a>, followed by <code>[</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>tag name</var> be the <a href=#uppercase-letters>uppercase letters</a> in
+the matched substring of <var>data</var>.
+
+</li><li>Let <var>classes</var> be the <a href=#body-of-a-class-specification title="body of a class
+specification">body</a> of the <a href=#class-specification>class specification</a> in
+the matched substring of <var>data</var>, if any, or null, otherwise.
+
+</li><li>Let <var>language</var> be the <a href=#body-of-a-language-specification title="body of a language
+specification">body</a> of the <a href=#language-specification>language specification</a>
+in the matched substring of <var>data</var>, if any, or null,
+otherwise.
+
+</li><li>Remove the matched substring from <var>data</var>.
+
+</li><li>Emit an <a href=#inline-start-tag-token>inline start tag token</a> whose <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag name</a> is <var>tag
+name</var>, <a href=#inline-start-tag-classes title=inline-start-tag-classes>classes</a> is
+<var>classes</var>, and <a href=#inline-start-tag-language title=inline-start-tag-language>language</a> is
+<var>language</var>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>]]</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+</li><li>Emit an <a href=#inline-end-tag-token>inline end tag token</a>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>]&lt;</code>, followed by one
+or more <a href=#scheme-characters>scheme characters</a>, followed by <code>:</code>
+
+</dt><dd>Remove the matched substring from <var>data</var> and then act as
+if the first two character of the original <var>data</var> before the
+removal were <code>&lt;</code> instead of <code>]&lt;</code>, except
+that the emitted token is an <a href=#inline-end-tag-token>inline end tag token</a> instead
+of an <a href=#element-token>element token</a>.  The <a href=#inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme attribute</a>
+of the token <em class=rfc2119>MUST</em> be the <a href=#element-res-scheme-attribute title=element-res-scheme-attribute>resScheme attribute</a> of the
+token that would be emitted if the first two character were
+<code>&lt;</code>.  The <a href=#inline-end-tag-res-parameter-attribute title=inline-end-tag-res-parameter-attribute>resParameter
+attribute</a> of the token <em class=rfc2119>MUST</em> be the <a href=#element-res-parameter-attribute title=element-res-parameter-attribute>resParameter attribute</a> of
+the token that would be emitted if the first two character were
+<code>&lt;</code>.
+
+</dd><dt>If <var>data</var> begins with <code>]&gt;&gt;</code> followed by one or
+more <a href=#digits>digits</a>, followed by <code>]</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>number</var> be the <a href=#digits>digits</a> in the matched
+substring.
+
+</li><li>Remove the matched substring from <var>data</var>.
+
+</li><li>Emit an <a href=#inline-end-tag-token>inline end tag token</a> whose <span title=inline-end-tag-anchor>anchor</span> is <var>number</var>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>]</code> followed by zero or
+more <a href=#white-space-characters>white space characters</a> followed by <code>[</code>
+
+</dt><dt>If <var>data</var> begins with <code>]</code> followed by zero or
+more <a href=#white-space-characters>white space characters</a> followed by a <a href=#language-specification>language
+specification</a> followed by <code>[</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var title="">lang</var> be the <a href=#body-of-a-language-specification title="body of a language
+specification">body</a> of the <a href=#language-specification>language specification</a>
+in the matched substring of <var title="">data</var>, if any, or null,
+otherwise.
+
+</li><li>Remove the matched substring from <var>data</var>.
+
+</li><li>Emit an <a href=#inline-middle-tag-token>inline middle tag token</a> whose <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a> is <var title="">lang</var>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>&lt;</code>, followed by one
+or more <a href=#scheme-characters>scheme characters</a>, followed by <code>:</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>scheme</var> be the <a href=#scheme-characters>scheme characters</a> part
+of the matched substring.
+
+</li><li>Remove the matched substring from <var>data</var>.
+
+</li><li>Let <var title="">value</var> be the empty string.
+
+</li><li>Run the following steps:
+
+<ol>
+
+<li>If <var>data</var> is empty, abort these steps.
+
+</li><li>If the first character of <var>data</var> is <code>&gt;</code>,
+remove the first character of <var>data</var> and abort these steps.
+
+</li><li>If the first character of <var>data</var> is <code>"</code>, run
+the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+</li><li>If <var>data</var> is empty, abort these steps.
+
+</li><li>If the first character of <var>data</var> is <code>"</code>,
+remove the first character of <var>data</var> and abort these
+substeps.
+
+</li><li>If the first character of <var>data</var> is <code>\</code>, run
+the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var title="">data</var>.
+
+</li><li>If <var title="">data</var> is empty, abort these steps.
+
+</li><li>Append the first character of <var title="">data</var> to <var title="">value</var>.
+
+</li></ol>
+
+</li><li>Otherwise, append the first character of <var title="">data</var> to
+<var title="">value</var>.
+
+</li><li>Return back to the first substep of these substeps.
+
+</li></ol>
+
+</li><li>Otherwise, run the following substeps:
+
+<ol>
+
+<li>Append the first character of <var title="">data</var> to <var title="">value</var>.
+
+</li><li>Remove the first character of <var title="">data</var>.
+
+</li></ol>
+
+</li><li>Go back to the first substeps in these substeps.
+
+</li></ol>
+
+</li><li>Let <var title="">content</var> be <var title="">scheme</var> followed
+by <code>:</code> followed by <var title="">value</var>.
+
+</li><li>If <var title="">scheme</var> does <em>not</em> contain one of
+<a href=#uppercase-letters>uppercase letters</a>, set <var title="">value</var> to <var title="">content</var> and set <var title="">scheme</var> to
+<code>URI</code>.
+
+</li><li>Emit an <a href=#element-token>element token</a> whose <a href=#element-local-name title=element-local-name>local name</a> is
+<a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a>, <a href=#element-namespace title=element-namespace>namespace</a> is the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>, <a href=#element-res-scheme-attribute title=element-res-scheme-attribute>resScheme
+attribute</a> is <var title="">scheme</var>, <a href=#element-res-parameter-attribute title=element-res-parameter-attribute>resParameter attribute</a> is
+<var title="">value</var>, and <a href=#element-content title=element-content>content</a>
+is <var title="">content</var>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>'''</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+</li><li>Emit a <a href=#strong-token>strong token</a>.
+
+</li></ol>
+
+</dd><dt>Otherwise, if <var>data</var> begins with <code>''</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+</li><li>Emit an <a href=#emphasis-token>emphasis token</a>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>&gt;&gt;</code> followed by one or
+more <a href=#digits>digits</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Emit an <a href=#element-token>element token</a> whose <a href=#element-local-name title=element-local-name>local name</a> is
+<a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a>, <a href=#element-namespace title=element-namespace>namespace</a> is the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>, <a href=#element-anchor-attribute title=element-anchor-attribute>anchor
+attribute</a> is the <a href=#digits>digits</a> part of the matched
+substring, and <a href=#element-content title=element-content>content</a> is the
+matched substring.
+
+</li><li>Remove the matched substring from <var>data</var>.
+
+</li></ol>
+
+</dd><dt>If <var>data</var> begins with <code>__&amp;&amp;</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var>.
+
+</li><li>If <var>data</var> begins with <code>&amp;&amp;__</code>, or if
+<var>data</var> does not contain <code>&amp;&amp;__</code> as a
+substring, emit four <a href=#character-token title="character token">character
+tokens</a> whose <a href=#character-data title=character-data>data</a> are
+<code>_</code>, <code>_</code>, <code>&amp;</code>, and
+<code>&amp;</code> respectively and remove the first four characters
+of <var>data</var> and abort these steps.
+
+</li><li>Let <var title="">name</var> be the substring of <var title="">data</var> between the beginning of the string and the first
+occurence of <code>&amp;&amp;__</code> (exclusive).
+
+</li><li>Remove the first occurence of <code>&amp;&amp;__</code> and any
+character before it from <var title="">data</var>.
+
+</li><li>Emit an <a href=#element-token>element token</a> whose <a href=#element-local-name title=element-local-name>local name</a> is <a href=#the-replace-element-in-the-suikawiki/0.9-namespace><code>replace</code></a>,
+<a href=#element-namespace title=element-namespace>namespace</a> is the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>, <a href=#element-by-attribute title=element-by-attribute>by attribute</a> is <var title="">name</var>.
+
+</li></ol>
+
+</dd><dt>Otherwise
+
+</dt><dd>
+
+<ol>
+
+<li>Emit a <a href=#character-token>character token</a> whose <a href=#character-data title=character-data>data</a> set to the first character of
+<var>data</var>.
+
+</li><li>Remove the first character of <var>data</var>.
+
+</li></ol>
+
+</dd></dl>
+
+</li></ol>
+
+</div>
+
+<div class=section>
+<h4 id=parsing-a-magic-line><span class=secno>3.2.5 </span>Parsing a magic line</h4>
+
+<p>To <dfn id=parse-a-magic-line>parse a magic line</dfn> <var>data</var>, the following
+steps <em class=rfc2119>MUST</em> be used:
+
+</p><ol>
+
+<li>Remove the first two characters of <var>data</var>.  (It will be
+<code>#?</code>.)
+
+</li><li>If there are one or more characters that are not <a href=#white-space-characters>white space
+characters</a>, run the following substeps:
+
+<ol>
+
+<li>Let <var title="">name</var> be those characters.
+
+</li><li>Let <var title="">version</var> be null.
+
+</li><li>Remove those characters from <var title="">data</var>.
+
+</li><li>If <var title="">name</var> contains <code>/</code>, set the
+substring after the first occurence of the character to <var title="">version</var>.  Note that <var title="">version</var> might become
+the empty string.  Remove the <code>/</code> character and the
+substring after the character from <var title="">name</var>.
+
+</li><li>Set the <a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-name>Name</code></a> <a href=#content-attribute>content
+attribute</a> of the <a href=#document-element>document element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> to <var title="">name</var>.
+
+</li><li>If <a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><var>version</var></a> is <em>not</em> null, set the <a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-name>Version</code></a> <a href=#content-attribute>content attribute</a> of
+the <a href=#document-element>document element</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> to <var title="">version</var>.
+
+</li></ol>
+
+</li><li>Run the following substeps:
+
+<ol>
+
+<li>If <var>data</var> is empty, abort these substeps.
+
+</li><li>If the first character of <var>data</var> is a <a href=#white-space-characters title="white
+space characters">white space character</a>, remove the character
+from <var>data</var> and go back to the first substep of these
+substeps.
+
+</li><li>Let <var title="">name</var> be the empty string.
+
+</li><li>If <var title="">data</var> begins with one or more characters that
+are not <code>=</code>, set <var title="">name</var> to those characters
+and remove those characters from <var title="">data</var>.
+
+</li><li>Let <var title="">parameter</var> be a newly created <a href=#the-parameter-element-in-the-suikawiki/0.9-namespace><code title=element-sw-parameter>parameter</code></a> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and set the <a href=#attr-sw-parameter-name><code title=attr-sw-parameter-name>name</code></a> <a href=#content-attribute>content
+attribute</a> of <var title="">parameter</var> to <var title="">name</var>.
+
+</li><li>Remove the first character of <var>data</var>.  (It will be
+<code>=</code>.)
+
+</li><li>If the first character of <var>data</var>, if any, is
+<code>"</code>, remove that character from <var>data</var>.
+
+</li><li>Run the following substeps:
+
+<ol>
+
+<li>Let <var title="">value</var> be the empty string.
+
+</li><li>If <var title="">data</var> is empty, or if the first character of
+<var title="">data</var> is <code>"</code>, create a <a href=#the-value-element-in-the-suikawiki/0.9-namespace><code title=element-sw-value>value</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>, set the <code>textContent</code> <a href=#dom-attribute>DOM
+attribute</a> of the node to <var title="">value</var>, and append the
+node to <var title="">parameter</var>.
+
+</li><li>If the first character of <var title="">data</var>, if any, is
+<code>\</code>, run the following substeps:
+
+<ol>
+
+<li>Remove the first character of <var>data</var>.
+
+</li><li>Append the first character of <var>data</var>, if any, to
+<var title="">value</var>.
+
+</li></ol>
+
+</li><li>Otherwise, append the first character of <var>data</var> to
+<var title="">value</var>.
+
+</li><li>Go back to the second substep of these substeps.
+
+</li></ol>
+
+</li><li>If the first character of <var>data</var>, if any, is
+<code>"</code>, remove that character from <var>data</var>.
+
+</li><li>Append <var title="">parameter</var> to the <a href=#head-element>head
+element</a>.
+
+</li><li>Go back to the first substep of these substeps.
+
+</li></ol>
+
+</li></ol>
+
+</div>
+
+<div class=section>
+<h4 id=tree-construction><span class=secno>3.2.6 </span>Tree construction</h4>
+
+<p>The <dfn id=tree-construction-0>tree construction</dfn> stage constructs a DOM tree from a
+series of <a href=#token title=token>tokens</a> emitted by the
+<a href=#tokenization>tokenization</a> stage.  The <a href=#tree-construction-0>tree construction</a>
+stage has two state variables: <a href=#insertion-mode>insertion mode</a> and
+<a href=#stack-of-open-elements>stack of open elements</a>.
+
+</p><p>The <dfn id=insertion-mode>insertion mode</dfn> is one of "<a href=#in-section>in section</a>",
+"<a href=#in-table-row>in table row</a>", or "<a href=#in-paragraph>in paragraph</a>".  The
+default that <em class=rfc2119>MUST</em> be used when the <a href=#tree-construction-0>tree
+construction</a> begins is the "<a href=#in-section>in section</a>"
+<a href=#insertion-mode>insertion mode</a>.  The rules for these <a href=#insertion-mode title="insertion mode">insertion modes</a> are described in the
+subsections below.
+
+</p><p>When the algorithm below says that the <a href=#swml-text-serialization-parser title="SWML text
+serialization parser">parser</a> is to do something “<dfn id=using-the-rules-for>using
+the rules for</dfn> the <var>m</var> <a href=#insertion-mode>insertion mode</a>”,
+the <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a> <em class=rfc2119>MUST</em> use the rules described under the <var>m</var>
+<a href=#insertion-mode>insertion mode</a>'s section, but <em class=rfc2119>MUST</em>
+leave the <a href=#insertion-mode>insertion mode</a> unchanged.
+
+</p><p>The <dfn id=stack-of-open-elements>stack of open elements</dfn> contains tuples of
+(<dfn id=element-node>element node</dfn>, <dfn id=section-depth>section depth</dfn>, <dfn id=quotation-depth>quotation
+depth</dfn>, <dfn id=list-depth>list depth</dfn>).  These stack grows downdards; the
+topmost entry on the stack is the first one added to the stack, and
+the bottommost entry of the stack is the most recently added entry in
+the stack.  It initially contains only a tuple: (the <a href=#body-element>body
+element</a>, <code>0</code>, <code>0</code>, <code>0</code>).  When
+an entry is pushed to the <a href=#stack-of-open-elements>stack of open elements</a>, the
+items of the new tupple is set to the same values as the bottommost
+tuple unless otherwise specified.
+
+</p><p>The <dfn id=current-element>current element</dfn> is the <a href=#element-node>element node</a>
+of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
+
+</p><p><dfn id=structural-elements>Structural elements</dfn> are elements whose local name is one
+of <code title=element-body>body</code>, <code>section</code>,
+<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <code>blockquote</code>,
+<code>h1</code>, <code>ul</code>, <code>ol</code>, <code>dl</code>,
+<code>li</code>, <code>dt</code>, <code>dd</code>, <code>table</code>,
+<code>tbody</code>, <code>tr</code>, <code>td</code>, <code>p</code>,
+<a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, or <code>pre</code>.
+
+</p><div class=section>
+<h5 id=the-in-section-insertion-mode><span class=secno>3.2.6.1 </span>The "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion mode</a></h5>
+
+<p>In the "<dfn id=in-section>in section</dfn>" <a href=#insertion-mode>insertion mode</a>, a
+<a href=#token>token</a> <em class=rfc2119>MUST</em> be processed as
+follows:
+
+</p><dl class=switch>
+
+<dt>A <a href=#heading-start-token>heading start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the <a href=#current-element>current element</a> is
+<em>not</em> one of <code title=element-body>body</code>,
+<code>section</code>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
+the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
+this substep again.
+
+</li><li>Let <var>current depth</var> be the <a href=#section-depth>section depth</a> of
+the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
+
+</li><li>If <a href=#heading-start-depth title=heading-start-depth>depth</a> is less than or
+equal to the <var>current depth</var>, pop the element off the
+<a href=#stack-of-open-elements>stack of open elements</a> and go back to the first substep
+of these substeps.
+
+</li><li>Otherwise, if <a href=#heading-start-depth title=heading-start-depth>depth</a> is
+greater than <var>current depth</var> + 1, create a
+<code>section</code> element in the <a href=#html-namespace>HTML namespace</a>,
+append the element created to the <a href=#current-element>current element</a>, push
+the element created to the <a href=#stack-of-open-elements>stack of open elements</a> with
+<a href=#section-depth>section depth</a> set to <var>current depth</var> + 1,
+<a href=#quotation-depth>quotation depth</a> set to zero (0), and <a href=#list-depth>list
+depth</a> set to zero (0), and go back to the first substep of
+these substeps.
+
+</li><li>Create a <code>section</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a> with <a href=#section-depth>section depth</a> set to <a href=#heading-start-depth title=heading-start-depth>depth</a>, <a href=#quotation-depth>quotation depth</a>
+set to zero (0), and <a href=#list-depth>list depth</a> set to zero (0).
+
+</li><li>Create a <code>h1</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <code>INS</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Create an <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a> with <a href=#section-depth>section depth</a> set to zero (0),
+<a href=#quotation-depth>quotation depth</a> set to zero (0), and <a href=#list-depth>list
+depth</a> set to zero (0).
+
+</li><li>If the <a href=#token>token</a>'s <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is not null, set the
+<a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
+the element created to <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <code>DEL</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Create an <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a> with <a href=#section-depth>section depth</a> set to zero (0),
+<a href=#quotation-depth>quotation depth</a> set to zero (0), and <a href=#list-depth>list
+depth</a> set to zero (0).
+
+</li><li>If the <a href=#token>token</a>'s <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is not null, set the
+<a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
+the element created to <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#quotation-start-token>quotation start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the <a href=#current-element>current element</a> is
+<em>not</em> one of <code>blockquote</code>, <code title=element-body>body</code>, <code>section</code>,
+<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop the element off the
+<a href=#stack-of-open-elements>stack of open elements</a> and follow this substep again.
+
+</li><li>Let <var>current depth</var> be the <a href=#quotation-depth>quotation depth</a>
+of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
+
+</li><li>If <a href=#quotation-start-depth title=quotation-start-depth>depth</a> is less than or
+equal to the <var>current depth</var>, pop the element off the
+<a href=#stack-of-open-elements>stack of open elements</a> and go back to the first substep
+of these substeps.
+
+</li><li>Otherwise, if <a href=#quotation-start-depth title=quotation-start-depth>depth</a> is
+greater than <var>current depth</var> + 1, create a
+<code>blockquote</code> element in the <a href=#html-namespace>HTML namespace</a>,
+append the element created to the <a href=#current-element>current element</a>, push
+the element created to the <a href=#stack-of-open-elements>stack of open elements</a> with
+<a href=#section-depth>section depth</a> set to zero (0), <a href=#quotation-depth>quotation
+depth</a> set to <var>current depth</var> + 1, and <a href=#list-depth>list
+depth</a> set to zero (0), and go back to the first substep of
+these substeps.
+
+</li><li>Create a <code>blockquote</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a> with <a href=#section-depth>section depth</a> set to zero (0),
+<a href=#quotation-depth>quotation depth</a> set to <a href=#quotation-start-depth title=quotation-start-depth>depth</a>, and <a href=#list-depth>list depth</a>
+set to zero (0).
+
+</li></ol>
+
+</dd><dt>A <a href=#list-start-token>list start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>current depth</var> be the <a href=#list-depth>list depth</a> of the
+<a href=#current-element>current element</a>.
+
+</li><li>Let <var>inserted depth</var> be the length of <a href=#list-start-depth title=list-start-depth>depth</a> of the <a href=#list-start-token>list start
+token</a>.
+
+</li><li>If <var>current depth</var> is greater than <var>inserted
+depth</var>, pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack
+of open elements</a> and go back to the first substep of these
+substeps.
+
+</li><li>If <var>current depth</var> is less than <var>inserted
+depth</var>, run the following substeps:
+
+<ol>
+
+<li>Let <var>type</var> be the character at the index equal to
+<var>current depth</var> in <a href=#list-start-depth title=list-start-depth>depth</a>
+of the <a href=#list-start-token>list start token</a>, where the index of the first
+character in <a href=#list-start-depth title=list-start-depth>depth</a> is zero (0).
+
+</li><li>If <var>type</var> is <code>-</code>, create a <code>ul</code>
+element in the <a href=#html-namespace>HTML namespace</a>.
+
+</li><li>Otherwise, create a <code>ol</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>, with <a href=#list-depth>list depth</a> set to <var>current
+depth</var> + 1.
+
+</li><li>If <var>current depth</var> + 1 is less than <var>inserted
+depth</var>, run the following substeps:
+
+<ol>
+
+<li>Create a <code>li</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</li><li>Go back to the first substep for the <a href=#list-start-token>list start
+token</a>.
+
+</li></ol>
+
+</li><li>If the <a href=#list-depth>list depth</a> is equal to <var>inserted
+depth</var> and the local name of the <a href=#current-element>current element</a> is
+<em>not</em> <code>ul</code> or <code>ol</code>, pop the <a href=#current-element>current
+element</a> off the <a href=#stack-of-open-elements>stack of open elements</a>.
+
+</li><li>Create a <code>li</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#labeled-list-start-token>labeled list start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the <a href=#current-element>current element</a> is
+<code>dd</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<em>not</em> <code>dl</code>, create a <code>dl</code> element in the
+<a href=#html-namespace>HTML namespace</a>, append the element created to the
+<a href=#current-element>current element</a>, and push the element created to the
+<a href=#stack-of-open-elements>stack of open elements</a>.
+
+</li><li>Create a <code>dt</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#table-row-start-token>table row start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <code>table</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Create a <code>tbody</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Create a <code>tbody</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-table-row>in table row</a>" <a href=#insertion-mode>insertion
+mode</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <code>PRE</code>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <code>pre</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>If the <a href=#token>token</a>'s <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is not null, set the
+<a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
+the element created to <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#preformatted-start-token>preformatted start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <code>pre</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>If the <a href=#token>token</a>'s <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is not null, set the
+<a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
+the element created to <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#comment-paragraph-start-token>comment paragraph start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>.
+
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#editorial-note-start-token>editorial note start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd><dt>An <a href=#empty-line-token>empty line token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the <a href=#current-element>current element</a> is
+<em>not</em> one of <code title=element-body>body</code>,
+<code>section</code>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
+the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
+this substep again.
+
+</li></ol>
+
+</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>INS</code>
+
+</dt><dd>If the <a href=#stack-of-open-elements>stack of open elements</a> contains an element
+whose local name is <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, pop the <a href=#current-element>current
+element</a> off the <a href=#stack-of-open-elements>stack of open elements</a> until such
+an element whose local name is <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> has been popped
+from the <a href=#stack-of-open-elements>stack of open elements</a>.
+
+</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>DEL</code>
+
+</dt><dd>If the <a href=#stack-of-open-elements>stack of open elements</a> contains an element
+whose local name is <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop the <a href=#current-element>current
+element</a> off the <a href=#stack-of-open-elements>stack of open elements</a> until such
+an element whose local name is <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> has been popped
+from the <a href=#stack-of-open-elements>stack of open elements</a>.
+
+</dd><dt>A <a href=#form-token>form token</a>
+
+</dt><dt>An <a href=#element-token>element token</a> whose <a href=#element-local-name title=element-local-name>local name</a> is <a href=#the-replace-element-in-the-suikawiki/0.9-namespace><code>replace</code></a>
+
+</dt><dd>Process the token <a href=#using-the-rules-for>using the rules for</a> the "<a href=#in-paragraph>in
+paragraph</a>" <a href=#insertion-mode>insertion mode</a>.
+
+</dd><dt>An <a href=#end-of-file-token>end-of-file token</a>
+
+</dt><dd>Now the <code title=dom-document>Document</code> has been
+constructed.  Abort the <a href=#swml-text-serialization-parser title="SWML text serialization
+parser">parser</a>.
+
+</dd><dt>A <a href=#labeled-list-middle-token>labeled list middle token</a>, <a href=#heading-end-token>heading end
+token</a>, <a href=#preformatted-end-token>preformatted end token</a>, <a href=#table-row-end-token>table row end
+token</a>, <a href=#table-cell-start-token>table cell start token</a>, <a href=#table-cell-end-token>table cell
+end token</a>, or <a href=#table-colspan-cell-token>table colspan cell token</a> <!-- they
+should not appear in this insertion mode -->
+
+</dt><dd>Ignore the token.
+
+</dd><dt>Anything else
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <code>p</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
+
+</dd></dl>
+
+</div>
+
+<div class=section>
+<h5 id=the-in-table-row-insertion-mode><span class=secno>3.2.6.2 </span>The "<a href=#in-table-row>in table row</a>" <a href=#insertion-mode>insertion mode</a></h5>
+
+<p>In the "<dfn id=in-table-row>in table row</dfn>" <a href=#insertion-mode>insertion mode</a>, a
+<a href=#token>token</a> <em class=rfc2119>MUST</em> be processed as
+follows:
+
+</p><dl class=switch>
+
+<dt>A <a href=#table-cell-start-token>table cell start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <code>td</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#table-colspan-cell-token>table colspan cell token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the node returned by the
+<code>lastChild</code> <a href=#dom-attribute>DOM attribute</a> of the <a href=#current-element>current
+element</a>, if any, is <code>td</code>, increase the value of
+<code>colspan</code> <a href=#dom-attribute>DOM attribute</a> of the node by one (1)
+and abort these substeps.
+
+</li><li>Create a <code>td</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#table-row-end-token>table row end token</a>
+
+</dt><dd>If the local name of the <a href=#current-element>current element</a> is
+<code>tr</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</dd><dt>A <a href=#table-row-start-token>table row start token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <code>tr</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>Anything else
+
+</dt><dd>Switch to the "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</dd></dl>
+
+</div>
+
+<div class=sectio5>
+<h5 id=the-in-paragraph-insertion-mode><span class=secno>3.2.6.3 </span>The "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion mode</a></h5>
+
+<p>In the "<dfn id=in-paragraph>in paragraph</dfn>" <a href=#insertion-mode>insertion mode</a>, a
+<a href=#token>token</a> <em class=rfc2119>MUST</em> be processed as
+follows:
+
+</p><dl class=switch>
+
+<dt>A <a href=#character-token>character token</a>
+
+</dt><dd><a href=#append-a-character title="append a character">Append the character</a> in
+<a href=#character-data title=character-data>data</a> of the <a href=#token>token</a> to
+the <a href=#current-element>current element</a>.
+
+</dd><dt>An <a href=#inline-start-tag-token>inline start tag token</a> whose <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag name</a> is null
+
+</dt><dd>
+
+<ol>
+
+<li>Create an <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace>anchor</a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>Any other <a href=#inline-start-tag-token>inline start tag token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create an element.  The namespace and local name of the element is
+determined according to the <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag
+name</a> of the <a href=#inline-start-tag-token>inline start tag token</a> as shown in the
+following table:
+
+<table>
+
+<thead>
+
+<tr>
+
+<th scope=col><a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>Tag name</a>
+
+</th><th scope=col>Namespace
+
+</th><th scope=col>Local name
+
+</th></tr></thead><tbody>
+
+<tr>
+<th><code>AA</code>
+</th><th>The <a href=#aa-namespace>AA namespace</a>
+</th><th><code>aa</code>
+<!-- SuikaWiki/0.10 -->
+
+</th></tr><tr>
+<th><code>ABBR</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>abbr</code>
+
+</th></tr><tr>
+<th><code>CITE</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>cite</code>
+<!-- SuikaWiki/0.10 -->
+
+</th></tr><tr>
+<th><code>CODE</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>code</code>
+
+</th></tr><tr>
+<th><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>CSECTION</code></a>
+</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</th><th><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>csection</code></a>
+<!-- SuikaWiki/0.10 -->
+
+</th></tr><tr>
+<th><code>DEL</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>del</code>
+
+</th></tr><tr>
+<th><code>DFN</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>dfn</code>
+
+</th></tr><tr>
+<th><code>INS</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>ins</code>
+
+</th></tr><tr>
+<th><code>KBD</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>kbd</code>
+
+</th></tr><tr>
+<th><a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>KEY</code></a>
+</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</th><th><a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>key</code></a>
+
+</th></tr><tr>
+<th><code>Q</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>q</code>
+<!-- SuikaWiki/0.10 -->
+
+</th></tr><tr>
+<th><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>QN</code></a>
+</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</th><th><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>
+<!-- SuikaWiki/0.10 -->
+
+</th></tr><tr>
+<th><code>RUBY</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>ruby</code>
+
+</th></tr><tr>
+<th><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>RUBYB</code></a>
+</th><th>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</th><th><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>
+
+</th></tr><tr>
+<th><code>SAMP</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>samp</code>
+
+</th></tr><tr>
+<th><code>SPAN</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>span</code>
+
+</th></tr><tr>
+<th><a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>SRC</code></a>
+</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</th><th><a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>src</code></a>
+
+</th></tr><tr>
+<th><code>SUB</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>sub</code>
+
+</th></tr><tr>
+<th><code>SUP</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>sup</code>
+
+</th></tr><tr>
+<th><code>TIME</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>time</code>
+<!-- SuikaWiki/0.10 (undocumented, not implemented in SuikaWiki3) -->
+
+</th></tr><tr>
+<th><code>VAR</code>
+</th><th>The <a href=#html-namespace>HTML namespace</a>
+</th><th><code>var</code>
+
+</th></tr><tr>
+<th><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>WEAK</code></a>
+</th><th>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</th><th><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>weak</code></a>
+
+</th></tr></tbody></table>
+
+</li><li>If the <a href=#token>token</a>'s <a href=#inline-start-tag-classes title=inline-start-tag-classes>classes</a> is not null, set the
+<a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
+the element created to <a href=#inline-start-tag-classes title=inline-start-tag-classes>classes</a>.
+
+</li><li>If the <a href=#token>token</a>'s <a href=#inline-start-tag-language title=inline-start-tag-language>language</a> is not null, set the
+<a href=#attr-xml-lang><code title=attr-xml-lang>lang</code></a> <a href=#content-attribute>content attribute</a>
+in the <a href=#xml-namespace>XML namespace</a> of the element created to <a href=#inline-start-tag-language title=inline-start-tag-language>language</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#inline-middle-tag-token>inline middle tag token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Let <var>local name</var> be <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>.
+
+</li><li>Let <var>namespace</var> be the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+namespace</a>.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> or <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, set <var>local name</var> to
+<a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> and pop the <a href=#current-element>current element</a> off
+the <a href=#stack-of-open-elements>stack of open elements</a>.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>, set <var>local name</var> to <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<code>ruby</code> or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var>local name</var> to
+<code>rt</code> and set <var>namespace</var> to the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Create an element whose local name <var>local name</var> in the
+<var>namespace</var>.
+
+</li><li>If the <a href=#token>token</a>'s <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a> is not null, set the
+<a href=#attr-xml-lang><code title=attr-xml-lang>lang</code></a> <a href=#content-attribute>content attribute</a>
+in the <a href=#xml-namespace>XML namespace</a> of the element created to <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#inline-end-tag-token>inline end tag token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the <a href=#current-element>current element</a> is one of
+<code>rt</code>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, or
+<a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>If the <a href=#current-element>current element</a> is one of <a href=#structural-elements>structural
+elements</a>, or if the local name of the <a href=#current-element>current
+element</a> is <code>strong</code> or <code>em</code>, run the
+following substeps:
+
+<ol>
+
+<li>If <a href=#inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme
+attribute</a> is <em>not</em> null, create an
+<a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</li><li>Otherwise, create a <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Set the <code>textContent</code> <a href=#dom-attribute>DOM attribute</a> of the
+element created to <code>]]</code>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</li><li>If <a href=#inline-end-tag-anchor-attribute title=inline-end-tag-anchor-attribute>anchor
+attribute</a> of the <a href=#token>token</a> is <em>not</em> null, set
+the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> <a href=#content-attribute>content
+attribute</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> of the
+<a href=#current-element>current element</a> to <a href=#inline-end-tag-anchor-attribute title=inline-end-tag-anchor-attribute>anchor attribute</a> of the
+<a href=#token>token</a>.
+
+</li><li>If <a href=#inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme
+attribute</a> of the <a href=#token>token</a> is <em>not</em> null, set
+the <a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-scheme>resScheme</code></a> <a href=#content-attribute>content
+attribute</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> of the
+<a href=#current-element>current element</a> to <a href=#inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme attribute</a>
+of the <a href=#token>token</a>.
+
+</li><li>If <a href=#inline-end-tag-res-parameter-attribute title=inline-end-tag-res-parameter-attribute>resParameter
+attribute</a> of the <a href=#token>token</a> is <em>not</em> null, set
+the <a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-parameter>resParameter</code></a>
+<a href=#content-attribute>content attribute</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> of the <a href=#current-element>current element</a> to <a href=#inline-end-tag-res-parameter-attribute title=inline-end-tag-res-parameter-attribute>resParameter
+attribute</a> of the <a href=#token>token</a>.
+
+</li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#strong-token>strong token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the <a href=#current-element>current element</a> is
+<code>strong</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a> and abort these substeps.
+
+</li><li>Create a <code>strong</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>An <a href=#emphasis-token>emphasis token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the local name of the <a href=#current-element>current element</a> is
+<code>em</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a> and abort these substeps.
+
+</li><li>Create an <code>em</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#form-token>form token</a> whose <a href=#form-name title=form-name>name</a>
+is <a href=#the-form-element-in-the-suikawiki/0.9-namespace><code>form</code></a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <a href=#the-form-element-in-the-suikawiki/0.9-namespace><code>form</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</li><li>If <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form token</a> is
+<em>not</em> null, set the <a href=#attr-sw-id><code title=attr-sw-id>id</code></a>
+<a href=#content-attribute>content attribute</a> of the element created to <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form token</a>.
+
+</li><li>Set the <a href=#attr-sw-form-input><code title=attr-sw-form-input>input</code></a> <a href=#content-attribute>content
+attribute</a> of the element created to the first item in <a href=#form-parameters title=form-parameters>parameters</a> of the <a href=#form-token>form
+token</a>, if any, or the empty string otherwise.
+
+</li><li>Set the <a href=#attr-sw-form-template><code title=attr-sw-form-template>template</code></a>
+<a href=#content-attribute>content attribute</a> of the element created to the second
+item in <a href=#form-parameters title=form-parameters>parameters</a> of the
+<a href=#form-token>form token</a>, if any, or the empty string otherwise.
+
+</li><li>Set the <a href=#attr-sw-form-option><code title=attr-sw-form-option>option</code></a>
+<a href=#content-attribute>content attribute</a> of the element created to the third
+item in <a href=#form-parameters title=form-parameters>parameters</a> of the
+<a href=#form-token>form token</a>, if any, or the empty string otherwise.
+
+</li><li>If the <a href=#form-parameters title=form-parameters>parameters</a> contains four
+or more items, set the <a href=#attr-sw-form-parameter><code title=attr-sw-form-parameter>parameter</code></a> <a href=#content-attribute>content
+attribute</a> of the element created to the concatenation of items
+in <a href=#form-parameters title=form-parameters>parameters</a>, separated by a
+<code>:</code> character, in the same order.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li></ol>
+
+</dd><dt>Any other <a href=#form-token>form token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create a <a href=#the-form-element-in-the-suikawiki/0.9-namespace><code>form</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</li><li>Set the <a href=#attr-sw-form-ref><code title=attr-sw-form-ref>ref</code></a> <a href=#content-attribute>content
+attribute</a> of the element created to <a href=#form-name title=form-name>name</a> of the <a href=#form-token>form token</a>.
+
+</li><li>Set the <a href=#form-id><code title=form-id>id</code></a> of the <a href=#form-token>form
+token</a> is <em>not</em> null, set the <a href=#attr-sw-id><code title=attr-sw-id>id</code></a> <a href=#content-attribute>content attribute</a> of the
+element created to <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form
+token</a>.
+
+</li><li>If <a href=#form-parameters title=form-parameters>parameters</a> of <a href=#form-token>form
+token</a> is not empty, set the <a href=#attr-sw-form-parameter><code title=attr-sw-form-parameter>parameter</code></a> <a href=#content-attribute>content
+attribute</a> of the element created to the concatenation of items
+in <a href=#form-parameters title=form-parameters>parameters</a>, separated by a
+<code>:</code> character, in the same order.  The result value might
+be the empty string.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li></ol>
+
+</dd><dt>An <a href=#element-token>element token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>Create an element whose local name is <a href=#element-local-name title=element-local-name>local name</a> of the <a href=#element-token>element
+token</a> and namespace is <a href=#element-namespace title=element-namespace>namespace</a> of the <a href=#element-token>element
+token</a>.
+
+</li><li>If <a href=#element-anchor-attribute title=element-anchor-attribute>anchor attribute</a> of
+the <a href=#element-token>element token</a> is <em>not</em> null, set the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> <a href=#content-attribute>content attribute</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> of the element created to
+<a href=#element-anchor-attribute title=element-anchor-attribute>anchor attribute</a> of the
+<a href=#element-token>element token</a>.
+
+</li><li>If <a href=#element-by-attribute title=element-by-attribute>by attribute</a> of the
+<a href=#element-token>element token</a> is <em>not</em> null, set the <a href=#attr-sw-replace-by><code title=attr-sw-replace-by>by</code></a> <a href=#content-attribute>content attribute</a> of
+the element created to <a href=#element-by-attribute title=element-by-attribute>by
+attribute</a> of the <a href=#element-token>element token</a>.
+
+</li><li>If <a href=#element-res-scheme-attribute title=element-res-scheme-attribute>resScheme
+attribute</a> of the <a href=#element-token>element token</a> is <em>not</em>
+null, set the <a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-scheme>resScheme</code></a>
+<a href=#content-attribute>content attribute</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> of the element created to <a href=#element-res-scheme-attribute title=element-res-scheme-attribute>resScheme attribute</a> of the
+<a href=#element-token>element token</a>.
+
+</li><li>If <a href=#element-res-parameter-attribute title=element-res-parameter-attribute>resParameter
+attribute</a> of the <a href=#element-token>element token</a> is <em>not</em>
+null, set the <a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-parameter>resParameter</code></a>
+<a href=#content-attribute>content attribute</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> of the element created to <a href=#element-res-parameter-attribute title=element-res-parameter-attribute>resParameter attribute</a> of
+the <a href=#element-token>element token</a>.
+
+</li><li>If <a href=#element-content title=element-content>content</a> of the <a href=#element-token>element
+token</a> is <em>not</em> null, set the <code>textContent</code>
+<a href=#dom-attribute>DOM attribute</a> of the element created to <a href=#element-content title=element-content>content</a> of the <a href=#element-token>element
+token</a>.
+
+</li><li>Append the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#labeled-list-middle-token>labeled list middle token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the <a href=#current-element>current element</a> is <em>not</em> one of
+<a href=#structural-elements>structural elements</a>, pop the element off the <a href=#stack-of-open-elements>stack
+of open elements</a> and follow this substep again.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<code>dt</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Create a <code>dd</code> element in the <a href=#html-namespace>HTML
+namespace</a>.
+
+</li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#heading-end-token>heading end token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the <a href=#current-element>current element</a> is <em>not</em> one of
+<a href=#structural-elements>structural elements</a>, pop the element off the <a href=#stack-of-open-elements>stack
+of open elements</a> and follow this substep again.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<code>h1</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>PRE</code>
+
+</dt><dt>A <a href=#preformatted-end-token>preformatted end token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the <a href=#current-element>current element</a> is <em>not</em> one of
+<a href=#structural-elements>structural elements</a>, pop the element off the <a href=#stack-of-open-elements>stack
+of open elements</a> and follow this substep again.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<code>pre</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li></ol>
+
+</dd><dt>Anything else
+
+</dt><dd>If the <a href=#current-element>current element</a> is <em>not</em> one of
+<a href=#structural-elements>structural elements</a>, pop the element off the <a href=#stack-of-open-elements>stack
+of open elements</a> and follow this substep again.
+
+</dd></dl>
+
+</div>
+
+</div>
+
+</div>
+
+<div class=section>
+<h3 id=serializing-swml-text-serialization-documents><span class=secno>3.3 </span>Serializing <a href=#the-swml-text-serialization>SWML text serialization</a> documents</h3>
+
+<p class=ed>...
+</p></div>
+
+<div class=section>
+<h3 id=the-text/x-suikawiki-internet-media-type><span class=secno>3.4 </span>The <code>text/x-suikawiki</code> Internet Media Type</h3>
+
+<p class=ed>...
+</p></div>
+
+</div>
+
+<div class=section>
+<h2 id=the-swml-xml-serialization><span class=secno>4 </span>The <dfn>SWML XML serialization</dfn></h2>
+
+<p class=ed>...
+
+</p><div class=section>
+<h3 class=ed id=...-xml-media-type><span class=secno>4.1 </span>... xml media type</h3>
+
+<p class=ed>
+</p></div>
+
+</div>
+
+<div class=section>
+<h2 id=semantics-of-elements-and-attributes><span class=secno>5 </span>Semantics of Elements and Attributes</h2>
+
+<p>Elements and attributes in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+and in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>, as well as
+attributes in no namespace for elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> and in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>, <em class=rfc2119>MUST NOT</em> be used in context where they are <dfn id=allowed-attributes title="allowed attributes">allowed</dfn>.
+
+</p><div class="note memo">
+
+<p>A namespaced attribute allowed in another specification can be used
+on elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>.  For example, a <dfn id=attr-xml-lang title=attr-xml-lang><code>lang</code></dfn> attribute in the <a href=#xml-namespace>XML
+namespace</a> is allowed in the XML specification <span class=ed>...</span>.  The <a href=#allowed-attributes>allowed attributes</a> entry in the
+subsections below only lists attributes defined in this specification.
+
+</p></div>
+
+<p>Elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> defined in this specification
+<em class=rfc2119>MUST</em> conform to their <dfn id=content-model>content model</dfn>.
+
+</p><p>Inter-element whitespace <span class=ed>HTML5</span>, comment
+nodes, and processing instruction nodes <em class=rfc2119>MUST</em> be
+<a href=#ignored>ignored</a> when establishing whether an element matches its
+content model or not.
+
+</p><p>Elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> <em class=rfc2119>MAY</em> be
+orphan nodes (i.e. without a parent node).
+
+</p><p>In the following subsections, attributes listed in the
+<a href=#allowed-attributes>allowed attributes</a> entry <em class=rfc2119>MAY</em> be
+specified to an element described in that subsection.
+
+</p><p>Some elements belong to <dfn id=category title=category>categories</dfn>.
+Categories <dfn id=flow-content>flow content</dfn>, <dfn id=phrasing-content>phrasing content</dfn>, and
+<dfn id=metadata-content>metadata content</dfn> are defined in the HTML5 specification
+<span class=ed>...</span>.
+
+</p><p>Terms and algorithms <dfn id=valid-integer>valid integer</dfn>, <dfn id=rules-for-parsing-integers>rules for
+parsing integers</dfn> are defined in the HTML5 specification <span class=ed>...</span>.
+
+</p><p>An attribute is said to be <dfn id=specified>specified</dfn> to an element if
+the <code>hasAttributeNS</code> method invoked on the element with
+appropriate arguments would return true.
+
+</p><div class="note memo">
+
+<p>That is, the term <a href=#specified>specified</a> is irrelevant from the
+<code title="">specified</code> <a href=#dom-attribute>DOM attribute</a>.
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-anchor-element-in-the-suikawiki/0.9-namespace><span class=secno>5.1 </span>The <dfn><code>anchor</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-anchor-internal-element-in-the-suikawiki/0.9-namespace><span class=secno>5.2 </span>The <dfn><code>anchor-internal</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Text.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-anchor-end-element-in-the-suikawiki/0.9-namespace><span class=secno>5.3 </span>The <dfn><code>anchor-end</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Text.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-anchor-external-element-in-the-suikawiki/0.9-namespace><span class=secno>5.4 </span>The <dfn><code>anchor-external</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-parameter>resParameter</code></a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+</dd><dd><a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-scheme>resScheme</code></a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-delete-element-in-the-suikawiki/0.9-namespace><span class=secno>5.5 </span>The <dfn><code>delete</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-document-element-in-the-suikawiki/0.9-namespace><span class=secno>5.6 </span>The <dfn title=element-sw-document><code>document</code></dfn>
+element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>A <code title=element-xhtml2-head>head</code> element in the
+<a href=#xhtml2-namespace>XHTML2 namespace</a>, followed by a <code title=element-xhtml2-body>body</code> element in the <a href=#xhtml2-namespace>XHTML2
+namespace</a>, optionally followed by a <a href=#the-image-element-in-the-suikawiki/0.9-namespace><code>image</code></a> element
+in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-name>Name</code></a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>
+
+</dd><dd><code title=attr-sw-version>Version</code> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-dr-element-in-the-suikawiki/0.9-namespace><span class=secno>5.7 </span>The <dfn><code>dr</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>A <code>dt</code> element in the <a href=#xhtml2-namespace>XHTML2 namespace</a>,
+followed by a <code>dd</code> element in the <a href=#xhtml2-namespace>XHTML2
+namespace</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-form-element-in-the-suikawiki/0.9-namespace><span class=secno>5.8 </span>The <dfn><code>form</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Text.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-id><code title=attr-sw-id>id</code></a>
+</dd><dd><a href=#attr-sw-form-input><code title=attr-sw-form-input>input</code></a>
+</dd><dd><a href=#attr-sw-form-option><code title=attr-sw-form-option>option</code></a>
+</dd><dd><a href=#attr-sw-form-parameter><code title=attr-sw-form-parameter>parameter</code></a>
+</dd><dd><a href=#attr-sw-form-ref><code title=attr-sw-form-ref>ref</code></a>
+</dd><dd><a href=#attr-sw-form-template><code title=attr-sw-form-template>template</code></a>
+
+</dd></dl>
+
+<p class=ed>... <dfn id=attr-sw-form-ref title=attr-sw-form-ref><code>ref</code></dfn>,
+<dfn id=attr-sw-form-parameter title=attr-sw-form-parameter><code>parameter</code></dfn>.
+
+</p><hr>
+
+<p class=ed>... <dfn id=attr-sw-form-input title=attr-sw-form-input><code>input</code></dfn>, <dfn id=attr-sw-form-template title=attr-sw-form-template><code>template</code></dfn>, <dfn id=attr-sw-form-option title=attr-sw-form-option><code>option</code>
+
+</dfn></p></div>
+
+<div class=section>
+
+<h3 id=the-image-element-in-the-suikawiki/0.9-namespace><span class=secno>5.9 </span>The <dfn><code>image</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Text.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-insert-element-in-the-suikawiki/0.9-namespace><span class=secno>5.10 </span>The <dfn><code>insert</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-parameter-element-in-the-suikawiki/0.9-namespace><span class=secno>5.11 </span>The <dfn title=element-sw-parameter><code>parameter</code></dfn>
+element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#metadata-content>Metadata content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Zero or more <a href=#the-value-element-in-the-suikawiki/0.9-namespace><code title=element-sw-value>value</code></a> element in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-parameter-name><code title=attr-sw-parameter-name>name</code></a>
+
+</dd></dl>
+
+<p class=ed>... <dfn id=attr-sw-parameter-name title=attr-sw-parameter-name>name</dfn>
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-replace-element-in-the-suikawiki/0.9-namespace><span class=secno>5.12 </span>The <dfn><code>replace</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Empty.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-replace-by><code title=attr-sw-replace-by>by</code></a>
+
+</dd></dl>
+
+<p class=ed>... <dfn id=attr-sw-replace-by title=attr-sw-replace-by><code>by</code></dfn>
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>5.13 </span>The <dfn><code>rubyb</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, followed by a <code>rt</code>
+element in the <a href=#html-namespace>HTML namespace</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-text-element-in-the-suikawiki/0.9-namespace><span class=secno>5.14 </span>The <dfn><code>text</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Text.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-value-element-in-the-suikawiki/0.9-namespace><span class=secno>5.15 </span>The <dfn title=element-sw-value><code>value</code></dfn> element
+in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Text.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>5.16 </span>The <dfn><code>weak</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>5.17 </span>The <dfn><code>attrvalue</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-comment-p-element-in-the-suikawiki/0.10-namespace><span class=secno>5.18 </span>The <dfn><code>comment-p</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-csection-element-in-the-suikawiki/0.10-namespace><span class=secno>5.19 </span>The <dfn><code>csection</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-ed-element-in-the-suikawiki/0.10-namespace><span class=secno>5.20 </span>The <dfn><code>ed</code></dfn> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>5.21 </span>The <dfn><code>key</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-nsuri-element-in-the-suikawiki/0.10-namespace><span class=secno>5.22 </span>The <dfn><code>nsuri</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-qn-element-in-the-suikawiki/0.10-namespace><span class=secno>5.23 </span>The <dfn><code>qn</code></dfn> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by a
+<a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+namespace</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-qname-element-in-the-suikawiki/0.10-namespace><span class=secno>5.24 </span>The <dfn><code>qname</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-src-element-in-the-suikawiki/0.10-namespace><span class=secno>5.25 </span>The <dfn><code>src</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>5.26 </span>The <dfn><code>title</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd>None.
+
+</dd></dl>
+
+<p class=ed>...
+
+</p></div>
+
+<div class=section>
+<h3 id=the-aa-element-in-the-aa-namespace><span class=secno>5.27 </span>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a></h3>
+
+<p>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a> <span class=ed>...</span> falls into the <a href=#phrasing-content>phrasing content</a>
+category for the purpose of the content models in this specification.
+
+</p><p>The <a href=#content-model>content model</a> of this element <em class=rfc2119>MAY</em> be considered as <a href=#phrasing-content>phrasing content</a>.
+
+</p></div>
+
+<div class=section>
+<h3 id=the-class-attribute><span class=secno>5.28 </span>The <dfn title=attr-class><code>class</code></dfn> attribute</h3>
+
+<p>All elements in the <a href=#html-namespace>HTML namespace</a> have <a href=http://www.whatwg.org/specs/web-apps/current-work/#classes><dfn id=attr-html-class title=attr-html-class><code>class</code></dfn></a> attribute <span class=ed>...</span>.
+
+</p><p>The <dfn id=attr-sw-class title=attr-sw-class><code>class</code></dfn> attribute of
+an element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> has the same semantics and
+requirements as the HTML <a href=#attr-html-class><code title=attr-html-class>class</code></a>
+attribute.
+
+</p><p>The <dfn id=attr-aa-class title=attr-aa-class><code>class</code></dfn> attribute of
+an element in the <a href=#aa-namespace>AA namespace</a> <em class=rfc2119>SHOULD</em> be considered as having the same semantics
+and requirements as the HTML <a href=#attr-html-class><code title=attr-html-class>class</code></a>
+attribute.
+
+</p></div>
+
+<div class=section>
+<h3 id=the-id-attribute><span class=secno>5.29 </span>The <a href=#attr-sw-id><code title=attr-sw-id>id</code></a> attribute</h3>
+
+<p>The <dfn id=attr-sw-id title=attr-sw-id><code>id</code></dfn> attribute of an
+element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> has the same semantics and
+requirements as the <a href=http://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute><code title="">id</code></a> attribute of HTML5 <span class=ed>...</span>.
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-anchor-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.30 </span>The <dfn title=attr-sw-anchor><code>anchor</code></dfn> attribute
+in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<p>The <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>, when specified to an
+<a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><code>anchor-end</code></a> element, defines an <dfn id=anchor-number>anchor number</dfn>
+for the parent element of the <a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><code>anchor-end</code></a> element, if any.
+
+</p><p>The attribute <em class=rfc2119>MUST</em> be specified and its
+value <em class=rfc2119>MUST</em> be a <a href=#valid-integer>valid integer</a>.
+The integer <em class=rfc2119>MUST</em> have different value from any
+other <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> specified in an
+<a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><code>anchor-end</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> that belongs to the same tree as the first attribute.
+
+</p><hr>
+
+<p>The <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
+specified to <code>q</code> elements in the <a href=#html-namespace>HTML
+namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
+<code>ins</code> and <code>del</code> elements in the <a href=#html-namespace>HTML
+namespace</a>.  The attribute can also be specified to
+<a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> and <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> elements in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+</p><p>In these cases, the attribute represents the <a href=#anchor-number>anchor
+number</a> of the element referenced.  If the element on which the
+attribute is specified is an <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> element, the element
+referenced might be found in the document referenced by the element.
+Otherwise, the element is in the tree the element belongs to.
+
+</p><p>If the element on which the attribute is specified is <em>not</em>
+an <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> or <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> element, the
+attribute has similar semantics to that of the <code title="">cite</code>
+attribute on the element.  In such a case, the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MUST NOT</em>
+be specified when the <code title="">cite</code> attribute is specified.
+A user agent <em class=rfc2119>MUST</em> <a href=#ignored title=ignored>ignore</a> the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> if the <code title="">cite</code>
+attribute is specified.
+
+</p><p>The attribute value <em class=rfc2119>MUST</em> be a <a href=#valid-integer>valid
+integer</a>.  Unless the element is <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a>, the
+integer <em class=rfc2119>MUST</em> be equal to one of the integer
+represented by the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute
+in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> specified to an
+<a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> that belongs to the same tree.
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-resscheme-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.31 </span>The <dfn title=attr-sw-res-scheme><code>resScheme</code></dfn>
+attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<p>The <a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-scheme>resScheme</code></a> attribute in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
+specified to <code>q</code> elements in the <a href=#html-namespace>HTML
+namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
+<code>ins</code> and <code>del</code> elements in the <a href=#html-namespace>HTML
+namespace</a>.  The attribute can also be specified to an
+<a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</p><p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-resparameter-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.32 </span>The <dfn title=attr-sw-res-parameter><code>resParameter</code></dfn> attribute
+in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<p>The <a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-parameter>resParameter</code></a> attribute
+in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em>
+be specified to <code>q</code> elements in the <a href=#html-namespace>HTML
+namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
+<code>ins</code> and <code>del</code> elements in the <a href=#html-namespace>HTML
+namespace</a>.  The attribute can also be specified to an
+<a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a>.
+
+</p><p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.33 </span>The <dfn title=attr-sw-name><code>Name</code></dfn> attribute in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<p>The <code title=attr-sw-version>Name</code> attribute in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
+specified to an <code>html</code> element in the <a href=#html-namespace>HTML
+namespace</a>.  The attribute can also be specified to an <a href=#the-document-element-in-the-suikawiki/0.9-namespace><code title=element-sw-document>document</code></a> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+</p><p class=ed>...
+
+</p></div>
+
+<div class=section>
+
+<h3 id=the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <dfn><code>Version</code></dfn> attribute in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+
+<p>The <a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><code>Version</code></a> attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> <em class=rfc2119>MAY</em> be specified to an
+<code>html</code> element in the <a href=#html-namespace>HTML namespace</a>.  The
+attribute can also be specified to an <a href=#the-document-element-in-the-suikawiki/0.9-namespace><code title=element-sw-document>document</code></a> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+</p><p class=ed>...
+
+</p></div>
+
+</div>
+
+<div class="section reference normative">
+<h2 class=no-num id=references>References</h2>
+
+<dl>
+
+<dt id=ref-AAVOCAB>AAVOCAB
+
+</dt><dd class=ed>...
+
+</dd><dt id=ref-DOM>DOM
+
+</dt><dd class=ed>Web DOM Core? DOM3 Core?
+
+</dd><dt id=ref-HTML5>HTML5
+
+</dt><dd><a href=http://whatwg.org/html5><cite>HTML 5</cite></a>, WHATWG
+Draft Recommendation.
+
+</dd><dt id=ref-MANAKAI>MANAKAI
+
+</dt><dd class=ed>manakai's DOM extensions.
+
+</dd><dt id=ref-RFC2119>RFC2119
+
+</dt><dd class=ed>...
+
+</dd><dt id=ref-XHTML2>XHTML2
+
+</dt><dd class=ed>...
+
+</dd><dt id=ref-XML>XML
+
+</dt><dd class=ed>...
+
+</dd></dl>
+
+</div>
+</body></html>
