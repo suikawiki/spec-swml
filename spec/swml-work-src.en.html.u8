@@ -112,7 +112,7 @@ title="DOM attribute">DOM attributes</dfn> for those from the DOM.
 <p class=ed>...
 
 <div class=section>
-<h3>Writing <span>SWML text serialization</span></h3>
+<h3>Writing <span>SWML text serialization</span> documents</h3>
 
 <p><em>This section is non‐normative.</em>
 
@@ -120,7 +120,7 @@ title="DOM attribute">DOM attributes</dfn> for those from the DOM.
 </div>
 
 <div class=section>
-<h3>Parsing <span>SWML text serialization</span></h3>
+<h3>Parsing <span>SWML text serialization</span> documents</h3>
 
 <p>This section specifies how to convert a string of characters into a
 DOM <span class=ed>[DOM]</span> tree, assuming the string is written
@@ -2797,7 +2797,7 @@ of open elements</span> and follow this substep again.
 </div>
 
 <div class=section>
-<h3>Serializing DOM into <span>SWML text serialization</span></h3>
+<h3>Serializing <span>SWML text serialization</span> documents</h3>
 
 <p class=ed>...
 </div>
@@ -2826,7 +2826,830 @@ of open elements</span> and follow this substep again.
 <div class=section>
 <h2>Semantics of Elements and Attributes</h2>
 
+<p>Elements and attributes in the <span>SuikaWiki/0.9 namespace</span>
+and in the <span>SuikaWiki/0.10 namespace</span>, as well as
+attributes in no namespace for elements in the <span>SuikaWiki/0.9
+namespace</span> and in the <span>SuikaWiki/0.10 namespace</span>, <em
+class=rfc2119>MUST NOT</em> be used in context where they are allowed.
+
+<p>Elements in the <span>SuikaWiki/0.9 namespace</span> and in the
+<span>SuikaWiki/0.10 namespace</span> defined in this specification
+<em class=rfc2119>MUST</em> conform to their <dfn>content model</dfn>.
+
+<p>Inter-element whitespace <span class=ed>HTML5</span>, comment
+nodes, and processing instruction nodes <em class=rfc2119>MUST</em> be
+ignored when establishing whether an element matches its content model
+or not.
+
+<p>Elements in the <span>SuikaWiki/0.9 namespace</span> and in the
+<span>SuikaWiki/0.10 namespace</span> <em class=rfc2119>MAY</em> be
+orphan nodes (i.e. without a parent node).
+
+<p>In the following subsections, attributes listed in the <dfn>allowed
+attributes</dfn> entry <em class=rfc2119>MAY</em> be specified to an
+element described in that subsection.
+
+<p>Some elements belong to <dfn title=category>categories</dfn>.
+Categories <dfn>flow content</dfn>, <dfn>phrasing content</dfn>, and
+<dfn>metadata content</dfn> are defined in the HTML5 specification
+<span class=ed>...</span>.
+
+<div class=section>
+
+<h3>The <dfn><code>anchor</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
 <p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>anchor-internal</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd>...
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>anchor-end</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>anchor</code> in the <span>SuikaWiki/0.9 namespace</span>.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>anchor-external</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd class=ed>...
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>delete</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>document</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>A <code>head</code> element in the <span>XHTML2 namespace</span>,
+followed by a <code>body</code> element in the <span>XHTML2
+namespace</span>, optionally followed by a <code>image</code> element
+in the <span>SuikaWiki/0.9 namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>Name</code> in the <span>SuikaWiki/0.9 namespace</span>
+<dd><code>Version</code> in the <span>SuikaWiki/0.9 namespace</span>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>dr</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>A <code>dt</code> element in the <span>XHTML2 namespace</span>,
+followed by a <code>dd</code> element in the <span>XHTML2
+namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>form</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>id</code>
+<dd><code>input</code>
+<dd><code>option</code>
+<dd><code>parameter</code>
+<dd><code>ref</code>
+<dd><code>template</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>image</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>insert</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>parameter</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Metadata content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Zero or more <code>value</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>replace</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Empty.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>by</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>rubyb</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, followed by a <code>rt</code>
+element in the <span>HTML namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>text</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>value</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>weak</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>attrvalue</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>comment-p</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>csection</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>ed</code></dfn> element in the <span>SuikaWiki/0.10
+namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>key</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>nsuri</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>qn</code></dfn> element in the <span>SuikaWiki/0.10
+namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by a
+<code>nsuri</code> element in the <span>SuikaWiki/0.10
+namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>qname</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>src</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>title</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+
+<div class=section>
+
+<h3>The <dfn><code>anchor</code></dfn> attribute in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>id</code>
+<dd><code>input</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>resScheme</code></dfn> attribute in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>id</code>
+<dd><code>input</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>resParameter</code></dfn> attribute in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>id</code>
+<dd><code>input</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>Name</code></dfn> attribute in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>id</code>
+<dd><code>input</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3>The <dfn><code>Version</code></dfn> attribute in the
+<span>SuikaWiki/0.9 namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>id</code>
+<dd><code>input</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
 </div>
 
 <div class="section no-toc reference normative">
