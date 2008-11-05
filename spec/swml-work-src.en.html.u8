@@ -1584,105 +1584,6 @@ follows:
 
 <dl class=switch>
 
-<dt>A <span>block start tag token</span> whose <span
-title=block-start-tag-tag-name>tag name</span> is <code>PRE</code>
-
-<dd>
-
-<ol>
-
-<li>Create a <code>pre</code> element in the <span>XHTML2
-namespace</span>.
-
-<li>Append the element created to the <span>current paragraph
-parent</span>.
-
-<li>Set the <span>paragraph element</span> pointer to point the
-element created.
-
-<li>If the <span>token</span>'s <span
-title=block-start-tag-classes>classes</span> is not null, set the
-<code>class</code> <span>content attribute</span> of the element
-created to <span title=block-start-tag-classes>classes</span>.
-
-<li>Set the <code>xml:space</code> <span>content attribute</span> of
-the element created to <code>preserve</code>.
-
-<li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
-
-</ol>
-
-
-<dt>A <span>block start tag token</span> whose <span
-title=block-start-tag-tag-name>tag name</span> is <code>INS</code> or
-<code>DEL</code>
-
-<dd>
-
-<ol>
-
-<li>Create an element in the <span>SuikaWiki/0.9 namespace</span>.
-The local name of the element is <code>insert</code> if <span
-title=block-start-tag-tag-name>tag name</span> is <code>INS</code>, or
-<code>delete</code> otherwise.
-
-<li>Append the element created to the <span>current edit block
-parent</span>.
-
-<li>Push the element created to the <span>stack of open
-sections</span> with <span title=stack-entry-level>level</span> set to
-zero (0).
-
-<li>Push a <span>marker</span> to the <span>stack of open
-lists</span>.
-
-<li>If the <span>token</span>'s <span
-title=block-start-tag-classes>classes</span> is not null, set the
-<code>class</code> <span>content attribute</span> of the element
-created to <span title=block-start-tag-classes>classes</span>.
-
-</ol>
-
-<dt>A <span>comment paragraph start token</span>
-
-<dd>
-
-<ol>
-
-<li>Create a <code>comment-p</code> element in the
-<span>SuikaWiki/0.10 namespace</span>.
-
-<li>Append the element created to the <span>current paragraph
-parent</span>.
-
-<li>Set the <span>paragraph element</span> to point the element
-created.
-
-<li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
-
-</ol>
-
-<dt>A <span>editorial note start token</span>
-
-<dd>
-
-<ol>
-
-<li>Create a <code>ed</code> element in the <span>SuikaWiki/0.10
-namespace</span>.
-
-<li>Append the element created to the <span>current paragraph
-parent</span>.
-
-<li>Set the <span>paragraph element</span> to point the element created.
-
-<li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
-
-</ol>
-
 <dt>A <span>heading start token</span>
 
 <dd>
@@ -1737,6 +1638,81 @@ mode</span> and reprocess the <span>token</span>.
 
 </ol>
 
+<dt>A <span>block start tag token</span> whose <span
+title=block-start-tag-tag-name>tag name</span> is <code>INS</code> or
+<code>DEL</code>
+
+<dd>
+
+<ol>
+
+<li>Create an element in the <span>SuikaWiki/0.9 namespace</span>.
+The local name of the element is <code>insert</code> if <span
+title=block-start-tag-tag-name>tag name</span> is <code>INS</code>, or
+<code>delete</code> otherwise.
+
+<li>Append the element created to the <span>current edit block
+parent</span>.
+
+<li>Push the element created to the <span>stack of open
+sections</span> with <span title=stack-entry-level>level</span> set to
+zero (0).
+
+<li>Push a <span>marker</span> to the <span>stack of open
+lists</span>.
+
+<li>If the <span>token</span>'s <span
+title=block-start-tag-classes>classes</span> is not null, set the
+<code>class</code> <span>content attribute</span> of the element
+created to <span title=block-start-tag-classes>classes</span>.
+
+</ol>
+
+<dt>A <span>quotation start token</span>
+
+<dd class=ed>...
+
+<dt>A <span>list start token</span>
+
+<dd class=ed>...
+
+<dt>A <span>labeled list start token</span>
+
+<dd class=ed>...
+
+<dt>A <span>table row start token</span>
+
+<dd class=ed>...
+
+<dt>A <span>block start tag token</span> whose <span
+title=block-start-tag-tag-name>tag name</span> is <code>PRE</code>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>pre</code> element in the <span>XHTML2
+namespace</span>.
+
+<li>Append the element created to the <span>current paragraph
+parent</span>.
+
+<li>Set the <span>paragraph element</span> pointer to point the
+element created.
+
+<li>If the <span>token</span>'s <span
+title=block-start-tag-classes>classes</span> is not null, set the
+<code>class</code> <span>content attribute</span> of the element
+created to <span title=block-start-tag-classes>classes</span>.
+
+<li>Set the <code>xml:space</code> <span>content attribute</span> of
+the element created to <code>preserve</code>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
 <dt>A <span>preformatted start token</span>
 
 <dd>
@@ -1752,6 +1728,45 @@ namespace</span>.
 
 <li>Set the <code>xml:space</code> <span>content attribute</span> to
 <code>preserve</code>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+<dt>A <span>comment paragraph start token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>comment-p</code> element in the
+<span>SuikaWiki/0.10 namespace</span>.
+
+<li>Append the element created to the <span>current paragraph
+parent</span>.
+
+<li>Set the <span>paragraph element</span> to point the element
+created.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
+
+<dt>A <span>editorial note start token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>ed</code> element in the <span>SuikaWiki/0.10
+namespace</span>.
+
+<li>Append the element created to the <span>current paragraph
+parent</span>.
+
+<li>Set the <span>paragraph element</span> to point the element created.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -1775,10 +1790,31 @@ open elements</span>.
 
 </ol>
 
+<dt>A <span>block end tag token</span>
+
+<dd class=ed>...
+
+<dt>A <span>form</span> token
+
+<dd class=ed>...
+
+<dt>An <span>element token</span> whose <span
+title=element-local-name>local name</span> is <code>replace</code>
+
+<dd class=ed>...
+
 <dt>An <span>end-of-file token</span>
 
 <dd>Now the <code>Document</code> has been constructed.  Abort the
 <span title="SWML text format parser">parser</span>.
+
+<dt>A <span>description list middle token</span>, <span>heading end
+token</span>, <span>preformatted end token</span>, <span>table row end
+token</span>, <span>table cell start token</span>, <span>table cell
+end token</span>, or <span>table colspan cell token</span> <!-- they
+should not appear in this insertion mode -->
+
+<dd>Ignore the token.
 
 <dt>Anything else
 
