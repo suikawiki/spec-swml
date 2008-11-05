@@ -2868,9 +2868,9 @@ orphan nodes (i.e. without a parent node).
 specified to an element described in that subsection.
 
 </p><p>Some elements belong to <dfn id=category title=category>categories</dfn>.
-Categories <dfn id=flow-content>flow content</dfn>, <dfn id=phrasing-content>phrasing content</dfn>, and
-<dfn id=metadata-content>metadata content</dfn> are defined in the HTML5 specification
-<span class=ed>...</span>.
+Categories <dfn id=flow-content>flow content</dfn> and <dfn id=phrasing-content>phrasing content</dfn><!--
+, and <dfn>metadata content</dfn>--> are defined in the HTML5
+specification <span class=ed>...</span>.
 
 </p><p>Terms and algorithms <dfn id=valid-integer>valid integer</dfn>, <dfn id=rules-for-parsing-integers>rules for
 parsing integers</dfn> are defined in the HTML5 specification <span class=ed>...</span>.
@@ -3038,15 +3038,19 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
-</dt><dd><a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-name>Name</code></a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
-namespace</a>
+</dt><dd>None.
 
-</dd><dd><code title=attr-sw-version>Version</code> in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+<!--<dd><code title=attr-sw-name>Name</code> in the <span>SuikaWiki/0.9
+namespace</span>
+
+<dd><code title=attr-sw-version>Version</code> in the
+<span>SuikaWiki/0.9 namespace</span>-->
 
 </dd></dl>
 
-<p class=ed>...
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p class=ed>...
 
 </p></div>
 
@@ -3135,9 +3139,13 @@ namespace</a>.
 
 </dd></dl>
 
-<p>At most one <a href=#the-image-element-in-the-suikawiki/0.9-namespace><code>image</code></a> element <em class=rfc2119>MAY</em>
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+<!--
+<p>At most one <code>image</code> element <em class=rfc2119>MAY</em>
 be inserted after the <code title=element-html-body>body</code>
-element in the <a href=#html-namespace>HTML namespace</a>.
+element in the <span>HTML namespace</span>.
+-->
 
 </p><p class=ed>...
 
@@ -3177,7 +3185,7 @@ element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 <dt><a href=#category>Category</a>
 
-</dt><dd><a href=#metadata-content>Metadata content</a>.
+</dt><dd>None.<!-- <span>Metadata content</span>. -->
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -3190,7 +3198,9 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
 
 </dd></dl>
 
-<p class=ed>... <dfn id=attr-sw-parameter-name title=attr-sw-parameter-name>name</dfn>
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p class=ed>... <dfn id=attr-sw-parameter-name title=attr-sw-parameter-name>name</dfn>
 
 </p></div>
 
@@ -3293,7 +3303,9 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 </dd></dl>
 
-<p class=ed>...
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p class=ed>...
 
 </p></div>
 
@@ -3343,9 +3355,9 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 </dd></dl>
 
-<!-- <p>This element <em class=rfc2119>MUST NOT</em> be used. -->
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
 
-<p class=ed>...
+</p><p class=ed>...
 
 </p></div>
 
@@ -3728,11 +3740,16 @@ namespace</a>.
 <h3 id=the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.33 </span>The <dfn title=attr-sw-name><code>Name</code></dfn> attribute in
 the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
+<!--
 <p>The <code title=attr-sw-version>Name</code> attribute in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
-specified to an <code>html</code> element in the <a href=#html-namespace>HTML
-namespace</a>.  The attribute can also be specified to an <a href=#the-document-element-in-the-suikawiki/0.9-namespace><code title=element-sw-document>document</code></a> element in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+<span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
+specified to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be specified to an <code
+title=element-sw-document>document</code> element in the
+<span>SuikaWiki/0.9 namespace</span>.
+-->
+
+<p>This attribute <em class=rfc2119>MUST NOT</em> be used.
 
 </p><p class=ed>...
 
@@ -3743,11 +3760,16 @@ namespace</a>.  The attribute can also be specified to an <a href=#the-document-
 <h3 id=the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <dfn><code>Version</code></dfn> attribute in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
-<p>The <a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><code>Version</code></a> attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
-namespace</a> <em class=rfc2119>MAY</em> be specified to an
-<code>html</code> element in the <a href=#html-namespace>HTML namespace</a>.  The
-attribute can also be specified to an <a href=#the-document-element-in-the-suikawiki/0.9-namespace><code title=element-sw-document>document</code></a> element in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+<!--
+<p>The <code>Version</code> attribute in the <span>SuikaWiki/0.9
+namespace</span> <em class=rfc2119>MAY</em> be specified to an
+<code>html</code> element in the <span>HTML namespace</span>.  The
+attribute can also be specified to an <code
+title=element-sw-document>document</code> element in the
+<span>SuikaWiki/0.9 namespace</span>.
+-->
+
+<p>This attribute <em class=rfc2119>MUST NOT</em> be used.
 
 </p><p class=ed>...
 
