@@ -3,19 +3,67 @@
 <title>SuikaWiki Markup Language</title>
 <link rel=stylesheet href="/www/style/html/spec">
 
-<p class=ed>...
+<div class="no-toc section">
+<h2>Abstract</h2>
 
-<dfn>content attribute</dfn>, <dfn>DOM attribute</dfn>
+<p class=ed>...
+</div>
+
+<div class="no-toc section">
+<h2>Table of Contents</h2>
+
+<!-- toc -->
+</div>
+
+<div class=section>
+<h2>Introduction</h2>
+
+<p><em>This section is non‐normative.</em>
+
+<p class=ed>...
+</div>
+
+<div class=section>
+<h2>Terminology</h2>
+
+<p>All diagrams, examples, and notes in this specification are
+non-normative, as are all sections explicitly marked
+non-normative. Everything else in this specification is normative.
+
+<p>The key words “<em class=rfc2119>MUST</em>”, “<em
+class=rfc2119>MUST NOT</em>”, and “<em class=rfc2119>MAY</em>” in
+the normative parts of this document are to be interpreted as
+described in RFC 2119 <span class=ed>[RFC2119]</span>.
+
+<p>Requirements phrased in the imperative as part of algorithms (such
+as “strip any leading space characters” or “return false and abort
+these steps”) are to be interpreted with the meaning of the key word
+(e.g. <em class=rfc2119>MUST</em>”) used in introducing the
+algorithm.
+
+<p>Conformance requirements phrased as algorithms or specific steps
+<em class=rfc2119>MAY</em> be implemented in any manner, so long as
+the end result is equivalent. (In particular, the algorithms defined
+in this specification are intended to be easy to follow, and not
+intended to be performant.)
+
+<p>This specification refers to both XML attributes and DOM
+attributes, often in the same context. When it is not clear which is
+being referred to, they are referred to as <dfn title="content
+attribute">content attributes</dfn> for XML attributes, and <dfn
+title="DOM attribute">DOM attributes</dfn> for those from the DOM.
+
+</div>
 
 <div class=section>
 <h2>Parsing SWML Text Format Document</h2>
 
 <p>This section specifies how to convert a string of characters into a
-DOM tree, assuming the string is written in the <span>SWML text
-format</span>.  This process is referred to as <dfn title="parsing an
-SWML text format document">parsing</dfn> and an implementation that
-performes this process is referred to as <dfn title="SWML text format
-parser">parser</dfn>.
+DOM <span class=ed>[DOM]</span> tree, assuming the string is written
+in the <span>SWML text format</span>.  This process is referred to as
+<dfn title="parsing an SWML text format document">parsing</dfn> and an
+implementation that performes this process is referred to as <dfn
+title="SWML text format parser">parser</dfn>.
 
 <div class="note memo">
 
@@ -23,6 +71,13 @@ parser">parser</dfn>.
 outside of the scope of this specification.
 
 </div>
+
+<p>The <span title="parsing an SWML text format document">parsing
+process</span> is defined in terms of DOM and relies on HTML5 <span
+class=ed>...</span> and manakai's extensions to DOM <span
+class=ed>...</span>.  However, a conforming <span title="SWML text
+format parser">parser</span> don't have to implement them, as long as
+the end result is equivalent.
 
 <p>The <span title="parsing an SWML text format document">parsing
 process</span> is divided into two stages: <span>tokenization</span>
@@ -40,7 +95,7 @@ document">parsing</span> starts, a new <code>Document</code> object
 <em class=rfc2119>MUST</em> be created.  It represents the DOM tree
 constructed as a result of the <span title="parsing an SWML text
 format document">parsing</span>.  The <code>innerHTML</code> <span>DOM
-attribute</span> of the <code>Document</code> <em
+attribute</span> of the <code>Document</code> object <em
 class=rfc2119>MUST</em> be initially set to
 <code>&lt;html&#x20;xmlns="http://www.w3.org/1999/xhtml">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
 The <dfn>document element</dfn> is what the
@@ -112,20 +167,39 @@ to node <var>node</var>, the <code>manakai_append_text</code> method
 <cite class=ed>...</cite> <em class=rfc2119>MUST</em> be invoked on
 <var>node</var> with the argument <var>char</var>.
 
+<p>When an element is created, its <code>prefix</code> <span>DOM
+attribute</span> <em class=rfc2119>MUST</em> be set to
+<code>null</code>.
+
+<p>When an attribute is created, unless otherwise specified, its
+<code>prefix</code> and <code>namespaceURI</code> <span title="DOM
+attribute">DOM attributes</span> <em class=rfc2119>MUST</em> both set
+to <code>null</code>.
+
+<p>When an attribute is created in a namespace, its
+<code>prefix</code> <span>DOM attribute</span> <em
+class=rfc2119>MUST</em> be set to the <dfn>preferred prefix</dfn> for
+the namespace.
+
 <p>The <dfn>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
+The <span>preferred prefix</span> is <code>aa</code>.
 
 <p>The <dfn>HTML namespace</dfn> is
-<code>http://www.w3.org/1999/xhtml</code>.
+<code>http://www.w3.org/1999/xhtml</code>.  The <span>preferred
+prefix</span> is <code>html</code>.
 
 <p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.  The
+<span>preferred prefix</span> is <code>sw</code>.
 
 <p>The <dfn>SuikaWiki/0.10 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
+<span>preferred prefix</span> is <code>sw10</code>.
 
 <p>The <dfn>XML namespace</dfn> is
-<code>http://www.w3.org/XML/1998/namespace </code>.
+<code>http://www.w3.org/XML/1998/namespace </code>.  The
+<span>preferred prefix</span> is <code>xml</code>.
 
 </div>
 
