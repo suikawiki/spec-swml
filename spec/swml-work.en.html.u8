@@ -180,7 +180,7 @@ are to be interpreted as described in RFC 2119 <span class=ed>[RFC2119]</span>.
 </p><p>Requirements phrased in the imperative as part of algorithms (such
 as “strip any leading space characters” or “return false and abort
 these steps”) are to be interpreted with the meaning of the key word
-(e.g. <em class=rfc2119>MUST</em>”) used in introducing the
+(e.g. “<em class=rfc2119>MUST</em>”) used in introducing the
 algorithm.
 
 </p><p>Conformance requirements phrased as algorithms or specific steps
@@ -850,7 +850,7 @@ future revisions. -->
 
 </li><li>Emit a <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is one of
 <code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
-in <code>line</code>.
+in <var title="">line</var>.
 
 </li><li>If the <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
 <code>PRE</code>, switch to the "<a href=#preformatted-block>preformatted block</a>"
@@ -1121,15 +1121,16 @@ this algorithm.
 
 </li><li>Let <var>cell quoted</var> be the empty string.
 
-</li><li>If <var>pos</var> is greater than or equal to the length of
-<var>data</var>, emit a <a href=#table-row-end-token>table row end token</a> and abort
+</li><li>If <var>pos</var> is greater than or equal to the length of <var title="">data</var>, emit a <a href=#table-row-end-token>table row end token</a> and abort
 this algorithm.
 
-</li><li>If the <var>pos</var>th character in <var>data</var> is a <a href=#white-space-characters title="white space characters">white space character</a>, increase
-<var>pos</var> by one (1) and go back to the previous step.
+</li><li>If the <var title="">pos</var>th character in <var title="">data</var>
+is a <a href=#white-space-characters title="white space characters">white space
+character</a>, increase <var title="">pos</var> by one (1) and go back
+to the previous step.
 
-</li><li>If the <var>pos</var>th character in <var>data</var> is
-<code>"</code>, follow the substeps below:
+</li><li>If the <var title="">pos</var>th character in <var title="">data</var>
+is <code>"</code>, follow the substeps below:
 
 <ol>
 
@@ -1163,19 +1164,17 @@ this algorithm.
 
 </li></ol>
 
-</li><li>While <var>pos</var> is less than the length of <var>data</var>, run
-the following substeps:
+</li><li>While <var title="">pos</var> is less than the length of <var title="">data</var>, run the following substeps:
 
 <ol>
 
-<li>If the <var>pos</var>th character in <code>data</code> is
-<code>,</code>, abort these substeps. <!-- without increasing
-<var>pos</var> -->
+<li>If the <var>pos</var>th character in <var title="">data</var> is
+<code>,</code>, abort these substeps. <!-- without increasing <var
+title>pos</var> -->
 
-</li><li>Append the <var>pos</var>th character in <code>data</code> to
-<var>cell</var>.
+</li><li>Append the <var title="">pos</var>th character in <var title="">data</var> to <var title="">cell</var>.
 
-</li><li>Increase <var>pos</var> by one (1).
+</li><li>Increase <var title="">pos</var> by one (1).
 
 </li></ol>
 
@@ -1766,7 +1765,7 @@ tuple unless otherwise specified.
 of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
 
 </p><p><dfn id=structural-elements>Structural elements</dfn> are elements whose local name is one
-of <code title=element-body>body</code>, <code>section</code>,
+of <code title=element-html-body>body</code>, <code>section</code>,
 <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <code>blockquote</code>,
 <code>h1</code>, <code>ul</code>, <code>ol</code>, <code>dl</code>,
 <code>li</code>, <code>dt</code>, <code>dd</code>, <code>table</code>,
@@ -1789,7 +1788,7 @@ follows:
 <ol>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <code title=element-body>body</code>,
+<em>not</em> one of <code title=element-html-body>body</code>,
 <code>section</code>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
 the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
 this substep again.
@@ -1885,7 +1884,7 @@ the element created to <a href=#block-start-tag-classes title=block-start-tag-cl
 <ol>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <code>blockquote</code>, <code title=element-body>body</code>, <code>section</code>,
+<em>not</em> one of <code>blockquote</code>, <code title=element-html-body>body</code>, <code>section</code>,
 <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop the element off the
 <a href=#stack-of-open-elements>stack of open elements</a> and follow this substep again.
 
@@ -2152,7 +2151,7 @@ mode</a> and reprocess the <a href=#token>token</a>.
 <ol>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <code title=element-body>body</code>,
+<em>not</em> one of <code title=element-html-body>body</code>,
 <code>section</code>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
 the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
 this substep again.
@@ -2926,7 +2925,7 @@ appropriate arguments would return true.
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>Text.
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -2952,7 +2951,7 @@ appropriate arguments would return true.
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>Text.
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -3011,7 +3010,7 @@ appropriate arguments would return true.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
-</dt><dd>None.
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
 
 </dd></dl>
 
@@ -3074,7 +3073,9 @@ namespace</a>.
 
 </dd></dl>
 
-<p class=ed>...
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p class=ed>...
 
 </p></div>
 
@@ -3091,7 +3092,7 @@ namespace</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>Text.
+</dt><dd>Empty.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -3134,7 +3135,11 @@ namespace</a>.
 
 </dd></dl>
 
-<p class=ed>...
+<p>At most one <a href=#the-image-element-in-the-suikawiki/0.9-namespace><code>image</code></a> element <em class=rfc2119>MAY</em>
+be inserted after the <code title=element-html-body>body</code>
+element in the <a href=#html-namespace>HTML namespace</a>.
+
+</p><p class=ed>...
 
 </p></div>
 
@@ -3155,7 +3160,7 @@ namespace</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
-</dt><dd>None.
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
 
 </dd></dl>
 
@@ -3261,7 +3266,9 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 
 </dd></dl>
 
-<p class=ed>...
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p class=ed>...
 
 </p></div>
 
@@ -3336,6 +3343,8 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 </dd></dl>
 
+<!-- <p>This element <em class=rfc2119>MUST NOT</em> be used. -->
+
 <p class=ed>...
 
 </p></div>
@@ -3353,7 +3362,7 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dt><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -3403,7 +3412,7 @@ namespace</a></h3>
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dt><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -3513,7 +3522,9 @@ namespace</a>.
 
 </dd></dl>
 
-<p class=ed>...
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p class=ed>...
 
 </p></div>
 
@@ -3562,6 +3573,22 @@ namespace</a>.
 </dt><dd>None.
 
 </dd></dl>
+
+<p>This element <em class=rfc2119>MAY</em> be inserted as last child
+of <code>abbr</code> or <code>time</code> element in the <a href=#html-namespace>HTML
+namespace</a> when the <code title=attr-html-title>title</code>
+attribute of that element is not <a href=#specified>specified</a>.
+
+</p><p>If the parent element of this element has a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>
+attribute <a href=#specified>specified</a>, or is <em>not</em> the last child,
+this element <em class=rfc2119>MUST</em> be <a href=#ignored>ignored</a>.
+
+</p><div class="note memo">
+
+<p>Inter-element whitespaces, comments, and processing instructions
+can be inserted after this element.
+
+</p></div>
 
 <p class=ed>...
 

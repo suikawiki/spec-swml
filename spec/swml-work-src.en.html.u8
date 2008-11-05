@@ -90,7 +90,7 @@ class=ed>[RFC2119]</span>.
 <p>Requirements phrased in the imperative as part of algorithms (such
 as “strip any leading space characters” or “return false and abort
 these steps”) are to be interpreted with the meaning of the key word
-(e.g. <em class=rfc2119>MUST</em>”) used in introducing the
+(e.g. “<em class=rfc2119>MUST</em>”) used in introducing the
 algorithm.
 
 <p>Conformance requirements phrased as algorithms or specific steps
@@ -1778,7 +1778,7 @@ tuple unless otherwise specified.
 of the bottommost entry in the <span>stack of open elements</span>.
 
 <p><dfn>Structural elements</dfn> are elements whose local name is one
-of <code title=element-body>body</code>, <code>section</code>,
+of <code title=element-html-body>body</code>, <code>section</code>,
 <code>insert</code>, <code>delete</code>, <code>blockquote</code>,
 <code>h1</code>, <code>ul</code>, <code>ol</code>, <code>dl</code>,
 <code>li</code>, <code>dt</code>, <code>dd</code>, <code>table</code>,
@@ -1801,7 +1801,7 @@ follows:
 <ol>
 
 <li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code title=element-body>body</code>,
+<em>not</em> one of <code title=element-html-body>body</code>,
 <code>section</code>, <code>insert</code>, or <code>delete</code>, pop
 the element off the <span>stack of open elements</span> and follow
 this substep again.
@@ -1905,7 +1905,7 @@ title=block-start-tag-classes>classes</span>.
 
 <li>If the local name of the <span>current element</span> is
 <em>not</em> one of <code>blockquote</code>, <code
-title=element-body>body</code>, <code>section</code>,
+title=element-html-body>body</code>, <code>section</code>,
 <code>insert</code>, or <code>delete</code>, pop the element off the
 <span>stack of open elements</span> and follow this substep again.
 
@@ -2179,7 +2179,7 @@ mode</span> and reprocess the <span>token</span>.
 <ol>
 
 <li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code title=element-body>body</code>,
+<em>not</em> one of <code title=element-html-body>body</code>,
 <code>section</code>, <code>insert</code>, or <code>delete</code>, pop
 the element off the <span>stack of open elements</span> and follow
 this substep again.
@@ -2985,7 +2985,7 @@ appropriate arguments would return true.
 
 <dt><span>Content model</span>
 
-<dd>Text.
+<dd><span>Phrasing content</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -3011,7 +3011,7 @@ appropriate arguments would return true.
 
 <dt><span>Content model</span>
 
-<dd>Text.
+<dd><span>Phrasing content</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -3070,7 +3070,7 @@ appropriate arguments would return true.
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3134,6 +3134,8 @@ namespace</span>.
 
 </dl>
 
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
 <p class=ed>...
 
 </div>
@@ -3151,7 +3153,7 @@ namespace</span>.
 
 <dt><span>Content model</span>
 
-<dd>Text.
+<dd>Empty.
 
 <dt><span>Allowed attributes</span>
 
@@ -3197,6 +3199,10 @@ title=attr-sw-form-option><code>option</code>
 
 </dl>
 
+<p>At most one <code>image</code> element <em class=rfc2119>MAY</em>
+be inserted after the <code title=element-html-body>body</code>
+element in the <span>HTML namespace</span>.
+
 <p class=ed>...
 
 </div>
@@ -3218,7 +3224,7 @@ title=attr-sw-form-option><code>option</code>
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3324,6 +3330,8 @@ element in the <span>HTML namespace</span>.
 
 </dl>
 
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
 <p class=ed>...
 
 </div>
@@ -3399,6 +3407,8 @@ in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 </dl>
 
+<!-- <p>This element <em class=rfc2119>MUST NOT</em> be used. -->
+
 <p class=ed>...
 
 </div>
@@ -3416,7 +3426,7 @@ in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 <dt><span>Content model</span>
 
-<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -3466,7 +3476,7 @@ namespace</span></h3>
 
 <dt><span>Content model</span>
 
-<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -3576,6 +3586,8 @@ namespace</span>.
 
 </dl>
 
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
 <p class=ed>...
 
 </div>
@@ -3625,6 +3637,22 @@ namespace</span>.
 <dd>None.
 
 </dl>
+
+<p>This element <em class=rfc2119>MAY</em> be inserted as last child
+of <code>abbr</code> or <code>time</code> element in the <span>HTML
+namespace</span> when the <code title=attr-html-title>title</code>
+attribute of that element is not <span>specified</span>.
+
+<p>If the parent element of this element has a <code>title</code>
+attribute <span>specified</span>, or is <em>not</em> the last child,
+this element <em class=rfc2119>MUST</em> be <span>ignored</span>.
+
+<div class="note memo">
+
+<p>Inter-element whitespaces, comments, and processing instructions
+can be inserted after this element.
+
+</div>
 
 <p class=ed>...
 
