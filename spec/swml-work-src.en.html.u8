@@ -228,8 +228,8 @@ these properties are null.
 
 <dt><dfn>Form token</dfn>
 
-<dd><dfn title=form-id>Id</dfn> and <dfn
-title=form-parameters>parameters</dfn> properties.
+<dd><dfn title=form-name>Name</dfn>, <dfn title=form-id>id</dfn>, and
+<dfn title=form-parameters>parameters</dfn> properties.
 
 <dt><dfn>Heading start token</dfn>
 
@@ -1046,6 +1046,10 @@ class=charname>HYPHEN-MINUS</span>
 
 <ol>
 
+<li>Let <var>name</var> be the <span>lowercase letter</span> and
+U+002D <code class=charname>HYPHEN-MINUS</span> in the matched
+substring.
+
 <li>Remove the matched substring from <var>data</var>.
 
 <li>Let <var>id</var> be null.
@@ -1137,9 +1141,10 @@ the following substeps:
 first two characters of <var>data</var> are <code>]]</code>, remove
 these characters from <var>data</var>.
 
-<li>Emit a <span>form token</span> whose <span title=form-id>id</span>
-is <var>id</var> and <span title=form-parameters>parameters</span> is
-<var>parameters</span>.
+<li>Emit a <span>form token</span> whose <span
+title=form-name>name</span> is <var>name</var>, <span
+title=form-id>id</span> is <var>id</var>, and <span
+title=form-parameters>parameters</span> is <var>parameters</span>.
 
 </ol>
 
@@ -1564,28 +1569,19 @@ in the <span>SuikaWiki/0.9 namespace</span>, set the
 
 <p class=ed><dfn>tree construction</dfn> stage.
 
-<p class=ed><dfn title="insertion mode">insertion modes</dfn>,
-initially "<span>in section</span>".
+<p>The <dfn>stack of open elements</dfn> contains tuples of
+(<dfn>element node</dfn>, <dfn>section depth</dfn>, <dfn>quotation
+depth</dfn>, <dfn>list depth</dfn>).  These stack grows downdards; the
+topmost entry on the stack is the first one added to the stack, and
+the bottommost entry of the stack is the most recently added entry in
+the stack.  It initially contains only a tuple: (the <span>body
+element</span>, <code>0</code>, <code>0</code>, <code>0</code>).  When
+an entry is pushed to the <span>stack of open elements</span>, the
+items of the new tupple is set to the same values as the bottommost
+tuple unless otherwise specified.
 
-The <dfn>stack of open sections</dfn>, initially contains only the
-<span>body element</span>.
-
-<dfn>marker</dfn>
-
-The <dfn>stack of open lists</dfn> initially contains only a
-<span>marker</span>.
-
-The <dfn>current paragraph</dfn> is initially null.
-
-When a node is pushed on one of these stacks, it is associated with a
-<dfn title=stack-entry-level>level</dfn>.
-
-These stack grows downdards; the topmost node on the stack is the
-first one added to the stack, and the bottommost node of the stack is
-the most recently added node in the stack.
-
-The <dfn>current paragraph parent</dfn> is the bottommost node in the
-<span>stack of section elements</span>.
+<p>The <span>current element</span> is the <span>element node</span>
+of the bottommost entry in the <span>stack of open elements</span>.
 
 <div class=section>
 <h4>The "<span>in section</span>" <span>insertion mode</span></h4>
@@ -1602,48 +1598,46 @@ follows:
 
 <ol>
 
-<li>Let <var>current depth</var> be the <span
-title=stack-entry-depth>depth</span> of the bottommost node in the
-<span>stack of open sections</span>.
+<li>If the local name of the <span>current element</span> is
+<em>not</em> one of <code>body</code>, <code>section</code>,
+<code>insert</code>, or <code>delete</code>, pop off the element from
+the <span>stack of open elements</span> and follow this substep again.
+
+<li>Let <var>current depth</var> be the <span>section depth</span> of
+the bottommost entry in the <span>stack of open elements</span>.
 
 <li>If <span title=heading-start-depth>depth</span> is less than or
-equal to the <var>current depth</var>,
- pop the element off the <span>stack of the open sections</span> and
-go back to the previous substep.
+equal to the <var>current depth</var>, pop the element off the
+<span>stack of the open elements</span> and go back to the first
+substep of these substeps.
 
-<li>If <span title=heading-start-depth>depth</span> is greater than
-<var>current depth</var> + 1, repeat the following substeps <span
-title=heading-start-depth>depth</span> - <var>current depth</var> - 1
-times:
-
-<ol>
-
-<li>Create a <code>section</code> element in the <span>HTML
-namespace</span>.
-
-<li>Append the element created to the bottommost node in the
-<span>stack of open sections</span>.
-
-<li>Increment <var>current depth</var> by one (1).
-
-<li>Push the element created to the <span>stack of open
-sections</span> with <span title=stack-entry-depth>depth</span> set to
-<var>current depth</var>.
-
-</ol>
+<li>Otherwise, if <span title=heading-start-depth>depth</span> is
+greater than <var>current depth</var> + 1, create a
+<code>section</code> element in the <span>HTML namespace</span>,
+append the element created to the <span>current element</span>, push
+the element created to the <span>stack of open elements</span> with
+<span>section depth</span> set to <var>current depth</var> + 1,
+<span>quotation depth</span> set to zero (0), and <span>list
+depth</span> set to zero (0), and go back to the first substep of
+these substeps.
 
 <li>Create a <code>section</code> element in the <span>HTML
 namespace</span>.
 
-<li>Append the element created to the bottommost node in the
-<span>stack of open sections</span>.
+<li>Append the element created to the <span>current element</span>.
 
 <li>Push the element created to the <span>stack of open
-sections</span> with <span title=stack-entry-depth>depth</span> set to
-<var>current depth</var> + 1.
+elements</span> with <span>section depth</span> set to <span
+title=heading-start-depth>depth</span>, <span>quotation depth</span>
+set to zero (0), and <span>list depth</span> set to zero (0).
 
-<li>Push a <span>marker</span> to the <span>stack of open
-lists</span>.
+<li>Create a <code>h1</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -1651,27 +1645,45 @@ mode</span> and reprocess the <span>token</span>.
 </ol>
 
 <dt>A <span>block start tag token</span> whose <span
-title=block-start-tag-tag-name>tag name</span> is <code>INS</code> or
-<code>DEL</code>
+title=block-start-tag-tag-name>tag name</span> is <code>INS</code>
 
 <dd>
 
 <ol>
 
-<li>Create an element in the <span>SuikaWiki/0.9 namespace</span>.
-The local name of the element is <code>insert</code> if <span
-title=block-start-tag-tag-name>tag name</span> is <code>INS</code>, or
-<code>delete</code> otherwise.
+<li>Create an <code>insert</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
 
-<li>Append the element created to the <span>current edit block
-parent</span>.
+<li>Append the element created to the <span>current element</span>.
 
 <li>Push the element created to the <span>stack of open
-sections</span> with <span title=stack-entry-level>level</span> set to
-zero (0).
+elements</span> with <span>section level</span> set to zero (0),
+<span>quotation level</span> set to zero (0), and <span>list
+level</span> set to zero (0).
 
-<li>Push a <span>marker</span> to the <span>stack of open
-lists</span>.
+<li>If the <span>token</span>'s <span
+title=block-start-tag-classes>classes</span> is not null, set the
+<code>class</code> <span>content attribute</span> of the element
+created to <span title=block-start-tag-classes>classes</span>.
+
+</ol>
+
+<dt>A <span>block start tag token</span> whose <span
+title=block-start-tag-tag-name>tag name</span> is <code>DEL</code>
+
+<dd>
+
+<ol>
+
+<li>Create an <code>delete</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span> with <span>section level</span> set to zero (0),
+<span>quotation level</span> set to zero (0), and <span>list
+level</span> set to zero (0).
 
 <li>If the <span>token</span>'s <span
 title=block-start-tag-classes>classes</span> is not null, set the
@@ -1682,19 +1694,189 @@ created to <span title=block-start-tag-classes>classes</span>.
 
 <dt>A <span>quotation start token</span>
 
-<dd class=ed>...
+<dd>
+
+<ol>
+
+<li>If the local name of the <span>current element</span> is
+<em>not</em> one of <code>blockquote</code>, <code>body</code>,
+<code>section</code>, <code>insert</code>, or <code>delete</code>, pop
+off the element from the <span>stack of open elements</span> and
+follow this substep again.
+
+<li>Let <var>current depth</var> be the <span>quotation depth</span>
+of the bottommost entry in the <span>stack of open elements</span>.
+
+<li>If <span title=quotation-start-depth>depth</span> is less than or
+equal to the <var>current depth</var>, pop the element off the
+<span>stack of the open elements</span> and go back to the first
+substep of these substeps.
+
+<li>Otherwise, if <span title=quotation-start-depth>depth</span> is
+greater than <var>current depth</var> + 1, create a
+<code>blockquote</code> element in the <span>HTML namespace</span>,
+append the element created to the <span>current element</span>, push
+the element created to the <span>stack of open elements</span> with
+<span>section depth</span> set to zero (0), <span>quotation
+depth</span> set to <var>current depth</var> + 1, and <span>list
+depth</span> set to zero (0), and go back to the first substep of
+these substeps.
+
+<li>Create a <code>blockquote</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span> with <span>section depth</span> set to zero (0),
+<span>quotation depth</span> set to <span
+title=quotation-start-depth>depth</span>, and <span>list depth</span>
+set to zero (0).
+
+</ol>
 
 <dt>A <span>list start token</span>
 
-<dd class=ed>...
+<dd>
+
+<ol>
+
+<li>Let <var>current depth</var> be the <span>list depth</span> of the
+<span>current element</span>.
+
+<li>Let <var>inserted depth</var> be the length of <span
+title=list-start-depth>depth</span> of the <span>list start
+token</span>.
+
+<li>If <var>current depth</var> is greater than <var>inserted
+depth</var>, pop off the <span>current element</span> from the
+<span>stack of open elements</span> and go back to the first substep
+of these substeps.
+
+<li>If <var>current depth</var> is less than <var>inserted
+depth</var>, run the following substeps:
+
+<ol>
+
+<li>Let <var>type</var> be the character at the index equal to
+<var>current depth</var> in <span title=list-start-depth>depth</span>
+of the <span>list start token</span>, where the index of the first
+character in <span title=list-start-depth>depth</span> is zero (0).
+
+<li>If <var>type</var> is <code>-</code>, create a <code>ul</code>
+element in the <span>HTML namespace</span>.
+
+<li>Otherwise, create a <code>ol</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>, with <span>list depth</span> set to <var>current
+depth</var> + 1.
+
+<li>If <var>current depth</var> + 1 is less than <var>inserted
+depth</var>, run the following substeps:
+
+<ol>
+
+<li>Create a <code>li</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+</ol>
+
+<li>Go back to the first substep for the <span>list start
+token</span>.
+
+</ol>
+
+<li>If the <span>list depth</span> is equal to <var>inserted
+depth</var> and the local name of the <span>current element</span> is
+<em>not</em> <code>ul</code> or <code>ol</code>, pop off the
+<span>current element</span> from the <span>stack of open
+elements</span>.
+
+<li>Create a <code>li</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
 
 <dt>A <span>labeled list start token</span>
 
-<dd class=ed>...
+<dd>
+
+<ol>
+
+<li>If the local name of the <span>current element</span> is
+<code>dd</code>, pop off the element from the <span>stack of open
+elements</span>.
+
+<li>If the local name of the <span>current element</span> is
+<em>not</em> <code>dl</code>, create a <code>dl</code> element in the
+<span>HTML namespace</span>, append the element created to the
+<span>current element</span>, and push the element created to the
+<span>stack of open elements</span>.
+
+<li>Create a <code>dt</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
 
 <dt>A <span>table row start token</span>
 
-<dd class=ed>...
+<dd>
+
+<ol>
+
+<li>Create a <code>table</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+<li>Create a <code>tbody</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+<li>Create a <code>tbody</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+<li>Switch to the "<span>table row</span>" <span>insertion
+mode</span>.
+
+</ol>
 
 <dt>A <span>block start tag token</span> whose <span
 title=block-start-tag-tag-name>tag name</span> is <code>PRE</code>
@@ -1703,22 +1885,18 @@ title=block-start-tag-tag-name>tag name</span> is <code>PRE</code>
 
 <ol>
 
-<li>Create a <code>pre</code> element in the <span>XHTML2
+<li>Create a <code>pre</code> element in the <span>HTML
 namespace</span>.
 
-<li>Append the element created to the <span>current paragraph
-parent</span>.
+<li>Append the element created to the <span>current element</span>.
 
-<li>Set the <span>paragraph element</span> pointer to point the
-element created.
+<li>Push the element created to the <span>stack of open
+elements</span>.
 
 <li>If the <span>token</span>'s <span
 title=block-start-tag-classes>classes</span> is not null, set the
 <code>class</code> <span>content attribute</span> of the element
 created to <span title=block-start-tag-classes>classes</span>.
-
-<li>Set the <code>xml:space</code> <span>content attribute</span> of
-the element created to <code>preserve</code>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -1734,12 +1912,15 @@ mode</span> and reprocess the <span>token</span>.
 <li>Create a <code>pre</code> element in the <span>HTML
 namespace</span>.
 
-<li>Append the element created to the <span>current node</span>.
+<li>Append the element created to the <span>current element</span>.
 
-<li>Push the element to the <span>stack of open elements</span>.
+<li>Push the element created to the <span>stack of open
+elements</span>.
 
-<li>Set the <code>xml:space</code> <span>content attribute</span> to
-<code>preserve</code>.
+<li>If the <span>token</span>'s <span
+title=block-start-tag-classes>classes</span> is not null, set the
+<code>class</code> <span>content attribute</span> of the element
+created to <span title=block-start-tag-classes>classes</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -1755,11 +1936,11 @@ mode</span> and reprocess the <span>token</span>.
 <li>Create a <code>comment-p</code> element in the
 <span>SuikaWiki/0.10 namespace</span>.
 
-<li>Append the element created to the <span>current paragraph
-parent</span>.
 
-<li>Set the <span>paragraph element</span> to point the element
-created.
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -1775,10 +1956,10 @@ mode</span> and reprocess the <span>token</span>.
 <li>Create a <code>ed</code> element in the <span>SuikaWiki/0.10
 namespace</span>.
 
-<li>Append the element created to the <span>current paragraph
-parent</span>.
+<li>Append the element created to the <span>current element</span>.
 
-<li>Set the <span>paragraph element</span> to point the element created.
+<li>Push the element created to the <span>stack of open
+elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
@@ -1791,29 +1972,124 @@ mode</span> and reprocess the <span>token</span>.
 
 <ol>
 
-<li>While the local name of the <span>current element</span> is not
-one of <code>section</code>, <code>body</code>, <code>insert</code>,
-or <code>delete</code>, pop the element off the <span>stack of the
-open elements</span>.
-
-<li>Set the <span>quote depth</span> to zero (0).
-
-<li>Set the <span>list depth</span> to the empty string.
+<li>If the local name of the <span>current element</span> is <em>not</em>
+one of <code>body</code>, <code>section</code>, <code>insert</code>,
+or <code>delete</code>, pop off the element from the <span>stack of
+open elements</span> and follow this substep again.
 
 </ol>
 
-<dt>A <span>block end tag token</span>
+<dt>A <span>block end tag token</span> whose <span
+title=block-end-tag-tag-name>tag name</span> is <code>INS</code>
 
-<dd class=ed>...
+<dd>If the <span>stack of open elements</span> contains an element
+whose local name is <code>insert</code>, pop off the <span>current
+element</span> until such an element whose local name is
+<code>insert</code> has been popped from the <span>stack of open
+elements</span>.
 
-<dt>A <span>form</span> token
+<dt>A <span>block end tag token</span> whose <span
+title=block-end-tag-tag-name>tag name</span> is <code>DEL</code>
 
-<dd class=ed>...
+<dd>If the <span>stack of open elements</span> contains an element
+whose local name is <code>delete</code>, pop off the <span>current
+element</span> until such an element whose local name is
+<code>delete</code> has been popped from the <span>stack of open
+elements</span>.
+
+<dt>A <span>form token</span> whose <span title=form-name>name</form>
+is <code>form</code>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
+
+<li>If <span title=form-id>id</span> of the <span>form token</span> is
+<em>not</em> null, set the <code>id</code> <span>content
+attribute</span> of the element created to <span
+title=form-id>id</span> of the <span>form token</span>.
+
+<li>Set the <code>input</code> <span>content attribute</span> of the
+element created to the first item in <span
+title=form-parameters>parameters</span> of the <span>form
+token</span>, if any, or the empty string otherwise.
+
+<li>Set the <code>template</code> <span>content attribute</span> of
+the element created to the second item in <span
+title=form-parameters>parameters</span> of the <span>form
+token</span>, if any, or the empty string otherwise.
+
+<li>Set the <code>option</code> <span>content attribute</span> of the
+element created to the third item in <span
+title=form-parameters>parameters</span> of the <span>form
+token</span>, if any, or the empty string otherwise.
+
+<li>If the <span title=form-parameters</span> contains four or more
+items, set the <code>parameter</code> <span>content attribute</span>
+of the element created to the concatenation of items in <span
+title=form-parameters>parameters</span>, separated by a <code>:</code>
+character, in the same order.
+
+<li>Append the element created to the <span>current element</span>.
+
+</ol>
+
+<dt>Any other <span>form token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
+
+<li>Set the <code>ref</code> <span>content attribute</span> of the
+element created to <span title=form-name>name</span> of the <span>form
+token</span>.
+
+<li>Set the <code>id</code> of the <span>form token</span> is
+<em>not</em> null, set the <code>id</code> <span>content
+attribute</span> of the element created to <span
+title=form-id>id</span> of the <span>form token</span>.
+
+<li>If <span title=form-parameters>parameters</span> of <span>form
+token</span> is not empty, set the <code>parameter</code>
+<span>content attribute</span> of the element created to the
+concatenation of items in <span
+title=form-parameters>parameters</span>, separated by a <code>:</code>
+character, in the same order.  The result value might be the empty
+string.
+
+<li>Append the element created to the <span>current element</span>.
+
+</ol>
 
 <dt>An <span>element token</span> whose <span
 title=element-local-name>local name</span> is <code>replace</code>
 
-<dd class=ed>...
+<dd>
+
+<ol>
+
+<li>Create an element whose local name is <span
+title=element-local-name>local name</span> of the <span>element
+token</span> and namespace is <span
+title=element-namespace>namespace</span> of the <span>element
+token</span>.
+
+<li>If <span title=element-by-attribute>by attribute</span> of the
+<span>element token</span> is <em>not</em> null, set the
+<code>by</code> <span>content attribute</span> of the element created
+to <span title=element-by-attribute>by attribute</span> of the
+<span>element token</span>.
+
+<li>Append the element created to the <span>stack of open
+elements</span>.
+
+</ol>
 
 <dt>An <span>end-of-file token</span>
 
@@ -1834,17 +2110,93 @@ should not appear in this insertion mode -->
 
 <ol>
 
-<li>Create a <code>p</code> element in the <span>XHTML2
+<li>Create a <code>p</code> element in the <span>HTML
 namespace</span>.
 
-<li>Append the element to the <span>current node</span>.
+<li>Append the element created to the <span>current element</span>.
 
-<li>Push the element to the <span>stack of open elements</span>.
+<li>Push the element created to the <span>stack of open
+elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
 
 </ol>
+
+</dl>
+
+</div>
+
+<div class=section>
+<h4>The "<span>in table row</span>" <span>insertion mode</span></h4>
+
+<p>In the "<dfn>in table row</dfn>" <span>insertion mode</span>, a
+<span>token</span> <em class=rfc2119>MUST</em> be processed as
+follows:
+
+<dl class=switch>
+
+<dt>A <span>table cell start token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>td</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+</ol>
+
+<dt>A <span>table colspan cell token</span>
+
+<dd>
+
+<ol>
+
+<li>If the local name of the node returned by the
+<code>lastChild</code> <span>DOM attribute</span> of the <span>current
+element</span>, if any, is <code>td</code>, increase the value of
+<code>colspan</code> <span>DOM attribute</span> of the node by one (1)
+and abort these substeps.
+
+<li>Create a <code>td</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+</ol>
+
+<dt>A <span>table row end token</span>
+
+<dd>If the local name of the <span>current element</span> is
+<code>tr</code>, pop off the element from the <span>stack of open
+elements</span>.
+
+<dt>A <span>table row start token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>tr</code> element in the <span>HTML
+namespace</span>.
+
+<li>Append the element created to the <span>current element</span>.
+
+<li>Push the element created to the <span>stack of open
+elements</span>.
+
+</ol>
+
+<dt>Anything else
+
+<dd>Switch to the "<span>in section</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
 
 </dl>
 
