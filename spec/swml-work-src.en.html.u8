@@ -808,7 +808,7 @@ future revisions. -->
 <li>Emit a <span>block start tag token</span> whose <span
 title=block-start-tag-tag-name>tag name</span> is one of
 <code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
-in <code>line</code>.
+in <var title>line</var>.
 
 <li>If the <span title=block-start-tag-tag-name>tag name</span> is
 <code>PRE</code>, switch to the "<span>preformatted block</span>"
@@ -1089,16 +1089,17 @@ this algorithm.
 
 <li>Let <var>cell quoted</var> be the empty string.
 
-<li>If <var>pos</var> is greater than or equal to the length of
-<var>data</var>, emit a <span>table row end token</span> and abort
+<li>If <var>pos</var> is greater than or equal to the length of <var
+title>data</var>, emit a <span>table row end token</span> and abort
 this algorithm.
 
-<li>If the <var>pos</var>th character in <var>data</var> is a <span
-title="white space characters">white space character</span>, increase
-<var>pos</var> by one (1) and go back to the previous step.
+<li>If the <var title>pos</var>th character in <var title>data</var>
+is a <span title="white space characters">white space
+character</span>, increase <var title>pos</var> by one (1) and go back
+to the previous step.
 
-<li>If the <var>pos</var>th character in <var>data</var> is
-<code>"</code>, follow the substeps below:
+<li>If the <var title>pos</var>th character in <var title>data</var>
+is <code>"</code>, follow the substeps below:
 
 <ol>
 
@@ -1132,19 +1133,19 @@ title="white space characters">white space character</span>, increase
 
 </ol>
 
-<li>While <var>pos</var> is less than the length of <var>data</var>, run
-the following substeps:
+<li>While <var title>pos</var> is less than the length of <var
+title>data</var>, run the following substeps:
 
 <ol>
 
-<li>If the <var>pos</var>th character in <code>data</code> is
-<code>,</code>, abort these substeps. <!-- without increasing
-<var>pos</var> -->
+<li>If the <var>pos</var>th character in <var title>data</var> is
+<code>,</code>, abort these substeps. <!-- without increasing <var
+title>pos</var> -->
 
-<li>Append the <var>pos</var>th character in <code>data</code> to
-<var>cell</var>.
+<li>Append the <var title>pos</var>th character in <var
+title>data</var> to <var title>cell</var>.
 
-<li>Increase <var>pos</var> by one (1).
+<li>Increase <var title>pos</var> by one (1).
 
 </ol>
 
