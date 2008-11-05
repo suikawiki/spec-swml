@@ -258,6 +258,14 @@ title=inline-end-tag-res-scheme-attribute>resScheme attribute</dfn>,
 and <dfn title=inline-end-tag-res-parameter-attribute>resParameter
 attribute</dfn> properties.  Default for these properties is null.
 
+<dt><dfn>Labeled list start token</dfn>
+
+<dd>No property.
+
+<dt><dfn>Labeled list middle token</dfn>
+
+<dd>No property.
+
 <dt><dfn>List start token</dfn>
 
 <dd><dfn title=list-start-depth>Depth</dfn> property.
@@ -489,8 +497,8 @@ title=character-data>data</span> is a <code>:</code> character.
 
 <div class="note memo">
 
-<p>In this case, the line does not represent a description list.  <!--
-For compatibility with previous implementations. -->
+<p>In this case, <var>line</var> does not represent a description
+list.  <!-- For compatibility with previous implementations. -->
 
 </div>
 
@@ -504,11 +512,15 @@ For compatibility with previous implementations. -->
 <li>Remove <span>white space characters</span> at the end of
 <var>name</var>, if any.
 
+<li>Emit a <span>labeled list start token</span>.
+
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>name</var>.
 
 <li>Remove <span>white space characters</span> at the end of
 <var>data</var>, if any.
+
+<li>Emit a <span>labeled list middle token</span>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>data</var>.
@@ -1808,7 +1820,7 @@ title=element-local-name>local name</span> is <code>replace</code>
 <dd>Now the <code>Document</code> has been constructed.  Abort the
 <span title="SWML text format parser">parser</span>.
 
-<dt>A <span>description list middle token</span>, <span>heading end
+<dt>A <span>labeled list middle token</span>, <span>heading end
 token</span>, <span>preformatted end token</span>, <span>table row end
 token</span>, <span>table cell start token</span>, <span>table cell
 end token</span>, or <span>table colspan cell token</span> <!-- they
