@@ -1,12 +1,63 @@
 <!DOCTYPE HTML>
 <html class="formal-specification status-work-in-progress anolis" lang=en>
-<title>SuikaWiki Markup Language</title>
+<title>SuikaWiki Markup Language (SWML)</title>
 <link rel=stylesheet href="/www/style/html/spec">
 
-<div class="no-toc section">
+<div class="header">
+<h1>SuikaWiki Markup Language (SWML)</h1>
+<h2>Working Draft [DATE]</h2>
+
+<dl class="versions-uri">
+<dt>This Version</dt>
+  <dd><code class="URI">&lt;<a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work"
+      >http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
+<dt>Latest Version</dt>
+  <dd><code class="URI">&lt;<a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work"
+      >http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
+<dt>Latest Working Draft</dt>
+  <dd><code class="URI">&lt;<a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work"
+      >http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
+<!-- <dt>Previous Version</dt> -->
+<dt>Version History</dt>
+  <dd><code class=URI>&lt;<a href="http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8">http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8</a>&gt;</code></dd>
+<dt>Author</dt>
+  <dd><a href="http://suika.fam.cx/~wakaba/who?" rel="author"
+      lang=ja>Wakaba</a>
+  <code class="mail">&lt;<a href="mailto:w@suika.fam.cx" rel="author"
+      >w@suika.fam.cx</a>&gt;</code></dd>
+</dl>
+
+<p class="copyright" lang="en">&#xA9; 2008 <a
+href="http://suika.fam.cx/~wakaba/who?" rel="author">Wakaba</a>.  You
+are granted a license to use, reproduce and create derivative works of
+this document.
+
+</div>
+
+<div class="no-toc section" id=abstract>
 <h2>Abstract</h2>
 
 <p class=ed>...
+</div>
+
+<div id="status" class="section no-toc">
+<h2>Status of this document</h2>
+
+<p class=section-info><em>This section describes the status of this
+document at the time of its publication.  Other documents might
+supersede this document.</em></p>
+
+<p>This document is a working draft, produced as part of the SuikaWiki
+project.  It might be updated, replaced, or obsoleted by other
+documents at any time.  It is inappropriate to cite this document as
+other than <q>work in progress</q>.</p>
+
+<p>Comments on this document are welcome and may be sent to the <a
+href="#author">author</a>.</p>
+
+<p>Translations of thie document might be available.  The English
+version of the document is the only normative version.</p>
+
 </div>
 
 <div class="no-toc section">
