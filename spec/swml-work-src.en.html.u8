@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html class="formal-specification status-work-in-progress" lang=en>
+<html class="formal-specification status-work-in-progress anolis" lang=en>
 <title>SuikaWiki Markup Language</title>
 <link rel=stylesheet href="/www/style/html/spec">
 
@@ -10,7 +10,7 @@
 </div>
 
 <div class="no-toc section">
-<h2>Table of Contents</h2>
+<h2>Table of contents</h2>
 
 <!-- toc -->
 </div>
@@ -56,14 +56,27 @@ title="DOM attribute">DOM attributes</dfn> for those from the DOM.
 </div>
 
 <div class=section>
-<h2>Parsing SWML Text Format Document</h2>
+<h2>The <dfn>SWML text serialization</dfn></h2>
+
+<p class=ed>...
+
+<div class=section>
+<h3>Writing <span>SWML text serialization</span></h3>
+
+<p><em>This section is non‐normative.</em>
+
+<p class=ed>...
+</div>
+
+<div class=section>
+<h3>Parsing <span>SWML text serialization</span></h3>
 
 <p>This section specifies how to convert a string of characters into a
 DOM <span class=ed>[DOM]</span> tree, assuming the string is written
-in the <span>SWML text format</span>.  This process is referred to as
-<dfn title="parsing an SWML text format document">parsing</dfn> and an
-implementation that performes this process is referred to as <dfn
-title="SWML text format parser">parser</dfn>.
+in the <span>SWML text serialization</span>.  This process is referred
+to as <dfn title="parsing an SWML text serialization">parsing</dfn>
+and an implementation that performes this process is referred to as
+<dfn title="SWML text serialization parser">parser</dfn>.
 
 <div class="note memo">
 
@@ -72,14 +85,14 @@ outside of the scope of this specification.
 
 </div>
 
-<p>The <span title="parsing an SWML text format document">parsing
+<p>The <span title="parsing an SWML text serialization">parsing
 process</span> is defined in terms of DOM and relies on HTML5 <span
 class=ed>...</span> and manakai's extensions to DOM <span
 class=ed>...</span>.  However, a conforming <span title="SWML text
-format parser">parser</span> don't have to implement them, as long as
-the end result is equivalent.
+serialization parser">parser</span> don't have to implement them, as
+long as the end result is equivalent.
 
-<p>The <span title="parsing an SWML text format document">parsing
+<p>The <span title="parsing an SWML text serialization">parsing
 process</span> is divided into two stages: <span>tokenization</span>
 and <span>tree construction</span>.  The <span>tokenization</span>
 stage emits a sequence of <span title=token>tokens</span>, which are
@@ -87,13 +100,13 @@ used as inputs for the <span>tree construction</span> stage.  The
 <span>tree construction</span> stage constructs a DOM tree.  Some
 steps invoked in the <span>tokenization</span> stage might also
 construct a part of the DOM tree.  During the <span title="parsing an
-SWML text format document">parsing</span>, mutation events <em
+SWML text serialization">parsing</span>, mutation events <em
 class=rfc2119>MUST NOT</em> be invoked.
 
-<p>Before the actual <span title="parsing an SWML text format
-document">parsing</span> starts, a new <code>Document</code> object
-<em class=rfc2119>MUST</em> be created.  It represents the DOM tree
-constructed as a result of the <span title="parsing an SWML text
+<p>Before the actual <span title="parsing an SWML text
+serialization">parsing</span> starts, a new <code>Document</code>
+object <em class=rfc2119>MUST</em> be created.  It represents the DOM
+tree constructed as a result of the <span title="parsing an SWML text
 format document">parsing</span>.  The <code>innerHTML</code> <span>DOM
 attribute</span> of the <code>Document</code> object <em
 class=rfc2119>MUST</em> be initially set to
@@ -110,7 +123,7 @@ the <code>innerHTML</code> is set.  The <dfn>image element</dfn> is
 initially null.
 
 <div class=section>
-<h3>Definitions</h3>
+<h4>Definitions</h4>
 
 <p><dfn>White space characters</dfn> are U+0009 <span
 class=charname>CHARACTER TABULATION</span> and U+0020 <span
@@ -161,11 +174,12 @@ specification</dfn> is the substring in the <span>language
 specification</span> except for the first <code>@</code> character.
 It might be the empty string.
 
-<p>When the <span title="SWML text format parser">parser</span> <dfn
-title="append a character">appends a character</dfn> <var>char</var>
-to node <var>node</var>, the <code>manakai_append_text</code> method
-<cite class=ed>...</cite> <em class=rfc2119>MUST</em> be invoked on
-<var>node</var> with the argument <var>char</var>.
+<p>When the <span title="SWML text serialization parser">parser</span>
+<dfn title="append a character">appends a character</dfn>
+<var>char</var> to node <var>node</var>, the
+<code>manakai_append_text</code> method <cite class=ed>...</cite> <em
+class=rfc2119>MUST</em> be invoked on <var>node</var> with the
+argument <var>char</var>.
 
 <p>When an element is created, its <code>prefix</code> <span>DOM
 attribute</span> <em class=rfc2119>MUST</em> be set to
@@ -204,7 +218,7 @@ prefix</span> is <code>html</code>.
 </div>
 
 <div class=section>
-<h3>Tokenization of lines</h3>
+<h4>Tokenization of lines</h4>
 
 <p>When a string of characters is <dfn
 title=tokenization>tokenized</dfn>, the string <var>s</var> <em
@@ -398,7 +412,7 @@ case, rules for the appropriate <span>mode</span> <em
 class=rfc2119>MUST</em> be followed with the same <var>line</var>.
 
 <div class=section>
-<h4>The "<span>initial</span>" mode</h4>
+<h5>The "<span>initial</span>" mode</h5>
 
 <p>In the "<dfn>initial</dfn>" mode, <var>line</var> <em
 class=rfc2119>MUST</em> be processed as follows:
@@ -427,7 +441,7 @@ title=reprocess-line>reprocess</span> <var>line</var>.
 </div>
 
 <div class=section>
-<h4>The "<span>body</span>" mode</h4>
+<h5>The "<span>body</span>" mode</h5>
 
 <p>In the "<dfn>body</body>" mode, <var>line</var> <em
 class=rfc2119>MUST</em> be processed as follows:
@@ -837,7 +851,7 @@ FEED</code> character.
 </div>
 
 <div class=section>
-<h4>The "<span>preformatted</span>" mode</h4>
+<h5>The "<span>preformatted</span>" mode</h5>
 
 <p>In the "<dfn>preformatted</dfn>" mode, <var>line</var> <em
 class=rfc2119>MUST</em> be processed as follows:
@@ -898,7 +912,7 @@ FEED</code> character.
 </div>
 
 <div class=section>
-<h4>The "<span>preformatted block</span>" mode</h4>
+<h5>The "<span>preformatted block</span>" mode</h5>
 
 <p>In the "<dfn>preformatted block</dfn>" mode, <var>line</var> <em
 class=rfc2119>MUST</em> be processed as follows:
@@ -944,7 +958,7 @@ FEED</code> character.
 </div>
 
 <div class=section>
-<h4>The "<span>image</span>" mode</h4>
+<h5>The "<span>image</span>" mode</h5>
 
 <p>In the "<dfn>image</dfn>" mode, <var>line</var> <em
 class=rfc2119>MUST</em> be processed as follows:
@@ -970,7 +984,7 @@ character</span> in <var>line</var> in the same order to the
 </div>
 
 <div class=section>
-<h3>Tokenization of a table row</h3>
+<h4>Tokenization of a table row</h4>
 
 <p>The <dfn>algorithm to tokenize a table row</span> <var>data</var>
 is as follows:
@@ -1077,7 +1091,7 @@ title=tokenize-table-row-loop><i>LOOP</i></span>.
 </div>
 
 <div class=section>
-<h3>Tokenization of a text</h3>
+<h4>Tokenization of a text</h4>
 
 <p>The <dfn>algorithm to tokenize a text</dfn> <var>data</var> is as
 follows:
@@ -1521,7 +1535,7 @@ title=character-data>data</span> set to the first character of
 </div>
 
 <div class=section>
-<h3>Parsing a magic line</h3>
+<h4>Parsing a magic line</h4>
 
 <p>To <dfn>parse a magic line</dfn> <var>data</var>, the following
 steps <em class=rfc2119>MUST</em> be used:
@@ -1632,7 +1646,7 @@ in the <span>SuikaWiki/0.9 namespace</span>, set the
 </div>
 
 <div class=section>
-<h3>Tree construction</h3>
+<h4>Tree construction</h4>
 
 <p>The <dfn>tree construction</dfn> stage constructs a DOM tree from a
 series of <span title=token>tokens</span> emitted by the
@@ -1651,7 +1665,7 @@ subsections below.
 <p>When the algorithm below says that the <span title="SWML text
 format parser">parser</span> is to do something “<dfn>using the rules
 for</dfn> the <var>m</var> <span>insertion mode</span>”, the <span
-title="SWML text format parser">parser</span> <em
+title="SWML text serialization parser">parser</span> <em
 class=rfc2119>MUST</em> use the rules described under the <var>m</var>
 <span>insertion mode</span>'s section, but <em class=rfc2119>MUST</em>
 leave the <span>insertion mode</span> unchanged.
@@ -1679,7 +1693,7 @@ of <code>body</code>, <code>section</code>, <code>insert</code>,
 <code>comment-p</code>, <code>ed</code>, or <code>pre</code>.
 
 <div class=section>
-<h4>The "<span>in section</span>" <span>insertion mode</span></h4>
+<h5>The "<span>in section</span>" <span>insertion mode</span></h5>
 
 <p>In the "<dfn>in section</dfn>" <span>insertion mode</span>, a
 <span>token</span> <em class=rfc2119>MUST</em> be processed as
@@ -2102,7 +2116,7 @@ paragraph</span>" <span>insertion mode</span>.
 <dt>An <span>end-of-file token</span>
 
 <dd>Now the <code>Document</code> has been constructed.  Abort the
-<span title="SWML text format parser">parser</span>.
+<span title="SWML text serialization parser">parser</span>.
 
 <dt>A <span>labeled list middle token</span>, <span>heading end
 token</span>, <span>preformatted end token</span>, <span>table row end
@@ -2136,7 +2150,7 @@ mode</span> and reprocess the <span>token</span>.
 </div>
 
 <div class=section>
-<h4>The "<span>in table row</span>" <span>insertion mode</span></h4>
+<h5>The "<span>in table row</span>" <span>insertion mode</span></h5>
 
 <p>In the "<dfn>in table row</dfn>" <span>insertion mode</span>, a
 <span>token</span> <em class=rfc2119>MUST</em> be processed as
@@ -2210,8 +2224,8 @@ mode</span> and reprocess the <span>token</span>.
 
 </div>
 
-<div class=section>
-<h4>The "<span>in paragraph</span>" <span>insertion mode</span></h4>
+<div class=sectio5>
+<h5>The "<span>in paragraph</span>" <span>insertion mode</span></h5>
 
 <p>In the "<dfn>in paragrapg</dfn>" <span>insertion mode</span>, a
 <span>token</span> <em class=rfc2119>MUST</em> be processed as
@@ -2728,5 +2742,64 @@ of open elements</span> and follow this substep again.
 </div>
 
 </div>
+
+</div>
+
+<div class=section>
+<h3>Serializing DOM into <span>SWML text serialization</span></h3>
+
+<p class=ed>...
+</div>
+
+<div class=section>
+<h3>The <code>text/x-suikawiki</code> Internet Media Type</h3>
+
+<p class=ed>...
+</div>
+
+</div>
+
+<div class=section>
+<h2>The <dfn>SWML XML serialization</dfn></h2>
+
+<p class=ed>...
+
+<div class=section>
+<h3 class=ed>... xml media type</h3>
+
+<p class=ed>
+</div>
+
+</div>
+
+<div class=section>
+<h2>Semantics of Elements and Attributes</h2>
+
+<p class=ed>...
+</div>
+
+<div class="section no-toc reference normative">
+<h2>References</h2>
+
+<dl>
+
+<dt id=ref-DOM>DOM
+
+<dd class=ed>Web DOM Core? DOM3 Core?
+
+<dt id=ref-HTML5>HTML5
+
+<dd><a href="http://whatwg.org/html5"><cite>HTML 5</cite></a>, WHATWG
+Draft Recommendation.
+
+<dt id=ref-MANAKAI>MANAKAI
+
+<dd class=ed>manakai's DOM extensions.
+
+<dt id=ref-RFC2119>RFC2119
+
+<dd class=ed>...
+
+</dl>
 
 </div>
