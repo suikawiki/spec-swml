@@ -20,7 +20,7 @@
 <!-- <dt>Previous Version</dt> -->
 <dt>Version History</dt>
   <dd><code class=URI>&lt;<a href="http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8">http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8</a>&gt;</code></dd>
-<dt>Author</dt>
+<dt id=author>Author</dt>
   <dd><a href="http://suika.fam.cx/~wakaba/who?" rel="author"
       lang=ja>Wakaba</a>
   <code class="mail">&lt;<a href="mailto:w@suika.fam.cx" rel="author"
@@ -104,6 +104,51 @@ attributes, often in the same context. When it is not clear which is
 being referred to, they are referred to as <dfn title="content
 attribute">content attributes</dfn> for XML attributes, and <dfn
 title="DOM attribute">DOM attributes</dfn> for those from the DOM.
+
+<p>When it is stated that some element or attribute is
+<dfn>ignored</dfn>, or treated as some other value, or handled as if
+it was something else, this refers only to the processing of the node
+after it is in the DOM. A user agent <em class=rfc2119>MUST NOT</em>
+mutate the DOM in such situations.
+
+<p>The language in this specification assumes that the user agent
+expands all entity references, and therefore does not include entity
+reference nodes in the DOM. If user agents do include entity reference
+nodes in the DOM, then user agents <em class=rfc2119>MUST</em> handle
+them as if they were fully expanded when implementing this
+specification.  Entity references to unknown entities <em
+class=rfc2119>MUST</em> be treated as if they contained just an empty
+text node for the purposes of the algorithms defined in this
+specification.
+
+<div class=section>
+<h3>Namespaces</h3>
+
+
+<p>The <dfn>AA namespace</dfn> is
+<code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
+The <span>preferred prefix</span> is <code>aa</code>.
+
+<p>The <dfn>HTML namespace</dfn> is
+<code>http://www.w3.org/1999/xhtml</code>.  The <span>preferred
+prefix</span> is <code>html</code>.
+
+<p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.  The
+<span>preferred prefix</span> is <code>sw</code>.
+
+<p>The <dfn>SuikaWiki/0.10 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
+<span>preferred prefix</span> is <code>sw10</code>.
+
+<p>The <dfn>XHTML2 namespace</dfn> is
+<code>http://www.w3.org/2002/06/xhtml2/</code>.
+
+<p>The <dfn>XML namespace</dfn> is
+<code>http://www.w3.org/XML/1998/namespace </code>.  The
+<span>preferred prefix</span> is <code>xml</code>.
+
+</div>
 
 </div>
 
@@ -246,26 +291,6 @@ to <code>null</code>.
 <code>prefix</code> <span>DOM attribute</span> <em
 class=rfc2119>MUST</em> be set to the <dfn>preferred prefix</dfn> for
 the namespace.
-
-<p>The <dfn>AA namespace</dfn> is
-<code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
-The <span>preferred prefix</span> is <code>aa</code>.
-
-<p>The <dfn>HTML namespace</dfn> is
-<code>http://www.w3.org/1999/xhtml</code>.  The <span>preferred
-prefix</span> is <code>html</code>.
-
-<p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.  The
-<span>preferred prefix</span> is <code>sw</code>.
-
-<p>The <dfn>SuikaWiki/0.10 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
-<span>preferred prefix</span> is <code>sw10</code>.
-
-<p>The <dfn>XML namespace</dfn> is
-<code>http://www.w3.org/XML/1998/namespace </code>.  The
-<span>preferred prefix</span> is <code>xml</code>.
 
 </div>
 
@@ -2861,8 +2886,8 @@ lists attributes defined in this specification.
 
 <p>Inter-element whitespace <span class=ed>HTML5</span>, comment
 nodes, and processing instruction nodes <em class=rfc2119>MUST</em> be
-ignored when establishing whether an element matches its content model
-or not.
+<span title=ignore>ignored</span> when establishing whether an element
+matches its content model or not.
 
 <p>Elements in the <span>SuikaWiki/0.9 namespace</span> and in the
 <span>SuikaWiki/0.10 namespace</span> <em class=rfc2119>MAY</em> be
@@ -3638,10 +3663,10 @@ to that of the <code title>cite</code> attribute on the element.  In
 such a case, the <code>anchor</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MUST NOT</em>
 be specified when the <code title>cite</code> attribute is specified.
-A user agent <em class=rfc2119>MUST</em> ignore the
-<code>anchor</code> attribute in the <span>SuikaWiki/0.9
-namespace</span> if the <code title>cite</code> attribute is
-specified.
+A user agent <em class=rfc2119>MUST</em> <span
+title=ignored>ignore</span> the <code>anchor</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span> if the <code title>cite</code>
+attribute is specified.
 
 <p>The attribute value <em class=rfc2119>MUST</em> be a <span>valid
 integer</span>.  Unless the element is <code>anchor</code>, the
