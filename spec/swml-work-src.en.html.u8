@@ -1569,6 +1569,14 @@ in the <span>SuikaWiki/0.9 namespace</span>, set the
 
 <p class=ed><dfn>tree construction</dfn> stage.
 
+<p>When the algorithm below says that the <span title="SWML text
+format parser">parser</span> is to do something “<dfn>using the rules
+for</dfn> the <var>m</var> <span>insertion mode</span>”, the <span
+title="SWML text format parser">parser</span> <em
+class=rfc2119>MUST</em> use the rules described under the <var>m</var>
+<span>insertion mode</span>'s section, but <em class=rfc2119>MUST</em>
+leave the <span>insertion mode</span> unchanged.
+
 <p>The <dfn>stack of open elements</dfn> contains tuples of
 (<dfn>element node</dfn>, <dfn>section depth</dfn>, <dfn>quotation
 depth</dfn>, <dfn>list depth</dfn>).  These stack grows downdards; the
@@ -1997,99 +2005,12 @@ element</span> until such an element whose local name is
 <code>delete</code> has been popped from the <span>stack of open
 elements</span>.
 
-<dt>A <span>form token</span> whose <span title=form-name>name</form>
-is <code>form</code>
+<dt>A <span>form token</span>
 
-<dd>
+<dt>An <span>element token</span>
 
-<ol>
-
-<li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
-namespace</span>.
-
-<li>If <span title=form-id>id</span> of the <span>form token</span> is
-<em>not</em> null, set the <code>id</code> <span>content
-attribute</span> of the element created to <span
-title=form-id>id</span> of the <span>form token</span>.
-
-<li>Set the <code>input</code> <span>content attribute</span> of the
-element created to the first item in <span
-title=form-parameters>parameters</span> of the <span>form
-token</span>, if any, or the empty string otherwise.
-
-<li>Set the <code>template</code> <span>content attribute</span> of
-the element created to the second item in <span
-title=form-parameters>parameters</span> of the <span>form
-token</span>, if any, or the empty string otherwise.
-
-<li>Set the <code>option</code> <span>content attribute</span> of the
-element created to the third item in <span
-title=form-parameters>parameters</span> of the <span>form
-token</span>, if any, or the empty string otherwise.
-
-<li>If the <span title=form-parameters</span> contains four or more
-items, set the <code>parameter</code> <span>content attribute</span>
-of the element created to the concatenation of items in <span
-title=form-parameters>parameters</span>, separated by a <code>:</code>
-character, in the same order.
-
-<li>Append the element created to the <span>current element</span>.
-
-</ol>
-
-<dt>Any other <span>form token</span>
-
-<dd>
-
-<ol>
-
-<li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
-namespace</span>.
-
-<li>Set the <code>ref</code> <span>content attribute</span> of the
-element created to <span title=form-name>name</span> of the <span>form
-token</span>.
-
-<li>Set the <code>id</code> of the <span>form token</span> is
-<em>not</em> null, set the <code>id</code> <span>content
-attribute</span> of the element created to <span
-title=form-id>id</span> of the <span>form token</span>.
-
-<li>If <span title=form-parameters>parameters</span> of <span>form
-token</span> is not empty, set the <code>parameter</code>
-<span>content attribute</span> of the element created to the
-concatenation of items in <span
-title=form-parameters>parameters</span>, separated by a <code>:</code>
-character, in the same order.  The result value might be the empty
-string.
-
-<li>Append the element created to the <span>current element</span>.
-
-</ol>
-
-<dt>An <span>element token</span> whose <span
-title=element-local-name>local name</span> is <code>replace</code>
-
-<dd>
-
-<ol>
-
-<li>Create an element whose local name is <span
-title=element-local-name>local name</span> of the <span>element
-token</span> and namespace is <span
-title=element-namespace>namespace</span> of the <span>element
-token</span>.
-
-<li>If <span title=element-by-attribute>by attribute</span> of the
-<span>element token</span> is <em>not</em> null, set the
-<code>by</code> <span>content attribute</span> of the element created
-to <span title=element-by-attribute>by attribute</span> of the
-<span>element token</span>.
-
-<li>Append the element created to the <span>stack of open
-elements</span>.
-
-</ol>
+<dd>Process the token <span>using the rules for</span> the "<span>in
+paragraph</span>" <span>insertion mode</span>.
 
 <dt>An <span>end-of-file token</span>
 
@@ -2202,7 +2123,130 @@ mode</span> and reprocess the <span>token</span>.
 
 </div>
 
-"in paragraph"
+<div class=section>
+<h4>The "<span>in paragraph</span>" <span>insertion mode</span></h4>
+
+<p>In the "<dfn>in paragrapg</dfn>" <span>insertion mode</span>, a
+<span>token</span> <em class=rfc2119>MUST</em> be processed as
+follows:
+
+<dl class=switch>
+
+<dt>A <span>character token</span>
+
+<dt>A <span>inline start tag token</span>
+
+<dt>A <span>inline middle tag token</span>
+
+<dt>A <span>inline end tag token</span>
+
+<dt>A <span>form token</span> whose <span title=form-name>name</form>
+is <code>form</code>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
+
+<li>If <span title=form-id>id</span> of the <span>form token</span> is
+<em>not</em> null, set the <code>id</code> <span>content
+attribute</span> of the element created to <span
+title=form-id>id</span> of the <span>form token</span>.
+
+<li>Set the <code>input</code> <span>content attribute</span> of the
+element created to the first item in <span
+title=form-parameters>parameters</span> of the <span>form
+token</span>, if any, or the empty string otherwise.
+
+<li>Set the <code>template</code> <span>content attribute</span> of
+the element created to the second item in <span
+title=form-parameters>parameters</span> of the <span>form
+token</span>, if any, or the empty string otherwise.
+
+<li>Set the <code>option</code> <span>content attribute</span> of the
+element created to the third item in <span
+title=form-parameters>parameters</span> of the <span>form
+token</span>, if any, or the empty string otherwise.
+
+<li>If the <span title=form-parameters</span> contains four or more
+items, set the <code>parameter</code> <span>content attribute</span>
+of the element created to the concatenation of items in <span
+title=form-parameters>parameters</span>, separated by a <code>:</code>
+character, in the same order.
+
+<li>Append the element created to the <span>current element</span>.
+
+</ol>
+
+<dt>Any other <span>form token</span>
+
+<dd>
+
+<ol>
+
+<li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
+namespace</span>.
+
+<li>Set the <code>ref</code> <span>content attribute</span> of the
+element created to <span title=form-name>name</span> of the <span>form
+token</span>.
+
+<li>Set the <code>id</code> of the <span>form token</span> is
+<em>not</em> null, set the <code>id</code> <span>content
+attribute</span> of the element created to <span
+title=form-id>id</span> of the <span>form token</span>.
+
+<li>If <span title=form-parameters>parameters</span> of <span>form
+token</span> is not empty, set the <code>parameter</code>
+<span>content attribute</span> of the element created to the
+concatenation of items in <span
+title=form-parameters>parameters</span>, separated by a <code>:</code>
+character, in the same order.  The result value might be the empty
+string.
+
+<li>Append the element created to the <span>current element</span>.
+
+</ol>
+
+<dt>An <span>element token</span> whose <span
+title=element-local-name>local name</span> is <code>replace</code>
+
+<dd>
+
+<ol>
+
+<li>Create an element whose local name is <span
+title=element-local-name>local name</span> of the <span>element
+token</span> and namespace is <span
+title=element-namespace>namespace</span> of the <span>element
+token</span>.
+
+<li>If <span title=element-by-attribute>by attribute</span> of the
+<span>element token</span> is <em>not</em> null, set the
+<code>by</code> <span>content attribute</span> of the element created
+to <span title=element-by-attribute>by attribute</span> of the
+<span>element token</span>.
+
+<li>Append the element created to the <span>stack of open
+elements</span>.
+
+</ol>
+
+<dt>A <span>labeled list middle token</span>
+
+<dt>A <span>heading end token</span>
+
+<dt>A <span>preformatted end token</span>
+
+<dt>Anything else
+
+<dd>
+
+</dl>
+
+</div>
 
 </div>
 
