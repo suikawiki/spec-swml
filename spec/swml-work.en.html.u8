@@ -1733,22 +1733,33 @@ namespace</a>, set the <code>textContent</code> <a href=#dom-attribute>DOM
 attribute</a> of the node to <var title="">value</var>, and append the
 node to <var title="">parameter</var>.
 
-</li><li>If the first character of <var title="">data</var>, if any, is
-<code>\</code>, run the following substeps:
+</li><li>Otherwise, if the first character of <var title="">data</var>, if
+any, is <code>\</code>, run the following substeps:
 
 <ol>
 
-<li>Remove the first character of <var>data</var>.
+<li>Remove the first character of <var title="">data</var>.  (The removed
+character will be <code>\</code>.)
 
-</li><li>Append the first character of <var>data</var>, if any, to
-<var title="">value</var>.
+</li><li>If the first character of <var title="">data</var>, if any, is
+<code>,</code>, abort these substeps.
+
+</li><li>Otherwise, append the first character of <var title="">data</var>, if
+any, to <var title="">value</var>.
 
 </li></ol>
 
-</li><li>Otherwise, append the first character of <var>data</var> to
+</li><li>Otherwise, if the first character of <var title="">data</var> is
+<code>,</code>, create a <a href=#the-value-element-in-the-suikawiki/0.9-namespace><code title=element-sw-value>value</code></a>
+element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>, set the
+<code>textContent</code> <a href=#dom-attribute>DOM attribute</a> of the node to
+<var title="">value</var>, append the node to <var title="">parameter</var>,
+and go back to the first substep of these substeps.
+
+</li><li>Otherwise, append the first character of <var title="">data</var> to
 <var title="">value</var>.
 
-</li><li>Go back to the second substep of these substeps.
+</li><li>Go back to the <em>second</em> substep of these substeps.
 
 </li></ol>
 

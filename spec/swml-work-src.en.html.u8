@@ -145,7 +145,7 @@ prefix</span> is <code>html</code>.
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
 
 <p>The <dfn>XML namespace</dfn> is
-<code>http://www.w3.org/XML/1998/namespace </code>.  The
+<code>http://www.w3.org/XML/1998/namespace</code>.  The
 <span>preferred prefix</span> is <code>xml</code>.
 
 </div>
@@ -1748,22 +1748,33 @@ namespace</span>, set the <code>textContent</code> <span>DOM
 attribute</span> of the node to <var title>value</var>, and append the
 node to <var title>parameter</var>.
 
-<li>If the first character of <var title>data</var>, if any, is
-<code>\</code>, run the following substeps:
+<li>Otherwise, if the first character of <var title>data</var>, if
+any, is <code>\</code>, run the following substeps:
 
 <ol>
 
-<li>Remove the first character of <var>data</var>.
+<li>Remove the first character of <var title>data</var>.  (The removed
+character will be <code>\</code>.)
 
-<li>Append the first character of <var>data</var>, if any, to
-<var title>value</var>.
+<li>If the first character of <var title>data</var>, if any, is
+<code>,</code>, abort these substeps.
+
+<li>Otherwise, append the first character of <var title>data</var>, if
+any, to <var title>value</var>.
 
 </ol>
 
-<li>Otherwise, append the first character of <var>data</var> to
+<li>In any case, if the first character of <var title>data</var> is
+<code>,</code>, create a <code title=element-sw-value>value</code>
+element in the <span>SuikaWiki/0.9 namespace</span>, set the
+<code>textContent</code> <span>DOM attribute</span> of the node to
+<var title>value</var>, append the node to <var title>parameter</var>,
+and go back to the first substep of these substeps.
+
+<li>Otherwise, append the first character of <var title>data</var> to
 <var title>value</var>.
 
-<li>Go back to the second substep of these substeps.
+<li>Go back to the <em>second</em> substep of these substeps.
 
 </ol>
 
@@ -1849,23 +1860,24 @@ follows:
 the element off the <span>stack of open elements</span> and follow
 this substep again.
 
-<li>Let <var>current depth</var> be the <span>section depth</span> of
-the bottommost entry in the <span>stack of open elements</span>.
+<li>Let <var title>current depth</var> be the <span>section
+depth</span> of the bottommost entry in the <span>stack of open
+elements</span>.
 
-<li>If <span title=heading-start-depth>depth</span> is less than or
-equal to the <var>current depth</var>, pop the element off the
-<span>stack of open elements</span> and go back to the first substep
-of these substeps.
+<li>If <span title=heading-start-depth>depth</span> of the
+<span>token</span> is less than or equal to the <var title>current
+depth</var>, pop the element off the <span>stack of open
+elements</span> and go back to the first substep of these substeps.
 
-<li>Otherwise, if <span title=heading-start-depth>depth</span> is
-greater than <var>current depth</var> + 1, create a
-<code>section</code> element in the <span>HTML namespace</span>,
-append the element created to the <span>current element</span>, push
-the element created to the <span>stack of open elements</span> with
-<span>section depth</span> set to <var>current depth</var> + 1,
-<span>quotation depth</span> set to zero (0), and <span>list
-depth</span> set to zero (0), and go back to the first substep of
-these substeps.
+<li>Otherwise, if <span title=heading-start-depth>depth</span> of the
+<span>token</span> is greater than <var title>current depth</var> + 1,
+create a <code>section</code> element in the <span>HTML
+namespace</span>, append the element created to the <span>current
+element</span>, push the element created to the <span>stack of open
+elements</span> with <span>section depth</span> set to <var
+title>current depth</var> + 1, <span>quotation depth</span> set to
+zero (0), and <span>list depth</span> set to zero (0), and go back to
+the first substep of these substeps.
 
 <li>Create a <code>section</code> element in the <span>HTML
 namespace</span>.
@@ -1886,7 +1898,7 @@ namespace</span>.
 elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
+mode</span>.
 
 </ol>
 
@@ -1952,23 +1964,24 @@ title=element-html-body>body</code>, <code>section</code>,
 <code>insert</code>, or <code>delete</code>, pop the element off the
 <span>stack of open elements</span> and follow this substep again.
 
-<li>Let <var>current depth</var> be the <span>quotation depth</span>
-of the bottommost entry in the <span>stack of open elements</span>.
+<li>Let <var title>current depth</var> be the <span>quotation
+depth</span> of the bottommost entry in the <span>stack of open
+elements</span>.
 
-<li>If <span title=quotation-start-depth>depth</span> is less than or
-equal to the <var>current depth</var>, pop the element off the
-<span>stack of open elements</span> and go back to the first substep
-of these substeps.
+<li>If <span title=quotation-start-depth>depth</span> of the
+<span>token</span> is less than or equal to the <var title>current
+depth</var>, pop the element off the <span>stack of open
+elements</span> and go back to the first substep of these substeps.
 
-<li>Otherwise, if <span title=quotation-start-depth>depth</span> is
-greater than <var>current depth</var> + 1, create a
-<code>blockquote</code> element in the <span>HTML namespace</span>,
-append the element created to the <span>current element</span>, push
-the element created to the <span>stack of open elements</span> with
-<span>section depth</span> set to zero (0), <span>quotation
-depth</span> set to <var>current depth</var> + 1, and <span>list
-depth</span> set to zero (0), and go back to the first substep of
-these substeps.
+<li>Otherwise, if <span title=quotation-start-depth>depth</span> of
+the <span>token</span> is greater than <var title>current depth</var>
++ 1, create a <code>blockquote</code> element in the <span>HTML
+namespace</span>, append the element created to the <span>current
+element</span>, push the element created to the <span>stack of open
+elements</span> with <span>section depth</span> set to zero (0),
+<span>quotation depth</span> set to <var title>current depth</var> +
+1, and <span>list depth</span> set to zero (0), and go back to the
+first substep of these substeps.
 
 <li>Create a <code>blockquote</code> element in the <span>HTML
 namespace</span>.
@@ -1989,27 +2002,26 @@ set to zero (0).
 
 <ol>
 
-<li>Let <var>current depth</var> be the <span>list depth</span> of the
-<span>current element</span>.
+<li>Let <var title>current depth</var> be the <span>list depth</span>
+of the <span>current element</span>.
 
-<li>Let <var>inserted depth</var> be the length of <span
-title=list-start-depth>depth</span> of the <span>list start
-token</span>.
+<li>Let <var title>inserted depth</var> be the length of <span
+title=list-start-depth>depth</span> of the <span>token</span>.
 
-<li>If <var>current depth</var> is greater than <var>inserted
-depth</var>, pop the <span>current element</span> off the <span>stack
-of open elements</span> and go back to the first substep of these
-substeps.
+<li>If <var title>current depth</var> is greater than <var
+title>inserted depth</var>, pop the <span>current element</span> off
+the <span>stack of open elements</span> and go back to the first
+substep of these substeps.
 
-<li>If <var>current depth</var> is less than <var>inserted
+<li>If <var title>current depth</var> is less than <var title>inserted
 depth</var>, run the following substeps:
 
 <ol>
 
-<li>Let <var>type</var> be the character at the index equal to
+<li>Let <var title>type</var> be the character at the index equal to
 <var>current depth</var> in <span title=list-start-depth>depth</span>
-of the <span>list start token</span>, where the index of the first
-character in <span title=list-start-depth>depth</span> is zero (0).
+of the <span>token</span>, where the index of the first character in
+<span title=list-start-depth>depth</span> is zero (0).
 
 <li>If <var>type</var> is <code>-</code>, create a <code>ul</code>
 element in the <span>HTML namespace</span>.
@@ -2043,10 +2055,11 @@ token</span>.
 
 </ol>
 
-<li>If the <span>list depth</span> is equal to <var>inserted
-depth</var> and the local name of the <span>current element</span> is
-<em>not</em> <code>ul</code> or <code>ol</code>, pop the <span>current
-element</span> off the <span>stack of open elements</span>.
+<li>If the <span>list depth</span> of the <span>current element</span>
+is equal to <var title>inserted depth</var> and the local name of the
+<span>current element</span> is <em>not</em> <code>ul</code> or
+<code>ol</code>, pop the <span>current element</span> off the
+<span>stack of open elements</span>.
 
 <li>Create a <code>li</code> element in the <span>HTML
 namespace</span>.
@@ -2057,11 +2070,25 @@ namespace</span>.
 elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
+mode</span>.
 
 </ol>
 
 <dt>A <span>labeled list start token</span>
+
+<!--
+
+In SuikaWiki3 implementation,
+
+:a:
+-b
+:c:
+-d
+
+generates two dl elements and two ul elements.  According to this
+specification, it MUST generate a dl element with two ul elements.
+
+-->
 
 <dd>
 
@@ -2086,7 +2113,7 @@ namespace</span>.
 elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
+mode</span>.
 
 </ol>
 
@@ -2112,7 +2139,7 @@ namespace</span>.
 <li>Push the element created to the <span>stack of open
 elements</span>.
 
-<li>Create a <code>tbody</code> element in the <span>HTML
+<li>Create a <code>tr</code> element in the <span>HTML
 namespace</span>.
 
 <li>Append the element created to the <span>current element</span>.
@@ -2147,7 +2174,7 @@ the element created to <span
 title=block-start-tag-classes>classes</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
+mode</span>.
 
 </ol>
 
@@ -2165,14 +2192,8 @@ namespace</span>.
 <li>Push the element created to the <span>stack of open
 elements</span>.
 
-<li>If the <span>token</span>'s <span
-title=block-start-tag-classes>classes</span> is not null, set the
-<code title=attr-class>class</code> <span>content attribute</span> of
-the element created to <span
-title=block-start-tag-classes>classes</span>.
-
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
+mode</span>.
 
 </ol>
 
@@ -2192,7 +2213,7 @@ mode</span> and reprocess the <span>token</span>.
 elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
+mode</span>.
 
 </ol>
 
@@ -2211,7 +2232,7 @@ namespace</span>.
 elements</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
-mode</span> and reprocess the <span>token</span>.
+mode</span>.
 
 </ol>
 
@@ -2260,6 +2281,8 @@ paragraph</span>" <span>insertion mode</span>.
 <dd>Now the <code title=dom-document>Document</code> has been
 constructed.  Abort the <span title="SWML text serialization
 parser">parser</span>.
+
+<dt>Any other <span>block start tag token</span>
 
 <dt>A <span>labeled list middle token</span>, <span>heading end
 token</span>, <span>preformatted end token</span>, <span>table row end
@@ -2314,6 +2337,9 @@ namespace</span>.
 
 <li>Push the element created to the <span>stack of open
 elements</span>.
+
+<li>Switch to the "<span>in paragraph</span>" <span>insertion
+mode</span>.
 
 </ol>
 
@@ -2426,119 +2452,125 @@ following table:
 
 <tr>
 <th><code>AA</code>
-<th>The <span>AA namespace</span>
-<th><code>aa</code>
+<td>The <span>AA namespace</span>
+<td><code>aa</code>
 <!-- SuikaWiki/0.10 -->
 
 <tr>
 <th><code>ABBR</code>
-<th>The <span>HTML namespace</span>
-<th><code>abbr</code>
+<td>The <span>HTML namespace</span>
+<td><code>abbr</code>
 
 <tr>
 <th><code>CITE</code>
-<th>The <span>HTML namespace</span>
-<th><code>cite</code>
+<td>The <span>HTML namespace</span>
+<td><code>cite</code>
 <!-- SuikaWiki/0.10 -->
 
 <tr>
 <th><code>CODE</code>
-<th>The <span>HTML namespace</span>
-<th><code>code</code>
+<td>The <span>HTML namespace</span>
+<td><code>code</code>
 
 <tr>
 <th><code>CSECTION</code>
-<th>The <span>SuikaWiki/0.10 namespace</span>
-<th><code>csection</code>
+<td>The <span>SuikaWiki/0.10 namespace</span>
+<td><code>csection</code>
 <!-- SuikaWiki/0.10 -->
 
 <tr>
 <th><code>DEL</code>
-<th>The <span>HTML namespace</span>
-<th><code>del</code>
+<td>The <span>HTML namespace</span>
+<td><code>del</code>
 
 <tr>
 <th><code>DFN</code>
-<th>The <span>HTML namespace</span>
-<th><code>dfn</code>
+<td>The <span>HTML namespace</span>
+<td><code>dfn</code>
 
 <tr>
 <th><code>INS</code>
-<th>The <span>HTML namespace</span>
-<th><code>ins</code>
+<td>The <span>HTML namespace</span>
+<td><code>ins</code>
 
 <tr>
 <th><code>KBD</code>
-<th>The <span>HTML namespace</span>
-<th><code>kbd</code>
+<td>The <span>HTML namespace</span>
+<td><code>kbd</code>
 
 <tr>
 <th><code>KEY</code>
-<th>The <span>SuikaWiki/0.10 namespace</span>
-<th><code>key</code>
+<td>The <span>SuikaWiki/0.10 namespace</span>
+<td><code>key</code>
 
 <tr>
 <th><code>Q</code>
-<th>The <span>HTML namespace</span>
-<th><code>q</code>
+<td>The <span>HTML namespace</span>
+<td><code>q</code>
 <!-- SuikaWiki/0.10 -->
 
 <tr>
 <th><code>QN</code>
-<th>The <span>SuikaWiki/0.10 namespace</span>
-<th><code>qn</code>
+<td>The <span>SuikaWiki/0.10 namespace</span>
+<td><code>qn</code>
 <!-- SuikaWiki/0.10 -->
 
 <tr>
 <th><code>RUBY</code>
-<th>The <span>HTML namespace</span>
-<th><code>ruby</code>
+<td>The <span>HTML namespace</span>
+<td><code>ruby</code>
 
 <tr>
 <th><code>RUBYB</code>
-<th>The <span>SuikaWiki/0.9 namespace</span>
-<th><code>rubyb</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>rubyb</code>
 
 <tr>
 <th><code>SAMP</code>
-<th>The <span>HTML namespace</span>
-<th><code>samp</code>
+<td>The <span>HTML namespace</span>
+<td><code>samp</code>
 
 <tr>
 <th><code>SPAN</code>
-<th>The <span>HTML namespace</span>
-<th><code>span</code>
+<td>The <span>HTML namespace</span>
+<td><code>span</code>
 
 <tr>
 <th><code>SRC</code>
-<th>The <span>SuikaWiki/0.10 namespace</span>
-<th><code>src</code>
+<td>The <span>SuikaWiki/0.10 namespace</span>
+<td><code>src</code>
 
 <tr>
 <th><code>SUB</code>
-<th>The <span>HTML namespace</span>
-<th><code>sub</code>
+<td>The <span>HTML namespace</span>
+<td><code>sub</code>
 
 <tr>
 <th><code>SUP</code>
-<th>The <span>HTML namespace</span>
-<th><code>sup</code>
+<td>The <span>HTML namespace</span>
+<td><code>sup</code>
 
 <tr>
 <th><code>TIME</code>
-<th>The <span>HTML namespace</span>
-<th><code>time</code>
+<td>The <span>HTML namespace</span>
+<td><code>time</code>
 <!-- SuikaWiki/0.10 (undocumented, not implemented in SuikaWiki3) -->
 
 <tr>
 <th><code>VAR</code>
-<th>The <span>HTML namespace</span>
-<th><code>var</code>
+<td>The <span>HTML namespace</span>
+<td><code>var</code>
 
 <tr>
 <th><code>WEAK</code>
-<th>The <span>SuikaWiki/0.9 namespace</span>
-<th><code>weak</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>weak</code>
+
+<tr>
+<th>Anything else
+<td>The <span>SuikaWiki/0.10 namespace</span>
+<td>Same as <span title=inline-start-tag-tag-name>tag name</span>
+<!-- SWML 1.0 new -->
 
 </table>
 
@@ -2573,17 +2605,19 @@ elements</span>.
 namespace</span>.
 
 <li>If the local name of the <span>current element</span> is
-<code>title</code> or <code>nsuri</code>, set <var>local name</var> to
-<code>attrvalue</code> and pop the <span>current element</span> off
-the <span>stack of open elements</span>.
+<code>rt</code>, <code>title</code>, or <code>nsuri</code>, set
+<var>local name</var> to <code>attrvalue</code> and pop the
+<span>current element</span> off the <span>stack of open
+elements</span>.
 
-<li>If the local name of the <span>current element</span> is
-<code>qn</code>, set <var>local name</var> to <code>nsuri</code>.
+<li>Otherwise, if the local name of the <span>current element</span>
+is <code>qn</code>, set <var title>local name</var> to
+<code>nsuri</code>.
 
-<li>If the local name of the <span>current element</span> is
-<code>ruby</code> or <code>rubyb</code>, set <var>local name</var> to
-<code>rt</code> and set <var>namespace</var> to the <span>HTML
-namespace</span>.
+<li>Otherwise, if the local name of the <span>current element</span>
+is <code>ruby</code> or <code>rubyb</code>, set <var title>local
+name</var> to <code>rt</code> and set <var title>namespace</var> to
+the <span>HTML namespace</span>.
 
 <li>Create an element whose local name <var>local name</var> in the
 <var>namespace</var>.
@@ -2868,6 +2902,28 @@ of open elements</span> and follow this substep again.
 <code>h1</code>, pop the element off the <span>stack of open
 elements</span>.
 
+<li>Switch to the "<span>in section</span>" <span>insertion
+mode</span>.
+
+</ol>
+
+<dt>A <span>table cell end token</span>
+
+<dd>
+
+<ol>
+
+<li>If the <span>current element</span> is <em>not</em> one of
+<span>structural elements</span>, pop the element off the <span>stack
+of open elements</span> and follow this substep again.
+
+<li>If the local name of the <span>current element</span> is
+<code>td</code>, pop the element off the <span>stack of open
+elements</span>.
+
+<li>Switch to the "<span>in table row</span>" <span>insertion
+mode</span>.
+
 </ol>
 
 <dt>A <span>block end tag token</span> whose <span
@@ -2887,13 +2943,25 @@ of open elements</span> and follow this substep again.
 <code>pre</code>, pop the element off the <span>stack of open
 elements</span>.
 
+<li>Switch to the "<span>in section</span>" <span>insertion
+mode</span>.
+
 </ol>
 
 <dt>Anything else
 
-<dd>If the <span>current element</span> is <em>not</em> one of
+<dd>
+
+<ol>
+
+<li>If the <span>current element</span> is <em>not</em> one of
 <span>structural elements</span>, pop the element off the <span>stack
 of open elements</span> and follow this substep again.
+
+<li>Switch to the "<span>in section</span>" <span>insertion
+mode</span> and reprocess the <span>token</span>.
+
+</ol>
 
 </dl>
 
@@ -3712,6 +3780,40 @@ can be inserted after this element.
 </div>
 
 <p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h3><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
+namespace</span></h3>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None. <!-- Phrasing content -->
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><span title=attr-sw-class>class</span>
+
+</dl>
+
+<p><dfn>Uppercase elements</dfn> are elements in the
+<span>SuikaWiki/0.10 namespace</span> whose local name consists of one
+or more <span>uppercase letters</span>.
+
+<p>These elements <em class=rfc2119>MUST NOT</em> be used.
+
+<p>These elements might be inserted into the DOM by a <span
+title="SWML text serialization parser">parser</span> when an
+<span>inline start tag</span> with unknown <span>tag name</span> is
+found.
 
 </div>
 
