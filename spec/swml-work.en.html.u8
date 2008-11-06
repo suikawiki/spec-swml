@@ -141,18 +141,20 @@ namespace</span></a></li>
 <span>SuikaWiki/0.10 namespace</span></a></li>
 			<li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>5.26 </span>The <code>title</code> element in the
 <span>SuikaWiki/0.10 namespace</span></a></li>
-			<li><a href=#the-aa-element-in-the-aa-namespace><span class=secno>5.27 </span>The <code>aa</code> element in the <span>AA namespace</span></a></li>
-			<li><a href=#the-class-attribute><span class=secno>5.28 </span>The <code>class</code> attribute</a></li>
-			<li><a href=#the-id-attribute><span class=secno>5.29 </span>The <code title=attr-sw-id>id</code> attribute</a></li>
-			<li><a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.30 </span>The <code>anchor</code> attribute
+			<li><a href=#uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>5.27 </span><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
+namespace</span></a></li>
+			<li><a href=#the-aa-element-in-the-aa-namespace><span class=secno>5.28 </span>The <code>aa</code> element in the <span>AA namespace</span></a></li>
+			<li><a href=#the-class-attribute><span class=secno>5.29 </span>The <code>class</code> attribute</a></li>
+			<li><a href=#the-id-attribute><span class=secno>5.30 </span>The <code title=attr-sw-id>id</code> attribute</a></li>
+			<li><a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.31 </span>The <code>anchor</code> attribute
 in the <span>SuikaWiki/0.9 namespace</span></a></li>
-			<li><a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.31 </span>The <code>resScheme</code>
+			<li><a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.32 </span>The <code>resScheme</code>
 attribute in the <span>SuikaWiki/0.9 namespace</span></a></li>
-			<li><a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.32 </span>The <code>resParameter</code> attribute
+			<li><a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.33 </span>The <code>resParameter</code> attribute
 in the <span>SuikaWiki/0.9 namespace</span></a></li>
-			<li><a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.33 </span>The <code>Name</code> attribute in
+			<li><a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <code>Name</code> attribute in
 the <span>SuikaWiki/0.9 namespace</span></a></li>
-			<li><a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <code>Version</code> attribute in the
+			<li><a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.35 </span>The <code>Version</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
 	<li><a class=no-num href=#references>References</a></li></ol>
 <!--end-toc-->
@@ -233,7 +235,7 @@ prefix</a> is <code>html</code>.
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
 
 </p><p>The <dfn id=xml-namespace>XML namespace</dfn> is
-<code>http://www.w3.org/XML/1998/namespace </code>.  The
+<code>http://www.w3.org/XML/1998/namespace</code>.  The
 <a href=#preferred-prefix>preferred prefix</a> is <code>xml</code>.
 
 </p></div>
@@ -1749,7 +1751,7 @@ any, to <var title="">value</var>.
 
 </li></ol>
 
-</li><li>Otherwise, if the first character of <var title="">data</var> is
+</li><li>In any case, if the first character of <var title="">data</var> is
 <code>,</code>, create a <a href=#the-value-element-in-the-suikawiki/0.9-namespace><code title=element-sw-value>value</code></a>
 element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>, set the
 <code>textContent</code> <a href=#dom-attribute>DOM attribute</a> of the node to
@@ -1843,23 +1845,23 @@ follows:
 the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
 this substep again.
 
-</li><li>Let <var>current depth</var> be the <a href=#section-depth>section depth</a> of
-the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
+</li><li>Let <var title="">current depth</var> be the <a href=#section-depth>section
+depth</a> of the bottommost entry in the <a href=#stack-of-open-elements>stack of open
+elements</a>.
 
-</li><li>If <a href=#heading-start-depth title=heading-start-depth>depth</a> is less than or
-equal to the <var>current depth</var>, pop the element off the
-<a href=#stack-of-open-elements>stack of open elements</a> and go back to the first substep
-of these substeps.
+</li><li>If <a href=#heading-start-depth title=heading-start-depth>depth</a> of the
+<a href=#token>token</a> is less than or equal to the <var title="">current
+depth</var>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a> and go back to the first substep of these substeps.
 
-</li><li>Otherwise, if <a href=#heading-start-depth title=heading-start-depth>depth</a> is
-greater than <var>current depth</var> + 1, create a
-<code>section</code> element in the <a href=#html-namespace>HTML namespace</a>,
-append the element created to the <a href=#current-element>current element</a>, push
-the element created to the <a href=#stack-of-open-elements>stack of open elements</a> with
-<a href=#section-depth>section depth</a> set to <var>current depth</var> + 1,
-<a href=#quotation-depth>quotation depth</a> set to zero (0), and <a href=#list-depth>list
-depth</a> set to zero (0), and go back to the first substep of
-these substeps.
+</li><li>Otherwise, if <a href=#heading-start-depth title=heading-start-depth>depth</a> of the
+<a href=#token>token</a> is greater than <var title="">current depth</var> + 1,
+create a <code>section</code> element in the <a href=#html-namespace>HTML
+namespace</a>, append the element created to the <a href=#current-element>current
+element</a>, push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a> with <a href=#section-depth>section depth</a> set to <var title="">current depth</var> + 1, <a href=#quotation-depth>quotation depth</a> set to
+zero (0), and <a href=#list-depth>list depth</a> set to zero (0), and go back to
+the first substep of these substeps.
 
 </li><li>Create a <code>section</code> element in the <a href=#html-namespace>HTML
 namespace</a>.
@@ -1879,7 +1881,7 @@ namespace</a>.
 elements</a>.
 
 </li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
-mode</a> and reprocess the <a href=#token>token</a>.
+mode</a>.
 
 </li></ol>
 
@@ -1938,23 +1940,24 @@ the element created to <a href=#block-start-tag-classes title=block-start-tag-cl
 <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop the element off the
 <a href=#stack-of-open-elements>stack of open elements</a> and follow this substep again.
 
-</li><li>Let <var>current depth</var> be the <a href=#quotation-depth>quotation depth</a>
-of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
+</li><li>Let <var title="">current depth</var> be the <a href=#quotation-depth>quotation
+depth</a> of the bottommost entry in the <a href=#stack-of-open-elements>stack of open
+elements</a>.
 
-</li><li>If <a href=#quotation-start-depth title=quotation-start-depth>depth</a> is less than or
-equal to the <var>current depth</var>, pop the element off the
-<a href=#stack-of-open-elements>stack of open elements</a> and go back to the first substep
-of these substeps.
+</li><li>If <a href=#quotation-start-depth title=quotation-start-depth>depth</a> of the
+<a href=#token>token</a> is less than or equal to the <var title="">current
+depth</var>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a> and go back to the first substep of these substeps.
 
-</li><li>Otherwise, if <a href=#quotation-start-depth title=quotation-start-depth>depth</a> is
-greater than <var>current depth</var> + 1, create a
-<code>blockquote</code> element in the <a href=#html-namespace>HTML namespace</a>,
-append the element created to the <a href=#current-element>current element</a>, push
-the element created to the <a href=#stack-of-open-elements>stack of open elements</a> with
-<a href=#section-depth>section depth</a> set to zero (0), <a href=#quotation-depth>quotation
-depth</a> set to <var>current depth</var> + 1, and <a href=#list-depth>list
-depth</a> set to zero (0), and go back to the first substep of
-these substeps.
+</li><li>Otherwise, if <a href=#quotation-start-depth title=quotation-start-depth>depth</a> of
+the <a href=#token>token</a> is greater than <var title="">current depth</var>
++ 1, create a <code>blockquote</code> element in the <a href=#html-namespace>HTML
+namespace</a>, append the element created to the <a href=#current-element>current
+element</a>, push the element created to the <a href=#stack-of-open-elements>stack of open
+elements</a> with <a href=#section-depth>section depth</a> set to zero (0),
+<a href=#quotation-depth>quotation depth</a> set to <var title="">current depth</var> +
+1, and <a href=#list-depth>list depth</a> set to zero (0), and go back to the
+first substep of these substeps.
 
 </li><li>Create a <code>blockquote</code> element in the <a href=#html-namespace>HTML
 namespace</a>.
@@ -1974,26 +1977,24 @@ set to zero (0).
 
 <ol>
 
-<li>Let <var>current depth</var> be the <a href=#list-depth>list depth</a> of the
-<a href=#current-element>current element</a>.
+<li>Let <var title="">current depth</var> be the <a href=#list-depth>list depth</a>
+of the <a href=#current-element>current element</a>.
 
-</li><li>Let <var>inserted depth</var> be the length of <a href=#list-start-depth title=list-start-depth>depth</a> of the <a href=#list-start-token>list start
-token</a>.
+</li><li>Let <var title="">inserted depth</var> be the length of <a href=#list-start-depth title=list-start-depth>depth</a> of the <a href=#token>token</a>.
 
-</li><li>If <var>current depth</var> is greater than <var>inserted
-depth</var>, pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack
-of open elements</a> and go back to the first substep of these
-substeps.
+</li><li>If <var title="">current depth</var> is greater than <var title="">inserted depth</var>, pop the <a href=#current-element>current element</a> off
+the <a href=#stack-of-open-elements>stack of open elements</a> and go back to the first
+substep of these substeps.
 
-</li><li>If <var>current depth</var> is less than <var>inserted
+</li><li>If <var title="">current depth</var> is less than <var title="">inserted
 depth</var>, run the following substeps:
 
 <ol>
 
-<li>Let <var>type</var> be the character at the index equal to
+<li>Let <var title="">type</var> be the character at the index equal to
 <var>current depth</var> in <a href=#list-start-depth title=list-start-depth>depth</a>
-of the <a href=#list-start-token>list start token</a>, where the index of the first
-character in <a href=#list-start-depth title=list-start-depth>depth</a> is zero (0).
+of the <a href=#token>token</a>, where the index of the first character in
+<a href=#list-start-depth title=list-start-depth>depth</a> is zero (0).
 
 </li><li>If <var>type</var> is <code>-</code>, create a <code>ul</code>
 element in the <a href=#html-namespace>HTML namespace</a>.
@@ -2027,10 +2028,11 @@ token</a>.
 
 </li></ol>
 
-</li><li>If the <a href=#list-depth>list depth</a> is equal to <var>inserted
-depth</var> and the local name of the <a href=#current-element>current element</a> is
-<em>not</em> <code>ul</code> or <code>ol</code>, pop the <a href=#current-element>current
-element</a> off the <a href=#stack-of-open-elements>stack of open elements</a>.
+</li><li>If the <a href=#list-depth>list depth</a> of the <a href=#current-element>current element</a>
+is equal to <var title="">inserted depth</var> and the local name of the
+<a href=#current-element>current element</a> is <em>not</em> <code>ul</code> or
+<code>ol</code>, pop the <a href=#current-element>current element</a> off the
+<a href=#stack-of-open-elements>stack of open elements</a>.
 
 </li><li>Create a <code>li</code> element in the <a href=#html-namespace>HTML
 namespace</a>.
@@ -2041,11 +2043,25 @@ namespace</a>.
 elements</a>.
 
 </li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
-mode</a> and reprocess the <a href=#token>token</a>.
+mode</a>.
 
 </li></ol>
 
 </dd><dt>A <a href=#labeled-list-start-token>labeled list start token</a>
+
+<!--
+
+In SuikaWiki3 implementation,
+
+:a:
+-b
+:c:
+-d
+
+generates two dl elements and two ul elements.  According to this
+specification, it MUST generate a dl element with two ul elements.
+
+-->
 
 </dt><dd>
 
@@ -2070,7 +2086,7 @@ namespace</a>.
 elements</a>.
 
 </li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
-mode</a> and reprocess the <a href=#token>token</a>.
+mode</a>.
 
 </li></ol>
 
@@ -2096,7 +2112,7 @@ namespace</a>.
 </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
-</li><li>Create a <code>tbody</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <code>tr</code> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -2128,7 +2144,7 @@ elements</a>.
 the element created to <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a>.
 
 </li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
-mode</a> and reprocess the <a href=#token>token</a>.
+mode</a>.
 
 </li></ol>
 
@@ -2146,12 +2162,8 @@ namespace</a>.
 </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
-</li><li>If the <a href=#token>token</a>'s <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is not null, set the
-<a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
-the element created to <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a>.
-
 </li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
-mode</a> and reprocess the <a href=#token>token</a>.
+mode</a>.
 
 </li></ol>
 
@@ -2171,7 +2183,7 @@ mode</a> and reprocess the <a href=#token>token</a>.
 elements</a>.
 
 </li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
-mode</a> and reprocess the <a href=#token>token</a>.
+mode</a>.
 
 </li></ol>
 
@@ -2190,7 +2202,7 @@ namespace</a>.
 elements</a>.
 
 </li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
-mode</a> and reprocess the <a href=#token>token</a>.
+mode</a>.
 
 </li></ol>
 
@@ -2237,7 +2249,9 @@ paragraph</a>" <a href=#insertion-mode>insertion mode</a>.
 constructed.  Abort the <a href=#swml-text-serialization-parser title="SWML text serialization
 parser">parser</a>.
 
-</dd><dt>A <a href=#labeled-list-middle-token>labeled list middle token</a>, <a href=#heading-end-token>heading end
+</dd><dt>Any other <a href=#block-start-tag-token>block start tag token</a>
+
+</dt><dt>A <a href=#labeled-list-middle-token>labeled list middle token</a>, <a href=#heading-end-token>heading end
 token</a>, <a href=#preformatted-end-token>preformatted end token</a>, <a href=#table-row-end-token>table row end
 token</a>, <a href=#table-cell-start-token>table cell start token</a>, <a href=#table-cell-end-token>table cell
 end token</a>, or <a href=#table-colspan-cell-token>table colspan cell token</a> <!-- they
@@ -2290,6 +2304,9 @@ namespace</a>.
 
 </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a>.
+
+</li><li>Switch to the "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion
+mode</a>.
 
 </li></ol>
 
@@ -2401,121 +2418,127 @@ following table:
 
 <tr>
 <th><code>AA</code>
-</th><th>The <a href=#aa-namespace>AA namespace</a>
-</th><th><code>aa</code>
+</th><td>The <a href=#aa-namespace>AA namespace</a>
+</td><td><code>aa</code>
 <!-- SuikaWiki/0.10 -->
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>ABBR</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>abbr</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>abbr</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>CITE</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>cite</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>cite</code>
 <!-- SuikaWiki/0.10 -->
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>CODE</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>code</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>code</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>CSECTION</code></a>
-</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
-</th><th><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>csection</code></a>
+</th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</td><td><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>csection</code></a>
 <!-- SuikaWiki/0.10 -->
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>DEL</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>del</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>del</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>DFN</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>dfn</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>dfn</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>INS</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>ins</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>ins</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>KBD</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>kbd</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>kbd</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>KEY</code></a>
-</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
-</th><th><a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>key</code></a>
+</th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</td><td><a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>key</code></a>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>Q</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>q</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>q</code>
 <!-- SuikaWiki/0.10 -->
 
-</th></tr><tr>
+</td></tr><tr>
 <th><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>QN</code></a>
-</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
-</th><th><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>
+</th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</td><td><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>
 <!-- SuikaWiki/0.10 -->
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>RUBY</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>ruby</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>ruby</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>RUBYB</code></a>
-</th><th>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
-</th><th><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>SAMP</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>samp</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>samp</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>SPAN</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>span</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>span</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>SRC</code></a>
-</th><th>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
-</th><th><a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>src</code></a>
+</th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</td><td><a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>src</code></a>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>SUB</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>sub</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>sub</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>SUP</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>sup</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>sup</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>TIME</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>time</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>time</code>
 <!-- SuikaWiki/0.10 (undocumented, not implemented in SuikaWiki3) -->
 
-</th></tr><tr>
+</td></tr><tr>
 <th><code>VAR</code>
-</th><th>The <a href=#html-namespace>HTML namespace</a>
-</th><th><code>var</code>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><code>var</code>
 
-</th></tr><tr>
+</td></tr><tr>
 <th><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>WEAK</code></a>
-</th><th>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
-</th><th><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>weak</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>weak</code></a>
 
-</th></tr></tbody></table>
+</td></tr><tr>
+<th>Anything else
+</th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+</td><td>Same as <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag name</a>
+<!-- SWML 1.0 new -->
+
+</td></tr></tbody></table>
 
 </li><li>If the <a href=#token>token</a>'s <a href=#inline-start-tag-classes title=inline-start-tag-classes>classes</a> is not null, set the
 <a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
@@ -2544,17 +2567,19 @@ elements</a>.
 namespace</a>.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> or <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, set <var>local name</var> to
-<a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> and pop the <a href=#current-element>current element</a> off
-the <a href=#stack-of-open-elements>stack of open elements</a>.
+<code>rt</code>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, or <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, set
+<var>local name</var> to <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> and pop the
+<a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
 
-</li><li>If the local name of the <a href=#current-element>current element</a> is
-<a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>, set <var>local name</var> to <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>.
+</li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
+is <a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>, set <var title="">local name</var> to
+<a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>.
 
-</li><li>If the local name of the <a href=#current-element>current element</a> is
-<code>ruby</code> or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var>local name</var> to
-<code>rt</code> and set <var>namespace</var> to the <a href=#html-namespace>HTML
-namespace</a>.
+</li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
+is <code>ruby</code> or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var title="">local
+name</var> to <code>rt</code> and set <var title="">namespace</var> to
+the <a href=#html-namespace>HTML namespace</a>.
 
 </li><li>Create an element whose local name <var>local name</var> in the
 <var>namespace</var>.
@@ -2821,6 +2846,28 @@ of open elements</a> and follow this substep again.
 <code>h1</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
+</li><li>Switch to the "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion
+mode</a>.
+
+</li></ol>
+
+</dd><dt>A <a href=#table-cell-end-token>table cell end token</a>
+
+</dt><dd>
+
+<ol>
+
+<li>If the <a href=#current-element>current element</a> is <em>not</em> one of
+<a href=#structural-elements>structural elements</a>, pop the element off the <a href=#stack-of-open-elements>stack
+of open elements</a> and follow this substep again.
+
+</li><li>If the local name of the <a href=#current-element>current element</a> is
+<code>td</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Switch to the "<a href=#in-table-row>in table row</a>" <a href=#insertion-mode>insertion
+mode</a>.
+
 </li></ol>
 
 </dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>PRE</code>
@@ -2839,13 +2886,25 @@ of open elements</a> and follow this substep again.
 <code>pre</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
+</li><li>Switch to the "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion
+mode</a>.
+
 </li></ol>
 
 </dd><dt>Anything else
 
-</dt><dd>If the <a href=#current-element>current element</a> is <em>not</em> one of
+</dt><dd>
+
+<ol>
+
+<li>If the <a href=#current-element>current element</a> is <em>not</em> one of
 <a href=#structural-elements>structural elements</a>, pop the element off the <a href=#stack-of-open-elements>stack
 of open elements</a> and follow this substep again.
+
+</li><li>Switch to the "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion
+mode</a> and reprocess the <a href=#token>token</a>.
+
+</li></ol>
 
 </dd></dl>
 
@@ -3659,7 +3718,40 @@ can be inserted after this element.
 </p></div>
 
 <div class=section>
-<h3 id=the-aa-element-in-the-aa-namespace><span class=secno>5.27 </span>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a></h3>
+
+<h3 id=uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>5.27 </span><a href=#uppercase-elements>Uppercase elements</a> in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+namespace</a></h3>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None. <!-- Phrasing content -->
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class title=attr-sw-class>class</a>
+
+</dd></dl>
+
+<p><dfn id=uppercase-elements>Uppercase elements</dfn> are elements in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> whose local name consists of one
+or more <a href=#uppercase-letters>uppercase letters</a>.
+
+</p><p>These elements <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p>These elements might be inserted into the DOM by a <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a> when an
+<span>inline start tag</span> with unknown <span>tag name</span> is
+found.
+
+</p></div>
+
+<div class=section>
+<h3 id=the-aa-element-in-the-aa-namespace><span class=secno>5.28 </span>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a></h3>
 
 <p>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a> <span class=ed>...</span> falls into the <a href=#phrasing-content>phrasing content</a>
 category for the purpose of the content models in this specification.
@@ -3669,7 +3761,7 @@ category for the purpose of the content models in this specification.
 </p></div>
 
 <div class=section>
-<h3 id=the-class-attribute><span class=secno>5.28 </span>The <dfn title=attr-class><code>class</code></dfn> attribute</h3>
+<h3 id=the-class-attribute><span class=secno>5.29 </span>The <dfn title=attr-class><code>class</code></dfn> attribute</h3>
 
 <p>All elements in the <a href=#html-namespace>HTML namespace</a> have <a href=http://www.whatwg.org/specs/web-apps/current-work/#classes><dfn id=attr-html-class title=attr-html-class><code>class</code></dfn></a> attribute <span class=ed>...</span>.
 
@@ -3687,7 +3779,7 @@ attribute.
 </p></div>
 
 <div class=section>
-<h3 id=the-id-attribute><span class=secno>5.29 </span>The <a href=#attr-sw-id><code title=attr-sw-id>id</code></a> attribute</h3>
+<h3 id=the-id-attribute><span class=secno>5.30 </span>The <a href=#attr-sw-id><code title=attr-sw-id>id</code></a> attribute</h3>
 
 <p>The <dfn id=attr-sw-id title=attr-sw-id><code>id</code></dfn> attribute of an
 element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and
@@ -3698,7 +3790,7 @@ requirements as the <a href=http://www.whatwg.org/specs/web-apps/current-work/#t
 
 <div class=section>
 
-<h3 id=the-anchor-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.30 </span>The <dfn title=attr-sw-anchor><code>anchor</code></dfn> attribute
+<h3 id=the-anchor-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.31 </span>The <dfn title=attr-sw-anchor><code>anchor</code></dfn> attribute
 in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 <p>The <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
@@ -3753,7 +3845,7 @@ namespace</a> that belongs to the same tree.
 
 <div class=section>
 
-<h3 id=the-resscheme-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.31 </span>The <dfn title=attr-sw-res-scheme><code>resScheme</code></dfn>
+<h3 id=the-resscheme-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.32 </span>The <dfn title=attr-sw-res-scheme><code>resScheme</code></dfn>
 attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 <p>The <a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-scheme>resScheme</code></a> attribute in
@@ -3771,7 +3863,7 @@ namespace</a>.
 
 <div class=section>
 
-<h3 id=the-resparameter-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.32 </span>The <dfn title=attr-sw-res-parameter><code>resParameter</code></dfn> attribute
+<h3 id=the-resparameter-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.33 </span>The <dfn title=attr-sw-res-parameter><code>resParameter</code></dfn> attribute
 in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 <p>The <a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-parameter>resParameter</code></a> attribute
@@ -3789,7 +3881,7 @@ namespace</a>.
 
 <div class=section>
 
-<h3 id=the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.33 </span>The <dfn title=attr-sw-name><code>Name</code></dfn> attribute in
+<h3 id=the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <dfn title=attr-sw-name><code>Name</code></dfn> attribute in
 the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 <!--
@@ -3809,7 +3901,7 @@ title=element-sw-document>document</code> element in the
 
 <div class=section>
 
-<h3 id=the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <dfn><code>Version</code></dfn> attribute in the
+<h3 id=the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.35 </span>The <dfn><code>Version</code></dfn> attribute in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
 <!--
