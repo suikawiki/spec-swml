@@ -611,6 +611,8 @@ title=heading-start-depth>depth</span> set to <var>depth</var>.
 
 <li>Remove the first character of <var>data</var>.
 
+</ol>
+
 <li>Remove <span>white space characters</span> at the beginning of
 <var>data</var>, if any.
 
@@ -618,8 +620,6 @@ title=heading-start-depth>depth</span> set to <var>depth</var>.
 title=list-start-depth>depth</span> set to <var>depth</var>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with <var>data</var>.
-
-</ol>
 
 <li>Finally, set the <span>continuous line flag</span> to true.
 
@@ -686,7 +686,10 @@ title>name</var>, if any.
 <li>Run the <span>algorithm to tokenize a text</span> with <var
 title>name</var>.
 
-<li>Remove <span>white space characters</span> at the end of
+<li>Remove the first character of <var title>data</var>.  (The removed
+character will be <code>:</code>.)
+
+<li>Remove <span>white space characters</span> at the beginning of
 <var>data</var>, if any.
 
 <li>Emit a <span>labeled list middle token</span>.
@@ -803,16 +806,19 @@ future revisions. -->
 
 <ol>
 
-<li>Set the <span>continuous line flag</span> to false.
-
 <li>Emit a <span>block start tag token</span> whose <span
 title=block-start-tag-tag-name>tag name</span> is one of
 <code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
-in <var title>line</var>.
+in <var title>line</var> and <span
+title=block-start-tag-classes>classes</span> is the <span title="body
+of a class specification">body</span> of the <span>class
+specification</span>, if any, or null otherwise.
 
 <li>If the <span title=block-start-tag-tag-name>tag name</span> is
 <code>PRE</code>, switch to the "<span>preformatted block</span>"
 <span>mode</span>.
+
+<li>Set the <span>continuous line flag</span> to false.
 
 </ol>
 
@@ -831,12 +837,12 @@ characters will be <code>@@</code>.)
 <li>Remove <span>white space characters</span> at the beginning of
 <var>data</var>, if any.
 
-<li>Set the <span>continuous line flag</span> to true.
-
 <li>Emit a <span>editorial note start token</span>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>data</var>.
+
+<li>Set the <span>continuous line flag</span> to true.
 
 </ol>
 
@@ -855,12 +861,12 @@ characters will be <code>;;</code>.)
 <li>Remove <span>white space characters</span> at the beginning of
 <var>data</var>, if any.
 
-<li>Set the <span>continuous line flag</span> to true.
-
 <li>Emit a <span>comment paragraph start token</span>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>data</var>.
+
+<li>Set the <span>continuous line flag</span> to true.
 
 </ol>
 
@@ -882,12 +888,12 @@ followed by a <code>]</code> character, followed by zero or more
 
 <ol>
 
-<li>Set the <span>continuous line flag</span> to false.
-
 <li>Emit a <span>block end tag token</span> whoes <span
 title=block-end-tag-tag-name>tag name</span> is one of
 <code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
 in <code>line</code>.
+
+<li>Set the <span>continuous line flag</span> to false.
 
 </ol>
 
@@ -920,10 +926,10 @@ SuikaWikiImage/0.9 addition -->
 title=character-data>data</span> is a U+000A <code class=charname>LINE
 FEED</code> character.
 
-<li>Set the <span>continuous line flag</span> to true.
-
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>line</var>.
+
+<li>Set the <span>continuous line flag</span> to true.
 
 </ol>
 
@@ -947,7 +953,8 @@ class=rfc2119>MUST</em> be processed as follows:
 
 <li>Emit a <span>preformatted end token</span>.
 
-<li>Switch to the "<span>body</span>" <span>mode</span>.
+<li>Switch to the "<span>body</span>" <span>mode</span> and <span
+title=reprocess-line>reprocess</span> <var title>line</var>.
 
 </ol>
 
@@ -956,18 +963,38 @@ character, followed by one of <code>INS</code> or <code>DEL</code>,
 followed by a <code>]</code> character, followed by zero or more
 <span>white space characters</span>
 
+<!--
+
+In SuikaWiki3 implementation,
+
+[INS[
+[sp]aaa
+]INS]
+[sp]bbb
+
+would create two pre with one lines, where
+
+[sp]aaa
+]INS]
+[sp]bbb
+
+would create one pre with three lines.  SuikaWiki/0.9 spec does not
+specify how to implement the latter example.
+
+-->
+
 <dd>
 
 <ol>
-
-<li>Set the <span>continuous line flag</span> to false.
 
 <li>Emit a <span>preformatted end token</span>.
 
 <li>Emit a <span>block end tag token</span> whoes <span
 title=block-end-tag-tag-name>tag name</span> is one of
-<code>INS</code> or <code>DEL</code>, that appears in
-<code>line</code>.
+<code>INS</code> or <code>DEL</code>, that appears in <var
+title>line</var>.
+
+<li>Set the <span>continuous line flag</span> to false.
 
 <li>Switch to the "<span>body</span>" <span>mode</span>.
 
@@ -1007,10 +1034,10 @@ followed by zero or more <span>white space characters</span>
 
 <ol>
 
-<li>Set the <span>continuous line flag</span> to false.
-
 <li>Emit a <span>block end tag token</span> whoes <span
 title=block-end-tag-tag-name>tag name</span> is <code>PRE</code>.
+
+<li>Set the <span>continuous line flag</span> to false.
 
 <li>Switch to the "<span>body</span>" <span>mode</span>.
 
@@ -1027,10 +1054,10 @@ title=block-end-tag-tag-name>tag name</span> is <code>PRE</code>.
 title=character-data>data</span> is a U+000A <code class=charname>LINE
 FEED</code> character.
 
-<li>Set <span>continuous line flag</span> to true.
-
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>line</var>.
+
+<li>Set <span>continuous line flag</span> to true.
 
 </ol>
 
@@ -1087,11 +1114,11 @@ this algorithm.
 
 <li>Let <var>cell</var> be the empty string.
 
-<li>Let <var>cell quoted</var> be the empty string.
+<li>Let <var title>cell quoted</var> be null.
 
-<li>If <var>pos</var> is greater than or equal to the length of <var
-title>data</var>, emit a <span>table row end token</span> and abort
-this algorithm.
+<li>If <var title>pos</var> is greater than or equal to the length of
+<var title>data</var>, emit a <span>table row end token</span> and
+abort this algorithm.
 
 <li>If the <var title>pos</var>th character in <var title>data</var>
 is a <span title="white space characters">white space
@@ -1099,7 +1126,8 @@ character</span>, increase <var title>pos</var> by one (1) and go back
 to the previous step.
 
 <li>If the <var title>pos</var>th character in <var title>data</var>
-is <code>"</code>, follow the substeps below:
+is <code>"</code>, set <var title>cell quoted</var> to the empty
+string and follow the substeps below:
 
 <ol>
 
@@ -1149,19 +1177,22 @@ title>data</var> to <var title>cell</var>.
 
 </ol>
 
-<li>Remove <span>white space characters</span> at the end of
-<var>data</var>, if any.
+<li>Remove <span>white space characters</span> at the end of <var
+title>data</var>, if any.
 
-<li>If <var>cell</var> is equal to <code>==</code>, emit a <span>table
-colspan cell token</span> and go back to the step labeled <span
+<li>If <var title>cell quoted</var> is null and <var title>cell</var>
+is equal to <code>==</code>, emit a <span>table colspan cell
+token</span> and go back to the step labeled <span
 title=tokenize-table-row-loop><i>LOOP</i></span>.
-
-<li>Prepend <var>cell quoted</var> to <var>cell</var>.
 
 <li>Emit a <span>table cell start token</span>.
 
-<li>Run the <span>algorithm to tokenize a text</span> with
-<var>cell</var>.
+<li>If <var title>cell quoted</var> is <em>not</em> null, run the
+<span>algorithm to tokenize a text</span> with <var title>cell
+quoted</var>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with <var
+title>cell</var>.
 
 <li>Emit a <span>table cell end token</span>.
 
@@ -1378,7 +1409,11 @@ title=inline-start-tag-language>language</span> is
 <dt>If <var>data</var> begins with <code>]&lt;</code>, followed by one
 or more <span>scheme characters</span>, followed by <code>:</code>
 
-<dd>Remove the matched substring from <var>data</var> and then act as
+<dd>
+
+<ol>
+
+<li>Remove the matched substring from <var>data</var> and then act as
 if the first two character of the original <var>data</var> before the
 removal were <code>&lt;</code> instead of <code>]&lt;</code>, except
 that the emitted token is an <span>inline end tag token</span> instead
@@ -1393,6 +1428,11 @@ attribute</span> of the token <em class=rfc2119>MUST</em> be the <span
 title=element-res-parameter-attribute>resParameter attribute</span> of
 the token that would be emitted if the first two character were
 <code>&lt;</code>.
+
+<li>If <var title>data</var> begins with <code>]</code>, remove the
+character from <var title>data</var>.
+
+</ol>
 
 <dt>If <var>data</var> begins with <code>]>></code> followed by one or
 more <span>digits</span>, followed by <code>]</code>
@@ -1458,8 +1498,9 @@ of the matched substring.
 <li>If the first character of <var>data</var> is <code>></code>,
 remove the first character of <var>data</var> and abort these steps.
 
-<li>If the first character of <var>data</var> is <code>"</code>, run
-the following substeps:
+<li>If the first character of <var title>data</var> is <code>"</code>,
+append <code>"</code> to <var title>data</var> and run the following
+substeps:
 
 <ol>
 
@@ -1467,14 +1508,16 @@ the following substeps:
 
 <li>If <var>data</var> is empty, abort these steps.
 
-<li>If the first character of <var>data</var> is <code>"</code>,
-remove the first character of <var>data</var> and abort these
-substeps.
+<li>If the first character of <var title>data</var> is <code>"</code>,
+append <code>"</code> to <var title>value</var>, remove the first
+character of <var title>data</var>, and abort these substeps.
 
 <li>If the first character of <var>data</var> is <code>\</code>, run
 the following substeps:
 
 <ol>
+
+<li>Append <code>\</code> to <var title>value</var>.
 
 <li>Remove the first character of <var title>data</var>.
 
@@ -3277,7 +3320,7 @@ the <span>SuikaWiki/0.9 namespace</span>.
 
 <dt><span>Category</span>
 
-<dd><span>Phrasing content</span>.
+<dd>None. <!-- <span>Phrasing content</span>. -->
 
 <dt><span>Content model</span>
 
@@ -3288,6 +3331,8 @@ the <span>SuikaWiki/0.9 namespace</span>.
 <dd><code title=attr-sw-replace-by>by</code>
 
 </dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
 
 <p class=ed>... <dfn title=attr-sw-replace-by><code>by</code></dfn>
 
