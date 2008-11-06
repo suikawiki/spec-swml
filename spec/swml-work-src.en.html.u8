@@ -487,8 +487,8 @@ false.  This flag is mainly used in the "<span>body</span>"
 <p>When a <dfn title=process-line><var>line</var> is processed</dfn>,
 rules specified in the following subsections is used according to the
 appropriate <span>mode</span>.  Rules below sometimes require the <dfn
-title=reprocess-line><var>line</var> be reprocessed</dfn>.  In such a
-case, rules for the appropriate <span>mode</span> <em
+title=reprocess-line><var>line</var> be reprocessed</dfn>.  In such
+cases, rules for the appropriate <span>mode</span> <em
 class=rfc2119>MUST</em> be followed with the same <var>line</var>.
 
 <div class=section>
@@ -2569,7 +2569,8 @@ following table:
 <tr>
 <th>Anything else
 <td>The <span>SuikaWiki/0.10 namespace</span>
-<td>Same as <span title=inline-start-tag-tag-name>tag name</span>
+<td><span title="uppercase elements">Same as <span
+title=inline-start-tag-tag-name>tag name</span></span>
 <!-- SWML 1.0 new -->
 
 </table>
@@ -2605,10 +2606,15 @@ elements</span>.
 namespace</span>.
 
 <li>If the local name of the <span>current element</span> is
-<code>rt</code>, <code>title</code>, or <code>nsuri</code>, set
-<var>local name</var> to <code>attrvalue</code> and pop the
+<code>rt</code>, set <var>local name</var> to <code>rt</code>, set
+<var>namespace</var> to the <span>HTML namespace</span>, and pop the
 <span>current element</span> off the <span>stack of open
 elements</span>.
+
+<li>Otherwise, if the local name of the <span>current element</span>
+is <code>title</code> or <code>nsuri</code>, set <var>local name</var>
+to <code>attrvalue</code> and pop the <span>current element</span> off
+the <span>stack of open elements</span>.
 
 <li>Otherwise, if the local name of the <span>current element</span>
 is <code>qn</code>, set <var title>local name</var> to
@@ -3800,7 +3806,7 @@ namespace</span></h3>
 
 <dt><span>Allowed attributes</span>
 
-<dd><span title=attr-sw-class>class</span>
+<dd><code title=attr-sw-class>class</code>
 
 </dl>
 
@@ -3810,10 +3816,14 @@ or more <span>uppercase letters</span>.
 
 <p>These elements <em class=rfc2119>MUST NOT</em> be used.
 
+<div class="note memo">
+
 <p>These elements might be inserted into the DOM by a <span
 title="SWML text serialization parser">parser</span> when an
 <span>inline start tag</span> with unknown <span>tag name</span> is
 found.
+
+</div>
 
 </div>
 
@@ -3825,7 +3835,9 @@ class=ed>...</span> falls into the <span>phrasing content</span>
 category for the purpose of the content models in this specification.
 
 <p>The <span>content model</span> of this element <em
-class=rfc2119>MAY</em> be considered as <span>phrasing content</span>.
+class=rfc2119>SHOULD</em> be considered as <span>phrasing
+content</span>. <!-- SHOULD, not MUST, since we don't have control for
+that namespace. -->
 
 </div>
 
@@ -3847,7 +3859,8 @@ attribute.
 an element in the <span>AA namespace</span> <em
 class=rfc2119>SHOULD</em> be considered as having the same semantics
 and requirements as the HTML <code title=attr-html-class>class</code>
-attribute.
+attribute. <!-- SHOULD, not MUST, since we don't have control for that
+namespace. -->
 
 </div>
 
@@ -3901,7 +3914,7 @@ Otherwise, the element is in the tree the element belongs to.
 <p>If the element on which the attribute is specified is <em>not</em>
 an <code>anchor</code> or <code>anchor-internal</code> element, the
 attribute has similar semantics to that of the <code title>cite</code>
-attribute on the element.  In such a case, the <code
+attribute on the element.  In such cases, the <code
 title=attr-sw-anchor>anchor</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MUST NOT</em>
 be specified when the <code title>cite</code> attribute is specified.

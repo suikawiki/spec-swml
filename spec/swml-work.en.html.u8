@@ -544,8 +544,8 @@ false.  This flag is mainly used in the "<a href=#body>body</a>"
 
 </p><p>When a <dfn id=process-line title=process-line><var>line</var> is processed</dfn>,
 rules specified in the following subsections is used according to the
-appropriate <a href=#mode>mode</a>.  Rules below sometimes require the <dfn id=reprocess-line title=reprocess-line><var>line</var> be reprocessed</dfn>.  In such a
-case, rules for the appropriate <a href=#mode>mode</a> <em class=rfc2119>MUST</em> be followed with the same <var>line</var>.
+appropriate <a href=#mode>mode</a>.  Rules below sometimes require the <dfn id=reprocess-line title=reprocess-line><var>line</var> be reprocessed</dfn>.  In such
+cases, rules for the appropriate <a href=#mode>mode</a> <em class=rfc2119>MUST</em> be followed with the same <var>line</var>.
 
 </p><div class=section>
 <h5 id=the-initial-mode><span class=secno>3.2.2.1 </span>The "<a href=#initial>initial</a>" mode</h5>
@@ -2535,7 +2535,7 @@ following table:
 </td></tr><tr>
 <th>Anything else
 </th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
-</td><td>Same as <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag name</a>
+</td><td><a href=#uppercase-elements title="uppercase elements">Same as <span title=inline-start-tag-tag-name>tag name</span></a>
 <!-- SWML 1.0 new -->
 
 </td></tr></tbody></table>
@@ -2567,10 +2567,15 @@ elements</a>.
 namespace</a>.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<code>rt</code>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, or <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, set
-<var>local name</var> to <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> and pop the
+<code>rt</code>, set <var>local name</var> to <code>rt</code>, set
+<var>namespace</var> to the <a href=#html-namespace>HTML namespace</a>, and pop the
 <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
+
+</li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
+is <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> or <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, set <var>local name</var>
+to <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> and pop the <a href=#current-element>current element</a> off
+the <a href=#stack-of-open-elements>stack of open elements</a>.
 
 </li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
 is <a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>, set <var title="">local name</var> to
@@ -3734,7 +3739,7 @@ namespace</a></h3>
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
-</dt><dd><a href=#attr-sw-class title=attr-sw-class>class</a>
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
 
 </dd></dl>
 
@@ -3744,11 +3749,15 @@ or more <a href=#uppercase-letters>uppercase letters</a>.
 
 </p><p>These elements <em class=rfc2119>MUST NOT</em> be used.
 
-</p><p>These elements might be inserted into the DOM by a <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a> when an
+</p><div class="note memo">
+
+<p>These elements might be inserted into the DOM by a <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a> when an
 <span>inline start tag</span> with unknown <span>tag name</span> is
 found.
 
 </p></div>
+
+</div>
 
 <div class=section>
 <h3 id=the-aa-element-in-the-aa-namespace><span class=secno>5.28 </span>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a></h3>
@@ -3756,7 +3765,9 @@ found.
 <p>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a> <span class=ed>...</span> falls into the <a href=#phrasing-content>phrasing content</a>
 category for the purpose of the content models in this specification.
 
-</p><p>The <a href=#content-model>content model</a> of this element <em class=rfc2119>MAY</em> be considered as <a href=#phrasing-content>phrasing content</a>.
+</p><p>The <a href=#content-model>content model</a> of this element <em class=rfc2119>SHOULD</em> be considered as <a href=#phrasing-content>phrasing
+content</a>. <!-- SHOULD, not MUST, since we don't have control for
+that namespace. -->
 
 </p></div>
 
@@ -3774,7 +3785,8 @@ attribute.
 </p><p>The <dfn id=attr-aa-class title=attr-aa-class><code>class</code></dfn> attribute of
 an element in the <a href=#aa-namespace>AA namespace</a> <em class=rfc2119>SHOULD</em> be considered as having the same semantics
 and requirements as the HTML <a href=#attr-html-class><code title=attr-html-class>class</code></a>
-attribute.
+attribute. <!-- SHOULD, not MUST, since we don't have control for that
+namespace. -->
 
 </p></div>
 
@@ -3826,7 +3838,7 @@ Otherwise, the element is in the tree the element belongs to.
 </p><p>If the element on which the attribute is specified is <em>not</em>
 an <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> or <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> element, the
 attribute has similar semantics to that of the <code title="">cite</code>
-attribute on the element.  In such a case, the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
+attribute on the element.  In such cases, the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MUST NOT</em>
 be specified when the <code title="">cite</code> attribute is specified.
 A user agent <em class=rfc2119>MUST</em> <a href=#ignored title=ignored>ignore</a> the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
