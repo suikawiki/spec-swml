@@ -2008,10 +2008,21 @@ of the <span>current element</span>.
 <li>Let <var title>inserted depth</var> be the length of <span
 title=list-start-depth>depth</span> of the <span>token</span>.
 
+<li>Let <var title>local name</var> be <code>ul</code>, if the last
+character in <span title=list-start-depth>depth</span> is
+<code>-</code>, or <code>ol</code>, otherwise.
+
 <li>If <var title>current depth</var> is greater than <var
 title>inserted depth</var>, pop the <span>current element</span> off
 the <span>stack of open elements</span> and go back to the first
 substep of these substeps.
+
+<li>If the <span>list depth</span> of the <span>current element</span>
+is equal to <var title>inserted depth</var> and the local name of the
+<span>current element</span> is <em>not</em> <var title>local
+name</var>, pop the <span>current element</span> off the <span>stack
+of open elements</span> and go back to the first substep of these
+substeps.
 
 <li>If <var title>current depth</var> is less than <var title>inserted
 depth</var>, run the following substeps:
@@ -2054,12 +2065,6 @@ elements</span>.
 token</span>.
 
 </ol>
-
-<li>If the <span>list depth</span> of the <span>current element</span>
-is equal to <var title>inserted depth</var> and the local name of the
-<span>current element</span> is <em>not</em> <code>ul</code> or
-<code>ol</code>, pop the <span>current element</span> off the
-<span>stack of open elements</span>.
 
 <li>Create a <code>li</code> element in the <span>HTML
 namespace</span>.

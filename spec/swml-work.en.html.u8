@@ -1982,9 +1982,20 @@ of the <a href=#current-element>current element</a>.
 
 </li><li>Let <var title="">inserted depth</var> be the length of <a href=#list-start-depth title=list-start-depth>depth</a> of the <a href=#token>token</a>.
 
+</li><li>Let <var title="">local name</var> be <code>ul</code>, if the last
+character in <a href=#list-start-depth title=list-start-depth>depth</a> is
+<code>-</code>, or <code>ol</code>, otherwise.
+
 </li><li>If <var title="">current depth</var> is greater than <var title="">inserted depth</var>, pop the <a href=#current-element>current element</a> off
 the <a href=#stack-of-open-elements>stack of open elements</a> and go back to the first
 substep of these substeps.
+
+</li><li>If the <a href=#list-depth>list depth</a> of the <a href=#current-element>current element</a>
+is equal to <var title="">inserted depth</var> and the local name of the
+<a href=#current-element>current element</a> is <em>not</em> <var title="">local
+name</var>, pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack
+of open elements</a> and go back to the first substep of these
+substeps.
 
 </li><li>If <var title="">current depth</var> is less than <var title="">inserted
 depth</var>, run the following substeps:
@@ -2027,12 +2038,6 @@ elements</a>.
 token</a>.
 
 </li></ol>
-
-</li><li>If the <a href=#list-depth>list depth</a> of the <a href=#current-element>current element</a>
-is equal to <var title="">inserted depth</var> and the local name of the
-<a href=#current-element>current element</a> is <em>not</em> <code>ul</code> or
-<code>ol</code>, pop the <a href=#current-element>current element</a> off the
-<a href=#stack-of-open-elements>stack of open elements</a>.
 
 </li><li>Create a <code>li</code> element in the <a href=#html-namespace>HTML
 namespace</a>.
