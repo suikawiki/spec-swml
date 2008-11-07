@@ -1418,11 +1418,11 @@ title=block-start-tag-classes>classes</span> is the <span title="body
 of a class specification">body</span> of the <span>class
 specification</span>, if any, or null otherwise.
 
+<li>Set the <span>continuous line flag</span> to false.
+
 <li>If the <span title=block-start-tag-tag-name>tag name</span> is
 <code>PRE</code>, switch to the "<span>preformatted block</span>"
 <span>mode</span>.
-
-<li>Set the <span>continuous line flag</span> to false.
 
 </ol>
 
