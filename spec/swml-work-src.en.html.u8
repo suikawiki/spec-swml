@@ -158,15 +158,610 @@ prefix</span> is <code>html</code>.
 <p class=ed>...
 
 <div class=section>
-<h3>Writing <span>SWML text serialization</span> documents</h3>
+<h3>Writing documents in the <span>SWML text serialization</span></h3>
 
 <p><em>This section is non‐normative.</em>
 
+<p>A <dfn title=concept-document>document</dfn> in the <span>SWML text
+serialization</span> consists of two parts: <span
+title=concept-header-part>header part</span> and <span
+title=concept-body-part>body part</span>.
+
+<dl class=abnf>
+
+<dt><dfn id=abnf-document>document</dfn>
+
+<dd>= <span title=abnf-header-part>header-part</span> <span
+title=abnf-body-part>body-part</span>
+
+</dl>
+
+<p>The <dfn title=concept-header-part>header part</dfn> has to be
+empty.  In previous versions of SWML, a <dfn
+title=concept-magic-line>magic line</dfn> could be contained, and in
+fact was required in some versions, in the <span
+title=concept-header-part>header part</span> of a <span
+title=concept-document>document</span>.
+
+<p>A <span title=concept-magic-line>magic line</span> has to contain a
+string <code>#?</code>, followed by the <dfn
+title=concept-format-name>format name</dfn>, followed by a
+<code>/</code> character, followed by the <dfn
+title=concept-format-version>format version</dfn>.  They identifies
+the version of the markup language in which the <span
+title=concept-document>document</span> is written.  Historically, only
+two combinations of <span title=concept-format-name>format name</span>
+and <span title=concept-format-version>format version</span> as shown
+in the table below were defined, used, and implemented:
+
+<table>
+
+<thead>
+<tr>
+<th scope=col><span title=concept-format-name>Format name</span>
+<th scope=col><span title=concept-format-version>Format version</span>
+<th scope=col>Description
+
+<tbody>
+
+<tr>
+<td><dfn title=concept-magic-format-suikawiki><code>SuikaWiki</code></dfn>
+<td><dfn title=concept-magic-version-suikawiki-09><code>0.9</code></dfn>
+<td>The <span title=concept-suikawiki09>SuikaWiki/0.9</span> markup language.
+
+<tr>
+<td><dfn title=concept-magic-format-suikawikiimage><code>SuikaWikiImage</code></dfn>
+<td><dfn title=concept-magic-version-suikawikiimage-09><code>0.9</code></dfn>
+<td>The <span title=concept-suikawikiimage09>SuikaWikiImage/0.9</span> markup language.
+
+</table>
+
+<p>A <span title=concept-magic-line>magic line</span> can contain zero
+or more <dfn title=concept-parameter>parameters</dfn> after the <span
+title=concept-format-version>format version</span>.  A <span
+title=concept-parameter>parameter</span> consists of one or more
+<span>white space characters</span>, followed by the <dfn
+title=concept-parameter-name>name</dfn>, followed by a <code>=</code>
+character, followed by a <span title=concept-quoted-string>quoted
+string</span> whose <span
+title=concept-quoted-string-value>value</span> representing zero or
+more <dfn title=concept-parameter-value>values</dfn> separeted by a
+<code>,</code> character.  A <span
+title=concept-parameter-value>parameter value</span> consists of zero
+or more <span title=concept-character>characters</span> except for the
+separator character <code>,</code>.  Historically, following
+combinations of <span title=concept-parameter-name>parameter
+names</span> and <span title=concept-parameter-value>values</span> was
+defined and used:
+
+<table>
+
+<thead>
+<tr>
+<th scope=col><span title=concept-parameter-name>Name</span>
+<th scope=col><span title=concept-parameter-value>Values</span>
+<th scope=col>Description
+
+<tbody>
+
+<tr>
+<th scope=row><dfn title=concept-parameter-default-name><code>default-name</code></dfn>
+<td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+<td>The <span title=concept-parameter-value>value</span> represetns
+the default user name for <span title=concept-wikiform>WikiForm</span>
+input fields.  Exactly one <span title=concept-parameter-value>value</span>
+can be specified.  The default when this <span title=concept-parameter>parameter</span>
+is implementation dependent.
+
+<tr>
+<th scope=row><dfn title=concept-parameter-import><code>import</code></dfn>
+<td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+<td>A <span title=concept-parameter-value>value</span> represents the
+<span title=concept-wikiname>WikiName</span> from which definitions
+for <span title=concept-entity-reference>entity references</span> are
+imported.  When this <span title=concept-parameter>parameter</span> is 
+not specified, no definition is imported.
+
+<tr>
+<th scope=row><dfn title=concept-parameter-interactive><code>interactive</code></dfn>
+<td><dfn title=concept-parameter-interactive-yes><code>yes</code></dfn> or
+<dfn title=concept-parameter-interactive-no><code>no</code></dfn>
+<td>Value <code title=concept-parameter-interactive-yes>yes</code>
+means that the <span title=concept-document>document</span> contains
+an interactive content such as <span title=concept-wikiform>WikiForm</span>.
+Value <code title=concept-parameter-interactive-no>no</code>, the default
+value used when the <span title=concept-parameter>parameter</span> is
+not specified, means the <span title=concept-document>document</span> does
+not contain such a content.  It was intended to be used for the convinience
+of cache control mechanisms.
+
+<tr>
+<th scope=row><dfn title=concept-parameter-obsolete><code>obsolete</code></dfn>
+<td rowspan=2><dfn title=concept-parameter-obsolete-yes><code>yes</code></dfn> or
+<dfn title=concept-parameter-obsolete-no><code>no</code></dfn>
+<td rowspan=2>Value <code title=concept-parameter-obsolete-yes>yes</code> means
+the content of the <span title=concept-document>document</span> is
+obsolete, and value <code title=concept-parameter-obsolete-no>no</code>,
+the default value used when the <span title=concept-parameter>parameter</span>
+is not specified, means the content is not obsolete.
+
+<div class="note memo">
+
+<p>The <span title=concept-parameter-name>parameter name</span> <code
+title=concept-parameter-obsolete>obsolete</code> was defined in the
+SuikaWiki/0.9 specification, but the <span
+title=concept-parameter-name>parameter name</span> that has been
+actually implemented in SuikaWiki2 and used was the <span
+title=concept-parameter-name>parameter name</span> <code
+title=concept-parameter-obsoleted>obsoleted</code>.
+
+</div>
+
+<tr>
+<th scope=row><dfn title=concept-parameter-obsoleted><code>obsoleted</code></dfn>
+
+<tr>
+<th scope=row><dfn title=concept-parameter-page-icon><code>page-icon</code></dfn>
+<td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+<td>The <span title=concept-parameter-value>value</span> represents the
+<span title=concept-wikiname>WikiName</span> from which the page
+icon is imported.  The page icon can be used as favicon <span class=ed>@@
+[ref]</span>, for example.  Exactly one
+<span title=concept-parameter-value>value</span> can be specified.  The 
+default when this <span title=concept-parameter>parameter</span>
+is implementation dependent.
+
+<tbody>
+
+<tr>
+<th scope=row><dfn title=concept-parameter-image-alt><code>image-alt</code></dfn>
+<td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+<td>The <span title=concept-parameter-value>value</span> represents the
+alternative text for the <span title=concept-image>image</span> embedded in the
+<span title=concept-document>document</span>.  Exactly one
+<span title=concept-parameter-value>value</span> can be specified.  The
+default when this <span title=concept-parameter>parameter</span>
+is the empty string.
+
+<tr>
+<th scope=row><dfn title=concept-parameter-image-type><code>image-type</code></dfn>
+<td>An Internet Media Type with no parameter, white spaces, comments
+<td>The <span title=concept-parameter-value>value</span> represents the
+type of the <span title=concept-image>image</span> embedded in the
+<span title=concept-document>document</span>.  Exactly one
+<span title=concept-parameter-value>value</span> can be specified.
+This <span title=concept-parameter>parameter</span> has to be specified
+when the <span title=concept-document>document</span> contains an
+<span title=concept-image>image</span>.
+
+</table>
+
+<p>The order in which <span title=concept-parameter>parameters</span>
+are specified is not significant.  The <span
+title=concept-parameter-name>parameter name</span> of a <span
+title=concept-parameter>parameter</span> has to be different from the
+<span title=concept-parameter-name>parameter name</span> of any other
+<span title=concept-parameter>parameter</span>.
+
+<p>A <span title=concept-magic-line>magic line</span> has to be
+terminated by zero or more <span>white space characters</span>
+followed by a <span title=concept-newline>newline</span>.
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-header-part>header-part</dfn>
+
+<dd>= [<span title=abnf-obs-magic-line>obs-magic-line</span>]
+
+<dt><dfn title=abnf-obs-magic-line>obs-magic-line</dfn>
+
+<dd>= "#?" <span title=abnf-format-name>format-name</span> "/" <span
+title=abnf-format-version>format-version</span> *(<!-- In
+SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<span
+title=abnf-white-space>white-space</span> <span
+title=abnf-parameter>parameter</span>) *<span
+title=abnf-white-space>white-space</span> <span
+title=abnf-newline>newline</span>
+
+<dt><dfn title=abnf-format-name>format-name</dfn>
+
+<dd>= <span title=abnf-identifier>identifier</span>
+
+<dt><dfn title=abnf-format-version>format-version</dfn>
+
+<dd>= <span title=abnf-identifier>identifier</span>
+
+<dt><dfn title=abnf-parameter>parameter</dfn>
+
+<dd>= parameter-name "=" quoted-string
+
+<dt><dfn title=abnf-parameter-name>parameter-name</dfn>
+
+<dd>= <span title=abnf-identifier>identifier</span>
+
+<dt><dfn title=abnf-parameter-value-list>parameter-value-list</dfn>
+
+<dd>= [<span title=abnf-parameter-value>parameter-value</span> *(","
+<span title=abnf-parameter-value>parameter-value</span>)]
+
+<dt><dfn title=abnf-parameter-value>parameter-value</dfn>
+
+<dd>:= *(<span title=abnf-char>char</span> &minus; ",")
+
+</dl>
+
+<p>The <dfn title=concept-body-part>body part</dfn> of a <span
+title=concept-document>document</span> consists of zero or more <span
+title=concept-block>blocks</span>.
+
+<p>There are several kinds of <dfn title=concept-block>blocks</dfn>:
+<span title=concept-paragraph>paragraphs</span>, <span
+title=concept-heading>headings</span>, <span
+title=concept-list>lists</span>, <span
+title=concept-labeled-list>labeled lists</span>, <span
+title=concept-quotation>quotations</span>, <span
+title=concept-preformatted-paragraph>preformatted paragraphs</span>,
+<span title=concept-edit-section>editted sections</span>, <span
+title=concept-table>tables</span>, <span
+title=concept-editorial-note>editorial notes</span>, <span
+title=concept-comment-paragraph>comment paragraphs</span>, and <span
+title=concept-empty-block>empty blocks</span>.  In addition, <span
+title=concept-form>forms</span> and <span
+title=concept-entity-reference>entity references</span> can also be
+used as <span title=concept-blocks>blocks</span>.
+
+<p><dfn title=concept-empty-block>Empty blocks</dfn>, which is
+represented by an empty line, can be inserted between any two <span
+title=concept-block>blocks</span>.  It is sometimes necessary to
+prevent a <span title=concept-block>block</span> from being
+interpreted as a part of the previous <span
+title=concept-block>block</span>.
+
+<div class=example>
+
+<p>For example, consider the following fragment:
+
+<pre><code>- List item.
+This line is part of the list item.</code></pre>
+
+<p>The second line is part of the <span
+title=concept-list>list</span>, by definition.  If it is not desired,
+an <span title=concept-empty-block>empty block</span> can be inserted
+between two lines as:
+
+<pre><code>- List item.
+
+This line is <em>not</em> part of the list item.</code></pre>
+
+... such that the third line represents a <span
+title=concept-paragraph>paragraph</span>.
+
+</div>
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-body-part>body-part</dfn>
+
+<dd>= *<span title=abnf-block>block</span>
+
+<dt><dfn title=abnf-block>block</dfn>
+
+<dd>= <span title=abnf-paragraph>paragraph</span> / <span
+title=abnf-heading>heading</span> / <span title=abnf-list>list</span>
+/ <span title=abnf-labeled-list>labeled-list</span> / <span
+title=abnf-quotation>quotation</span> / <span
+title=abnf-preformatted-paragraph>preformatted-paragraph</span> /
+<span title=abnf-edited-section>edited-section</span> / <span
+title=abnf-table>table</span> / <span
+title=abnf-editorial-note>editorial-note</span> / <span
+title=abnf-comment-paragraph>comment-paragraph</span> / <span
+title=abnf-empty-block>empty-block</span> / <span
+title=abnf-form>form</span> / <span
+title=abnf-obs-entity-reference>obs-entity-reference</span>
+
+<dt><dfn title=abnf-empty-block>empty-block</dfn>
+
+<dd>= <span title=abnf-newline>newline</dfn>
+
+</dl>
+
+<p>A <dfn title=concept-paragraph>paragraph</dfn> represents a unit of
+the text, similar to HTML's <code>p</code> element.  It consists of an
+optional <span title=concept-destination-anchor-number>destination
+anchor number</span>, followed by a <span
+title=concept-line-contents>line contents</span>, followed by a <span
+title=concept-newline>newline</span>, followed by zero or more <span
+title=concept-block-child>block children</span>.
+
+<div class="note memo">
+
+<p>A <span title=concept-paragraph>paragraph</span> cannot begin with
+a <span title=concept-form>form</span> or <span
+title=concept-entity-reference>entity reference</span>, since it is
+treated as a <span title=concept-block</span> when it appears at the
+beginning of a line.  A <span title=concept-paragraph>paragraph</span>
+cannot begin with a <span title="white space characters">white space
+character</span>, since it is treated as a <span
+title=concept-preformatted-paragraph>preformatted paragraph</span>
+then.
+
+</div>
+
+<p>A <dfn title=concept-block-child>block child</dfn> is one of an
+optional <span title=concept-destination-anchor-number>destination
+anchor number</span> followed by <span
+title=concept-line-contents>line contents</span> followed by a <span
+title=concept-newline>newline</span>, a <span
+title=concept-list>list</span>, a <span
+title=concept-labeled-list>labeled list</span>, a <span
+title=concept-preformatted-paragraph>preformatted paragraph</span>, an
+<span title=concept-edited-sections>edited section</span>, a <span
+title=concept-table>table</span>, an <span
+title=concept-editorial-notes>editorial note</span>, or a <span
+title=concept-comment-paragraph>comment paragraph</span>.
+
+<p class=ed>@@ definition for ;; and @@
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-paragraph>paragraph</dfn>
+
+<dd>= [<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+<span title=abnf-line-contents>line-contents</span> <span
+title=abnf-newline>newline</span> 0*<span
+title=abnf-block-child>block-child</span>
+
+<dt><dfn title=abnf-comment-paragraph>comment-paragraph</dfn>
+
+<dd>= ";;" *<span title=abnf-white-space>white-space</span> [<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span> 0*<span
+title=abnf-block-child>block-child</span>
+
+<dt><dfn title=abnf-editorial-note>editorial-note</dfn>
+
+<dd>= ";;" *<span title=abnf-white-space>white-space</span> [<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span> 0*<span
+title=abnf-block-child>block-child</span>
+
+<dt><dfn title=abnf-block-child>block-child</dfn>
+
+<dd>= [<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+<span title=abnf-line-contents>line-contents</span> <span
+title=abnf-newline>newline</span> / <span title=abnf-list>list</span>
+/ <span title=abnf-labeled-list>labeled-list</span> / <span
+title=abnf-preformatted-paragraph>preformatted-paragraph</span> /
+<span title=abnf-edited-section>edited-section</span> / <span
+title=abnf-table>table</span> / <span
+title=abnf-editorial-note>editorial-note</span> / <span
+title=abnf-comment-paragraph>comment-paragraph</span>
+
+</dl>
+
+<p>A <dfn title=concept-heading>heading</dfn> introduces a <dfn
+title=concept-section>section</dfn>.  It is represented by one or more
+<code>*</code> characters, followed by zero or more <span>white space
+characters</span>, optionally followed by a <span
+title=concept-destination-anchor-number>destination anchor
+number</span>, optionally followed by <span
+title=concept-line-contents>line contents</span>, followed by a <span
+title=concept-newline>newline</span>.  The number of the
+<code>*</code> represents the depth of the <span
+title=concept-section>section</span>.  A <span
+title=concept-heading>heading</span> with only one <code>*</code>
+character begins a larger <span title=concept-section>section</span>
+than a <span title=concept-heading>heading>heading</span> with more
+than one <code>*</code> characters.  The <span
+title=concept-line-contents>line contents</span> represents the name
+or caption for the <span title=concept-section>section</span>.
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-heading>heading</dfn>
+
+<dd>= 1*"*" *<span title=abnf-white-space>white-space</span> [<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span>
+
+</dl>
+
+<p>There are three kinds of lists: ordered lists, unordered lists, and
+<span title=concept-labeled-list>labeled lists</span>.  Ordered lists
+and unordered lists are called <dfn title=concept-list>lists</dfn> in
+this specification.
+
+<p>A <span title=concept-list>list</span> consists of zero or more
+<span title=concept-list-item>items</span>.  An <dfn
+title=concept-list-item>item</dfn> in the <span
+title=concept-list>list</span> is represented by one or more
+<code>-</code> or <code>=</code> characters, followed by zero or more
+<span>white space characters</span>, optionally followed by a <span
+title=concept-destination-anchor-number>destination anchor
+number</span>, optionally followed by <span
+title=concept-line-contents>line contents</span>, followed by a <span
+title=concept-newline>newline</span>, followed by zero or more <span
+title=concept-block-child>block children</span>.  The number of
+<code>-</code> or <code>=</code> characters at the beginning of the
+<span title=concept-list-item>item</span> represents the <dfn
+title=concept-list-depth>depth</dfn> of the <span
+title=concept-list>list</span>.  In a <span
+title=concept-list>list</span>, <span
+title=concept-list-depth>depth</span> of <span
+title=concept-list-item>items</span> has to be the same value.  If
+there is another <span title=concept-list>list</span> in <span
+title=concept-block-child>block children</span>, it's <span
+title=concept-list-item>items</span>' <span
+title=concept-list-depth>depth</span> has to be greater than the <span
+title=concept-list-depth>depth</span> of the parent <span
+title=concept-list-item>item</span>.  The last character that
+represents the <span title=concept-list-depth>depth</span> of an <span
+title=concept-list-item>item</span> indicates the type of the <span
+title=concept-list>list</span>: <code>-</code> indicates unordered
+list while <code>=</code> indicates ordered list.  In a <span
+title=concept-list>list</span> all <span
+tilte=concept-list-item>items</span> has to be same type.
+
+<p>A <dfn title=concept-labeled-list>labeled list</dfn> consists of
+one or more <span title=concept-labeled-list-item>labeled list
+items</span>.  A <dfn title=concept-labeled-list-item>labeled list
+item</dfn> is represented by a <code>:</code> character, followed by
+zero or more <span>white space characters</span>, optionally followed
+by a <span title=concept-destination-anchor-number>destination anchor
+number</span>, optionally followed by <span
+title=concept-line-contents>line contents</span>, followed by zero or
+more <span>white space characters</span>, followed by a <code>:</code>
+character, followed by a <span
+title=concept-destination-anchor-number>destination anchor
+number</span>, followed by zero or more <span>white space
+characters</span>, optionally followed by <span
+title=concept-line-contents>line contents</span>, followed by <span
+title=concept-newline>newline</span>, followed by zero or more <span
+title=concept-block-children>block chidlren</span>.  The former <span
+title=concept-line-contents>line contents</span>, if any, represents
+the label.  <span title=concept-block-children>Block children</span>
+cannot contain a <span title=concept-labeled-list>labeled list</span>.
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-list>list</dfn>
+
+<dd>= 1*<span title=abnf-list-item>list-item</span>
+
+<dt><dfn title=abnf-list-item>list-item</dfn>
+
+<dd>= 1*("-" / "=") *<span title=abnf-white-space>white-space</span>
+[<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>
+<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span> 0*<span
+title=abnf-block-child>block-child</span>
+
+<dt><dfn title=abnf-labeled-list>labeled-list</dfn>
+
+<dd>= 1*<span title=abnf-labeled-list-item>labeled-list-item</span>
+
+<dt><dfn title=abnf-labeled-list-item>labeled-list-item</dfn>
+
+<dd>= ":" *<span title=abnf-white-space>white-space</span> [<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>] *<span
+title=abnf-white-space>white-space</span> [<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span> *<span
+title=abnf-block-children>block-children</span>
+
+</dl>
+
+<div class="example">
+
+The following example contains no <span
+title=concept-quotation>quotation</span>:
+
+<pre><code>>>1 This is a reference, not a quote.</code></pre>
+
+</div>
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-quotation>quotation</dfn>
+
+<dd>= 1*<span title=abnf-quoted-block>quoted-block</span>
+
+<dt><dfn title=abnf-quoted-block>quoted-block</dfn>
+
+<dd>= 1*">" *<span title=abnf-white-space>white-space</span> (<span
+title=abnf-paragraph>paragraph</span> / <span
+title=abnf-editorial-note>editorial-note</span> / <span
+title=abnf-comment-paragraph>comment-paragraph</span> / <span
+title=abnf-newline>newline</span>)
+
+</dl>
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-preformatted-paragraph>preformatted-paragraph</dfn>
+
+<dd>= <span
+title=abnf-preformatted-paragraph-block>preformatted-paragraph-block</span>
+/ <span
+title=abnf-obs-preformatted-paragraph>obs-preformatted-paragraph</span>
+
+<dt><dfn
+title=abnf-preformatted-paragraph-block>preformatted-paragraph-block</dfn>
+
+<dd>= '[PRE[' [<span
+title=abnf-class-specification>class-specification</span>] "[" *<span
+title=abnf-white-space>white-space</span> <span
+title=abnf-newline>newline</span> *([<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span>) ']PRE]' *<span
+title=abnf-white-space>white-space</span>
+
+<dt><dfn title=abnf-obs-preformatted-paragraph>obs-preformatted-paragraph</dfn>
+
+<dd>= <span title=abnf-white-space>white-space</span> [<span
+title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span> *([<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-newline>newline</span>)
+
+</dl>
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-edited-section>edited-section</dfn>
+
+<dd>= <span title=abnf-inserted-section>inserted-section</span> /
+<span title=abnf-deleted-section>deleted-section</span>
+
+<dt><dfn title=abnf-inserted-section>inserted-section</dfn>
+
+<dd>= '[INS' [<span
+title=abnf-class-specification>class-specification</span>] "[" *<span
+title=abnf-white-space>white-space</span> <span
+title=abnf-newline>newline</span> <span
+title=abnf-body-part>body-part</span> ']INS]' *<span
+title=abnf-white-space>white-space</span> <span
+title=abnf-newline>newline</span>
+
+<dt><dfn title=abnf-deleted-section>deleted-section</dfn>
+
+<dd>= '[DEL' [<span
+title=abnf-class-specification>class-specification</span>] "[" *<span
+title=abnf-white-space>white-space</span> <span
+title=abnf-newline>newline</span> <span
+title=abnf-body-part>body-part</span> ']DEL]' *<span
+title=abnf-white-space>white-space</span> <span
+title=abnf-newline>newline</span>
+
+</dl>
+
 <p class=ed>...
+
+white-space
+identifier quoted-string char
+concept-quoted-string concept-quoted-string-value
+concept-character
+newline
+
+concept-wikiform
+concept-wikiname
+concept-entity-reference
+concept-image
+
 </div>
 
 <div class=section>
-<h3>Parsing <span>SWML text serialization</span> documents</h3>
+<h3>Parsing documents in the <span>SWML text serialization</span></h3>
 
 <p>This section specifies how to convert a string of characters into a
 DOM <span class=ed>[DOM]</span> tree, assuming the string is written
@@ -740,6 +1335,8 @@ U+000A <code class=charname>LINE FEED</code> character to
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>data</var>.
 
+<li>Set the <span>continuous line flag</span> to true.
+
 </ol>
 
 <li>Otherwise, run the following substeps:
@@ -766,6 +1363,8 @@ characters will be <code>@@</code>).
 <li>Remove <span>white space characters</span> at the beginning of
 <var>data</var>, if any.
 
+<li>Set the <span>continuous line flag</span> to true.
+
 </ol>
 
 <li>If the length of <var>data</var> is greater than one (1) and the
@@ -782,14 +1381,19 @@ characters will be <code>;;</code>).
 <li>Remove <span>white space characters</span> at the beginning of
 <var>data</var>, if any.
 
+<li>Set the <span>continuous line flag</span> to true.
+
 </ol>
+
+<li>Otherwise, if <var title>data</var> is not empty, set the
+<span>continuous line flag</span> to true.
+
+<li>Otherwise, set the <span>continuous line flag</span> to false.
 
 <li>In any case, run the <span>algorithm to tokenize a text</span>
 with <var>data</var>.
 
 </ol>
-
-<li>Finally, set the <span>continuous line flag</span> to true.
 
 </ol>
 
@@ -1678,7 +2282,8 @@ steps <em class=rfc2119>MUST</em> be used:
 <code>#?</code>.)
 
 <li>If there are one or more characters that are not <span>white space
-characters</span>, run the following substeps:
+characters</span> at the beginning of <var>data</var>, run the
+following substeps:
 
 <ol>
 
@@ -1969,30 +2574,19 @@ depth</span> of the bottommost entry in the <span>stack of open
 elements</span>.
 
 <li>If <span title=quotation-start-depth>depth</span> of the
-<span>token</span> is less than or equal to the <var title>current
-depth</var>, pop the element off the <span>stack of open
-elements</span> and go back to the first substep of these substeps.
+<span>token</span> is less than the <var title>current depth</var>,
+pop the element off the <span>stack of open elements</span> and go
+back to the first substep of these substeps.
 
 <li>Otherwise, if <span title=quotation-start-depth>depth</span> of
-the <span>token</span> is greater than <var title>current depth</var>
-+ 1, create a <code>blockquote</code> element in the <span>HTML
+the <span>token</span> is greater than <var title>current depth</var>,
+create a <code>blockquote</code> element in the <span>HTML
 namespace</span>, append the element created to the <span>current
 element</span>, push the element created to the <span>stack of open
 elements</span> with <span>section depth</span> set to zero (0),
 <span>quotation depth</span> set to <var title>current depth</var> +
 1, and <span>list depth</span> set to zero (0), and go back to the
 first substep of these substeps.
-
-<li>Create a <code>blockquote</code> element in the <span>HTML
-namespace</span>.
-
-<li>Append the element created to the <span>current element</span>.
-
-<li>Push the element created to the <span>stack of open
-elements</span> with <span>section depth</span> set to zero (0),
-<span>quotation depth</span> set to <span
-title=quotation-start-depth>depth</span>, and <span>list depth</span>
-set to zero (0).
 
 </ol>
 
@@ -2258,20 +2852,36 @@ this substep again.
 <dt>A <span>block end tag token</span> whose <span
 title=block-end-tag-tag-name>tag name</span> is <code>INS</code>
 
-<dd>If the <span>stack of open elements</span> contains an element
+<dd>
+
+<ol>
+
+<li>If the <span>stack of open elements</span> contains an element
 whose local name is <code>insert</code>, pop the <span>current
 element</span> off the <span>stack of open elements</span> until such
 an element whose local name is <code>insert</code> has been popped
 from the <span>stack of open elements</span>.
 
+<li>Set the <span>continuous line</span> to false.
+
+</ol>
+
 <dt>A <span>block end tag token</span> whose <span
 title=block-end-tag-tag-name>tag name</span> is <code>DEL</code>
 
-<dd>If the <span>stack of open elements</span> contains an element
+<dd>
+
+<ol>
+
+<li>If the <span>stack of open elements</span> contains an element
 whose local name is <code>delete</code>, pop the <span>current
 element</span> off the <span>stack of open elements</span> until such
 an element whose local name is <code>delete</code> has been popped
 from the <span>stack of open elements</span>.
+
+<li>Set the <span>continuous line</span> to false.
+
+</ol>
 
 <dt>A <span>form token</span>
 
@@ -2303,6 +2913,13 @@ should not appear in this insertion mode -->
 
 <ol>
 
+<li>If the local name of the <span>current element</span> is
+<em>not</em> one of <code>li</code>, <code>dd</code>,
+<code>comment-p</code>, or <code>ed</code>, run the following
+substeps:
+
+<ol>
+
 <li>Create a <code>p</code> element in the <span>HTML
 namespace</span>.
 
@@ -2310,6 +2927,8 @@ namespace</span>.
 
 <li>Push the element created to the <span>stack of open
 elements</span>.
+
+</ol>
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span> and reprocess the <span>token</span>.
