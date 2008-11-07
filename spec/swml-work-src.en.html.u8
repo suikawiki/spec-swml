@@ -1815,6 +1815,8 @@ follows:
 
 <ol>
 
+<li>Let <var title>nest level</var> be zero (0).
+
 <li>If <var>data</var> begins with <code>[</code> followed by one or
 more <span>digits</span> followed by <code>]</code>, run the following
 steps:
@@ -1964,6 +1966,8 @@ title>parameters</span>.
 
 <li>Emit an <span>inline start tag token</span>.
 
+<li>Increase <var title>nest level</var> by one (1).
+
 </ol>
 
 <dt>If <var>data</var> begins with <code>[</code>, followed by one or
@@ -1996,6 +2000,8 @@ name</var>, <span title=inline-start-tag-classes>classes</span> is
 title=inline-start-tag-language>language</span> is
 <var>language</var>.
 
+<li>Increase <var title>nest level</var> by one (1).
+
 </ol>
 
 <dt>If <var>data</var> begins with <code>]]</code>
@@ -2007,6 +2013,9 @@ title=inline-start-tag-language>language</span> is
 <li>Remove the matched substring from <var>data</var>.
 
 <li>Emit an <span>inline end tag token</span>.
+
+<li>If <var title>nest level</var> is greater than zero (0), decrease
+<var title>nest level</var> by one (1).
 
 </ol>
 
@@ -2036,6 +2045,9 @@ the token that would be emitted if the first two character were
 <li>If <var title>data</var> begins with <code>]</code>, remove the
 character from <var title>data</var>.
 
+<li>If <var title>nest level</var> is greater than zero (0), decrease
+<var title>nest level</var> by one (1).
+
 </ol>
 
 <dt>If <var>data</var> begins with <code>]>></code> followed by one or
@@ -2053,13 +2065,18 @@ substring.
 <li>Emit an <span>inline end tag token</span> whose <span
 title=inline-end-tag-anchor>anchor</span> is <var>number</var>.
 
+<li>If <var title>nest level</var> is greater than zero (0), decrease
+<var title>nest level</var> by one (1).
+
 </ol>
 
-<dt>If <var>data</var> begins with <code>]</code> followed by zero or
-more <span>white space characters</span> followed by <code>[</code>
+<dt>If <var title>nest level</var> is greater than zero (0) and <var
+title>data</var> begins with <code>]</code> followed by zero or more
+<span>white space characters</span> followed by <code>[</code>
 
-<dt>If <var>data</var> begins with <code>]</code> followed by zero or
-more <span>white space characters</span> followed by a <span>language
+<dt>If <var title>nest level</var> is greater than zero (0) and <var
+title>data</var> begins with <code>]</code> followed by zero or more
+<span>white space characters</span> followed by a <span>language
 specification</span> followed by <code>[</code>
 
 <dd>
@@ -3283,10 +3300,26 @@ following substeps:
 
 <ol>
 
+<li>If both <span title=inline-end-tag-res-scheme-attribute>resScheme
+attribute</span> and <span
+title=inline-end-tag-anchor-attribute>anchor attribute</span> of the
+<span>token</span> are null, <span title="append a character">append
+characters</span> <code>]]</code> to the <span>current element</span>,
+push the <span>current element</span> to the <span>stack of open
+elements</span>, and abort these substeps.
+
+<div class="note memo">
+
+<p>As a result, the bottommost and second bottommost entries becomes
+equal, but one of them is popped from the <span>stack of open
+elements</span> soon.
+
+</div>
+
 <li>If <span title=inline-end-tag-res-scheme-attribute>resScheme
-attribute</span> is <em>not</em> null, create an
-<code>anchor-external</code> element in the <span>SuikaWiki/0.9
-namespace</span>.
+attribute</span> of the <span>token</span> is <em>not</em> null,
+create an <code>anchor-external</code> element in the
+<span>SuikaWiki/0.9 namespace</span>.
 
 <li>Otherwise, create a <code>anchor-internal</code> element in the
 <span>SuikaWiki/0.9 namespace</span>.

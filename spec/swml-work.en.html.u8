@@ -1688,7 +1688,9 @@ follows:
 
 </p><ol>
 
-<li>If <var>data</var> begins with <code>[</code> followed by one or
+<li>Let <var title="">nest level</var> be zero (0).
+
+</li><li>If <var>data</var> begins with <code>[</code> followed by one or
 more <a href=#digits>digits</a> followed by <code>]</code>, run the following
 steps:
 
@@ -1827,6 +1829,8 @@ these characters from <var>data</var>.
 
 </li><li>Emit an <a href=#inline-start-tag-token>inline start tag token</a>.
 
+</li><li>Increase <var title="">nest level</var> by one (1).
+
 </li></ol>
 
 </dd><dt>If <var>data</var> begins with <code>[</code>, followed by one or
@@ -1857,6 +1861,8 @@ name</var>, <a href=#inline-start-tag-classes title=inline-start-tag-classes>cla
 <var>classes</var>, and <a href=#inline-start-tag-language title=inline-start-tag-language>language</a> is
 <var>language</var>.
 
+</li><li>Increase <var title="">nest level</var> by one (1).
+
 </li></ol>
 
 </dd><dt>If <var>data</var> begins with <code>]]</code>
@@ -1868,6 +1874,9 @@ name</var>, <a href=#inline-start-tag-classes title=inline-start-tag-classes>cla
 <li>Remove the matched substring from <var>data</var>.
 
 </li><li>Emit an <a href=#inline-end-tag-token>inline end tag token</a>.
+
+</li><li>If <var title="">nest level</var> is greater than zero (0), decrease
+<var title="">nest level</var> by one (1).
 
 </li></ol>
 
@@ -1893,6 +1902,9 @@ the token that would be emitted if the first two character were
 </li><li>If <var title="">data</var> begins with <code>]</code>, remove the
 character from <var title="">data</var>.
 
+</li><li>If <var title="">nest level</var> is greater than zero (0), decrease
+<var title="">nest level</var> by one (1).
+
 </li></ol>
 
 </dd><dt>If <var>data</var> begins with <code>]&gt;&gt;</code> followed by one or
@@ -1909,13 +1921,16 @@ substring.
 
 </li><li>Emit an <a href=#inline-end-tag-token>inline end tag token</a> whose <span title=inline-end-tag-anchor>anchor</span> is <var>number</var>.
 
+</li><li>If <var title="">nest level</var> is greater than zero (0), decrease
+<var title="">nest level</var> by one (1).
+
 </li></ol>
 
-</dd><dt>If <var>data</var> begins with <code>]</code> followed by zero or
-more <a href=#white-space-characters>white space characters</a> followed by <code>[</code>
+</dd><dt>If <var title="">nest level</var> is greater than zero (0) and <var title="">data</var> begins with <code>]</code> followed by zero or more
+<a href=#white-space-characters>white space characters</a> followed by <code>[</code>
 
-</dt><dt>If <var>data</var> begins with <code>]</code> followed by zero or
-more <a href=#white-space-characters>white space characters</a> followed by a <a href=#language-specification>language
+</dt><dt>If <var title="">nest level</var> is greater than zero (0) and <var title="">data</var> begins with <code>]</code> followed by zero or more
+<a href=#white-space-characters>white space characters</a> followed by a <a href=#language-specification>language
 specification</a> followed by <code>[</code>
 
 </dt><dd>
@@ -3091,10 +3106,25 @@ following substeps:
 
 <ol>
 
-<li>If <a href=#inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme
-attribute</a> is <em>not</em> null, create an
-<a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
-namespace</a>.
+<li>If both <a href=#inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme
+attribute</a> and <a href=#inline-end-tag-anchor-attribute title=inline-end-tag-anchor-attribute>anchor attribute</a> of the
+<a href=#token>token</a> are null, <a href=#append-a-character title="append a character">append
+characters</a> <code>]]</code> to the <a href=#current-element>current element</a>,
+push the <a href=#current-element>current element</a> to the <a href=#stack-of-open-elements>stack of open
+elements</a>, and abort these substeps.
+
+<div class="note memo">
+
+<p>As a result, the bottommost and second bottommost entries becomes
+equal, but one of them is popped from the <a href=#stack-of-open-elements>stack of open
+elements</a> soon.
+
+</p></div>
+
+</li><li>If <a href=#inline-end-tag-res-scheme-attribute title=inline-end-tag-res-scheme-attribute>resScheme
+attribute</a> of the <a href=#token>token</a> is <em>not</em> null,
+create an <a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
 
 </li><li>Otherwise, create a <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
