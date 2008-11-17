@@ -3,7 +3,7 @@
 
 </head><body><div class=header>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num" id=working-draft-date>Working Draft 7 November 2008</h2>
+<h2 class="no-toc no-num" id=working-draft-date>Working Draft 17 November 2008</h2>
 
 <dl class=versions-uri>
 <dt>This Version</dt>
@@ -459,7 +459,7 @@ SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<span title=abnf-whi
 
 </p><p>There are several kinds of <dfn id=concept-block title=concept-block>blocks</dfn>:
 <a href=#concept-paragraph title=concept-paragraph>paragraphs</a>, <a href=#concept-heading title=concept-heading>headings</a>, <a href=#concept-list title=concept-list>lists</a>, <a href=#concept-labeled-list title=concept-labeled-list>labeled lists</a>, <span title=concept-quotation>quotations</span>, <span title=concept-preformatted-paragraph>preformatted paragraphs</span>,
-<span title=concept-edit-section>editted sections</span>, <span title=concept-table>tables</span>, <span title=concept-editorial-note>editorial notes</span>, <span title=concept-comment-paragraph>comment paragraphs</span>, and <a href=#concept-empty-block title=concept-empty-block>empty blocks</a>.  In addition, <span title=concept-form>forms</span> and <span title=concept-entity-reference>entity references</span> can also be
+<span title=concept-edit-section>editted sections</span>, <a href=#concept-table title=concept-table>tables</a>, <span title=concept-editorial-note>editorial notes</span>, <span title=concept-comment-paragraph>comment paragraphs</span>, and <a href=#concept-empty-block title=concept-empty-block>empty blocks</a>.  In addition, <span title=concept-form>forms</span> and <span title=concept-entity-reference>entity references</span> can also be
 used as <span title=concept-blocks>blocks</span>.
 
 </p><p><dfn id=concept-empty-block title=concept-empty-block>Empty blocks</dfn>, which is
@@ -496,7 +496,7 @@ This line is <em>not</em> part of the list item.</code></pre>
 
 </dt><dd>= <a href=#abnf-paragraph title=abnf-paragraph>paragraph</a> / <a href=#abnf-heading title=abnf-heading>heading</a> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-quotation title=abnf-quotation>quotation</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
-<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <span title=abnf-table>table</span> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a> / <span title=abnf-form>form</span> / <span title=abnf-obs-entity-reference>obs-entity-reference</span>
+<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a> / <span title=abnf-form>form</span> / <span title=abnf-obs-entity-reference>obs-entity-reference</span>
 
 </dd><dt><dfn id=abnf-empty-block title=abnf-empty-block>empty-block</dfn>
 
@@ -524,7 +524,7 @@ then.
 <p>A <dfn id=concept-block-child title=concept-block-child>block child</dfn> is one of an
 optional <span title=concept-destination-anchor-number>destination
 anchor number</span> followed by <span title=concept-line-contents>line contents</span> followed by a <span title=concept-newline>newline</span>, a <a href=#concept-list title=concept-list>list</a>, a <a href=#concept-labeled-list title=concept-labeled-list>labeled list</a>, a <span title=concept-preformatted-paragraph>preformatted paragraph</span>, an
-<span title=concept-edited-sections>edited section</span>, a <span title=concept-table>table</span>, an <span title=concept-editorial-notes>editorial note</span>, or a <span title=concept-comment-paragraph>comment paragraph</span>.
+<span title=concept-edited-sections>edited section</span>, a <a href=#concept-table title=concept-table>table</a>, an <span title=concept-editorial-notes>editorial note</span>, or a <span title=concept-comment-paragraph>comment paragraph</span>.
 
 </p><p class=ed>@@ definition for ;; and @@
 
@@ -532,25 +532,25 @@ anchor number</span> followed by <span title=concept-line-contents>line contents
 
 <dt><dfn id=abnf-paragraph title=abnf-paragraph>paragraph</dfn>
 
-</dt><dd>= [<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-<span title=abnf-line-contents>line-contents</span> <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+</dt><dd>= [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</dfn>
 
-</dt><dd>= ";;" *<span title=abnf-white-space>white-space</span> [<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-[<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+</dt><dd>= ";;" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-editorial-note title=abnf-editorial-note>editorial-note</dfn>
 
-</dt><dd>= ";;" *<span title=abnf-white-space>white-space</span> [<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-[<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+</dt><dd>= ";;" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-block-child title=abnf-block-child>block-child</dfn>
 
-</dt><dd>= [<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-<span title=abnf-line-contents>line-contents</span> <span title=abnf-newline>newline</span> / <a href=#abnf-list title=abnf-list>list</a>
+</dt><dd>= [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <span title=abnf-newline>newline</span> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
-<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <span title=abnf-table>table</span> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
+<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
 
 </dd></dl>
 
@@ -568,8 +568,8 @@ or caption for the <a href=#concept-section title=concept-section>section</a>.
 
 <dt><dfn id=abnf-heading title=abnf-heading>heading</dfn>
 
-</dt><dd>= 1*"*" *<span title=abnf-white-space>white-space</span> [<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-[<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span>
+</dt><dd>= 1*"*" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span>
 
 </dd></dl>
 
@@ -612,8 +612,8 @@ cannot contain a <a href=#concept-labeled-list title=concept-labeled-list>labele
 </dd><dt><dfn id=abnf-list-item title=abnf-list-item>list-item</dfn>
 
 </dt><dd>= 1*("-" / "=") *<span title=abnf-white-space>white-space</span>
-[<span title=abnf-destination-anchor-number>destination-anchor-number</span>
-<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+[<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>
+<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-labeled-list title=abnf-labeled-list>labeled-list</dfn>
 
@@ -621,9 +621,9 @@ cannot contain a <a href=#concept-labeled-list title=concept-labeled-list>labele
 
 </dd><dt><dfn id=abnf-labeled-list-item title=abnf-labeled-list-item>labeled-list-item</dfn>
 
-</dt><dd>= ":" *<span title=abnf-white-space>white-space</span> [<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-[<span title=abnf-line-contents>line-contents</span>] *<span title=abnf-white-space>white-space</span> [<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-[<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span> *<span title=abnf-block-children>block-children</span>
+</dt><dd>= ":" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> *<span title=abnf-block-children>block-children</span>
 
 </dd></dl>
 
@@ -656,13 +656,13 @@ The following example contains no <span title=concept-quotation>quotation</span>
 
 </dd><dt><dfn id=abnf-preformatted-paragraph-block title=abnf-preformatted-paragraph-block>preformatted-paragraph-block</dfn>
 
-</dt><dd>= '[PRE[' [<span title=abnf-class-specification>class-specification</span>] "[" *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span> *([<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-[<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span>) ']PRE]' *<span title=abnf-white-space>white-space</span>
+</dt><dd>= '[PRE[' [<span title=abnf-class-specification>class-specification</span>] "[" *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span> *([<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span>) ']PRE]' *<span title=abnf-white-space>white-space</span>
 
 </dd><dt><dfn id=abnf-obs-preformatted-paragraph title=abnf-obs-preformatted-paragraph>obs-preformatted-paragraph</dfn>
 
-</dt><dd>= <span title=abnf-white-space>white-space</span> [<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span> *([<span title=abnf-destination-anchor-number>destination-anchor-number</span>]
-[<span title=abnf-line-contents>line-contents</span>] <span title=abnf-newline>newline</span>)
+</dt><dd>= <span title=abnf-white-space>white-space</span> [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> *([<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span>)
 
 </dd></dl>
 
@@ -683,6 +683,126 @@ The following example contains no <span title=concept-quotation>quotation</span>
 
 </dd></dl>
 
+<p>A <dfn id=concept-table title=concept-table>table</dfn> represents a two-dimensional
+tabular data.  It is similar to HTML <code>table</code> element, but
+what can be represented is even narrower than HTML table model.  A
+<a href=#concept-table title=concept-table>table</a> consists of one or more <a href=#concept-table-row title=concept-table-row>table rows</a>.  A <dfn id=concept-table-row title=concept-table-row>table row consists of one or more <span title=concept-table-cell>table cells</span>.  Syntactically a <span title=concept-table-row>table row</span> is followed by a <span title=concept-newline>newline</span>.
+
+</dfn></p><p>There are two kinds of <dfn id=concept-table-cell title=concept-table-cell>table
+cells</dfn>: <a href=#concept-table-data-cell title=concept-table-data-cell>data cells</a> and
+<a href=#concept-table-colspan-cell title=concept-table-colspan-cell>colspan cells</a>.  The
+first <a href=#concept-table-cell title=concept-table-cell>cell</a> in a <a href=#concept-table-row title=concept-table-row>row</a> has to be a <a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a>.  Syntactically a <a href=#concept-table-cell title=concept-table-cell>cell</a> is preceded by a <code>,</code>
+character followed by zero or more <a href=#white-space-characters>white space
+characters</a>, and is followed by zero or more <a href=#white-space-characters>white space
+characters</a>.
+
+</p><p>A <dfn id=concept-table-data-cell title=concept-table-data-cell>data cell</dfn> represents a
+cell that contains data, like HTML <code>td</code> element.  The <span title=concept-data-cell>cell</span> consists of an optional <span title=concept-destination-anchor-number>destination anchor
+number</span>, optionally followed by <span title=concept-line-contents>line contents</span>.  Syntactically, the
+<a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a> can be provided
+as a <span title=concept-quoted-string>quoted string</span>, in which
+case its <span title=concept-quoted-string-value>value</span> is
+interpreted as an optional <span title=concept-destination-anchor-number>destination anchor
+number</span>, optionally followed by <span title=concept-line-contents>line contents</span>.  In fact the <a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a> has to be represented
+as a <span title=concept-quoted-string>quoted string</span> if it
+contains a <code>,</code> character, a leading <code>"</code>
+character, or leading or trailing <a href=#white-space-characters>white space characters</a>.
+
+</p><p>A <dfn id=concept-table-colspan-cell title=concept-table-colspan-cell>colspan cell</dfn>
+represents that the <a href=#concept-table-cell title=concept-table-cell>cell</a> that
+would be placed there forms an integrated part of the <a href=#concept-table-cell title=concept-table-cell>cell</a> just before that <a href=#concept-table-cell title=concept-table-cell>cell</a>.  The <a href=#concept-table-cell title=concept-table-cell>cell</a> just before that <a href=#concept-table-cell title=concept-table-cell>cell</a> might also be a <a href=#concept-table-colspan-cell title=concept-table-colspan-cell>colspan cell</a>.
+
+</p><dl class=abnf>
+
+<dt><dfn id=abnf-table title=abnf-table>table</dfn>
+
+</dt><dd>= 1*<a href=#abnf-table-row title=abnf-table-row>table-row</a>
+
+</dd><dt><dfn id=abnf-table-row title=abnf-table-row>table-row</dfn>
+
+</dt><dd>= "," <a href=#abnf-data-cell title=abnf-data-cell>data-cell</a> *("," <a href=#abnf-cell title=abnf-cell>cell</a>) <span title=abnf-newline>newline</span>
+
+</dd><dt><dfn id=abnf-cell title=abnf-cell>cell</dfn>
+
+</dt><dd>= <a href=#abnf-data-cell title=abnf-data-cell>data-cell</a> / <a href=#abnf-colspan-cell title=abnf-colspan-cell>colspan-cell</a>
+
+</dd><dt><dfn id=abnf-data-cell title=abnf-data-cell>data-cell</dfn>
+
+</dt><dd>= *<span title=abnf-white-space>white-space</span> ([<a href=#abnf-cstartchar title=abnf-cstartchar>cstartchar</a> *<a href=#abnf-cchar title=abnf-cchar>cchar</a>] / <span title=abnf-quoted-string>quoted-string</span>) *<span title=abnf-white-space>white-space</span>
+
+</dd><dt><dfn id=abnf-cstartchar title=abnf-cstartchar>cstartchar</dfn>
+
+</dt><dd>= <span title=abnf-char>char</span> − ("," / %x0022 / <span title=abnf-white-space>white-space</span>)
+
+</dd><dt><dfn id=abnf-cchar title=abnf-cchar>cchar</dfn>
+
+</dt><dd>= <span title=abnf-char>char</span> − ","
+
+</dd><dt><dfn id=abnf-colspan-cell title=abnf-colspan-cell>colspan-cell</dfn>
+
+</dt><dd>= "=="
+
+</dd></dl>
+
+<dl class=abnf>
+
+<dt><dfn id=abnf-line-contents title=abnf-line-contents>line-contents</dfn>
+
+</dt><dd>= 1*(<a href=#abnf-text title=abnf-text>text</a> / <a href=#abnf-anchor-internal title=abnf-anchor-internal>anchor-internal</a> / <a href=#abnf-anchor-external title=abnf-anchor-external>anchor-external</a> / <a href=#abnf-anchor title=abnf-anchor>anchor</a> / <span title=abnf-tagged-inline-element>tagged-inline-element</span> / <span title=abnf-form>form</span> / <span title=abnf-strong>strong</span> /
+<span title=abnf-em>emphasis</span> / <span title=abnf-entity-reference>entity-reference</span>)
+
+</dd><dt><dfn id=abnf-text title=abnf-text>text</dfn>
+
+</dt><dd>= 1*<span title=abnf-char>char</span>
+
+</dd></dl>
+
+<dl class=abnf>
+
+<dt><dfn id=abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</dfn>
+
+</dt><dd>= "[" 1*<span title=abnf-digit>digit</span> "]"
+
+</dd><dt><dfn id=abnf-anchor-internal title=abnf-anchor-internal>anchor-internal</dfn>
+
+</dt><dd>= "&gt;&gt;" 1*<span title=abnf-digit>digit</span>
+
+</dd><dt><dfn id=abnf-anchor-external title=abnf-anchor-external>anchor-external</dfn>
+
+</dt><dd>= "&lt;" <a href=#abnf-external-reference title=abnf-external-reference>external-reference "&gt;"
+
+</a></dd><dt><dfn id=abnf-external-reference title=abnf-external-reference>external-reference</dfn>
+
+</dt><dd>= <a href=#abnf-url title=abnf-URL>URL</a> / <a href=#abnf-external-reference-scheme title=abnf-external-reference-scheme>external-reference-scheme</a>
+":" <a href=#abnf-external-reference-parameter title=abnf-external-reference-parameter>external-reference-parameter</a>
+
+</dd><dt><dfn id=abnf-url title=abnf-URL>URL</dfn>
+
+</dt><dd>= 1*<a href=#abnf-uschar title=abnf-uschar>uschar</a> ":" <a href=#abnf-external-reference-parameter title=abnf-external-reference-parameter>external-reference-parameter</a>
+
+</dd><dt><dfn id=abnf-external-reference-scheme title=abnf-external-reference-scheme>external-reference-scheme</dfn>
+
+</dt><dd>= 1*<a href=#abnf-xschar title=abnf-xschar>xschar</a>
+
+</dd><dt><dfn id=abnf-external-reference-parameter title=abnf-external-reference-parameter>external-reference-parameter</dfn>
+
+</dt><dd>= *(<span title=abnf-char>char</span> − ("&lt;" / "&gt;" / %x22) /
+<span title=abnf-quoted-string>quoted-string</span>)
+
+</dd><dt><dfn id=abnf-uschar title=abnf-uschar>uschar</dfn>
+
+</dt><dd>= <span title=abnf-char>char</span> − (":" / <span title=abnf-UALPHA>UALPHA</span>)
+
+</dd><dt><dfn id=abnf-xschar title=abnf-xschar>xschar</dfn>
+
+</dt><dd>= <span title=abnf-char>char</span> − (":" / <span title=abnf-LALPHA>LALPHA</span>)
+
+</dd><dt><dfn id=abnf-anchor title=abnf-anchor>anchor</dfn>
+
+</dt><dd>= "[[" [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-inline-end-tag>inline-end-tag</span>
+
+</dd></dl>
+
 <p class=ed>...
 
 white-space
@@ -690,6 +810,9 @@ identifier quoted-string char
 concept-quoted-string concept-quoted-string-value
 concept-character
 newline
+abnf-digit
+lalpha
+ualpha
 
 concept-wikiform
 concept-wikiname
@@ -1309,11 +1432,11 @@ in <var title="">line</var> and <a href=#block-start-tag-classes title=block-sta
 of a class specification">body</a> of the <a href=#class-specification>class
 specification</a>, if any, or null otherwise.
 
+</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
 </li><li>If the <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
 <code>PRE</code>, switch to the "<a href=#preformatted-block>preformatted block</a>"
 <a href=#mode>mode</a>.
-
-</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
 </li></ol>
 

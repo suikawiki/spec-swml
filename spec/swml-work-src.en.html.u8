@@ -745,6 +745,164 @@ title=abnf-newline>newline</span>
 
 </dl>
 
+<p>A <dfn title=concept-table>table</dfn> represents a two-dimensional
+tabular data.  It is similar to HTML <code>table</code> element, but
+what can be represented is even narrower than HTML table model.  A
+<span title=concept-table>table</span> consists of one or more <span
+title=concept-table-row>table rows</span>.  A <dfn
+title=concept-table-row>table row</span> consists of one or more <span
+title=concept-table-cell>table cells</span>.  Syntactically a <span
+title=concept-table-row>table row</span> is followed by a <span
+title=concept-newline>newline</span>.
+
+<p>There are two kinds of <dfn title=concept-table-cell>table
+cells</dfn>: <span title=concept-table-data-cell>data cells</span> and
+<span title=concept-table-colspan-cell>colspan cells</span>.  The
+first <span title=concept-table-cell>cell</span> in a <span
+title=concept-table-row>row</span> has to be a <span
+title=concept-table-data-cell>data cell</span>.  Syntactically a <span
+title=concept-table-cell>cell</span> is preceded by a <code>,</code>
+character followed by zero or more <span>white space
+characters</span>, and is followed by zero or more <span>white space
+characters</span>.
+
+<p>A <dfn title=concept-table-data-cell>data cell</dfn> represents a
+cell that contains data, like HTML <code>td</code> element.  The <span
+title=concept-data-cell>cell</span> consists of an optional <span
+title=concept-destination-anchor-number>destination anchor
+number</span>, optionally followed by <span
+title=concept-line-contents>line contents</span>.  Syntactically, the
+<span title=concept-table-data-cell>data cell</span> can be provided
+as a <span title=concept-quoted-string>quoted string</span>, in which
+case its <span title=concept-quoted-string-value>value</span> is
+interpreted as an optional <span
+title=concept-destination-anchor-number>destination anchor
+number</span>, optionally followed by <span
+title=concept-line-contents>line contents</span>.  In fact the <span
+title=concept-table-data-cell>data cell</span> has to be represented
+as a <span title=concept-quoted-string>quoted string</span> if it
+contains a <code>,</code> character, a leading <code>"</code>
+character, or leading or trailing <span>white space characters</span>.
+
+<p>A <dfn title=concept-table-colspan-cell>colspan cell</dfn>
+represents that the <span title=concept-table-cell>cell</span> that
+would be placed there forms an integrated part of the <span
+title=concept-table-cell>cell</span> just before that <span
+title=concept-table-cell>cell</span>.  The <span
+title=concept-table-cell>cell</span> just before that <span
+title=concept-table-cell>cell</span> might also be a <span
+title=concept-table-colspan-cell>colspan cell</span>.
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-table>table</dfn>
+
+<dd>= 1*<span title=abnf-table-row>table-row</span>
+
+<dt><dfn title=abnf-table-row>table-row</dfn>
+
+<dd>= "," <span title=abnf-data-cell>data-cell</span> *("," <span
+title=abnf-cell>cell</span>) <span title=abnf-newline>newline</span>
+
+<dt><dfn title=abnf-cell>cell</dfn>
+
+<dd>= <span title=abnf-data-cell>data-cell</span> / <span
+title=abnf-colspan-cell>colspan-cell</span>
+
+<dt><dfn title=abnf-data-cell>data-cell</dfn>
+
+<dd>= *<span title=abnf-white-space>white-space</span> ([<span
+title=abnf-cstartchar>cstartchar</span> *<span
+title=abnf-cchar>cchar</span>] / <span
+title=abnf-quoted-string>quoted-string</span>) *<span
+title=abnf-white-space>white-space</span>
+
+<dt><dfn title=abnf-cstartchar>cstartchar</dfn>
+
+<dd>= <span title=abnf-char>char</span> &minus; ("," / %x0022 / <span
+title=abnf-white-space>white-space</span>)
+
+<dt><dfn title=abnf-cchar>cchar</dfn>
+
+<dd>= <span title=abnf-char>char</span> &minus; ","
+
+<dt><dfn title=abnf-colspan-cell>colspan-cell</dfn>
+
+<dd>= "=="
+
+</dl>
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-line-contents>line-contents</dfn>
+
+<dd>= 1*(<span title=abnf-text>text</span> / <span
+title=abnf-anchor-internal>anchor-internal</span> / <span
+title=abnf-anchor-external>anchor-external</span> / <span
+title=abnf-anchor>anchor</span> / <span
+title=abnf-tagged-inline-element>tagged-inline-element</span> / <span
+title=abnf-form>form</span> / <span title=abnf-strong>strong</span> /
+<span title=abnf-em>emphasis</span> / <span
+title=abnf-entity-reference>entity-reference</span>)
+
+<dt><dfn title=abnf-text>text</dfn>
+
+<dd>= 1*<span title=abnf-char>char</span>
+
+</dl>
+
+<dl class=abnf>
+
+<dt><dfn title=abnf-destination-anchor-number>destination-anchor-number</dfn>
+
+<dd>= "[" 1*<span title=abnf-digit>digit</span> "]"
+
+<dt><dfn title=abnf-anchor-internal>anchor-internal</dfn>
+
+<dd>= ">>" 1*<span title=abnf-digit>digit</span>
+
+<dt><dfn title=abnf-anchor-external>anchor-external</dfn>
+
+<dd>= "<" <span title=abnf-external-reference>external-reference ">"
+
+<dt><dfn title=abnf-external-reference>external-reference</dfn>
+
+<dd>= <span title=abnf-URL>URL</span> / <span
+title=abnf-external-reference-scheme>external-reference-scheme</span>
+":" <span
+title=abnf-external-reference-parameter>external-reference-parameter</span>
+
+<dt><dfn title=abnf-URL>URL</dfn>
+
+<dd>= 1*<span title=abnf-uschar>uschar</span> ":" <span
+title=abnf-external-reference-parameter>external-reference-parameter</span>
+
+<dt><dfn title=abnf-external-reference-scheme>external-reference-scheme</dfn>
+
+<dd>= 1*<span title=abnf-xschar>xschar</span>
+
+<dt><dfn title=abnf-external-reference-parameter>external-reference-parameter</dfn>
+
+<dd>= *(<span title=abnf-char>char</span> &minus; ("<" / ">" / %x22) /
+<span title=abnf-quoted-string>quoted-string</span>)
+
+<dt><dfn title=abnf-uschar>uschar</dfn>
+
+<dd>= <span title=abnf-char>char</span> &minus; (":" / <span
+title=abnf-UALPHA>UALPHA</span>)
+
+<dt><dfn title=abnf-xschar>xschar</dfn>
+
+<dd>= <span title=abnf-char>char</span> &minus; (":" / <span
+title=abnf-LALPHA>LALPHA</span>)
+
+<dt><dfn title=abnf-anchor>anchor</dfn>
+
+<dd>= "[[" [<span title=abnf-line-contents>line-contents</span>] <span
+title=abnf-inline-end-tag>inline-end-tag</span>
+
+</dl>
+
 <p class=ed>...
 
 white-space
@@ -752,6 +910,9 @@ identifier quoted-string char
 concept-quoted-string concept-quoted-string-value
 concept-character
 newline
+abnf-digit
+lalpha
+ualpha
 
 concept-wikiform
 concept-wikiname
