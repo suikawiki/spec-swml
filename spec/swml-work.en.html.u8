@@ -3,7 +3,7 @@
 
 </head><body><div class=header>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num" id=working-draft-date>Working Draft 17 November 2008</h2>
+<h2 class="no-toc no-num" id=working-draft-date>Working Draft 25 November 2008</h2>
 
 <dl class=versions-uri>
 <dt>This Version</dt>
@@ -83,7 +83,8 @@ version of the document is the only normative version.</p>
 							<li><a href=#the-in-table-row-insertion-mode><span class=secno>3.2.6.2 </span>The "<span>in table row</span>" <span>insertion mode</span></a></li>
 							<li><a href=#the-in-paragraph-insertion-mode><span class=secno>3.2.6.3 </span>The "<span>in paragraph</span>" <span>insertion mode</span></a></li></ol></li></ol></li>
 			<li><a href=#serializing-swml-text-serialization-documents><span class=secno>3.3 </span>Serializing <span>SWML text serialization</span> documents</a></li>
-			<li><a href=#the-text/x-suikawiki-internet-media-type><span class=secno>3.4 </span>The <code>text/x-suikawiki</code> Internet Media Type</a></li></ol></li>
+			<li><a href=#the-text/x-suikawiki-and-text/x.suikawiki.image-internet-media-types><span class=secno>3.4 </span>The <code>text/x-suikawiki</code> and
+<code>text/x.suikawiki.image</code> Internet Media Types</a></li></ol></li>
 	<li><a href=#the-swml-xml-serialization><span class=secno>4 </span>The SWML XML serialization</a>
 		<ol>
 			<li><a class=ed href=#...-xml-media-type><span class=secno>4.1 </span>... xml media type</a></li></ol></li>
@@ -154,9 +155,12 @@ attribute in the <span>SuikaWiki/0.9 namespace</span></a></li>
 in the <span>SuikaWiki/0.9 namespace</span></a></li>
 			<li><a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.34 </span>The <code>Name</code> attribute in
 the <span>SuikaWiki/0.9 namespace</span></a></li>
-			<li><a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.35 </span>The <code>Version</code> attribute in the
-<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
-	<li><a class=no-num href=#references>References</a></li></ol>
+			<li><a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.35 </span>The <code title=attr-sw-version>Version</code>
+attribute in the <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
+	<li><a class=no-num href=#references>References</a>
+		<ol>
+			<li><a class=no-num href=#normative-references>Normative references</a></li>
+			<li><a class=no-num href=#non‐normative-references>Non‐normative references</a></li></ol></li></ol>
 <!--end-toc-->
 </div>
 
@@ -253,13 +257,22 @@ prefix</a> is <code>html</code>.
 <p><em>This section is non‐normative.</em>
 
 </p><p>A <dfn id=concept-document title=concept-document>document</dfn> in the <a href=#the-swml-text-serialization>SWML text
-serialization</a> consists of two parts: <a href=#concept-header-part title=concept-header-part>header part</a> and <a href=#concept-body-part title=concept-body-part>body part</a>.
+serialization</a> consists of three parts: <a href=#concept-header-part title=concept-header-part>header part</a>, <a href=#concept-body-part title=concept-body-part>body part</a>, and optional <a href=#concept-image title=concept-image>image</a>.
+
+</p><p>Several construct in a <a href=#concept-document title=concept-document>document</a>
+refers <a href=#concept-page title=concept-page>page</a>.  A <dfn id=concept-page title=concept-page>page</dfn> is a unit of data in a hypertext
+database.  The name of a <a href=#concept-page title=concept-page>page</a> is
+sometimes referred to as <dfn id=concept-wikiname title=concept-WikiName>WikiName</dfn>.
+A <a href=#concept-page title=concept-page>page</a> sometimes represents or is
+associated with an image.  How to implement these concept, including
+how to resolve <a href=#concept-wikiname title=concept-WikiName>WikiNames</a>, is not
+defined in this specification.
 
 </p><dl class=abnf>
 
 <dt><dfn id=abnf-document>document</dfn>
 
-</dt><dd>= <a href=#abnf-header-part title=abnf-header-part>header-part</a> <a href=#abnf-body-part title=abnf-body-part>body-part</a>
+</dt><dd>= <a href=#abnf-header-part title=abnf-header-part>header-part</a> <a href=#abnf-body-part title=abnf-body-part>body-part</a> [<a href=#abnf-obs-image title=abnf-obs-image>obs-image</a>]
 
 </dd></dl>
 
@@ -300,11 +313,11 @@ in the table below were defined, used, and implemented:
 <p>A <a href=#concept-magic-line title=concept-magic-line>magic line</a> can contain zero
 or more <dfn id=concept-parameter title=concept-parameter>parameters</dfn> after the <a href=#concept-format-version title=concept-format-version>format version</a>.  A <a href=#concept-parameter title=concept-parameter>parameter</a> consists of one or more
 <a href=#white-space-characters>white space characters</a>, followed by the <dfn id=concept-parameter-name title=concept-parameter-name>name</dfn>, followed by a <code>=</code>
-character, followed by a <span title=concept-quoted-string>quoted
-string</span> whose <span title=concept-quoted-string-value>value</span> representing zero or
+character, followed by a <a href=#concept-quoted-string title=concept-quoted-string>quoted
+string</a> whose <a href=#concept-quoted-string-value title=concept-quoted-string-value>value</a> representing zero or
 more <dfn id=concept-parameter-value title=concept-parameter-value>values</dfn> separeted by a
 <code>,</code> character.  A <a href=#concept-parameter-value title=concept-parameter-value>parameter value</a> consists of zero
-or more <span title=concept-character>characters</span> except for the
+or more <a href=#concept-character title=concept-character>characters</a> except for the
 separator character <code>,</code>.  Historically, following
 combinations of <a href=#concept-parameter-name title=concept-parameter-name>parameter
 names</a> and <a href=#concept-parameter-value title=concept-parameter-value>values</a> was
@@ -322,20 +335,20 @@ defined and used:
 
 <tr>
 <th scope=row><dfn id=concept-parameter-default-name title=concept-parameter-default-name><code>default-name</code></dfn>
-</th><td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+</th><td>Zero or more <a href=#concept-character title=concept-character>characters</a> except for <code>,</code>
 </td><td>The <a href=#concept-parameter-value title=concept-parameter-value>value</a> represetns
-the default user name for <span title=concept-wikiform>WikiForm</span>
+the default user name for <a href=#concept-wikiform title=concept-wikiform>WikiForm</a>
 input fields.  Exactly one <a href=#concept-parameter-value title=concept-parameter-value>value</a>
 can be specified.  The default when this <a href=#concept-parameter title=concept-parameter>parameter</a>
 is implementation dependent.
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-parameter-import title=concept-parameter-import><code>import</code></dfn>
-</th><td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+</th><td>Zero or more <a href=#concept-character title=concept-character>characters</a> except for <code>,</code>
 </td><td>A <a href=#concept-parameter-value title=concept-parameter-value>value</a> represents the
-<span title=concept-wikiname>WikiName</span> from which definitions
-for <span title=concept-entity-reference>entity references</span> are
-imported.  When this <a href=#concept-parameter title=concept-parameter>parameter</a> is 
+<a href=#concept-wikiname title=concept-WikiName>WikiName</a> by which definitions for
+<a href=#concept-entity-reference title=concept-entity-reference>entity references</a> are
+imported.  When this <a href=#concept-parameter title=concept-parameter>parameter</a> is
 not specified, no definition is imported.
 
 </td></tr><tr>
@@ -344,7 +357,7 @@ not specified, no definition is imported.
 <dfn id=concept-parameter-interactive-no title=concept-parameter-interactive-no><code>no</code></dfn>
 </td><td>Value <a href=#concept-parameter-interactive-yes><code title=concept-parameter-interactive-yes>yes</code></a>
 means that the <a href=#concept-document title=concept-document>document</a> contains
-an interactive content such as <span title=concept-wikiform>WikiForm</span>.
+an interactive content such as <a href=#concept-wikiform title=concept-wikiform>WikiForm</a>.
 Value <a href=#concept-parameter-interactive-no><code title=concept-parameter-interactive-no>no</code></a>, the default
 value used when the <a href=#concept-parameter title=concept-parameter>parameter</a> is
 not specified, means the <a href=#concept-document title=concept-document>document</a> does
@@ -364,7 +377,7 @@ is not specified, means the content is not obsolete.
 <div class="note memo">
 
 <p>The <a href=#concept-parameter-name title=concept-parameter-name>parameter name</a> <a href=#concept-parameter-obsolete><code title=concept-parameter-obsolete>obsolete</code></a> was defined in the
-SuikaWiki/0.9 specification, but the <a href=#concept-parameter-name title=concept-parameter-name>parameter name</a> that has been
+SuikaWiki/0.9 specification, but the <a href=#concept-parameter-name title=concept-parameter-name>parameter name</a> that had been
 actually implemented in SuikaWiki2 and used was the <a href=#concept-parameter-name title=concept-parameter-name>parameter name</a> <a href=#concept-parameter-obsoleted><code title=concept-parameter-obsoleted>obsoleted</code></a>.
 
 </p></div>
@@ -372,24 +385,22 @@ actually implemented in SuikaWiki2 and used was the <a href=#concept-parameter-n
 </td></tr><tr>
 <th scope=row><dfn id=concept-parameter-obsoleted title=concept-parameter-obsoleted><code>obsoleted</code></dfn>
 
-</th></tr><tr>
-<th scope=row><dfn id=concept-parameter-page-icon title=concept-parameter-page-icon><code>page-icon</code></dfn>
-</th><td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
-</td><td>The <a href=#concept-parameter-value title=concept-parameter-value>value</a> represents the
-<span title=concept-wikiname>WikiName</span> from which the page
-icon is imported.  The page icon can be used as favicon <span class=ed>@@
-[ref]</span>, for example.  Exactly one
-<a href=#concept-parameter-value title=concept-parameter-value>value</a> can be specified.  The 
-default when this <a href=#concept-parameter title=concept-parameter>parameter</a>
-is implementation dependent.
+</th></tr><tr> <th scope=row><dfn id=concept-parameter-page-icon title=concept-parameter-page-icon><code>page-icon</code></dfn>
+</th><td>Zero or more <a href=#concept-character title=concept-character>characters</a>
+except for <code>,</code>
+</td><td>The <a href=#concept-parameter-value title=concept-parameter-value>value</a> represents
+the <a href=#concept-wikiname title=concept-WikiName>WikiName</a> by which the page
+icon is imported.  The page icon can be used as favicon <span class=ed>@@ [ref]</span>, for example.  Exactly one <a href=#concept-parameter-value title=concept-parameter-value>value</a> can be specified.  The
+default when this <a href=#concept-parameter title=concept-parameter>parameter</a> is
+implementation dependent.
 
 </td></tr></tbody><tbody>
 
 <tr>
 <th scope=row><dfn id=concept-parameter-image-alt title=concept-parameter-image-alt><code>image-alt</code></dfn>
-</th><td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+</th><td>Zero or more <a href=#concept-character title=concept-character>characters</a> except for <code>,</code>
 </td><td>The <a href=#concept-parameter-value title=concept-parameter-value>value</a> represents the
-alternative text for the <span title=concept-image>image</span> embedded in the
+alternative text for the <a href=#concept-image title=concept-image>image</a> embedded in the
 <a href=#concept-document title=concept-document>document</a>.  Exactly one
 <a href=#concept-parameter-value title=concept-parameter-value>value</a> can be specified.  The
 default when this <a href=#concept-parameter title=concept-parameter>parameter</a>
@@ -399,12 +410,12 @@ is the empty string.
 <th scope=row><dfn id=concept-parameter-image-type title=concept-parameter-image-type><code>image-type</code></dfn>
 </th><td>An Internet Media Type with no parameter, white spaces, comments
 </td><td>The <a href=#concept-parameter-value title=concept-parameter-value>value</a> represents the
-type of the <span title=concept-image>image</span> embedded in the
+type of the <a href=#concept-image title=concept-image>image</a> embedded in the
 <a href=#concept-document title=concept-document>document</a>.  Exactly one
 <a href=#concept-parameter-value title=concept-parameter-value>value</a> can be specified.
 This <a href=#concept-parameter title=concept-parameter>parameter</a> has to be specified
 when the <a href=#concept-document title=concept-document>document</a> contains an
-<span title=concept-image>image</span>.
+<a href=#concept-image title=concept-image>image</a>.
 
 </td></tr></tbody></table>
 
@@ -415,7 +426,7 @@ are specified is not significant.  The <a href=#concept-parameter-name title=con
 
 </p><p>A <a href=#concept-magic-line title=concept-magic-line>magic line</a> has to be
 terminated by zero or more <a href=#white-space-characters>white space characters</a>
-followed by a <span title=concept-newline>newline</span>.
+followed by a <a href=#concept-newline title=concept-newline>newline</a>.
 
 </p><dl class=abnf>
 
@@ -426,23 +437,23 @@ followed by a <span title=concept-newline>newline</span>.
 </dd><dt><dfn id=abnf-obs-magic-line title=abnf-obs-magic-line>obs-magic-line</dfn>
 
 </dt><dd>= "#?" <a href=#abnf-format-name title=abnf-format-name>format-name</a> "/" <a href=#abnf-format-version title=abnf-format-version>format-version</a> *(<!-- In
-SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<span title=abnf-white-space>white-space</span> <a href=#abnf-parameter title=abnf-parameter>parameter</a>) *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span>
+SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-parameter title=abnf-parameter>parameter</a>) *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a>
 
 </dd><dt><dfn id=abnf-format-name title=abnf-format-name>format-name</dfn>
 
-</dt><dd>= <span title=abnf-identifier>identifier</span>
+</dt><dd>= <a href=#abnf-identifier title=abnf-identifier>identifier</a>
 
 </dd><dt><dfn id=abnf-format-version title=abnf-format-version>format-version</dfn>
 
-</dt><dd>= <span title=abnf-identifier>identifier</span>
+</dt><dd>= <a href=#abnf-identifier title=abnf-identifier>identifier</a>
 
 </dd><dt><dfn id=abnf-parameter title=abnf-parameter>parameter</dfn>
 
-</dt><dd>= parameter-name "=" quoted-string
+</dt><dd>= <a href=#abnf-parameter-name title=abnf-parameter-name>parameter-name</a> "=" <a href=#abnf-quoted-string title=abnf-quoted-string>quoted-string</a>
 
 </dd><dt><dfn id=abnf-parameter-name title=abnf-parameter-name>parameter-name</dfn>
 
-</dt><dd>= <span title=abnf-identifier>identifier</span>
+</dt><dd>= <a href=#abnf-identifier title=abnf-identifier>identifier</a>
 
 </dd><dt><dfn id=abnf-parameter-value-list title=abnf-parameter-value-list>parameter-value-list</dfn>
 
@@ -451,7 +462,7 @@ SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<span title=abnf-whi
 
 </dd><dt><dfn id=abnf-parameter-value title=abnf-parameter-value>parameter-value</dfn>
 
-</dt><dd>:= *(<span title=abnf-char>char</span> − ",")
+</dt><dd>:= *(<a href=#abnf-char title=abnf-char>char</a> − ",")
 
 </dd></dl>
 
@@ -459,7 +470,7 @@ SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<span title=abnf-whi
 
 </p><p>There are several kinds of <dfn id=concept-block title=concept-block>blocks</dfn>:
 <a href=#concept-paragraph title=concept-paragraph>paragraphs</a>, <a href=#concept-heading title=concept-heading>headings</a>, <a href=#concept-list title=concept-list>lists</a>, <a href=#concept-labeled-list title=concept-labeled-list>labeled lists</a>, <span title=concept-quotation>quotations</span>, <span title=concept-preformatted-paragraph>preformatted paragraphs</span>,
-<span title=concept-edit-section>editted sections</span>, <a href=#concept-table title=concept-table>tables</a>, <span title=concept-editorial-note>editorial notes</span>, <span title=concept-comment-paragraph>comment paragraphs</span>, and <a href=#concept-empty-block title=concept-empty-block>empty blocks</a>.  In addition, <span title=concept-form>forms</span> and <span title=concept-entity-reference>entity references</span> can also be
+<span title=concept-edit-section>editted sections</span>, <a href=#concept-table title=concept-table>tables</a>, <span title=concept-editorial-note>editorial notes</span>, <span title=concept-comment-paragraph>comment paragraphs</span>, and <a href=#concept-empty-block title=concept-empty-block>empty blocks</a>.  In addition, <a href=#concept-form title=concept-form>forms</a> and <a href=#concept-entity-reference title=concept-entity-reference>entity references</a> can also be
 used as <span title=concept-blocks>blocks</span>.
 
 </p><p><dfn id=concept-empty-block title=concept-empty-block>Empty blocks</dfn>, which is
@@ -496,23 +507,23 @@ This line is <em>not</em> part of the list item.</code></pre>
 
 </dt><dd>= <a href=#abnf-paragraph title=abnf-paragraph>paragraph</a> / <a href=#abnf-heading title=abnf-heading>heading</a> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-quotation title=abnf-quotation>quotation</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
-<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a> / <span title=abnf-form>form</span> / <span title=abnf-obs-entity-reference>obs-entity-reference</span>
+<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a> / <a href=#abnf-form title=abnf-form>form</a> / <a href=#abnf-obs-entity-reference title=abnf-obs-entity-reference>obs-entity-reference</a>
 
 </dd><dt><dfn id=abnf-empty-block title=abnf-empty-block>empty-block</dfn>
 
-</dt><dd>= <span title=abnf-newline>newline
+</dt><dd>= <a href=#abnf-newline title=abnf-newline>newline
 
-</span></dd></dl>
+</a></dd></dl>
 
 <p>A <dfn id=concept-paragraph title=concept-paragraph>paragraph</dfn> represents a unit of
 the text, similar to HTML's <code>p</code> element.  It consists of an
 optional <span title=concept-destination-anchor-number>destination
-anchor number</span>, followed by a <span title=concept-line-contents>line contents</span>, followed by a <span title=concept-newline>newline</span>, followed by zero or more <a href=#concept-block-child title=concept-block-child>block children</a>.
+anchor number</span>, followed by a <span title=concept-line-contents>line contents</span>, followed by a <a href=#concept-newline title=concept-newline>newline</a>, followed by zero or more <a href=#concept-block-child title=concept-block-child>block children</a>.
 
 </p><div class="note memo">
 
 <p>A <a href=#concept-paragraph title=concept-paragraph>paragraph</a> cannot begin with
-a <span title=concept-form>form</span> or <span title=concept-entity-reference>entity reference</span>, since it is
+a <a href=#concept-form title=concept-form>form</a> or <a href=#concept-entity-reference title=concept-entity-reference>entity reference</a>, since it is
 treated as a <span title=concept-block</span> when it appears at the
 beginning of a line.  A <a href=#concept-paragraph title=concept-paragraph>paragraph</a>
 cannot begin with a <a href=#white-space-characters title="white space characters">white space
@@ -523,7 +534,7 @@ then.
 
 <p>A <dfn id=concept-block-child title=concept-block-child>block child</dfn> is one of an
 optional <span title=concept-destination-anchor-number>destination
-anchor number</span> followed by <span title=concept-line-contents>line contents</span> followed by a <span title=concept-newline>newline</span>, a <a href=#concept-list title=concept-list>list</a>, a <a href=#concept-labeled-list title=concept-labeled-list>labeled list</a>, a <span title=concept-preformatted-paragraph>preformatted paragraph</span>, an
+anchor number</span> followed by <span title=concept-line-contents>line contents</span> followed by a <a href=#concept-newline title=concept-newline>newline</a>, a <a href=#concept-list title=concept-list>list</a>, a <a href=#concept-labeled-list title=concept-labeled-list>labeled list</a>, a <span title=concept-preformatted-paragraph>preformatted paragraph</span>, an
 <span title=concept-edited-sections>edited section</span>, a <a href=#concept-table title=concept-table>table</a>, an <span title=concept-editorial-notes>editorial note</span>, or a <span title=concept-comment-paragraph>comment paragraph</span>.
 
 </p><p class=ed>@@ definition for ;; and @@
@@ -533,22 +544,22 @@ anchor number</span> followed by <span title=concept-line-contents>line contents
 <dt><dfn id=abnf-paragraph title=abnf-paragraph>paragraph</dfn>
 
 </dt><dd>= [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <a href=#abnf-newline title=abnf-newline>newline</a> *<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</dfn>
 
-</dt><dd>= ";;" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+</dt><dd>= ";;" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a> *<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-editorial-note title=abnf-editorial-note>editorial-note</dfn>
 
-</dt><dd>= ";;" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+</dt><dd>= ";;" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a> *<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-block-child title=abnf-block-child>block-child</dfn>
 
 </dt><dd>= [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <span title=abnf-newline>newline</span> / <a href=#abnf-list title=abnf-list>list</a>
+<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <a href=#abnf-newline title=abnf-newline>newline</a> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
 <a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
 
@@ -557,7 +568,7 @@ anchor number</span> followed by <span title=concept-line-contents>line contents
 <p>A <dfn id=concept-heading title=concept-heading>heading</dfn> introduces a <dfn id=concept-section title=concept-section>section</dfn>.  It is represented by one or more
 <code>*</code> characters, followed by zero or more <a href=#white-space-characters>white space
 characters</a>, optionally followed by a <span title=concept-destination-anchor-number>destination anchor
-number</span>, optionally followed by <span title=concept-line-contents>line contents</span>, followed by a <span title=concept-newline>newline</span>.  The number of the
+number</span>, optionally followed by <span title=concept-line-contents>line contents</span>, followed by a <a href=#concept-newline title=concept-newline>newline</a>.  The number of the
 <code>*</code> represents the depth of the <a href=#concept-section title=concept-section>section</a>.  A <a href=#concept-heading title=concept-heading>heading</a> with only one <code>*</code>
 character begins a larger <a href=#concept-section title=concept-section>section</a>
 than a <a href=#concept-heading title=concept-heading>heading&gt;heading</a> with more
@@ -568,8 +579,8 @@ or caption for the <a href=#concept-section title=concept-section>section</a>.
 
 <dt><dfn id=abnf-heading title=abnf-heading>heading</dfn>
 
-</dt><dd>= 1*"*" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span>
+</dt><dd>= 1*"*" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a>
 
 </dd></dl>
 
@@ -582,7 +593,7 @@ this specification.
 <a href=#concept-list-item title=concept-list-item>items</a>.  An <dfn id=concept-list-item title=concept-list-item>item</dfn> in the <a href=#concept-list title=concept-list>list</a> is represented by one or more
 <code>-</code> or <code>=</code> characters, followed by zero or more
 <a href=#white-space-characters>white space characters</a>, optionally followed by a <span title=concept-destination-anchor-number>destination anchor
-number</span>, optionally followed by <span title=concept-line-contents>line contents</span>, followed by a <span title=concept-newline>newline</span>, followed by zero or more <a href=#concept-block-child title=concept-block-child>block children</a>.  The number of
+number</span>, optionally followed by <span title=concept-line-contents>line contents</span>, followed by a <a href=#concept-newline title=concept-newline>newline</a>, followed by zero or more <a href=#concept-block-child title=concept-block-child>block children</a>.  The number of
 <code>-</code> or <code>=</code> characters at the beginning of the
 <a href=#concept-list-item title=concept-list-item>item</a> represents the <dfn id=concept-list-depth title=concept-list-depth>depth</dfn> of the <a href=#concept-list title=concept-list>list</a>.  In a <a href=#concept-list title=concept-list>list</a>, <a href=#concept-list-depth title=concept-list-depth>depth</a> of <a href=#concept-list-item title=concept-list-item>items</a> has to be the same value.  If
 there is another <a href=#concept-list title=concept-list>list</a> in <a href=#concept-block-child title=concept-block-child>block children</a>, it's <a href=#concept-list-item title=concept-list-item>items</a>' <a href=#concept-list-depth title=concept-list-depth>depth</a> has to be greater than the <a href=#concept-list-depth title=concept-list-depth>depth</a> of the parent <a href=#concept-list-item title=concept-list-item>item</a>.  The last character that
@@ -599,8 +610,8 @@ number</span>, optionally followed by <span title=concept-line-contents>line con
 more <a href=#white-space-characters>white space characters</a>, followed by a <code>:</code>
 character, followed by a <span title=concept-destination-anchor-number>destination anchor
 number</span>, followed by zero or more <a href=#white-space-characters>white space
-characters</a>, optionally followed by <span title=concept-line-contents>line contents</span>, followed by <span title=concept-newline>newline</span>, followed by zero or more <span title=concept-block-children>block chidlren</span>.  The former <span title=concept-line-contents>line contents</span>, if any, represents
-the label.  <span title=concept-block-children>Block children</span>
+characters</a>, optionally followed by <span title=concept-line-contents>line contents</span>, followed by <a href=#concept-newline title=concept-newline>newline</a>, followed by zero or more <a href=#concept-block-child title=concept-block-child>block chidlren</a>.  The former <span title=concept-line-contents>line contents</span>, if any, represents
+the label.  <a href=#concept-block-child title=concept-block-child>Block children</a>
 cannot contain a <a href=#concept-labeled-list title=concept-labeled-list>labeled list</a>.
 
 </p><dl class=abnf>
@@ -611,9 +622,9 @@ cannot contain a <a href=#concept-labeled-list title=concept-labeled-list>labele
 
 </dd><dt><dfn id=abnf-list-item title=abnf-list-item>list-item</dfn>
 
-</dt><dd>= 1*("-" / "=") *<span title=abnf-white-space>white-space</span>
+</dt><dd>= 1*("-" / "=") *<a href=#abnf-white-space title=abnf-white-space>white-space</a>
 [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>
-<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> 0*<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a> *<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd><dt><dfn id=abnf-labeled-list title=abnf-labeled-list>labeled-list</dfn>
 
@@ -621,9 +632,9 @@ cannot contain a <a href=#concept-labeled-list title=concept-labeled-list>labele
 
 </dd><dt><dfn id=abnf-labeled-list-item title=abnf-labeled-list-item>labeled-list-item</dfn>
 
-</dt><dd>= ":" *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] *<span title=abnf-white-space>white-space</span> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> *<span title=abnf-block-children>block-children</span>
+</dt><dd>= ":" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a> *<a href=#abnf-block-child title=abnf-block-child>block-child</a>
 
 </dd></dl>
 
@@ -643,7 +654,7 @@ The following example contains no <span title=concept-quotation>quotation</span>
 
 </dd><dt><dfn id=abnf-quoted-block title=abnf-quoted-block>quoted-block</dfn>
 
-</dt><dd>= 1*"&gt;" *<span title=abnf-white-space>white-space</span> (<a href=#abnf-paragraph title=abnf-paragraph>paragraph</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <span title=abnf-newline>newline</span>)
+</dt><dd>= 1*"&gt;" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> (<a href=#abnf-paragraph title=abnf-paragraph>paragraph</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-newline title=abnf-newline>newline</a>)
 
 </dd></dl>
 
@@ -656,13 +667,13 @@ The following example contains no <span title=concept-quotation>quotation</span>
 
 </dd><dt><dfn id=abnf-preformatted-paragraph-block title=abnf-preformatted-paragraph-block>preformatted-paragraph-block</dfn>
 
-</dt><dd>= '[PRE[' [<span title=abnf-class-specification>class-specification</span>] "[" *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span> *([<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span>) ']PRE]' *<span title=abnf-white-space>white-space</span>
+</dt><dd>= '[PRE[' [<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] "[" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a> *([<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a>) ']PRE]' *<a href=#abnf-white-space title=abnf-white-space>white-space</a>
 
 </dd><dt><dfn id=abnf-obs-preformatted-paragraph title=abnf-obs-preformatted-paragraph>obs-preformatted-paragraph</dfn>
 
-</dt><dd>= <span title=abnf-white-space>white-space</span> [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span> *([<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
-[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-newline>newline</span>)
+</dt><dd>= <a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a> *([<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a>)
 
 </dd></dl>
 
@@ -675,11 +686,11 @@ The following example contains no <span title=concept-quotation>quotation</span>
 
 </dd><dt><dfn id=abnf-inserted-section title=abnf-inserted-section>inserted-section</dfn>
 
-</dt><dd>= '[INS' [<span title=abnf-class-specification>class-specification</span>] "[" *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span> <a href=#abnf-body-part title=abnf-body-part>body-part</a> ']INS]' *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span>
+</dt><dd>= '[INS' [<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] "[" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a> <a href=#abnf-body-part title=abnf-body-part>body-part</a> ']INS]' *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a>
 
 </dd><dt><dfn id=abnf-deleted-section title=abnf-deleted-section>deleted-section</dfn>
 
-</dt><dd>= '[DEL' [<span title=abnf-class-specification>class-specification</span>] "[" *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span> <a href=#abnf-body-part title=abnf-body-part>body-part</a> ']DEL]' *<span title=abnf-white-space>white-space</span> <span title=abnf-newline>newline</span>
+</dt><dd>= '[DEL' [<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] "[" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a> <a href=#abnf-body-part title=abnf-body-part>body-part</a> ']DEL]' *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a>
 
 </dd></dl>
 
@@ -700,11 +711,11 @@ characters</a>.
 cell that contains data, like HTML <code>td</code> element.  The <span title=concept-data-cell>cell</span> consists of an optional <span title=concept-destination-anchor-number>destination anchor
 number</span>, optionally followed by <span title=concept-line-contents>line contents</span>.  Syntactically, the
 <a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a> can be provided
-as a <span title=concept-quoted-string>quoted string</span>, in which
-case its <span title=concept-quoted-string-value>value</span> is
+as a <a href=#concept-quoted-string title=concept-quoted-string>quoted string</a>, in which
+case its <a href=#concept-quoted-string-value title=concept-quoted-string-value>value</a> is
 interpreted as an optional <span title=concept-destination-anchor-number>destination anchor
 number</span>, optionally followed by <span title=concept-line-contents>line contents</span>.  In fact the <a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a> has to be represented
-as a <span title=concept-quoted-string>quoted string</span> if it
+as a <a href=#concept-quoted-string title=concept-quoted-string>quoted string</a> if it
 contains a <code>,</code> character, a leading <code>"</code>
 character, or leading or trailing <a href=#white-space-characters>white space characters</a>.
 
@@ -720,7 +731,7 @@ would be placed there forms an integrated part of the <a href=#concept-table-cel
 
 </dd><dt><dfn id=abnf-table-row title=abnf-table-row>table-row</dfn>
 
-</dt><dd>= "," <a href=#abnf-data-cell title=abnf-data-cell>data-cell</a> *("," <a href=#abnf-cell title=abnf-cell>cell</a>) <span title=abnf-newline>newline</span>
+</dt><dd>= "," <a href=#abnf-data-cell title=abnf-data-cell>data-cell</a> *("," <a href=#abnf-cell title=abnf-cell>cell</a>) <a href=#abnf-newline title=abnf-newline>newline</a>
 
 </dd><dt><dfn id=abnf-cell title=abnf-cell>cell</dfn>
 
@@ -728,15 +739,15 @@ would be placed there forms an integrated part of the <a href=#concept-table-cel
 
 </dd><dt><dfn id=abnf-data-cell title=abnf-data-cell>data-cell</dfn>
 
-</dt><dd>= *<span title=abnf-white-space>white-space</span> ([<a href=#abnf-cstartchar title=abnf-cstartchar>cstartchar</a> *<a href=#abnf-cchar title=abnf-cchar>cchar</a>] / <span title=abnf-quoted-string>quoted-string</span>) *<span title=abnf-white-space>white-space</span>
+</dt><dd>= *<a href=#abnf-white-space title=abnf-white-space>white-space</a> ([<a href=#abnf-cstartchar title=abnf-cstartchar>cstartchar</a> *<a href=#abnf-cchar title=abnf-cchar>cchar</a>] / <a href=#abnf-quoted-string title=abnf-quoted-string>quoted-string</a>) *<a href=#abnf-white-space title=abnf-white-space>white-space</a>
 
 </dd><dt><dfn id=abnf-cstartchar title=abnf-cstartchar>cstartchar</dfn>
 
-</dt><dd>= <span title=abnf-char>char</span> − ("," / %x0022 / <span title=abnf-white-space>white-space</span>)
+</dt><dd>= <a href=#abnf-char title=abnf-char>char</a> − ("," / %x22 / <a href=#abnf-white-space title=abnf-white-space>white-space</a>)
 
 </dd><dt><dfn id=abnf-cchar title=abnf-cchar>cchar</dfn>
 
-</dt><dd>= <span title=abnf-char>char</span> − ","
+</dt><dd>= <a href=#abnf-char title=abnf-char>char</a> − ","
 
 </dd><dt><dfn id=abnf-colspan-cell title=abnf-colspan-cell>colspan-cell</dfn>
 
@@ -748,24 +759,76 @@ would be placed there forms an integrated part of the <a href=#concept-table-cel
 
 <dt><dfn id=abnf-line-contents title=abnf-line-contents>line-contents</dfn>
 
-</dt><dd>= 1*(<a href=#abnf-text title=abnf-text>text</a> / <a href=#abnf-anchor-internal title=abnf-anchor-internal>anchor-internal</a> / <a href=#abnf-anchor-external title=abnf-anchor-external>anchor-external</a> / <a href=#abnf-anchor title=abnf-anchor>anchor</a> / <span title=abnf-tagged-inline-element>tagged-inline-element</span> / <span title=abnf-form>form</span> / <span title=abnf-strong>strong</span> /
-<span title=abnf-em>emphasis</span> / <span title=abnf-entity-reference>entity-reference</span>)
+</dt><dd>= 1*(<a href=#abnf-text title=abnf-text>text</a> / <a href=#abnf-anchor-internal title=abnf-anchor-internal>anchor-internal</a> / <a href=#abnf-anchor-external title=abnf-anchor-external>anchor-external</a> / <a href=#abnf-anchor title=abnf-anchor>anchor</a> / <a href=#abnf-tagged-inline-element title=abnf-tagged-inline-element>tagged-inline-element</a> / <a href=#abnf-form title=abnf-form>form</a> / <a href=#abnf-strong title=abnf-strong>strong</a> /
+<span title=abnf-em>emphasis</span> / <a href=#abnf-obs-entity-reference title=abnf-obs-entity-reference>obs-entity-reference</a>)
 
 </dd><dt><dfn id=abnf-text title=abnf-text>text</dfn>
 
-</dt><dd>= 1*<span title=abnf-char>char</span>
+</dt><dd>= 1*<a href=#abnf-char title=abnf-char>char</a>
 
 </dd></dl>
 
-<dl class=abnf>
+<table>
+
+<thead>
+<tr>
+<th scope=col><span title=concept-external-reference-scheme>External
+reference scheme</span>
+</th><th scope=col>Syntax of
+<span title=concept-external-reference-parameter>external reference
+parameter</span>
+</th><th scope=col>Semantics
+
+</th></tr></thead><tbody>
+
+<tr>
+<th scope=row><dfn id=concept-iw title=concept-IW><code>IW</code></dfn>
+</th><td><code class=abnf>(<a href=#abnf-identifier title=abnf-identifier>identifier</a> /
+<a href=#abnf-quoted-string title=abnf-quoted-string>quoted-string</a>) ":"
+(<a href=#abnf-identifier title=abnf-identifier>identifier</a> /
+<a href=#abnf-quoted-string title=abnf-quoted-string>quoted-string</a>)</code>
+</td><td><a href=#concept-interwiki title=concept-InterWiki>InterWiki</a> reference
+(An <a href=#concept-interwikiname title=concept-InterWikiName>InterWikiName</a> followed
+by a parameter)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-mail title=concept-MAIL><code>MAIL</code></dfn>
+</th><td>RFC 2822 <code class=abnf>addr-spec</code> but not RFC 2822
+<code class=abnf>obs-addr-spec</code>; no leading or trailing
+RFC 2822 <code class=abnf>FWS</code>; no control characters
+(<code class=abnf>%x00-1f / %x7f</code>)
+</td><td>E-mail address
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-uri title=concept-URI><code>URI</code></dfn>
+</th><td>RFC 3986 URI reference
+</td><td>URL
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-url title=concept-URL><code>URL</code></dfn>
+</th><td>RFC 3986 URI reference
+</td><td>URL
+
+</td></tr></tbody></table>
+
+<p><dfn id=concept-interwiki title=concept-InterWiki>InterWiki</dfn> is a mechanism for the
+hyperlinking and the combination of an <dfn id=concept-interwikiname title=concept-InterWikiName>InterWikiName</dfn> and a parameter
+identifies the destination of the link.  The interpretation of an
+<a href=#concept-interwiki title=concept-InterWiki>InterWiki</a> link is implementation
+dependent.
+
+</p><p><span title=concept-external-reference-scheme>External reference
+schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <a href=#concept-url><code title=concept-URL>URL</code></a> ought not to be used.
+
+</p><dl class=abnf>
 
 <dt><dfn id=abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</dfn>
 
-</dt><dd>= "[" 1*<span title=abnf-digit>digit</span> "]"
+</dt><dd>= "[" 1*<span title=abnf-DIGIT>DIGIT</span> "]"
 
 </dd><dt><dfn id=abnf-anchor-internal title=abnf-anchor-internal>anchor-internal</dfn>
 
-</dt><dd>= "&gt;&gt;" 1*<span title=abnf-digit>digit</span>
+</dt><dd>= "&gt;&gt;" 1*<span title=abnf-DIGIT>DIGIT</span>
 
 </dd><dt><dfn id=abnf-anchor-external title=abnf-anchor-external>anchor-external</dfn>
 
@@ -786,40 +849,472 @@ would be placed there forms an integrated part of the <a href=#concept-table-cel
 
 </dd><dt><dfn id=abnf-external-reference-parameter title=abnf-external-reference-parameter>external-reference-parameter</dfn>
 
-</dt><dd>= *(<span title=abnf-char>char</span> − ("&lt;" / "&gt;" / %x22) /
-<span title=abnf-quoted-string>quoted-string</span>)
+</dt><dd>= *(<a href=#abnf-char title=abnf-char>char</a> − ("&lt;" / "&gt;" / %x22) /
+<a href=#abnf-quoted-string title=abnf-quoted-string>quoted-string</a>)
 
 </dd><dt><dfn id=abnf-uschar title=abnf-uschar>uschar</dfn>
 
-</dt><dd>= <span title=abnf-char>char</span> − (":" / <span title=abnf-UALPHA>UALPHA</span>)
+</dt><dd>= <a href=#abnf-char title=abnf-char>char</a> − (":" / <span title=abnf-UALPHA>UALPHA</span>)
 
 </dd><dt><dfn id=abnf-xschar title=abnf-xschar>xschar</dfn>
 
-</dt><dd>= <span title=abnf-char>char</span> − (":" / <span title=abnf-LALPHA>LALPHA</span>)
+</dt><dd>= <a href=#abnf-char title=abnf-char>char</a> − (":" / <span title=abnf-LALPHA>LALPHA</span>)
 
 </dd><dt><dfn id=abnf-anchor title=abnf-anchor>anchor</dfn>
 
-</dt><dd>= "[[" [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <span title=abnf-inline-end-tag>inline-end-tag</span>
+</dt><dd>= "[[" [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-inline-end-tag title=abnf-inline-end-tag>inline-end-tag</a>
 
 </dd></dl>
 
-<p class=ed>...
+<table>
 
-white-space
-identifier quoted-string char
-concept-quoted-string concept-quoted-string-value
-concept-character
-newline
-abnf-digit
-lalpha
-ualpha
+<thead>
+<tr>
+<th scope=col><span title=concept-tag-name>Tag name</span>
+</th><th scope=col>Number of <span title=concept-inline-middle-tag>middle tags</span>
+</th><th scope=col><span title=concept-anchor-internal>Internal reference source anchor</span>
+</th><th scope=col><span title=concept-anchor-external>External reference source anchor</span>
+</th><th scope=col>Semantics
 
-concept-wikiform
-concept-wikiname
-concept-entity-reference
-concept-image
+</th></tr></thead><tbody>
+
+<tr>
+<th scope=row><dfn id=concept-aa title=concept-AA><code>AA</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Character art (so-called ASCII-art, <code>aa</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-abbr title=concept-ABBR><code>ABBR</code></dfn>
+</th><td>0 or 1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Abbreviation (HTML <code>abbr</code> element)
+
+</td></tr><tr>
+<!-- SuikaWiki/0.10 -->
+<th scope=row><dfn id=concept-cite title=concept-CITE><code>CITE</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Title of a work (HTML <code>cite</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-code title=concept-CODE><code>CODE</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Code (HTML <code>code</code> element)
+
+</td></tr><tr>
+<!-- SuikaWiki/0.10 -->
+<th scope=row><dfn id=concept-csection title=concept-CSECTION><code>CSECTION</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Title of a section in a work (<a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>csection</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-del title=concept-DEL><code>DEL</code></dfn>
+</th><td>0
+</td><td>Allowed
+</td><td>Allowed
+</td><td>Removal (HTML <code>del</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-dfn title=concept-DFN><code>DFN</code></dfn>
+</th><td>0 or 1<!-- 0 in SuikaWiki/0.9 -->
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Defined term (HTML <code>dfn</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-ins title=concept-INS><code>INS</code></dfn>
+</th><td>0
+</td><td>Allowed
+</td><td>Allowed
+</td><td>Insertion (HTML <code>ins</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-kbd title=concept-KBD><code>KBD</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>User input (HTML <code>kbd</code> element)
+
+</td></tr><tr>
+<!-- SuikaWiki/0.10 -->
+<th scope=row><dfn id=concept-key title=concept-KEY><code>KEY</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Keyboard's key (<a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>key</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-q title=concept-Q><code>Q</code></dfn>
+</th><td>0
+</td><td>Allowed
+</td><td>Allowed
+</td><td>Quotation (HTML <code>q</code> element)
+
+</td></tr><tr>
+<!-- SuikaWiki/0.10 -->
+<th scope=row><dfn id=concept-qn title=concept-QN><code>QN</code></dfn>
+</th><td>0 or 1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Qualified name (<a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-ruby title=concept-RUBY><code>RUBY</code></dfn>
+</th><td>1 or 2
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Ruby annotation (HTML <code>ruby</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-rubyb title=concept-RUBYB><code>RUBYB</code></dfn>
+</th><td>1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Secondary ruby annotation (<a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-samp title=concept-SAMP><code>SAMP</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Sample (HTML <code>samp</code> element)
+
+</td></tr><tr>
+<!-- SuikaWiki/0.10 -->
+<th scope=row><dfn id=concept-span title=concept-SPAN><code>SPAN</code></dfn>
+</th><td>0 or 1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Span of text (HTML <code>span</code> element)
+
+</td></tr><tr>
+<!-- SuikaWiki/0.10 -->
+<th scope=row><dfn id=concept-src title=concept-SRC><code>SRC</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Short annotation for citation (<a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>src</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-sup title=concept-SUP><code>SUP</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Superscript (HTML <code>sup</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-sub title=concept-SUB><code>SUB</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Subscript (HTML <code>sub</code> element)
+
+</td></tr><tr>
+<!-- SuikaWiki/0.10 -->
+<th scope=row><dfn id=concept-time title=concept-TIME><code>TIME</code></dfn>
+</th><td>0 or 1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Date or time (HTML <code>time</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-var title=concept-VAR><code>VAR</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Variable (HTML <code>var</code> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-weak title=concept-WEAK><code>WEAK</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Small print (<a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>weak</code></a> element)
+
+</td></tr></tbody></table>
+
+<div class="note memo">
+
+<p>A future version of this specification might define more <span title=concept-tag-name>tag names</span>.
 
 </p></div>
+
+<div class="note memo">
+
+<p>An inline start tag whose tag name is <a href=#concept-ins><code title=concept-INS>INS</code></a> or <a href=#concept-del><code title=concept-DEL>DEL</code></a>
+might not be placed at the beginning of a <span title=concept-line-contents>line contents</span> construct, since it
+could be interpreted as a <span title=concept-block-start-tag>block
+start tag</span>.
+
+</p></div>
+
+<p>A <dfn id=concept-class-specification title=concept-class-specification>class specification</dfn>
+represents class names unless otherwise specified.  The <a href=#concept-class-specification title=concept-class-specification>class specification</a>
+syntactically consist of a <code>(</code> character followed by the
+<a href=#concept-class-specification-body title=concept-class-specification-body>body of the class
+specification</a> followed by a <code>)</code> character.  The <dfn id=concept-class-specification-body title=concept-class-specification-body>body of a class
+specification</dfn> consists of zero or more <a href=#concept-character title=concept-character>characters</a> excluding <code>(</code>,
+<code>)</code>, and <code>\</code>.  The <a href=#concept-class-specification-body title=concept-class-specification-body>body of the class
+specification</a> has similar semantics and processed similarly to
+HTML <code>class</code> attribute.
+
+</p><dl class=abnf>
+
+<dt><dfn id=abnf-tagged-inline-element title=abnf-tagged-inline-element>tagged-inline-element</dfn>
+
+</dt><dd>= <a href=#abnf-inline-start-tag title=abnf-inline-start-tag>inline-start-tag</a> [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] *(<a href=#abnf-inline-middle-tag title=abnf-inline-middle-tag>inline-middle-tag</a> [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>]) <a href=#abnf-inline-end-tag title=abnf-inline-end-tag>inline-end-tag</a>
+
+</dd><dt><dfn id=abnf-inline-start-tag title=abnf-inline-start-tag>inline-start-tag</dfn>
+
+</dt><dd>= "[" <a href=#abnf-tag-name title=abnf-tag-name>tag-name</a> [<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] [<a href=#abnf-language-specification title=abnf-language-specification>language-specification</a>] "["
+
+</dd><dt><dfn id=abnf-tag-name title=abnf-tag-name>tag-name</dfn>
+
+</dt><dd>= 1*<span title=abnf-LALPHA>LALPHA</span>
+
+</dd><dt><dfn id=abnf-class-specification title=abnf-class-specification>class-specification</dfn>
+
+</dt><dd>= "(" *<a href=#abnf-clchar title=abnf-clchar>clchar</a> ")"
+
+</dd><dt><dfn id=abnf-clchar title=abnf-clchar>clchar</dfn>
+
+</dt><dd>= <a href=#abnf-char title=abnf-char>char</a> − ("(" / ")" / "\")
+
+</dd><dt><dfn id=abnf-language-specification title=abnf-language-specification>language-specification</dfn>
+
+</dt><dd>= "@" *<a href=#abnf-ltchar title=abnf-ltchar>ltchar</a>
+
+</dd><dt><dfn id=abnf-ltchar title=abnf-ltchar>ltchar</dfn>
+
+</dt><dd>= <span title=abnf-alpha>ALPHA</span> / <span title=abnf-DIGIT>DIGIT</span> / "-"
+
+</dd><dt><dfn id=abnf-inline-middle-tag title=abnf-inline-middle-tag>inline-middle-tag</dfn>
+
+</dt><dd>= "]" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-language-specification title=abnf-language-specification>language-specification</a>] "["
+
+</dd><dt><dfn id=abnf-inline-end-tag title=abnf-inline-end-tag>inline-end-tag</dfn>
+
+</dt><dd>= "]" [<a href=#abnf-anchor-internal title=abnf-anchor-internal>anchor-internal</a> /
+<a href=#abnf-anchor-external title=abnf-anchor-external>anchor-external</a>] "]"
+
+</dd></dl>
+
+<p>The <dfn id=concept-form-name-specification title=concept-form-name-specification>form name
+specification</dfn>, if any, defines the <dfn id=concept-form-name title=concept-form-name>name</dfn> of the <a href=#concept-form title=concept-form>form</a>.  It has to be different from any other
+<a href=#concept-form-name title=concept-form-name>form name</a> defined in the <a href=#concept-document title=concept-document>document</a>.  A <a href=#concept-form-name-specification title=concept-form-name-specification>form name specification</a>
+is syntactically <a href=#concept-class-specification title=concept-class-specification>class
+specification</a> and the <a href=#concept-class-specification-body title=concept-class-specification-body>body</a> of it is the <a href=#concept-form-name title=concept-form-name>form name</a>.  A <a href=#concept-form-name title=concept-form-name>form name</a> cannot contain <a href=#white-space-characters>white
+space characters</a>.
+
+</p><table>
+
+<thead>
+<tr>
+<th scope=col><span title=concept-specific-form-name>Specific form
+name</span>
+</th><th scope=col>Syntax of <span title=concept-specific-form-parameters>specific 
+form parameters</span>
+</th><th scope=col>Semantics
+
+</th></tr></thead><tbody>
+
+<tr>
+<th scope=row><dfn id=concept-comment title=concept-comment><code>comment</code></dfn>
+</th><td>Empty
+</td><td>Comment input form.
+
+</td></tr><tr>
+<!-- Dropped before SuikaWiki/0.9 specification -->
+<th scope=row><dfn id=concept-embed title=concept-embed><code>embed</code></dfn>
+</th><td><code class=abnf>['IMG:'] <a href=#abnf-identifier title=abnf-identifier>identifier</a></code>
+</td><td>Embedding another page.  The <span title=concept-specific-form-parameters>parameter</span> specifies the
+<a href=#concept-wikiname title=concept-WikiName>WikiName</a> of the page embedded.  If
+the <span title=concept-specific-form-parameters>parameter</span>
+begins with a string <code>IMG:</code>, the page is embedded as an
+image and the string does not form the part of the <span title=concept-WikiName</span>WikiName</span>.
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-form title=concept-form><code>form</code></dfn>
+</th><td>N/A
+</td><td>Reserved.
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-rcomment title=concept-rcomment><code>rcomment</code></dfn>
+</th><td>Empty
+</td><td>Comment input form; a new comment is inserted <em>after</em> the 
+<span title=concept-specific-form>form</span>.
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-searched title=concept-searched><code>searched</code></dfn>
+</th><td><code class=abnf><a href=#abnf-identifier title=abnf-identifier>identifier</a></code>
+</td><td>Insert a search result for the <span title=concept-specific-form-parameters>parameter</span>.
+
+</td></tr></tbody></table>
+
+<p>The <a href=#concept-form title=concept-form>form</a> is an extension mechanism
+for the <a href=#the-swml-text-serialization>SWML text serialization</a>.  <span class=ed>...</span>
+
+</p><p>The <dfn id=concept-generic-form title=concept-generic-form>generic form</dfn> can be used
+to embed a <a href=#concept-wikiform title=concept-WikiForm>WikiForm</a> specification.
+<dfn id=concept-wikiform title=concept-WikiForm>WikiForm</dfn> provides a generic
+framework for describing user input forms and templates used for
+processing form inputs.
+
+</p><p>Three <span title=concept-form-fields>form fields</span> in a <a href=#concept-generic-form title=concept-generic-form>form</a> represents <dfn id=concept-input-template title=concept-input-template>input template</dfn>, <dfn id=concept-output-template title=concept-output-template>output template</dfn>, and <dfn id=concept-option-template title=concept-option-template>options</dfn>.  Interpretation and
+processing for these fields are implementation dependent.
+
+</p><p>The <span title=concept-specific-form-name>name</span> <a href=#concept-form title=concept-form>form</a> cannot be used.
+
+</p><p><span title=concept-specific-form-name>Names</span> <code title=concept-embed</code>, <a href=#concept-rcomment><code title=concept-rcomment>rcomment</code></a>, and <a href=#concept-searched><code title=concept-searched>searched</code></a> are obsolete and cannot be
+used.
+
+</code></p><dl class=abnf>
+
+<dt><dfn id=abnf-form title=abnf-form>form</dfn>
+
+</dt><dd>= <a href=#abnf-generic-form title=abnf-generic-form>generic-form</a> / <a href=#abnf-specific-form title=abnf-specific-form>specific-form</a>
+
+</dd><dt><dfn id=abnf-generic-form title=abnf-generic-form>generic-form</dfn>
+
+</dt><dd>= "[[#" 'form' [<a href=#abnf-form-name-specification title=abnf-form-name-specification>form-name-specification</a>] ":"
+<a href=#abnf-form-field title=abnf-form-field>form-field</a> ":" <a href=#abnf-form-field title=abnf-form-field>form-field</a> [":" <a href=#abnf-form-field title=abnf-form-field>form-field</a>] "]]"
+
+</dd><dt><dfn id=abnf-form-name-specification title=abnf-form-name-specification>form-name-specification</dfn>
+
+</dt><dd>= <a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>
+
+</dd><dt><dfn id=abnf-form-field title=abnf-form-field>form-field</dfn>
+
+</dt><dd>= "'" *(<a href=#abnf-char title=abnf-char>char</a> − ("'" / "\") /
+<a href=#abnf-quoted-pair title=abnf-quoted-pair>quoted-pair</a>) "'"
+
+</dd><dt><dfn id=abnf-specific-form title=abnf-specific-form>specific-form</dfn>
+
+</dt><dd>= "[[#" <a href=#abnf-specific-form-name title=abnf-specific-form-name>specific-form-name</a> [":" <a href=#abnf-specific-form-parameters title=abnf-specific-form-parameters>specific-form-parameters</a>]
+"]]"
+
+</dd><dt><dfn id=abnf-specific-form-name title=abnf-specific-form-name>specific-form-name</dfn>
+
+</dt><dd>= 1*(<span title=abnf-LALPHA>LALPHA</span> / "-")
+
+</dd><dt><dfn id=abnf-specific-form-parameters title=abnf-specific-form-parameters>specific-form-parameters</dfn>
+
+</dt><dd>= <a href=#abnf-identifier title=abnf-identifier>identifier</a> *(":" <a href=#abnf-identifier title=abnf-identifier>identifier</a>)
+
+</dd></dl>
+
+<dl class=abnf>
+
+<dt><dfn id=abnf-strong title=abnf-strong>strong</dfn>
+
+</dt><dd>= "'''" [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>]
+"'''"
+
+</dd><dt><dfn id=abnf-emphasis title=abnf-emphasis>emphasis</dfn>
+
+</dt><dd>= "''" [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] "''"
+
+</dd></dl>
+
+<p>A <a href=#concept-document title=concept-document>document</a> can contain an <dfn id=concept-image title=concept-image>image</dfn> by including a string
+<code>__IMAGE__</code> followed by a <a href=#concept-newline title=concept-newline>newline</a> followed by Base64 <span class=ed>RFC 2045</span> encoded image data, at the end of the <a href=#concept-document title=concept-document>document</a>.  <a href=#concept-parameter title=concept-parameter>Parameters</a> <a href=#concept-parameter-image-type><code title=concept-parameter-image-type>image-type</code></a> and <a href=#concept-parameter-image-alt><code title=concept-parameter-image-alt>image-alt</code></a> provide metadata
+for the <a href=#concept-image title=concept-image>image</a>.
+
+</p><dl class=abnf>
+
+<dt><dfn id=abnf-obs-image title=abnf-obs-image>obs-image</dfn>
+
+</dt><dd>= '__IMAGE__' *<span title=concept-char>char</span>
+
+</dd></dl>
+
+<p>An <dfn id=concept-entity-reference title=concept-entity-reference>entity reference</dfn> is a
+part of <a href=#concept-document title=concept-document>document</a> that is expected
+to be replaced by a fragment imported from another document.  It is no
+longer supported.
+
+</p><dl class=abnf>
+
+<dt><dfn id=abnf-obs-entity-reference title=abnf-obs-entity-reference>obs-entity-reference</dfn>
+
+</dt><dd>= "__&amp;&amp;" 1*<a href=#abnf-char title=abnf-char>char</a> "&amp;&amp;__"
+
+</dd></dl>
+
+<p>A <dfn id=concept-character title=concept-character>character</dfn> is a character from
+the coded character set<!-- ISO/IEC terminology --> used to encode the
+<a href=#concept-document title=concept-document>document</a>.  Unless otherwise
+specified, for the purpose of this specification, control characters
+(characters in the range <code>U+0000</code> .. <code>U+001F</code>
+and <code>U+007F</code>) are not a <a href=#concept-character title=concept-character>character</a>.
+
+</p><p>A <dfn id=concept-newline title=concept-newline>newline</dfn> can be represented in
+any of three common conventions: <code class=charname>CR</code>
+(<code>U+000D</code>), <code class=charname>LF</code>
+(<code>U+000A</code>), or <code class=charname>CR</code> followed by
+<code class=charname>LF</code>.
+
+</p><p>A <dfn id=concept-quoted-string title=concept-quoted-string>quoted string</dfn> is zero or
+more <a href=#concept-character title=concept-character>characters</a> enclosed by
+<code>"</code> characters.  In a <a href=#concept-quoted-string title=concept-quoted-string>quoted string</a>, character
+<code>\</code> can only be used as part of <dfn id=concept-quoted-pair title=concept-quoted-pair>quoted pair</dfn>.  A <a href=#concept-quoted-pair title=concept-quoted-pair>quoted pair</a> is <code>\</code>
+followed by a <a href=#concept-character title=concept-character>character</a>.  The
+<dfn id=concept-quoted-string-value title=concept-quoted-string-value>value of a quoted string</dfn>
+is the string obtained by removing <code>"</code> characters enclosing
+the <a href=#concept-quoted-string title=concept-quoted-string>quoted string</a> and
+removing <code>\</code> characters at the beginning of the <a href=#concept-quoted-pair title=concept-quoted-pair>quoted pairs</a>.
+
+</p><dl class=abnf>
+
+<dt><dfn id=abnf-identifier title=abnf-identifier>identifier</dfn>
+
+</dt><dd>= 1*(<span title=abnf-ALPHA>ALPHA</span> / <span title=abnf-DIGIT>DIGIT</span> / "-" / <a href=#abnf-non-ascii title=abnf-non-ascii>non-ascii</a>)
+
+</dd><dt><dfn id=abnf-non-ascii title=abnf-non-ascii>non-ascii</dfn>
+
+</dt><dd>= <a href=#abnf-char title=abnf-char>char</a> − %x00-7f
+
+</dd><dt><dfn id=abnf-char title=abnf-char>char</dfn>
+
+</dt><dd>= &lt;Any character&gt; − (%x00-1f / %x7f)
+
+</dd><dt><dfn id=abnf-quoted-string title=abnf-quoted-string>quoted-string</dfn>
+
+</dt><dd>= %x22 *(<a href=#abnf-char title=abnf-char>char</a> − ("\" / %x22) /
+<a href=#abnf-quoted-pair title=abnf-quoted-pair>quoted-pair</a>) %x22
+
+</dd><dt><dfn id=abnf-quoted-pair title=abnf-quoted-pair>quoted-pair</dfn>
+
+</dt><dd>= "\" <a href=#abnf-char title=abnf-char>char</a>
+
+</dd><dt><dfn id=abnf-newline title=abnf-newline>newline</dfn>
+
+</dt><dd>= %x0d %x0a / %x0d / %x0a
+
+</dd><dt><dfn id=abnf-white-space title=abnf-white-space>white-space</dfn>
+
+</dt><dd>= %x09 / %x20
+
+</dd></dl>
+
+<div class=ed>
+
+<p>Obviously, this section is incomplete; some prose definition is not
+yet available; some xrefs does not work yet.  It should be specified
+why this is non-normative.  ABNF definition &amp; charset consideration 
+need to be addressed.
+
+</p></div>
+
+</div>
 
 <div class=section>
 <h3 id=parsing-documents-in-the-swml-text-serialization><span class=secno>3.2 </span>Parsing documents in the <a href=#the-swml-text-serialization>SWML text serialization</a></h3>
@@ -2281,7 +2776,7 @@ substring after the character from <var title="">name</var>.
 attribute</a> of the <a href=#document-element>document element</a> in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> to <var title="">name</var>.
 
-</li><li>If <a href=#the-version-attribute-in-the-suikawiki/0.9-namespace><var>version</var></a> is <em>not</em> null, set the <a href=#the-name-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-name>Version</code></a> <a href=#content-attribute>content attribute</a> of
+</li><li>If <var title="">version</var> is <em>not</em> null, set the <code title=attr-sw-version>Version</code> <a href=#content-attribute>content attribute</a> of
 the <a href=#document-element>document element</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a> to <var title="">version</var>.
 
@@ -3028,118 +3523,118 @@ following table:
 </th></tr></thead><tbody>
 
 <tr>
-<th><code>AA</code>
+<th><a href=#concept-aa><code title=concept-AA>AA</code></a>
 </th><td>The <a href=#aa-namespace>AA namespace</a>
 </td><td><code>aa</code>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
-<th><code>ABBR</code>
+<th><a href=#concept-abbr><code title=concept-ABBR>ABBR</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>abbr</code>
 
 </td></tr><tr>
-<th><code>CITE</code>
+<th><a href=#concept-cite><code title=concept-CITE>CITE</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>cite</code>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
-<th><code>CODE</code>
+<th><a href=#concept-code><code title=concept-CODE>CODE</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>code</code>
 
 </td></tr><tr>
-<th><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>CSECTION</code></a>
+<th><a href=#concept-csection><code title=concept-CSECTION>CSECTION</code></a>
 </th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
 </td><td><a href=#the-csection-element-in-the-suikawiki/0.10-namespace><code>csection</code></a>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
-<th><code>DEL</code>
+<th><a href=#concept-del><code title=concept-DEL>DEL</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>del</code>
 
 </td></tr><tr>
-<th><code>DFN</code>
+<th><a href=#concept-dfn><code title=concept-DFN>DFN</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>dfn</code>
 
 </td></tr><tr>
-<th><code>INS</code>
+<th><a href=#concept-ins><code title=concept-INS>INS</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>ins</code>
 
 </td></tr><tr>
-<th><code>KBD</code>
+<th><a href=#concept-kbd><code title=concept-KBD>KBD</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>kbd</code>
 
 </td></tr><tr>
-<th><a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>KEY</code></a>
+<th><a href=#concept-key><code title=concept-KEY>KEY</code></a>
 </th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
 </td><td><a href=#the-key-element-in-the-suikawiki/0.10-namespace><code>key</code></a>
 
 </td></tr><tr>
-<th><code>Q</code>
+<th><a href=#concept-q><code title=concept-Q>Q</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>q</code>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
-<th><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>QN</code></a>
+<th><a href=#concept-qn><code title=concept-QN>QN</code></a>
 </th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
 </td><td><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
-<th><code>RUBY</code>
+<th><a href=#concept-ruby><code title=concept-RUBY>RUBY</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>ruby</code>
 
 </td></tr><tr>
-<th><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>RUBYB</code></a>
+<th><a href=#concept-rubyb><code title=concept-RUBYB>RUBYB</code></a>
 </th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
 </td><td><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>
 
 </td></tr><tr>
-<th><code>SAMP</code>
+<th><a href=#concept-samp><code title=concept-SAMP>SAMP</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>samp</code>
 
 </td></tr><tr>
-<th><code>SPAN</code>
+<th><a href=#concept-span><code title=concept-SPAN>SPAN</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>span</code>
 
 </td></tr><tr>
-<th><a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>SRC</code></a>
+<th><a href=#concept-src><code title=concept-SRC>SRC</code></a>
 </th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
 </td><td><a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>src</code></a>
 
 </td></tr><tr>
-<th><code>SUB</code>
+<th><a href=#concept-sub><code title=concept-SUB>SUB</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>sub</code>
 
 </td></tr><tr>
-<th><code>SUP</code>
+<th><a href=#concept-sup><code title=concept-SUP>SUP</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>sup</code>
 
 </td></tr><tr>
-<th><code>TIME</code>
+<th><a href=#concept-time><code title=concept-TIME>TIME</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>time</code>
 <!-- SuikaWiki/0.10 (undocumented, not implemented in SuikaWiki3) -->
 
 </td></tr><tr>
-<th><code>VAR</code>
+<th><a href=#concept-var><code title=concept-VAR>VAR</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><code>var</code>
 
 </td></tr><tr>
-<th><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>WEAK</code></a>
+<th><a href=#concept-weak><code title=concept-WEAK>WEAK</code></a>
 </th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
 </td><td><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>weak</code></a>
 
@@ -3552,9 +4047,47 @@ mode</a> and reprocess the <a href=#token>token</a>.
 </p></div>
 
 <div class=section>
-<h3 id=the-text/x-suikawiki-internet-media-type><span class=secno>3.4 </span>The <code>text/x-suikawiki</code> Internet Media Type</h3>
+<h3 id=the-text/x-suikawiki-and-text/x.suikawiki.image-internet-media-types><span class=secno>3.4 </span>The <a href=#text/x-suikawiki><code>text/x-suikawiki</code></a> and
+<a href=#text/x.suikawiki.image><code>text/x.suikawiki.image</code></a> Internet Media Types</h3>
 
-<p class=ed>...
+<p>The <a href=#the-swml-text-serialization>SWML text serialization</a> can be identified by
+Internet Media Type <dfn id=text/x-suikawiki><code>text/x-suikawiki</code></dfn>.
+
+</p><p>An entity labeled as <a href=#text/x-suikawiki><code>text/x-suikawiki</code></a> <em class=rfc2119>MUST</em> be an <a href=#the-swml-text-serialization>SWML text serialization</a> and
+<em class=rfc2119>MUST</em> be processed as an <a href=#the-swml-text-serialization>SWML text
+serialization</a>.
+
+</p><p>Additionally, for historical reason, an entity labeled as
+<dfn id=text/x.suikawiki.image><code>text/x.suikawiki.image</code></dfn> <em class=rfc2119>MUST</em> be processed as an <a href=#the-swml-text-serialization>SWML text
+serialization</a>.  This Internet Media Type <em class=rfc2119>MUST
+NOT</em> be used for a new entity.
+
+</p><div class="note memo">
+
+<p>It was originally intended that a <a href=#concept-document title=concept-document>document</a> with <a href=#concept-format-name title=concept-format-name>format name</a> equal to <a href=#concept-magic-format-suikawiki><code title=concept-magic-format-suikawiki>SuikaWiki</code></a> is labeled as
+<a href=#text/x-suikawiki><code>text/x-suikawiki</code></a> while a <a href=#concept-document title=concept-document>document</a> with <a href=#concept-format-name title=concept-format-name>format name</a> equal to <a href=#concept-magic-format-suikawikiimage><code title=concept-magic-format-suikawikiimage>SuikaWikiImage</code></a> is
+labeled as <a href=#text/x.suikawiki.image><code>text/x.suikawiki.image</code></a>.
+
+</p></div>
+
+<p>The <dfn id=parameter-charset title=parameter-charset><code>charset</code></dfn>
+parameter of these Internet Media Types represents the character
+encoding used for the entity.  It has the same requirements as the
+<code title="">charset</code> parameter for the <code>text/html</code>
+Internet Media Type <span class=ed>@@ todo: ref</span>.<!-- todo: xref
+charset processing model -->
+
+</p><p>The <dfn id=parameter-version title=parameter-version><code>version</code></dfn>
+parameter <em class=rfc2119>MAY</em> has the value <dfn id=parameter-version-0.9 title=parameter-version-0.9><code>0.9</code></dfn> or <dfn id=parameter-version-0.10 title=parameter-version-0.10><code>0.10</code></dfn> but <em class=rfc2119>SHOULD NOT</em> be used.  The parameter <em class=rfc2119>MUST</em> be ignored.
+
+</p><div class="note memo">
+
+<p>This parameter was originally used to encode <a href=#concept-format-version title=concept-format-version>format version</a> in favor of <a href=#concept-magic-line title=concept-magic-line>magic line</a>.
+
+</p></div>
+
+<p class=ed>... IMT template; fragment identifier
+
 </p></div>
 
 </div>
@@ -4539,17 +5072,15 @@ title=element-sw-document>document</code> element in the
 
 <div class=section>
 
-<h3 id=the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.35 </span>The <dfn><code>Version</code></dfn> attribute in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
+<h3 id=the-version-attribute-in-the-suikawiki/0.9-namespace><span class=secno>5.35 </span>The <dfn><code title=attr-sw-version>Version</code></dfn>
+attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h3>
 
-<!--
-<p>The <code>Version</code> attribute in the <span>SuikaWiki/0.9
-namespace</span> <em class=rfc2119>MAY</em> be specified to an
-<code>html</code> element in the <span>HTML namespace</span>.  The
-attribute can also be specified to an <code
+<!-- <p>The <code title=attr-sw-version>Version</code> attribute in
+the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
+specified to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be specified to an <code
 title=element-sw-document>document</code> element in the
-<span>SuikaWiki/0.9 namespace</span>.
--->
+<span>SuikaWiki/0.9 namespace</span>.  -->
 
 <p>This attribute <em class=rfc2119>MUST NOT</em> be used.
 
@@ -4559,8 +5090,11 @@ title=element-sw-document>document</code> element in the
 
 </div>
 
-<div class="section reference normative">
+<div class="section reference">
 <h2 class=no-num id=references>References</h2>
+
+<div class="section reference normative">
+<h3 class=no-num id=normative-references>Normative references</h3>
 
 <dl>
 
@@ -4594,6 +5128,41 @@ Draft Recommendation.
 </dt><dd class=ed>...
 
 </dd></dl>
+
+</div>
+
+<div class="section informative reference">
+<h3 class=no-num id=non‐normative-references>Non‐normative references</h3>
+
+<dl>
+
+<dt id=ref-SW09>SW09
+
+</dt><dd><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.9><cite>SuikaWiki/0.9
+Document Markup Format: Syntax Specification</cite></a>, <a href=http://suika.fam.cx/~wakaba/who?>Wakaba</a>,
+<time>2003-12-12</time>, updated <time>2006-05-05</time>.
+
+</dd><dt id="ref=SW10">SW10
+
+</dt><dd><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10>SuikaWiki/0.10</a>,
+<time>2005-05-31</time>.
+
+</dd><dd><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++1>SuikaWiki/0.10
+— Inline Element Type Additions</a>, <time>2005-05-31</time>.
+
+</dd><dd><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.10++1++3>SuikaWiki/0.10
+— Language Tags</a>, <time>2005-05-31</time>.
+
+</dd><dd><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++5>SuikaWiki/0.10
+— Block‐level Additional Vocabulary</a>,
+<time>2005-11-18</time>.
+
+<!-- [TIME[][]] is added to SuikaWiki/0.10 later, but has never
+documented and never implemented in SuikaWiki3 -->
+
+</dd></dl>
+
+</div>
 
 </div>
 </body></html>
