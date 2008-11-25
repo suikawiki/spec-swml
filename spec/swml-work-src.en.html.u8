@@ -53,7 +53,10 @@ documents at any time.  It is inappropriate to cite this document as
 other than <q>work in progress</q>.</p>
 
 <p>Comments on this document are welcome and may be sent to the <a
-href="#author">author</a>.</p>
+href="#author">author</a>.</p> There is <a
+href="http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features">a
+list of possible new features</a> that might be introduced in a future
+revision of this specification.
 
 <p>Translations of thie document might be available.  The English
 version of the document is the only normative version.</p>
@@ -147,6 +150,55 @@ prefix</span> is <code>html</code>.
 <p>The <dfn>XML namespace</dfn> is
 <code>http://www.w3.org/XML/1998/namespace</code>.  The
 <span>preferred prefix</span> is <code>xml</code>.
+
+</div>
+
+<div class=section>
+<h3>Definitions</h3>
+
+<p><dfn>White space characters</dfn> are U+0009 <code
+class=charname>CHARACTER TABULATION</code> and U+0020 <code
+class=charname>SPACE</code>.
+
+<p><dfn>Digits</dfn> are characters in the range U+0030 <code
+class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
+NINE</code>.
+
+<p><dfn>Uppercase letters</dfn> are characters in the range U+0041
+<code class=charname>LATIN CAPITAL LETTER A</code> .. U+005A <code
+class=charname>LATIN CAPITAL LETTER Z</code>.
+
+<p><dfn>Lowercase letters</dfn> are characters in the range U+0061
+<code class=charname>LATIN SMALL LETTER A</code> .. U+007A <code
+class=charname>LATIN SMALL LETTER Z</code>.
+
+<p><dfn>Language tag characters</dfn> are <span>digits</span>,
+<span>uppercase letters</span>, <span>lowercase letters</span>, and
+U+002D <code class=charname>HYPHEN-MINUS</code>.
+
+<p><dfn>Scheme characters</dfn> are <span>digits</span>,
+<span>uppercase letters</span>, <span>lowercase letters</span>, U+0025
+<code class=charname>PERCENT SIGN</code>, U+002A <code
+class=charname>PLUS SIGN</code>, U+002D <code
+class=charname>HYPHEN-MINUS</code>, U+002E <code class=charname>FULL
+STOP</code> and U+005F <code class=charname>LOW LINE</code>.
+
+<p>A <dfn>language specification</dfn> is a string consist of a
+<code>@</code> character followed by zero or more <!-- one or more in
+SuikaWiki3 implementation --> <span>language tag characters</span>.
+<!-- SuikaWiki/0.10 addition --> The <dfn>body of a language
+specification</dfn> is the substring in the <span>language
+specification</span> except for the first <code>@</code> character.
+It might be the empty string.
+
+<div class="note memo">
+
+<p>Semantically, the <span>body of a language specification</span>
+represents a language tag, similar to the <code
+title=attr-xml-lang>xml:lang</code> attribute <span class=ed>@@
+ref</span>.
+
+</div>
 
 </div>
 
@@ -1437,15 +1489,13 @@ longer supported.
 the coded character set<!-- ISO/IEC terminology --> used to encode the
 <span title=concept-document>document</span>.  Unless otherwise
 specified, for the purpose of this specification, control characters
-(characters in the range <code>U+0000</code> .. <code>U+001F</code>
-and <code>U+007F</code>) are not a <span
+(characters in the range U+0000 .. U+001F and U+007F) are not a <span
 title=concept-character>character</span>.
 
 <p>A <dfn title=concept-newline>newline</dfn> can be represented in
 any of three common conventions: <code class=charname>CR</code>
-(<code>U+000D</code>), <code class=charname>LF</code>
-(<code>U+000A</code>), or <code class=charname>CR</code> followed by
-<code class=charname>LF</code>.
+(U+000D), <code class=charname>LF</code> (U+000A), or <code
+class=charname>CR</code> followed by <code class=charname>LF</code>.
 
 <p>A <dfn title=concept-quoted-string>quoted string</dfn> is zero or
 more <span title=concept-character>characters</span> enclosed by
@@ -1555,57 +1605,7 @@ attribute</span> of the <span>document element</span> returns at the
 time immediately after the <code>innerHTML</code> is set.  The
 <dfn>image element</dfn> is initially null.
 
-<div class=section>
-<h4>Definitions</h4>
-
-<p><dfn>White space characters</dfn> are U+0009 <code
-class=charname>CHARACTER TABULATION</code> and U+0020 <code
-class=charname>SPACE</code>.
-
-<p><dfn>Digits</dfn> are characters in the range U+0030 <code
-class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
-NINE</code>.
-
-<p><dfn>Uppercase letters</dfn> are characters in the range U+0041
-<code class=charname>LATIN CAPITAL LETTER A</code> .. U+005A <code
-class=charname>LATIN CAPITAL LETTER Z</code>.
-
-<p><dfn>Lowercase letters</dfn> are characters in the range U+0061
-<code class=charname>LATIN SMALL LETTER A</code> .. U+007A <code
-class=charname>LATIN SMALL LETTER Z</code>.
-
-<p><dfn>Language tag characters</dfn> are <span>digits</span>,
-<span>uppercase letters</span>, <span>lowercase letters</span>, and
-U+002D <code class=charname>HYPHEN-MINUS</code>.
-
-<p><dfn>Scheme characters</dfn> are <span>digits</span>,
-<span>uppercase letters</span>, <span>lowercase letters</span>, U+0025
-<code class=charname>PERCENT SIGN</code>, U+002A <code
-class=charname>PLUS SIGN</code>, U+002D <code
-class=charname>HYPHEN-MINUS</code>, U+002E <code class=charname>FULL
-STOP</code> and U+005F <code class=charname>LOW LINE</code>.
-
-<p>A <dfn>class specification</dfn> is a string consist of a
-<code>(</code> character, followed by zero or more character that is
-<em>not</em> one of <code>)</code>, <code>)</code>, or <span>white
-space characters</span>, and finally followed by a <code>)</code>
-character.  <!-- Though the SuikaWiki3 implementation of the parser
-support quoted-pair in class specification in [PRE[ block start tag
-and inline start tags, it is not allowed in [INS[ and [DEL[, and is
-not part of SuikaWiki/0.9 specification, and it should not appear in
-any existing SuikaWiki article afaict, this version of the SWML
-specification does not support such escaping syntax. --> The <dfn>body
-of a class specification</dfn> is the substring of the <span>class
-specification</span> between parentheses (exclusive).  It might be the
-empty string.
-
-<p>A <dfn>language specification</dfn> is a string consist of a
-<code>@</code> character followed by zero or more <!-- one or more in
-SuikaWiki3 implementation --> <span>language tag characters</span>.
-<!-- SuikaWiki/0.10 addition --> The <dfn>body of a language
-specification</dfn> is the substring in the <span>language
-specification</span> except for the first <code>@</code> character.
-It might be the empty string.
+<hr>
 
 <p>When the <span title="SWML text serialization parser">parser</span>
 <dfn title="append a character">appends a character</dfn>
@@ -1623,12 +1623,26 @@ attribute</span> <em class=rfc2119>MUST</em> be set to
 attribute">DOM attributes</span> <em class=rfc2119>MUST</em> both set
 to <code>null</code>.
 
-<p>When an attribute is created in a namespace, its
+<p>When an attribute in a namespace is created, its
 <code>prefix</code> <span>DOM attribute</span> <em
 class=rfc2119>MUST</em> be set to the <dfn>preferred prefix</dfn> for
 the namespace.
 
-</div>
+<hr>
+
+<p>A <dfn>class specification</dfn> is a string consist of a
+<code>(</code> character, followed by zero or more character that is
+<em>not</em> one of <code>)</code>, <code>)</code>, or <span>white
+space characters</span>, and finally followed by a <code>)</code>
+character.  <!-- Though the SuikaWiki3 implementation of the parser
+support quoted-pair in class specification in [PRE[ block start tag
+and inline start tags, it is not allowed in [INS[ and [DEL[, and is
+not part of SuikaWiki/0.9 specification, and it should not appear in
+any existing SuikaWiki article afaict, this version of the SWML
+specification does not support such escaping syntax. --> The <dfn>body
+of a class specification</dfn> is the substring of the <span>class
+specification</span> between parentheses (exclusive).  It might be the
+empty string.
 
 <div class=section>
 <h4>Tokenization of lines</h4>
@@ -5386,14 +5400,16 @@ element in the <span>HTML namespace</span>.
 
 </dl>
 
-<p>This element <em class=rfc2119>MAY</em> be inserted as last child
-of <code>abbr</code> or <code>time</code> element in the <span>HTML
-namespace</span> when the <code title=attr-html-title>title</code>
-attribute of that element is not <span>specified</span>.
+<p>This element <em class=rfc2119>MAY</em> be inserted as the last
+child of <code>abbr</code>, <code>dfn</code>, <code>span</code>, or
+<code>time</code> element in the <span>HTML namespace</span> when the
+<code title=attr-html-title>title</code> attribute of that element is
+not <span>specified</span>.
 
-<p>If the parent element of this element has a <code>title</code>
-attribute <span>specified</span>, or is <em>not</em> the last child,
-this element <em class=rfc2119>MUST</em> be <span>ignored</span>.
+<p>If the parent element of the element has a <code>title</code>
+attribute <span>specified</span>, or the element is <em>not</em> the
+last child, the element <em class=rfc2119>MUST</em> be
+<span>ignored</span>.
 
 <div class="note memo">
 

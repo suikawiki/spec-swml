@@ -44,7 +44,9 @@ project.  It might be updated, replaced, or obsoleted by other
 documents at any time.  It is inappropriate to cite this document as
 other than <q>work in progress</q>.</p>
 
-<p>Comments on this document are welcome and may be sent to the <a href=#author>author</a>.</p>
+<p>Comments on this document are welcome and may be sent to the <a href=#author>author</a>.</p> There is <a href=http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features>a
+list of possible new features</a> that might be introduced in a future
+revision of this specification.
 
 <p>Translations of thie document might be available.  The English
 version of the document is the only normative version.</p>
@@ -60,7 +62,8 @@ version of the document is the only normative version.</p>
 	<li><a href=#introduction><span class=secno>1 </span>Introduction</a></li>
 	<li><a href=#terminology><span class=secno>2 </span>Terminology</a>
 		<ol>
-			<li><a href=#namespaces><span class=secno>2.1 </span>Namespaces</a></li></ol></li>
+			<li><a href=#namespaces><span class=secno>2.1 </span>Namespaces</a></li>
+			<li><a href=#definitions><span class=secno>2.2 </span>Definitions</a></li></ol></li>
 	<li><a href=#the-swml-text-serialization><span class=secno>3 </span>The SWML text serialization</a>
 		<ol>
 			<li><a href=#writing-documents-in-the-swml-text-serialization><span class=secno>3.1 </span>Writing documents in the <span>SWML text serialization</span></a>
@@ -72,22 +75,21 @@ version of the document is the only normative version.</p>
 					<li><a href=#lexical-structures><span class=secno>3.1.5 </span>Lexical structures</a></li></ol></li>
 			<li><a href=#parsing-documents-in-the-swml-text-serialization><span class=secno>3.2 </span>Parsing documents in the <span>SWML text serialization</span></a>
 				<ol>
-					<li><a href=#definitions><span class=secno>3.2.1 </span>Definitions</a></li>
-					<li><a href=#tokenization-of-lines><span class=secno>3.2.2 </span>Tokenization of lines</a>
+					<li><a href=#tokenization-of-lines><span class=secno>3.2.1 </span>Tokenization of lines</a>
 						<ol>
-							<li><a href=#the-initial-mode><span class=secno>3.2.2.1 </span>The "<span>initial</span>" mode</a></li>
-							<li><a href=#the-body-mode><span class=secno>3.2.2.2 </span>The "<span>body</span>" mode</a></li>
-							<li><a href=#the-preformatted-mode><span class=secno>3.2.2.3 </span>The "<span>preformatted</span>" mode</a></li>
-							<li><a href=#the-preformatted-block-mode><span class=secno>3.2.2.4 </span>The "<span>preformatted block</span>" mode</a></li>
-							<li><a href=#the-image-data-mode><span class=secno>3.2.2.5 </span>The "<span>image data</span>" mode</a></li></ol></li>
-					<li><a href=#tokenization-of-a-table-row><span class=secno>3.2.3 </span>Tokenization of a table row</a></li>
-					<li><a href=#tokenization-of-a-text><span class=secno>3.2.4 </span>Tokenization of a text</a></li>
-					<li><a href=#parsing-a-magic-line><span class=secno>3.2.5 </span>Parsing a magic line</a></li>
-					<li><a href=#tree-construction><span class=secno>3.2.6 </span>Tree construction</a>
+							<li><a href=#the-initial-mode><span class=secno>3.2.1.1 </span>The "<span>initial</span>" mode</a></li>
+							<li><a href=#the-body-mode><span class=secno>3.2.1.2 </span>The "<span>body</span>" mode</a></li>
+							<li><a href=#the-preformatted-mode><span class=secno>3.2.1.3 </span>The "<span>preformatted</span>" mode</a></li>
+							<li><a href=#the-preformatted-block-mode><span class=secno>3.2.1.4 </span>The "<span>preformatted block</span>" mode</a></li>
+							<li><a href=#the-image-data-mode><span class=secno>3.2.1.5 </span>The "<span>image data</span>" mode</a></li></ol></li>
+					<li><a href=#tokenization-of-a-table-row><span class=secno>3.2.2 </span>Tokenization of a table row</a></li>
+					<li><a href=#tokenization-of-a-text><span class=secno>3.2.3 </span>Tokenization of a text</a></li>
+					<li><a href=#parsing-a-magic-line><span class=secno>3.2.4 </span>Parsing a magic line</a></li>
+					<li><a href=#tree-construction><span class=secno>3.2.5 </span>Tree construction</a>
 						<ol>
-							<li><a href=#the-in-section-insertion-mode><span class=secno>3.2.6.1 </span>The "<span>in section</span>" <span>insertion mode</span></a></li>
-							<li><a href=#the-in-table-row-insertion-mode><span class=secno>3.2.6.2 </span>The "<span>in table row</span>" <span>insertion mode</span></a></li>
-							<li><a href=#the-in-paragraph-insertion-mode><span class=secno>3.2.6.3 </span>The "<span>in paragraph</span>" <span>insertion mode</span></a></li></ol></li></ol></li>
+							<li><a href=#the-in-section-insertion-mode><span class=secno>3.2.5.1 </span>The "<span>in section</span>" <span>insertion mode</span></a></li>
+							<li><a href=#the-in-table-row-insertion-mode><span class=secno>3.2.5.2 </span>The "<span>in table row</span>" <span>insertion mode</span></a></li>
+							<li><a href=#the-in-paragraph-insertion-mode><span class=secno>3.2.5.3 </span>The "<span>in paragraph</span>" <span>insertion mode</span></a></li></ol></li></ol></li>
 			<li><a href=#serializing-swml-text-serialization-documents><span class=secno>3.3 </span>Serializing <span>SWML text serialization</span> documents</a></li>
 			<li><a href=#the-text/x-suikawiki-and-text/x.suikawiki.image-internet-media-types><span class=secno>3.4 </span>The <code>text/x-suikawiki</code> and
 <code>text/x.suikawiki.image</code> Internet Media Types</a></li></ol></li>
@@ -269,6 +271,47 @@ prefix</a> is <code>html</code>.
 <a href=#preferred-prefix>preferred prefix</a> is <code>xml</code>.
 
 </p></div>
+
+<div class=section>
+<h3 id=definitions><span class=secno>2.2 </span>Definitions</h3>
+
+<p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
+
+</p><p><dfn id=digits>Digits</dfn> are characters in the range U+0030 <code class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
+NINE</code>.
+
+</p><p><dfn id=uppercase-letters>Uppercase letters</dfn> are characters in the range U+0041
+<code class=charname>LATIN CAPITAL LETTER A</code> .. U+005A <code class=charname>LATIN CAPITAL LETTER Z</code>.
+
+</p><p><dfn id=lowercase-letters>Lowercase letters</dfn> are characters in the range U+0061
+<code class=charname>LATIN SMALL LETTER A</code> .. U+007A <code class=charname>LATIN SMALL LETTER Z</code>.
+
+</p><p><dfn id=language-tag-characters>Language tag characters</dfn> are <a href=#digits>digits</a>,
+<a href=#uppercase-letters>uppercase letters</a>, <a href=#lowercase-letters>lowercase letters</a>, and
+U+002D <code class=charname>HYPHEN-MINUS</code>.
+
+</p><p><dfn id=scheme-characters>Scheme characters</dfn> are <a href=#digits>digits</a>,
+<a href=#uppercase-letters>uppercase letters</a>, <a href=#lowercase-letters>lowercase letters</a>, U+0025
+<code class=charname>PERCENT SIGN</code>, U+002A <code class=charname>PLUS SIGN</code>, U+002D <code class=charname>HYPHEN-MINUS</code>, U+002E <code class=charname>FULL
+STOP</code> and U+005F <code class=charname>LOW LINE</code>.
+
+</p><p>A <dfn id=language-specification>language specification</dfn> is a string consist of a
+<code>@</code> character followed by zero or more <!-- one or more in
+SuikaWiki3 implementation --> <a href=#language-tag-characters>language tag characters</a>.
+<!-- SuikaWiki/0.10 addition --> The <dfn id=body-of-a-language-specification>body of a language
+specification</dfn> is the substring in the <a href=#language-specification>language
+specification</a> except for the first <code>@</code> character.
+It might be the empty string.
+
+</p><div class="note memo">
+
+<p>Semantically, the <a href=#body-of-a-language-specification>body of a language specification</a>
+represents a language tag, similar to the <a href=#attr-xml-lang><code title=attr-xml-lang>xml:lang</code></a> attribute <span class=ed>@@
+ref</span>.
+
+</p></div>
+
+</div>
 
 </div>
 
@@ -1311,14 +1354,11 @@ longer supported.
 the coded character set<!-- ISO/IEC terminology --> used to encode the
 <a href=#concept-document title=concept-document>document</a>.  Unless otherwise
 specified, for the purpose of this specification, control characters
-(characters in the range <code>U+0000</code> .. <code>U+001F</code>
-and <code>U+007F</code>) are not a <a href=#concept-character title=concept-character>character</a>.
+(characters in the range U+0000 .. U+001F and U+007F) are not a <a href=#concept-character title=concept-character>character</a>.
 
 </p><p>A <dfn id=concept-newline title=concept-newline>newline</dfn> can be represented in
 any of three common conventions: <code class=charname>CR</code>
-(<code>U+000D</code>), <code class=charname>LF</code>
-(<code>U+000A</code>), or <code class=charname>CR</code> followed by
-<code class=charname>LF</code>.
+(U+000D), <code class=charname>LF</code> (U+000A), or <code class=charname>CR</code> followed by <code class=charname>LF</code>.
 
 </p><p>A <dfn id=concept-quoted-string title=concept-quoted-string>quoted string</dfn> is zero or
 more <a href=#concept-character title=concept-character>characters</a> enclosed by
@@ -1416,52 +1456,9 @@ attribute</a> of the <a href=#document-element>document element</a> returns at t
 time immediately after the <code>innerHTML</code> is set.  The
 <dfn id=image-element>image element</dfn> is initially null.
 
-</p><div class=section>
-<h4 id=definitions><span class=secno>3.2.1 </span>Definitions</h4>
+</p><hr>
 
-<p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
-
-</p><p><dfn id=digits>Digits</dfn> are characters in the range U+0030 <code class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
-NINE</code>.
-
-</p><p><dfn id=uppercase-letters>Uppercase letters</dfn> are characters in the range U+0041
-<code class=charname>LATIN CAPITAL LETTER A</code> .. U+005A <code class=charname>LATIN CAPITAL LETTER Z</code>.
-
-</p><p><dfn id=lowercase-letters>Lowercase letters</dfn> are characters in the range U+0061
-<code class=charname>LATIN SMALL LETTER A</code> .. U+007A <code class=charname>LATIN SMALL LETTER Z</code>.
-
-</p><p><dfn id=language-tag-characters>Language tag characters</dfn> are <a href=#digits>digits</a>,
-<a href=#uppercase-letters>uppercase letters</a>, <a href=#lowercase-letters>lowercase letters</a>, and
-U+002D <code class=charname>HYPHEN-MINUS</code>.
-
-</p><p><dfn id=scheme-characters>Scheme characters</dfn> are <a href=#digits>digits</a>,
-<a href=#uppercase-letters>uppercase letters</a>, <a href=#lowercase-letters>lowercase letters</a>, U+0025
-<code class=charname>PERCENT SIGN</code>, U+002A <code class=charname>PLUS SIGN</code>, U+002D <code class=charname>HYPHEN-MINUS</code>, U+002E <code class=charname>FULL
-STOP</code> and U+005F <code class=charname>LOW LINE</code>.
-
-</p><p>A <dfn id=class-specification>class specification</dfn> is a string consist of a
-<code>(</code> character, followed by zero or more character that is
-<em>not</em> one of <code>)</code>, <code>)</code>, or <a href=#white-space-characters>white
-space characters</a>, and finally followed by a <code>)</code>
-character.  <!-- Though the SuikaWiki3 implementation of the parser
-support quoted-pair in class specification in [PRE[ block start tag
-and inline start tags, it is not allowed in [INS[ and [DEL[, and is
-not part of SuikaWiki/0.9 specification, and it should not appear in
-any existing SuikaWiki article afaict, this version of the SWML
-specification does not support such escaping syntax. --> The <dfn id=body-of-a-class-specification>body
-of a class specification</dfn> is the substring of the <a href=#class-specification>class
-specification</a> between parentheses (exclusive).  It might be the
-empty string.
-
-</p><p>A <dfn id=language-specification>language specification</dfn> is a string consist of a
-<code>@</code> character followed by zero or more <!-- one or more in
-SuikaWiki3 implementation --> <a href=#language-tag-characters>language tag characters</a>.
-<!-- SuikaWiki/0.10 addition --> The <dfn id=body-of-a-language-specification>body of a language
-specification</dfn> is the substring in the <a href=#language-specification>language
-specification</a> except for the first <code>@</code> character.
-It might be the empty string.
-
-</p><p>When the <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a>
+<p>When the <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a>
 <dfn id=append-a-character title="append a character">appends a character</dfn>
 <var>char</var> to node <var>node</var>, the
 <code>manakai_append_text</code> method <cite class=ed>...</cite> <em class=rfc2119>MUST</em> be invoked on <var>node</var> with the
@@ -1476,14 +1473,28 @@ attribute</a> <em class=rfc2119>MUST</em> be set to
 attribute">DOM attributes</a> <em class=rfc2119>MUST</em> both set
 to <code>null</code>.
 
-</p><p>When an attribute is created in a namespace, its
+</p><p>When an attribute in a namespace is created, its
 <code>prefix</code> <a href=#dom-attribute>DOM attribute</a> <em class=rfc2119>MUST</em> be set to the <dfn id=preferred-prefix>preferred prefix</dfn> for
 the namespace.
 
-</p></div>
+</p><hr>
 
-<div class=section>
-<h4 id=tokenization-of-lines><span class=secno>3.2.2 </span>Tokenization of lines</h4>
+<p>A <dfn id=class-specification>class specification</dfn> is a string consist of a
+<code>(</code> character, followed by zero or more character that is
+<em>not</em> one of <code>)</code>, <code>)</code>, or <a href=#white-space-characters>white
+space characters</a>, and finally followed by a <code>)</code>
+character.  <!-- Though the SuikaWiki3 implementation of the parser
+support quoted-pair in class specification in [PRE[ block start tag
+and inline start tags, it is not allowed in [INS[ and [DEL[, and is
+not part of SuikaWiki/0.9 specification, and it should not appear in
+any existing SuikaWiki article afaict, this version of the SWML
+specification does not support such escaping syntax. --> The <dfn id=body-of-a-class-specification>body
+of a class specification</dfn> is the substring of the <a href=#class-specification>class
+specification</a> between parentheses (exclusive).  It might be the
+empty string.
+
+</p><div class=section>
+<h4 id=tokenization-of-lines><span class=secno>3.2.1 </span>Tokenization of lines</h4>
 
 <p>When a string of characters is <dfn id=tokenization title=tokenization>tokenized</dfn>, the string <var>s</var> <em class=rfc2119>MUST</em> be processed as follows:
 
@@ -1660,7 +1671,7 @@ appropriate <a href=#mode>mode</a>.  Rules below sometimes require the <dfn id=r
 cases, rules for the appropriate <a href=#mode>mode</a> <em class=rfc2119>MUST</em> be followed with the same <var>line</var>.
 
 </p><div class=section>
-<h5 id=the-initial-mode><span class=secno>3.2.2.1 </span>The "<a href=#initial>initial</a>" mode</h5>
+<h5 id=the-initial-mode><span class=secno>3.2.1.1 </span>The "<a href=#initial>initial</a>" mode</h5>
 
 <p>In the "<dfn id=initial>initial</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
 
@@ -1687,7 +1698,7 @@ cases, rules for the appropriate <a href=#mode>mode</a> <em class=rfc2119>MUST</
 </div>
 
 <div class=section>
-<h5 id=the-body-mode><span class=secno>3.2.2.2 </span>The "<a href=#body>body</a>" mode</h5>
+<h5 id=the-body-mode><span class=secno>3.2.1.2 </span>The "<a href=#body>body</a>" mode</h5>
 
 <p>In the "<dfn id=body>body</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
 
@@ -2100,7 +2111,7 @@ FEED</code> character.
 </div>
 
 <div class=section>
-<h5 id=the-preformatted-mode><span class=secno>3.2.2.3 </span>The "<a href=#preformatted>preformatted</a>" mode</h5>
+<h5 id=the-preformatted-mode><span class=secno>3.2.1.3 </span>The "<a href=#preformatted>preformatted</a>" mode</h5>
 
 <p>In the "<dfn id=preformatted>preformatted</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
 
@@ -2177,7 +2188,7 @@ FEED</code> character.
 </div>
 
 <div class=section>
-<h5 id=the-preformatted-block-mode><span class=secno>3.2.2.4 </span>The "<a href=#preformatted-block>preformatted block</a>" mode</h5>
+<h5 id=the-preformatted-block-mode><span class=secno>3.2.1.4 </span>The "<a href=#preformatted-block>preformatted block</a>" mode</h5>
 
 <p>In the "<dfn id=preformatted-block>preformatted block</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
 
@@ -2220,7 +2231,7 @@ FEED</code> character.
 </div>
 
 <div class=section>
-<h5 id=the-image-data-mode><span class=secno>3.2.2.5 </span>The "<a href=#image-data>image data</a>" mode</h5>
+<h5 id=the-image-data-mode><span class=secno>3.2.1.5 </span>The "<a href=#image-data>image data</a>" mode</h5>
 
 <p>In the "<dfn id=image-data>image data</dfn>" mode, <var>line</var> <em class=rfc2119>MUST</em> be processed as follows:
 
@@ -2244,7 +2255,7 @@ character</a> in <var>line</var> in the same order to the
 </div>
 
 <div class=section>
-<h4 id=tokenization-of-a-table-row><span class=secno>3.2.3 </span>Tokenization of a table row</h4>
+<h4 id=tokenization-of-a-table-row><span class=secno>3.2.2 </span>Tokenization of a table row</h4>
 
 <p>The <dfn id=algorithm-to-tokenize-a-table-row>algorithm to tokenize a table row</dfn> <var>data</var> is
 as follows:
@@ -2350,7 +2361,7 @@ quoted</var>.
 </div>
 
 <div class=section>
-<h4 id=tokenization-of-a-text><span class=secno>3.2.4 </span>Tokenization of a text</h4>
+<h4 id=tokenization-of-a-text><span class=secno>3.2.3 </span>Tokenization of a text</h4>
 
 <p>The <dfn id=algorithm-to-tokenize-a-text>algorithm to tokenize a text</dfn> <var>data</var> is as
 follows:
@@ -2796,7 +2807,7 @@ character before it from <var title="">data</var>.
 </div>
 
 <div class=section>
-<h4 id=parsing-a-magic-line><span class=secno>3.2.5 </span>Parsing a magic line</h4>
+<h4 id=parsing-a-magic-line><span class=secno>3.2.4 </span>Parsing a magic line</h4>
 
 <p>To <dfn id=parse-a-magic-line>parse a magic line</dfn> <var>data</var>, the following
 steps <em class=rfc2119>MUST</em> be used:
@@ -2917,7 +2928,7 @@ element</a>.
 </div>
 
 <div class=section>
-<h4 id=tree-construction><span class=secno>3.2.6 </span>Tree construction</h4>
+<h4 id=tree-construction><span class=secno>3.2.5 </span>Tree construction</h4>
 
 <p>The <dfn id=tree-construction-0>tree construction</dfn> stage constructs a DOM tree from a
 series of <a href=#token title=token>tokens</a> emitted by the
@@ -2962,7 +2973,7 @@ of <code title=element-html-body>body</code>, <code>section</code>,
 <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, or <code>pre</code>.
 
 </p><div class=section>
-<h5 id=the-in-section-insertion-mode><span class=secno>3.2.6.1 </span>The "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion mode</a></h5>
+<h5 id=the-in-section-insertion-mode><span class=secno>3.2.5.1 </span>The "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion mode</a></h5>
 
 <p>In the "<dfn id=in-section>in section</dfn>" <a href=#insertion-mode>insertion mode</a>, a
 <a href=#token>token</a> <em class=rfc2119>MUST</em> be processed as
@@ -3440,7 +3451,7 @@ mode</a> and reprocess the <a href=#token>token</a>.
 </div>
 
 <div class=section>
-<h5 id=the-in-table-row-insertion-mode><span class=secno>3.2.6.2 </span>The "<a href=#in-table-row>in table row</a>" <a href=#insertion-mode>insertion mode</a></h5>
+<h5 id=the-in-table-row-insertion-mode><span class=secno>3.2.5.2 </span>The "<a href=#in-table-row>in table row</a>" <a href=#insertion-mode>insertion mode</a></h5>
 
 <p>In the "<dfn id=in-table-row>in table row</dfn>" <a href=#insertion-mode>insertion mode</a>, a
 <a href=#token>token</a> <em class=rfc2119>MUST</em> be processed as
@@ -3518,7 +3529,7 @@ mode</a> and reprocess the <a href=#token>token</a>.
 </div>
 
 <div class=sectio5>
-<h5 id=the-in-paragraph-insertion-mode><span class=secno>3.2.6.3 </span>The "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion mode</a></h5>
+<h5 id=the-in-paragraph-insertion-mode><span class=secno>3.2.5.3 </span>The "<a href=#in-paragraph>in paragraph</a>" <a href=#insertion-mode>insertion mode</a></h5>
 
 <p>In the "<dfn id=in-paragraph>in paragraph</dfn>" <a href=#insertion-mode>insertion mode</a>, a
 <a href=#token>token</a> <em class=rfc2119>MUST</em> be processed as
@@ -5068,14 +5079,16 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 
 </dd></dl>
 
-<p>This element <em class=rfc2119>MAY</em> be inserted as last child
-of <code>abbr</code> or <code>time</code> element in the <a href=#html-namespace>HTML
-namespace</a> when the <code title=attr-html-title>title</code>
-attribute of that element is not <a href=#specified>specified</a>.
+<p>This element <em class=rfc2119>MAY</em> be inserted as the last
+child of <code>abbr</code>, <code>dfn</code>, <code>span</code>, or
+<code>time</code> element in the <a href=#html-namespace>HTML namespace</a> when the
+<code title=attr-html-title>title</code> attribute of that element is
+not <a href=#specified>specified</a>.
 
-</p><p>If the parent element of this element has a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>
-attribute <a href=#specified>specified</a>, or is <em>not</em> the last child,
-this element <em class=rfc2119>MUST</em> be <a href=#ignored>ignored</a>.
+</p><p>If the parent element of the element has a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>
+attribute <a href=#specified>specified</a>, or the element is <em>not</em> the
+last child, the element <em class=rfc2119>MUST</em> be
+<a href=#ignored>ignored</a>.
 
 </p><div class="note memo">
 
