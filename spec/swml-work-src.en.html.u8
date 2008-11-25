@@ -162,6 +162,18 @@ prefix</span> is <code>html</code>.
 
 <p><em>This section is non‐normative.</em>
 
+<div class=ed>
+
+<p>Obviously, this section is incomplete; some prose definition is not
+yet available; some xrefs does not work yet.  It should be specified
+why this is non-normative.  ABNF definition &amp; charset consideration 
+need to be addressed.
+
+</div>
+
+<div class=section>
+<h4>Document structure and header</h4>
+
 <p>A <dfn title=concept-document>document</dfn> in the <span>SWML text
 serialization</span> consists of three parts: <span
 title=concept-header-part>header part</span>, <span
@@ -403,6 +415,11 @@ title=abnf-quoted-string>quoted-string</span>
 <dd>:= *(<span title=abnf-char>char</span> &minus; ",")
 
 </dl>
+
+</div>
+
+<div class=section>
+<h4>Body part blocks</h4>
 
 <p>The <dfn title=concept-body-part>body part</dfn> of a <span
 title=concept-document>document</span> consists of zero or more <span
@@ -845,6 +862,11 @@ title=abnf-white-space>white-space</span>)
 <dd>= "=="
 
 </dl>
+
+</div>
+
+<div class=section>
+<h4>Inline contents</h4>
 
 <dl class=abnf>
 
@@ -1370,6 +1392,11 @@ title=abnf-identifier>identifier</span>)
 
 </dl>
 
+</div>
+
+<div class=section>
+<h4>Images</h4>
+
 <p>A <span title=concept-document>document</span> can contain an <dfn
 title=concept-image>image</dfn> by including a string
 <code>__IMAGE__</code> followed by a <span
@@ -1387,6 +1414,11 @@ for the <span title=concept-image>image</span>.
 <dd>= '__IMAGE__' *<span title=concept-char>char</span>
 
 </dl>
+
+</div>
+
+<div class=section>
+<h4>Lexical structures</h4>
 
 <p>An <dfn title=concept-entity-reference>entity reference</dfn> is a
 part of <span title=concept-document>document</span> that is expected
@@ -1463,13 +1495,6 @@ title=abnf-non-ascii>non-ascii</span>)
 <dd>= %x09 / %x20
 
 </dl>
-
-<div class=ed>
-
-<p>Obviously, this section is incomplete; some prose definition is not
-yet available; some xrefs does not work yet.  It should be specified
-why this is non-normative.  ABNF definition &amp; charset consideration 
-need to be addressed.
 
 </div>
 
@@ -4488,141 +4513,12 @@ appropriate arguments would return true.
 </div>
 
 <div class=section>
-
-<h3>The <dfn><code>anchor</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-anchor>anchor</code> in the
-<span>SuikaWiki/0.9 namespace</span>
-
-</dl>
-
-<p class=ed>...
-
-</div>
+<h3>Document structures</h3>
 
 <div class=section>
 
-<h3>The <dfn><code>anchor-internal</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-anchor>anchor</code> in the
-<span>SuikaWiki/0.9 namespace</span>
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>anchor-end</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-anchor>anchor</code> in the
-<span>SuikaWiki/0.9 namespace</span>.
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>anchor-external</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-res-parameter>resParameter</code> in the
-<span>SuikaWiki/0.9 namespace</span>
-
-<dd><code title=attr-sw-res-scheme>resScheme</code> in the
-<span>SuikaWiki/0.9 namespace</span>
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>delete</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Flow content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Flow content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-class>class</code>
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn title=element-sw-document><code>document</code></dfn>
-element in the <span>SuikaWiki/0.9 namespace</span></h3>
+<h4>The <dfn title=element-sw-document><code>document</code></dfn>
+element in the <span>SuikaWiki/0.9 namespace</span></h4>
 
 <dl class=element>
 
@@ -4658,8 +4554,250 @@ namespace</span>
 
 <div class=section>
 
-<h3>The <dfn><code>dr</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h4>The <dfn title=attr-sw-name><code>Name</code></dfn> attribute in
+the <span>SuikaWiki/0.9 namespace</span></h4>
+
+<!--
+<p>The <code title=attr-sw-version>Name</code> attribute in the
+<span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
+specified to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be specified to an <code
+title=element-sw-document>document</code> element in the
+<span>SuikaWiki/0.9 namespace</span>.
+-->
+
+<p>This attribute <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code title=attr-sw-version>Version</code></dfn>
+attribute in the <span>SuikaWiki/0.9 namespace</span></h4>
+
+<!-- <p>The <code title=attr-sw-version>Version</code> attribute in
+the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
+specified to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be specified to an <code
+title=element-sw-document>document</code> element in the
+<span>SuikaWiki/0.9 namespace</span>.  -->
+
+<p>This attribute <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn title=element-sw-parameter><code>parameter</code></dfn>
+element in the <span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.<!-- <span>Metadata content</span>. -->
+
+<dt><span>Content model</span>
+
+<dd>Zero or more <code title=element-sw-value>value</code> element in
+the <span>SuikaWiki/0.9 namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-parameter-name>name</code>
+
+</dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>... <dfn title=attr-sw-parameter-name>name</dfn>
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn title=element-sw-value><code>value</code></dfn> element
+in the <span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+<h4>The <dfn title=attr-class><code>class</code></dfn> attribute</h4>
+
+<p>All elements in the <span>HTML namespace</span> have <a
+href="http://www.whatwg.org/specs/web-apps/current-work/#classes"><dfn
+title=attr-html-class><code>class</code></dfn></a> attribute <span
+class=ed>...</span>.
+
+<p>The <dfn title=attr-sw-class><code>class</code></dfn> attribute of
+an element in the <span>SuikaWiki/0.9 namespace</span> and
+<span>SuikaWiki/0.10 namespace</span> has the same semantics and
+requirements as the HTML <code title=attr-html-class>class</code>
+attribute.
+
+<p>The <dfn title=attr-aa-class><code>class</code></dfn> attribute of
+an element in the <span>AA namespace</span> <em
+class=rfc2119>SHOULD</em> be considered as having the same semantics
+and requirements as the HTML <code title=attr-html-class>class</code>
+attribute. <!-- SHOULD, not MUST, since we don't have control for that
+namespace. -->
+
+</div>
+
+<div class=section>
+<h4>The <code title=attr-sw-id>id</code> attribute</h4>
+
+<p>The <dfn title=attr-sw-id><code>id</code></dfn> attribute of an
+element in the <span>SuikaWiki/0.9 namespace</span> and
+<span>SuikaWiki/0.10 namespace</span> has the same semantics and
+requirements as the <a
+href="http://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute"><code
+title>id</code></a> attribute of HTML5 <span class=ed>...</span>.
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Lexical structures</h3>
+
+<div class=section>
+
+<h4>The <dfn><code>replace</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None. <!-- <span>Phrasing content</span>. -->
+
+<dt><span>Content model</span>
+
+<dd>Empty.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-replace-by>by</code>
+
+</dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>... <dfn title=attr-sw-replace-by><code>by</code></dfn>
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>text</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>...
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Blocks</h3>
+
+<div class=section>
+
+<h4>The <dfn><code>insert</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>delete</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>dr</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
 
 <dl class=element>
 
@@ -4687,79 +4825,8 @@ namespace</span>.
 
 <div class=section>
 
-<h3>The <dfn><code>form</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd>Empty.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-id>id</code>
-<dd><code title=attr-sw-form-input>input</code>
-<dd><code title=attr-sw-form-option>option</code>
-<dd><code title=attr-sw-form-parameter>parameter</code>
-<dd><code title=attr-sw-form-ref>ref</code>
-<dd><code title=attr-sw-form-template>template</code>
-
-</dl>
-
-<p class=ed>... <dfn title=attr-sw-form-ref><code>ref</code></dfn>,
-<dfn title=attr-sw-form-parameter><code>parameter</code></dfn>.
-
-<hr>
-
-<p class=ed>... <dfn
-title=attr-sw-form-input><code>input</code></dfn>, <dfn
-title=attr-sw-form-template><code>template</code></dfn>, <dfn
-title=attr-sw-form-option><code>option</code>
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>image</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd>Text.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
-
-<!--
-<p>At most one <code>image</code> element <em class=rfc2119>MAY</em>
-be inserted after the <code title=element-html-body>body</code>
-element in the <span>HTML namespace</span>.
--->
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>insert</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
+<h4>The <dfn><code>comment-p</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
 
 <dl class=element>
 
@@ -4773,7 +4840,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd>None.
 
 </dl>
 
@@ -4783,195 +4850,8 @@ element in the <span>HTML namespace</span>.
 
 <div class=section>
 
-<h3>The <dfn title=element-sw-parameter><code>parameter</code></dfn>
-element in the <span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.<!-- <span>Metadata content</span>. -->
-
-<dt><span>Content model</span>
-
-<dd>Zero or more <code title=element-sw-value>value</code> element in
-the <span>SuikaWiki/0.9 namespace</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-parameter-name>name</code>
-
-</dl>
-
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
-
-<p class=ed>... <dfn title=attr-sw-parameter-name>name</dfn>
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>replace</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None. <!-- <span>Phrasing content</span>. -->
-
-<dt><span>Content model</span>
-
-<dd>Empty.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-replace-by>by</code>
-
-</dl>
-
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
-
-<p class=ed>... <dfn title=attr-sw-replace-by><code>by</code></dfn>
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>rubyb</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>, followed by a <code>rt</code>
-element in the <span>HTML namespace</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-class>class</code>
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>text</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd>Text.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn title=element-sw-value><code>value</code></dfn> element
-in the <span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd>Text.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>weak</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-class>class</code>
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>attrvalue</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>comment-p</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
+<h4>The <dfn><code>ed</code></dfn> element in the <span>SuikaWiki/0.10
+namespace</span></h4>
 
 <dl class=element>
 
@@ -4993,10 +4873,15 @@ in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 </div>
 
+</div>
+
+<div class=section>
+<h3>Hyperlinks</h3>
+
 <div class=section>
 
-<h3>The <dfn><code>csection</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
+<h4>The <dfn><code>anchor</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
 
 <dl class=element>
 
@@ -5010,7 +4895,8 @@ in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code title=attr-sw-anchor>anchor</code> in the
+<span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -5020,22 +4906,23 @@ in the <span>SuikaWiki/0.9 namespace</span></h3>
 
 <div class=section>
 
-<h3>The <dfn><code>ed</code></dfn> element in the <span>SuikaWiki/0.10
-namespace</span></h3>
+<h4>The <dfn><code>anchor-internal</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
 
 <dl class=element>
 
 <dt><span>Category</span>
 
-<dd><span>Flow content</span>.
+<dd><span>Phrasing content</span>.
 
 <dt><span>Content model</span>
 
-<dd><span>Flow content</span>.
+<dd><span>Phrasing content</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd>None.
+<dd><code title=attr-sw-anchor>anchor</code> in the
+<span>SuikaWiki/0.9 namespace</span>
 
 </dl>
 
@@ -5045,8 +4932,8 @@ namespace</span></h3>
 
 <div class=section>
 
-<h3>The <dfn><code>key</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
+<h4>The <dfn><code>anchor-end</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
 
 <dl class=element>
 
@@ -5060,7 +4947,8 @@ namespace</span></h3>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code title=attr-sw-anchor>anchor</code> in the
+<span>SuikaWiki/0.9 namespace</span>.
 
 </dl>
 
@@ -5070,240 +4958,8 @@ namespace</span></h3>
 
 <div class=section>
 
-<h3>The <dfn><code>nsuri</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>qn</code></dfn> element in the <span>SuikaWiki/0.10
-namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>, optionally followed by a
-<code>nsuri</code> element in the <span>SuikaWiki/0.10
-namespace</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-class>class</code>
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>qname</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>src</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-class>class</code>
-
-</dl>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn><code>title</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p>This element <em class=rfc2119>MAY</em> be inserted as last child
-of <code>abbr</code> or <code>time</code> element in the <span>HTML
-namespace</span> when the <code title=attr-html-title>title</code>
-attribute of that element is not <span>specified</span>.
-
-<p>If the parent element of this element has a <code>title</code>
-attribute <span>specified</span>, or is <em>not</em> the last child,
-this element <em class=rfc2119>MUST</em> be <span>ignored</span>.
-
-<div class="note memo">
-
-<p>Inter-element whitespaces, comments, and processing instructions
-can be inserted after this element.
-
-</div>
-
-<p class=ed>...
-
-</div>
-
-<div class=section>
-
-<h3><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
-namespace</span></h3>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None. <!-- Phrasing content -->
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-class>class</code>
-
-</dl>
-
-<p><dfn>Uppercase elements</dfn> are elements in the
-<span>SuikaWiki/0.10 namespace</span> whose local name consists of one
-or more <span>uppercase letters</span>.
-
-<p>These elements <em class=rfc2119>MUST NOT</em> be used.
-
-<div class="note memo">
-
-<p>These elements might be inserted into the DOM by a <span
-title="SWML text serialization parser">parser</span> when an
-<span>inline start tag</span> with unknown <span>tag name</span> is
-found.
-
-</div>
-
-</div>
-
-<div class=section>
-<h3>The <code>aa</code> element in the <span>AA namespace</span></h3>
-
-<p>The <code>aa</code> element in the <span>AA namespace</span> <span
-class=ed>...</span> falls into the <span>phrasing content</span>
-category for the purpose of the content models in this specification.
-
-<p>The <span>content model</span> of this element <em
-class=rfc2119>SHOULD</em> be considered as <span>phrasing
-content</span>. <!-- SHOULD, not MUST, since we don't have control for
-that namespace. -->
-
-</div>
-
-<div class=section>
-<h3>The <dfn title=attr-class><code>class</code></dfn> attribute</h3>
-
-<p>All elements in the <span>HTML namespace</span> have <a
-href="http://www.whatwg.org/specs/web-apps/current-work/#classes"><dfn
-title=attr-html-class><code>class</code></dfn></a> attribute <span
-class=ed>...</span>.
-
-<p>The <dfn title=attr-sw-class><code>class</code></dfn> attribute of
-an element in the <span>SuikaWiki/0.9 namespace</span> and
-<span>SuikaWiki/0.10 namespace</span> has the same semantics and
-requirements as the HTML <code title=attr-html-class>class</code>
-attribute.
-
-<p>The <dfn title=attr-aa-class><code>class</code></dfn> attribute of
-an element in the <span>AA namespace</span> <em
-class=rfc2119>SHOULD</em> be considered as having the same semantics
-and requirements as the HTML <code title=attr-html-class>class</code>
-attribute. <!-- SHOULD, not MUST, since we don't have control for that
-namespace. -->
-
-</div>
-
-<div class=section>
-<h3>The <code title=attr-sw-id>id</code> attribute</h3>
-
-<p>The <dfn title=attr-sw-id><code>id</code></dfn> attribute of an
-element in the <span>SuikaWiki/0.9 namespace</span> and
-<span>SuikaWiki/0.10 namespace</span> has the same semantics and
-requirements as the <a
-href="http://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute"><code
-title>id</code></a> attribute of HTML5 <span class=ed>...</span>.
-
-</div>
-
-<div class=section>
-
-<h3>The <dfn title=attr-sw-anchor><code>anchor</code></dfn> attribute
-in the <span>SuikaWiki/0.9 namespace</span></h3>
+<h4>The <dfn title=attr-sw-anchor><code>anchor</code></dfn> attribute
+in the <span>SuikaWiki/0.9 namespace</span></h4>
 
 <p>The <code title=attr-sw-anchor>anchor</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span>, when specified to an
@@ -5360,8 +5016,37 @@ namespace</span> that belongs to the same tree.
 
 <div class=section>
 
-<h3>The <dfn title=attr-sw-res-scheme><code>resScheme</code></dfn>
-attribute in the <span>SuikaWiki/0.9 namespace</span></h3>
+<h4>The <dfn><code>anchor-external</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-res-parameter>resParameter</code> in the
+<span>SuikaWiki/0.9 namespace</span>
+
+<dd><code title=attr-sw-res-scheme>resScheme</code> in the
+<span>SuikaWiki/0.9 namespace</span>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn title=attr-sw-res-scheme><code>resScheme</code></dfn>
+attribute in the <span>SuikaWiki/0.9 namespace</span></h4>
 
 <p>The <code title=attr-sw-res-scheme>resScheme</code> attribute in
 the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
@@ -5378,9 +5063,9 @@ namespace</span>.
 
 <div class=section>
 
-<h3>The <dfn
+<h4>The <dfn
 title=attr-sw-res-parameter><code>resParameter</code></dfn> attribute
-in the <span>SuikaWiki/0.9 namespace</span></h3>
+in the <span>SuikaWiki/0.9 namespace</span></h4>
 
 <p>The <code title=attr-sw-res-parameter>resParameter</code> attribute
 in the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em>
@@ -5395,21 +5080,121 @@ namespace</span>.
 
 </div>
 
+</div>
+
+<div class=section>
+<h3>Embedded objects</h3>
+
 <div class=section>
 
-<h3>The <dfn title=attr-sw-name><code>Name</code></dfn> attribute in
-the <span>SuikaWiki/0.9 namespace</span></h3>
+<h4>The <dfn><code>form</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Empty.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-id>id</code>
+<dd><code title=attr-sw-form-input>input</code>
+<dd><code title=attr-sw-form-option>option</code>
+<dd><code title=attr-sw-form-parameter>parameter</code>
+<dd><code title=attr-sw-form-ref>ref</code>
+<dd><code title=attr-sw-form-template>template</code>
+
+</dl>
+
+<p class=ed>... <dfn title=attr-sw-form-ref><code>ref</code></dfn>,
+<dfn title=attr-sw-form-parameter><code>parameter</code></dfn>.
+
+<hr>
+
+<p class=ed>... <dfn
+title=attr-sw-form-input><code>input</code></dfn>, <dfn
+title=attr-sw-form-template><code>template</code></dfn>, <dfn
+title=attr-sw-form-option><code>option</code>
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>image</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>Text.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
 
 <!--
-<p>The <code title=attr-sw-version>Name</code> attribute in the
-<span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to an <code>html</code> element in the <span>HTML
-namespace</span>.  The attribute can also be specified to an <code
-title=element-sw-document>document</code> element in the
-<span>SuikaWiki/0.9 namespace</span>.
+<p>At most one <code>image</code> element <em class=rfc2119>MAY</em>
+be inserted after the <code title=element-html-body>body</code>
+element in the <span>HTML namespace</span>.
 -->
 
-<p>This attribute <em class=rfc2119>MUST NOT</em> be used.
+<p class=ed>...
+
+</div>
+
+<div class=section>
+<h4>The <code>aa</code> element in the <span>AA namespace</span></h4>
+
+<p>The <code>aa</code> element in the <span>AA namespace</span> <span
+class=ed>...</span> falls into the <span>phrasing content</span>
+category for the purpose of the content models in this specification.
+
+<p>The <span>content model</span> of this element <em
+class=rfc2119>SHOULD</em> be considered as <span>phrasing
+content</span>. <!-- SHOULD, not MUST, since we don't have control for
+that namespace. -->
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Citations</h3>
+
+<div class=section>
+
+<h4>The <dfn><code>csection</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
 
 <p class=ed>...
 
@@ -5417,19 +5202,309 @@ title=element-sw-document>document</code> element in the
 
 <div class=section>
 
-<h3>The <dfn><code title=attr-sw-version>Version</code></dfn>
-attribute in the <span>SuikaWiki/0.9 namespace</span></h3>
+<h4>The <dfn><code>src</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
 
-<!-- <p>The <code title=attr-sw-version>Version</code> attribute in
-the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to an <code>html</code> element in the <span>HTML
-namespace</span>.  The attribute can also be specified to an <code
-title=element-sw-document>document</code> element in the
-<span>SuikaWiki/0.9 namespace</span>.  -->
+<dl class=element>
 
-<p>This attribute <em class=rfc2119>MUST NOT</em> be used.
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
 
 <p class=ed>...
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Qualified names</h3>
+
+<div class=section>
+
+<h4>The <dfn><code>qn</code></dfn> element in the <span>SuikaWiki/0.10
+namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by a
+<code>nsuri</code> element in the <span>SuikaWiki/0.10
+namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>qname</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>nsuri</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Inline annotations</h3>
+
+<div class=section>
+
+<h4>The <dfn><code>rubyb</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, followed by a <code>rt</code>
+element in the <span>HTML namespace</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>weak</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4>The <dfn><code>title</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>This element <em class=rfc2119>MAY</em> be inserted as last child
+of <code>abbr</code> or <code>time</code> element in the <span>HTML
+namespace</span> when the <code title=attr-html-title>title</code>
+attribute of that element is not <span>specified</span>.
+
+<p>If the parent element of this element has a <code>title</code>
+attribute <span>specified</span>, or is <em>not</em> the last child,
+this element <em class=rfc2119>MUST</em> be <span>ignored</span>.
+
+<div class="note memo">
+
+<p>Inter-element whitespaces, comments, and processing instructions
+can be inserted after this element.
+
+</div>
+
+<p class=ed>...
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Key names</h3>
+
+<div class=section>
+
+<h4>The <dfn><code>key</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p class=ed>...
+
+</div>
+
+</div>
+
+<div class=section>
+<h3>Fallback elements</h3>
+
+<div class=section>
+
+<h4>The <dfn><code>attrvalue</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>This element <em class=rfc2119>MUST NOT</em> be used.
+
+<p class=ed>...
+
+</div>
+
+<div class=section>
+
+<h4><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
+namespace</span></h4>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None. <!-- Phrasing content -->
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p><dfn>Uppercase elements</dfn> are elements in the
+<span>SuikaWiki/0.10 namespace</span> whose local name consists of one
+or more <span>uppercase letters</span>.
+
+<p>These elements <em class=rfc2119>MUST NOT</em> be used.
+
+<div class="note memo">
+
+<p>These elements might be inserted into the DOM by a <span
+title="SWML text serialization parser">parser</span> when an
+<span>inline start tag</span> with unknown <span>tag name</span> is
+found.
+
+</div>
+
+</div>
 
 </div>
 
