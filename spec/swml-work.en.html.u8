@@ -198,6 +198,11 @@ namespace</span></a></li></ol></li></ol></li>
 
 <p><em>This section is non‐normative.</em>
 
+</p><p>This specification defines <dfn id=suikawiki-markup-language>SuikaWiki Markup Language</dfn>
+(<dfn id=swml>SWML</dfn>).  SWML is the markup language developed and
+implemented for <a href=http://suika.fam.cx/~wakaba/wiki/sw/SuikaWiki>SuikaWiki</a>
+hypertext system.
+
 </p><p class=ed>...
 </p></div>
 
@@ -247,8 +252,10 @@ specification.
 </p><div class=section>
 <h3 id=namespaces><span class=secno>2.1 </span>Namespaces</h3>
 
+<p>For historical reason, elements and attributes defined or used in
+this specification belong to various namespaces.
 
-<p>The <dfn id=aa-namespace>AA namespace</dfn> is
+</p><p>The <dfn id=aa-namespace>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
 The <a href=#preferred-prefix>preferred prefix</a> is <code>aa</code>.
 
@@ -903,7 +910,10 @@ RFC 2822 <code class=abnf>FWS</code>; no control characters
 
 </td></tr></tbody></table>
 
-<p><dfn id=concept-interwiki title=concept-InterWiki>InterWiki</dfn> is a mechanism for the
+<p class=ed>Maybe these schemes should reference Web Applications
+1.0's URL and mail address syntax.
+
+</p><p><dfn id=concept-interwiki title=concept-InterWiki>InterWiki</dfn> is a mechanism for the
 hyperlinking and the combination of an <dfn id=concept-interwikiname title=concept-InterWikiName>InterWikiName</dfn> and a parameter
 identifies the destination of the link.  The interpretation of an
 <a href=#concept-interwiki title=concept-InterWiki>InterWiki</a> link is implementation

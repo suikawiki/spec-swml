@@ -75,6 +75,12 @@ version of the document is the only normative version.</p>
 
 <p><em>This section is non‐normative.</em>
 
+<p>This specification defines <dfn>SuikaWiki Markup Language</dfn>
+(<dfn>SWML</dfn>).  SWML is the markup language developed and
+implemented for <a
+href="http://suika.fam.cx/~wakaba/wiki/sw/SuikaWiki">SuikaWiki</a>
+hypertext system.
+
 <p class=ed>...
 </div>
 
@@ -128,6 +134,8 @@ specification.
 <div class=section>
 <h3>Namespaces</h3>
 
+<p>For historical reason, elements and attributes defined or used in
+this specification belong to various namespaces.
 
 <p>The <dfn>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
@@ -982,6 +990,9 @@ RFC 2822 <code class=abnf>FWS</code>; no control characters
 <td>URL
 
 </table>
+
+<p class=ed>Maybe these schemes should reference Web Applications
+1.0's URL and mail address syntax.
 
 <p><dfn title=concept-InterWiki>InterWiki</dfn> is a mechanism for the
 hyperlinking and the combination of an <dfn
