@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html class="formal-specification status-work-in-progress anolis" lang=en>
+<meta charset=utf-8>
 <title>SuikaWiki Markup Language (SWML)</title>
 <link rel=stylesheet href="/www/style/html/spec">
 
@@ -1384,7 +1385,7 @@ processing for these fields are implementation dependent.
 title=concept-form>form</span> cannot be used.
 
 <p><span title=concept-specific-form-name>Names</span> <code
-title=concept-embed</code>, <code
+title=concept-embed>embed</code>, <code
 title=concept-rcomment>rcomment</code>, and <code
 title=concept-searched>searched</code> are obsolete and cannot be
 used.
@@ -2600,7 +2601,7 @@ appropriate steps:
 
 <dt>If <var>data</var> begins with <code>[[#</code>, followed by one
 or more <span>lowercase letters</span> or U+002D <code
-class=charname>HYPHEN-MINUS</span>
+class=charname>HYPHEN-MINUS</code>
 
 <dd>
 
