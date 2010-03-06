@@ -94,8 +94,8 @@ non-normative. Everything else in this specification is normative.
 <p>The key words “<em class=rfc2119>MUST</em>”, “<em
 class=rfc2119>MUST NOT</em>”, “<em class=rfc2119>SHOULD</em>”, and 
 “<em class=rfc2119>MAY</em>” in the normative parts of this document
-are to be interpreted as described in RFC 2119 <span
-class=ed>[RFC2119]</span>.
+are to be interpreted as described in RFC 2119 <cite class="bibref
+normative">[<a href="#ref-RFC2119">RFC2119</a>]</cite>.
 
 <p>Requirements phrased in the imperative as part of algorithms (such
 as “strip any leading space characters” or “return false and abort
@@ -108,12 +108,6 @@ algorithm.
 the end result is equivalent. (In particular, the algorithms defined
 in this specification are intended to be easy to follow, and not
 intended to be performant.)
-
-<p>This specification refers to both XML attributes and DOM
-attributes, often in the same context. When it is not clear which is
-being referred to, they are referred to as <dfn title="content
-attribute">content attributes</dfn> for XML attributes, and <dfn
-title="DOM attribute">DOM attributes</dfn> for those from the DOM.
 
 <p>When it is stated that some element or attribute is
 <dfn>ignored</dfn>, or treated as some other value, or handled as if
@@ -130,6 +124,12 @@ specification.  Entity references to unknown entities <em
 class=rfc2119>MUST</em> be treated as if they contained just an empty
 text node for the purposes of the algorithms defined in this
 specification.
+
+<p>Web Applications 1.0 specification <cite class="bibref
+normative">[<a href="#ref-WA1">WA1</a>]</cite> defines the terms <a
+href="http://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace"><dfn>inter-element
+whitespace</dfn></a>, <dfn>content attribute</dfn>, and <dfn>IDL
+attribute</dfn>.
 
 <div class=section>
 <h3>Namespaces</h3>
@@ -1602,17 +1602,17 @@ serialization">parsing</span> starts, a new <code
 title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
 be created.  It represents the DOM tree constructed as a result of the
 <span title="parsing an SWML text serialization">parsing</span>.  The
-<code>innerHTML</code> <span>DOM attribute</span> of the <code
+<code>innerHTML</code> <span>IDL attribute</span> of the <code
 title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
 be initially set to
 <code>&lt;html&#x20;xmlns="http://www.w3.org/1999/xhtml">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
 The <dfn>document element</dfn> is what the
-<code>documentElement</code> <span>DOM attribute</span> of the <code
+<code>documentElement</code> <span>IDL attribute</span> of the <code
 title=dom-document>Document</code> returns.  The <dfn>head
-element</dfn> is what the <code>firstChild</code> <span>DOM
+element</dfn> is what the <code>firstChild</code> <span>IDL
 attribute</span> of the <span>document element</span> returns at the
 time immediately after the <code>innerHTML</code> is set.  The
-<dfn>body element</dfn> is what the <code>lastChild</code> <span>DOM
+<dfn>body element</dfn> is what the <code>lastChild</code> <span>IDL
 attribute</span> of the <span>document element</span> returns at the
 time immediately after the <code>innerHTML</code> is set.  The
 <dfn>image element</dfn> is initially null.
@@ -1626,17 +1626,17 @@ time immediately after the <code>innerHTML</code> is set.  The
 class=rfc2119>MUST</em> be invoked on <var>node</var> with the
 argument <var>char</var>.
 
-<p>When an element is created, its <code>prefix</code> <span>DOM
+<p>When an element is created, its <code>prefix</code> <span>IDL
 attribute</span> <em class=rfc2119>MUST</em> be set to
 <code>null</code>.
 
 <p>When an attribute is created, unless otherwise specified, its
-<code>prefix</code> and <code>namespaceURI</code> <span title="DOM
-attribute">DOM attributes</span> <em class=rfc2119>MUST</em> both set
+<code>prefix</code> and <code>namespaceURI</code> <span title="IDL
+attribute">IDL attributes</span> <em class=rfc2119>MUST</em> both set
 to <code>null</code>.
 
 <p>When an attribute in a namespace is created, its
-<code>prefix</code> <span>DOM attribute</span> <em
+<code>prefix</code> <span>IDL attribute</span> <em
 class=rfc2119>MUST</em> be set to the <dfn>preferred prefix</dfn> for
 the namespace.
 
@@ -3132,7 +3132,7 @@ title>name</var>.
 <li>If <var title>data</var> is empty, or if the first character of
 <var title>data</var> is <code>"</code>, create a <code
 title=element-sw-value>value</code> element in the <span>SuikaWiki/0.9
-namespace</span>, set the <code>textContent</code> <span>DOM
+namespace</span>, set the <code>textContent</code> <span>IDL
 attribute</span> of the node to <var title>value</var>, and append the
 node to <var title>parameter</var>.
 
@@ -3155,7 +3155,7 @@ any, to <var title>value</var>.
 <li>In any case, if the first character of <var title>data</var> is
 <code>,</code>, create a <code title=element-sw-value>value</code>
 element in the <span>SuikaWiki/0.9 namespace</span>, set the
-<code>textContent</code> <span>DOM attribute</span> of the node to
+<code>textContent</code> <span>IDL attribute</span> of the node to
 <var title>value</var>, append the node to <var title>parameter</var>,
 and go back to the first substep of these substeps.
 
@@ -3757,9 +3757,9 @@ mode</span>.
 <ol>
 
 <li>If the local name of the node returned by the
-<code>lastChild</code> <span>DOM attribute</span> of the <span>current
+<code>lastChild</code> <span>IDL attribute</span> of the <span>current
 element</span>, if any, is <code>td</code>, increase the value of
-<code>colspan</code> <span>DOM attribute</span> of the node by one (1)
+<code>colspan</code> <span>IDL attribute</span> of the node by one (1)
 and abort these substeps.
 
 <li>Create a <code>td</code> element in the <span>HTML
@@ -4092,7 +4092,7 @@ create an <code>anchor-external</code> element in the
 
 <li>Append the element created to the <span>current element</span>.
 
-<li>Set the <code>textContent</code> <span>DOM attribute</span> of the
+<li>Set the <code>textContent</code> <span>IDL attribute</span> of the
 element created to <code>]]</code>.
 
 <li>Push the element created to the <span>stack of open
@@ -4284,7 +4284,7 @@ the <span>element token</span>.
 
 <li>If <span title=element-content>content</span> of the <span>element
 token</span> is <em>not</em> null, set the <code>textContent</code>
-<span>DOM attribute</span> of the element created to <span
+<span>IDL attribute</span> of the element created to <span
 title=element-content>content</span> of the <span>element
 token</span>.
 
@@ -4482,12 +4482,17 @@ title=concept-magic-line>magic line</span>.
 <div class=section>
 <h2>Semantics of Elements and Attributes</h2>
 
+<p>This specification is <em>the</em> specification for the
+<span>SuikaWiki/0.9 namespace</span> and the <span>SuikaWiki/0.10
+namespace</span>.  Anything belongging to those namespaces is defined
+in this specification.
+
 <p>Elements and attributes in the <span>SuikaWiki/0.9 namespace</span>
 and in the <span>SuikaWiki/0.10 namespace</span>, as well as
 attributes in no namespace for elements in the <span>SuikaWiki/0.9
 namespace</span> and in the <span>SuikaWiki/0.10 namespace</span>, <em
-class=rfc2119>MUST NOT</em> be used in context where they are <dfn
-title="allowed attributes">allowed</dfn>.
+class=rfc2119>MUST NOT</em> be used in context where they are not <dfn
+title="allowed attributes">allowed</dfn> explicitly.
 
 <div class="note memo">
 
@@ -4495,9 +4500,11 @@ title="allowed attributes">allowed</dfn>.
 on elements in the <span>SuikaWiki/0.9 namespace</span> and in the
 <span>SuikaWiki/0.10 namespace</span>.  For example, a <dfn
 title=attr-xml-lang><code>lang</code></dfn> attribute in the <span>XML
-namespace</span> is allowed in the XML specification <span
-class=ed>...</span>.  The <span>allowed attributes</span> entry in the
-subsections below only lists attributes defined in this specification.
+namespace</span> is allowed to be specified for an XML element, as
+defined in the XML specification <cite class="bibref normative">[<a
+href="#ref-XML">XML</a>]</cite>.  Note the <span>allowed
+attributes</span> entry in following subsections only lists up
+attributes defined in this specification.
 
 </div>
 
@@ -4505,8 +4512,8 @@ subsections below only lists attributes defined in this specification.
 <span>SuikaWiki/0.10 namespace</span> defined in this specification
 <em class=rfc2119>MUST</em> conform to their <dfn>content model</dfn>.
 
-<p>Inter-element whitespace <span class=ed>HTML5</span>, comment
-nodes, and processing instruction nodes <em class=rfc2119>MUST</em> be
+<p><span>Inter-element whitespace</span>, comment nodes, and
+processing instruction nodes <em class=rfc2119>MUST</em> be
 <span>ignored</span> when establishing whether an element matches its
 content model or not.
 
@@ -4534,7 +4541,7 @@ appropriate arguments would return true.
 <div class="note memo">
 
 <p>That is, the term <span>specified</span> is irrelevant from the
-<code title>specified</code> <span>DOM attribute</span>.
+<code title>specified</code> <span>IDL attribute</span>.
 
 </div>
 
@@ -5554,18 +5561,21 @@ found.
 
 <dd class=ed>Web DOM Core? DOM3 Core?
 
-<dt id=ref-HTML5>HTML5
-
-<dd><a href="http://whatwg.org/html5"><cite>HTML 5</cite></a>, WHATWG
-Draft Recommendation.
-
 <dt id=ref-MANAKAI>MANAKAI
 
 <dd class=ed>manakai's DOM extensions.
 
 <dt id=ref-RFC2119>RFC2119
 
-<dd class=ed>...
+<dd><cite><a href="http://tools.ietf.org/html/rfc2119">Key words for
+use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner,
+IETF BCP 14, March 1997.
+
+<dt id=ref-WA1>WA1
+
+<dd><cite><a
+href="http://www.whatwg.org/specs/web-apps/current-work/complete.html">Web
+Applications 1.0</a></cite>, Ian Hickson, WHATWG Draft Standard.
 
 <dt id=ref-XHTML2>XHTML2
 
