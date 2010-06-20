@@ -5,7 +5,7 @@ ModuleSet:
   @Version: 2.9
   @Description:
     This is a markup vocabulary used in SuikaWiki/0.9 XML representation.
-  @ID: rfc2629ja
+  @ID: sw09
   @BaseURI:
     **work-in-progress**
   
