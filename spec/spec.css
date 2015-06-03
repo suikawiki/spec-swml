@@ -1,0 +1,140 @@
+/*
+
+Per CC0 <https://creativecommons.org/publicdomain/zero/1.0/>, to the
+extent possible under law, the author has waived all copyright and
+related or neighboring rights to this work.
+
+*/
+
+body {
+  display: block;
+  margin: 1em 1.5em;
+  padding-left: 2em;
+  line-height: 1.5;
+}
+
+h1, hgroup {
+  color: #400080;
+  background: transparent;
+  line-height: 1.0;
+}
+
+hgroup > h1 {
+  margin: 0;
+}
+
+hgroup > h2 {
+  margin: 0.5em 0;
+  font-size: 120%;
+}
+
+header dl dt {
+  font-weight: bolder;
+}
+
+header dl dt::after {
+  content: ": ";
+}
+
+.toc li {
+  list-style: none;
+}
+
+p {
+  margin: 0.5em 1em;
+}
+
+.note {
+  display: block;
+  margin: 0.3em 3em 0.3em 6em;
+  padding: 0 0 0 2em;
+  color: green;
+  background-color: transparent;
+  font-style: italic;
+}
+
+.note > p:first-child {
+  text-indent: -3em;
+}
+
+.note > p:first-child::before {
+  content: "Note:  ";
+  font-weight: bolder;
+  white-space: pre;
+}
+
+.steps, .steps ol {
+  margin: 0.3em 2em;
+  border-left: #400080 1px solid;
+  padding-left: 3em;
+}
+
+.steps .switch {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.switch dt {
+  font-weight: bolder;
+}
+
+.switch dt::before {
+  content: "\21AA";
+  padding: 0 0.5em 0 0;
+  display: inline-block;
+  width: 1em;
+  text-align: right;
+}
+
+.switch dt::after {
+  content: ": ";
+}
+
+.switch dd {
+  margin-left: 2em;
+  padding-left: 0;
+}
+
+.switch dd > .steps {
+  margin-left: 0;
+}
+
+dfn {
+  font-weight: bolder;
+  font-style: normal;
+}
+
+.rfc2119 {
+  text-transform: lowercase;
+  font-variant: small-caps;
+  font-style: normal;
+  text-decoration: none;
+  font-weight: normal;
+  font-family: sans-serif;
+}
+
+code {
+  font-family: "Courier New", "Courier", monospace;
+  letter-spacing: 0.1em;
+  background-color: transparent;
+  color: orangered;
+}
+
+:link:hover, :link:visited {
+  background-color: #FFA;
+  color: #000080;
+}
+
+[href^="#"]:link, [href^="#"]:visited {
+  text-decoration: none;
+  border-bottom: dotted 1px;
+}
+
+.XXX {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border: medium solid red;
+  padding: 0.5em;
+  color: rgb(229, 0, 0);
+  background-color: transparent;
+}

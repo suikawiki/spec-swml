@@ -2,7 +2,7 @@
 <html class="formal-specification status-work-in-progress anolis" lang=en>
 <meta charset=utf-8>
 <title>SuikaWiki Markup Language (SWML)</title>
-<link rel=stylesheet href="/www/style/html/spec">
+<link rel=stylesheet href=spec.css>
 
 <div class="header">
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
