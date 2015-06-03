@@ -99,6 +99,100 @@ p {
   margin-left: 0;
 }
 
+dl.abnf {
+  position: relative;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding: 0.5em 1em 0.5em 1.5em;
+  background-color: #F5DCB3;
+  color: black;
+  page-break-inside: avoid;
+}
+
+dl.abnf::before {
+  position: absolute;
+  display: block;
+  float: left;
+  content: "ABNF";
+  border: solid #F5DCB3 2px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  background: white;
+  color: black;
+  font-size: 80%;
+  left: -2rem;
+  top: 0;
+}
+
+.abnf > dt {
+  display: inline;
+}
+
+.abnf > dd {
+  display: inline;
+  margin: 0;
+}
+
+.abnf > dd::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+table {
+  margin: 1em 2em;
+  border-collapse: collapse;
+  border-top: 1px solid;
+}
+
+thead {
+  background: #eee;
+}
+
+tbody {
+  border-top: 1px solid;
+}
+
+tbody:last-child {
+  border-bottom: 1px solid;
+}
+
+tr:nth-child(2n) {
+  background: #eee;
+}
+
+th, td {
+  padding: 0.5em;
+}
+
+th[scope=row] {
+  text-align: left;
+}
+
+.example {
+  margin: 0.8em 0 0.8em 3em;
+  border-left: #004000 double 3px;
+  color: black;
+  background-color: #FCFCFC;
+  line-height: 2.0;
+  font-size: 90%;
+}
+
+.example::before {
+  display: block;
+  float: right;
+  content: "EXAMPLE";
+  margin-right: 0.5em;
+  font-weight: bolder;
+  text-align: right;
+  color: gray;
+}
+
+hr {
+  visibility: hidden;
+}
+
 dfn {
   font-weight: bolder;
   font-style: normal;
@@ -120,6 +214,19 @@ code {
   color: orangered;
 }
 
+pre > code {
+  display: block;
+  background: #f7eef7;
+  color: black;
+  margin: 0.5em 1em;
+  padding: 0.2em 0.4em;
+}
+
+.charname {
+  text-transform: lowercase;
+  font-variant: small-caps;
+}
+
 :link:hover, :link:visited {
   background-color: #FFA;
   color: #000080;
@@ -128,6 +235,15 @@ code {
 [href^="#"]:link, [href^="#"]:visited {
   text-decoration: none;
   border-bottom: dotted 1px;
+}
+
+.abnf [href^="#"] {
+  color: inherit;
+  border-bottom-style: none;
+}
+
+.abnf [href^="#"]:hover {
+  border-bottom-style: dotted;
 }
 
 .XXX {
