@@ -10,60 +10,22 @@
 <h2 class="no-toc no-num">Working Draft [DATE]</h2>
 </hfroup>
 
-<dl class="versions-uri">
-<dt>This Version</dt>
-  <dd><code class="URI">&lt;<a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work"
-      >http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
-<dt>Latest Version</dt>
-  <dd><code class="URI">&lt;<a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work"
-      >http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
-<dt>Latest Working Draft</dt>
-  <dd><code class="URI">&lt;<a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work"
-      >http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>&gt;</code></dd>
-<!-- <dt>Previous Version</dt> -->
-<dt>Version History</dt>
-  <dd><code class=URI>&lt;<a href="http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8">http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8</a>&gt;</code></dd>
-<dt id=author>Author</dt>
-  <dd><a href="http://suika.fam.cx/~wakaba/who?" rel="author"
-      lang=ja>Wakaba</a>
-  <code class="mail">&lt;<a href="mailto:w@suika.fam.cx" rel="author"
-      >w@suika.fam.cx</a>&gt;</code></dd>
-</dl>
+<dl>
 
-<p class="copyright" lang="en">&#xA9; 2008 <a
-href="http://suika.fam.cx/~wakaba/who?" rel="author">Wakaba</a>.  You
-are granted a license to use, reproduce and create derivative works of
-this document.
+<dt>Latest version
+<dd><a href="https://suikawiki.github.io/spec-swml/spec/">https://suikawiki.github.io/spec-swml/spec/</a>
+
+<dt>Version history
+<dd><a href="https://github.com/suikawiki/spec-swml/commits/gh-pages">https://github.com/suikawiki/spec-swml/commits/gh-pages</a>
+
+</dl>
 
 </header>
 
 <section id=abstract>
 <h1 class="no-toc no-num">Abstract</h1>
 
-<p class=XXX>...
-</section>
-
-<section id="status">
-<h1 class="no-toc no-num">Status of this document</h1>
-
-<p class=section-info><em>This section describes the status of this
-document at the time of its publication.  Other documents might
-supersede this document.</em></p>
-
-<p>This document is a working draft, produced as part of the SuikaWiki
-project.  It might be updated, replaced, or obsoleted by other
-documents at any time.  It is inappropriate to cite this document as
-other than <q>work in progress</q>.</p>
-
-<p>Comments on this document are welcome and may be sent to the <a
-href="#author">author</a>.</p> There is <a
-href="http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features">a
-list of possible new features</a> that might be introduced in a future
-revision of this specification.
-
-<p>Translations of thie document might be available.  The English
-version of the document is the only normative version.</p>
-
+<p>This document defines SWML syntax and vocabulary.
 </section>
 
 <section>
@@ -84,6 +46,67 @@ href="http://suika.fam.cx/~wakaba/wiki/sw/SuikaWiki">SuikaWiki</a>
 hypertext system.
 
 <p class=XXX>...
+
+<section>
+<h1>History</h1>
+
+<p>SuikaWiki's Wiki syntax (now known as <span>SWML text
+serialization</span>) derived
+from <a href="http://web.archive.org/web/20130124134737/http://digit.que.ne.jp/work/index.cgi?WalWiki">WalWiki</a>,
+which derived
+from <a href="http://www.hyuki.com/yukiwiki/">YukiWiki</a>, in 2002.
+
+<p>The first specification of the extended
+language, <a href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.9"><cite>SuikaWiki/0.9
+Document Markup Format: Syntax Specification</cite></a>, was published
+in <time>2003-12-12</time> and was frequently updated
+until <time>2006-05-05</time>.
+
+<p>Then several updates to the language, known as SuikaWiki/0.10, were
+(incompetely) defined by following documents:
+
+<ul>
+
+<li><a
+href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10">SuikaWiki/0.10</a>,
+<time>2005-05-31</time>.
+
+<li><a
+href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++1">SuikaWiki/0.10
+&mdash; Inline Element Type Additions</a>, <time>2005-05-31</time>.
+
+<li><a
+href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.10++1++3">SuikaWiki/0.10
+&mdash; Language Tags</a>, <time>2005-05-31</time>.
+
+<li><a
+href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++5">SuikaWiki/0.10
+&mdash; Block‐level Additional Vocabulary</a>,
+<time>2005-11-18</time>.
+
+<!-- [TIME[][]] is added to SuikaWiki/0.10 later, but has never
+documented and never implemented in SuikaWiki3 -->
+
+</ul>
+
+<p>These "two" versions of the language was merged and rewritten
+as <em>the</em> SWML specification in 2008.
+
+<p>Previous versions of the SWML specification were published at
+<a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work">http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>.<!-- http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8
+-->
+
+<p>Revisions of the SWML specification are available in the
+<a href="https://github.com/suikawiki/spec-swml/commits/gh-pages">GitHub
+repository</a>.
+
+<p>There
+is <a href="http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features">a
+list of possible new features</a> that might be introduced in a future
+revision of this specification.
+
+</section>
+
 </section>
 
 <section>
@@ -5593,43 +5616,33 @@ Applications 1.0</a></cite>, Ian Hickson, WHATWG Draft Standard.
 
 </section>
 
-<section class="informative reference">
-<h1 class="no-num">Non‐normative references</h1>
+</section>
 
-<dl>
+<section>
+<h1 class=no-num>Tests and implementation</h1>
 
-<dt id=ref-SW09>SW09
+<p>There
+are <a href="https://github.com/wakaba/tests-web/tree/master/swml">test
+data</a>.
 
-<dd><a
-href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.9"><cite>SuikaWiki/0.9
-Document Markup Format: Syntax Specification</cite></a>, <a
-href="http://suika.fam.cx/~wakaba/who?">Wakaba</a>,
-<time>2003-12-12</time>, updated <time>2006-05-05</time>.
-
-<dt id=ref=SW10>SW10
-
-<dd><a
-href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10">SuikaWiki/0.10</a>,
-<time>2005-05-31</time>.
-
-<dd><a
-href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++1">SuikaWiki/0.10
-&mdash; Inline Element Type Additions</a>, <time>2005-05-31</time>.
-
-<dd><a
-href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.10++1++3">SuikaWiki/0.10
-&mdash; Language Tags</a>, <time>2005-05-31</time>.
-
-<dd><a
-href="http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++5">SuikaWiki/0.10
-&mdash; Block‐level Additional Vocabulary</a>,
-<time>2005-11-18</time>.
-
-<!-- [TIME[][]] is added to SuikaWiki/0.10 later, but has never
-documented and never implemented in SuikaWiki3 -->
-
-</dl>
+<p>There is
+a <a href="https://github.com/suikawiki/perl-swml-parser">Perl
+implementation</a>.
 
 </section>
+
+<section>
+<h1 class=no-num>Author</h1>
+
+<p>This document is written
+by <a href="http://suika.suikawiki.org/~wakaba/who?">Wakaba</a>
+&lt;wakaba@suikawiki.org>.
+
+<p>This document is developed as part of
+the <a href="http://suikawiki.org/">SuikaWiki project</a>.
+
+<p>Per <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>,
+to the extent possible under law, the author has waived all copyright
+and related or neighboring rights to this work.
 
 </section>
