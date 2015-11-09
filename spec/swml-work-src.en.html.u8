@@ -4193,7 +4193,7 @@ name</span> is <code>FRAC</code>:
 
   <ol>
 
-  <li>Create a <span>mi</span> element in the <span>MathML
+  <li>Create an <code>mi</code> element in the <span>MathML
   namespace</span>.
 
   <li>Append the element created to the <span>current element</span>.
@@ -4270,8 +4270,7 @@ elements</span>.
 
 <li>If the local name of the <span>current element</span> is one of
 <code>rt</code>, <code>title</code>, <code>nsuri</code>, <code>mi</code>,
-or
-<code>attrvalue</code>, pop the element off the <span>stack of open
+or <code>attrvalue</code>, pop the element off the <span>stack of open
 elements</span>.
 
 <li>If the <span>current element</span> is one of <span>structural
