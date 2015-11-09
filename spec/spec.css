@@ -99,6 +99,16 @@ p {
   margin-left: 0;
 }
 
+ul.short {
+  margin-left: 2em;
+  -webkit-column-width: 8em;
+  column-width: 8em;
+}
+
+ul.short li {
+  display: block;
+}
+
 dl.abnf {
   position: relative;
   margin-left: 2em;

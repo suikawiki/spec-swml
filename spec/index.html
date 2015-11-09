@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">Working Draft 3 June 2015</h2>
+<h2 class="no-toc no-num">Specification 9 November 2015</h2>
 
 
 <dl>
@@ -23,7 +23,7 @@
 <section id=abstract>
 <h1 class="no-toc no-num" id=abstract-0>Abstract</h1>
 
-<p>This document defines SWML syntax and vocabulary.
+<p>This document defines the SWML syntax and the SWML vocabulary.
 </p></section>
 
 <section>
@@ -41,12 +41,11 @@
    <li><a href=#definitions><span class=secno>2.2 </span>Definitions</a></li></ol></li>
  <li><a href=#the-swml-text-serialization><span class=secno>3 </span>The SWML text serialization</a>
   <ol>
-   <li><a href=#writing-documents-in-the-swml-text-serialization><span class=secno>3.1 </span>Writing documents in the <span>SWML text serialization</span></a></li>
-   <li><a href=#document-structure-and-header><span class=secno>3.2 </span>Document structure and header</a></li>
-   <li><a href=#body-part-blocks><span class=secno>3.3 </span>Body part blocks</a></li>
-   <li><a href=#inline-contents><span class=secno>3.4 </span>Inline contents</a></li>
-   <li><a href=#images><span class=secno>3.5 </span>Images</a></li>
-   <li><a href=#lexical-structures><span class=secno>3.6 </span>Lexical structures</a></li></ol></li>
+   <li><a href=#document-structure-and-header><span class=secno>3.1 </span>Document structure and header</a></li>
+   <li><a href=#body-part-blocks><span class=secno>3.2 </span>Body part blocks</a></li>
+   <li><a href=#inline-contents><span class=secno>3.3 </span>Inline contents</a></li>
+   <li><a href=#images><span class=secno>3.4 </span>Images</a></li>
+   <li><a href=#lexical-structures><span class=secno>3.5 </span>Lexical structures</a></li></ol></li>
  <li><a href=#parsing-documents-in-the-swml-text-serialization><span class=secno>4 </span>Parsing documents in the <span>SWML text serialization</span></a>
   <ol>
    <li><a href=#tokenization-of-lines><span class=secno>4.1 </span>Tokenization of lines</a>
@@ -177,8 +176,6 @@ namespace</span></a></li></ol></li>
 implemented for <a href=http://suika.fam.cx/~wakaba/wiki/sw/SuikaWiki>SuikaWiki</a>
 hypertext system.
 
-</p><p class=XXX>...
-
 </p><section>
 <h1 id=history><span class=secno>1.1 </span>History</h1>
 
@@ -191,7 +188,7 @@ from <a href=http://www.hyuki.com/yukiwiki/>YukiWiki</a>, in 2002.
 </p><p>The first specification of the extended
 language, <a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.9><cite>SuikaWiki/0.9
 Document Markup Format: Syntax Specification</cite></a>, was published
-in <time>2003-12-12</time> and frequently updated
+in <time>2003-12-12</time> and was frequently updated
 until <time>2006-05-05</time>.
 
 </p><p>Then several updates to the language, known as SuikaWiki/0.10, were
@@ -224,14 +221,14 @@ as <em>the</em> SWML specification in 2008.
 <a href=http://suika.fam.cx/www/markup/suikawiki/spec/swml-work>http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>.<!-- http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8
 -->
 
-</p><p>Revisions of the SWML specification are available in the
-<a href=https://github.com/suikawiki/spec-swml/commits/gh-pages>GitHub
-repository</a>.
-
 </p><p>There
-is <a href=http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features>a
+was <a href=http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features>a
 list of possible new features</a> that might be introduced in a future
 revision of this specification.
+
+</p><p>Revisions of the SWML specification are now available in the
+<a href=https://github.com/suikawiki/spec-swml/commits/gh-pages>GitHub
+repository</a>.
 
 </p></section>
 
@@ -293,9 +290,48 @@ The <a href=#preferred-prefix>preferred prefix</a> is <code>aa</code>.
 
 </p><p>The <dfn id=html-namespace>HTML namespace</dfn> is
 <code>http://www.w3.org/1999/xhtml</code>.  The <a href=#preferred-prefix>preferred
-prefix</a> is <code>html</code>.
+prefix</a> is <a href=#html><code>html</code></a>.  Following elements are defined in
+the <a href=https://html.spec.whatwg.org/><cite>HTML
+Standard</cite></a>:
+</p><ul class=short>
+  <li><dfn id=abbr><code>abbr</code></dfn>
+  </li><li><dfn id=blockquote><code>blockquote</code></dfn>
+  </li><li><dfn id=element-html-body title=element-html-body><code>body</code></dfn>
+  </li><li><dfn id=cite><code>cite</code></dfn>
+  </li><li><dfn id=code><code>code</code></dfn>
+  </li><li><dfn id=dd><code>dd</code></dfn>
+  </li><li><dfn id=del><code>del</code></dfn>
+  </li><li><dfn id=dfn><code>dfn</code></dfn>
+  </li><li><dfn id=dt><code>dt</code></dfn>
+  </li><li><dfn id=dl><code>dl</code></dfn>
+  </li><li><dfn id=h1><code>h1</code></dfn>
+  </li><li><dfn id=head><code>head</code></dfn>
+  </li><li><dfn id=html><code>html</code></dfn>
+  </li><li><dfn id=ins><code>ins</code></dfn>
+  </li><li><dfn id=kbd><code>kbd</code></dfn>
+  </li><li><dfn id=li><code>li</code></dfn>
+  </li><li><dfn id=ol><code>ol</code></dfn>
+  </li><li><dfn id=p><code>p</code></dfn>
+  </li><li><dfn id=pre><code>pre</code></dfn>
+  </li><li><dfn id=q><code>q</code></dfn>
+  </li><li><dfn id=rt><code>rt</code></dfn>
+  </li><li><dfn id=ruby><code>ruby</code></dfn>
+  </li><li><dfn id=samp><code>samp</code></dfn>
+  </li><li><dfn id=section><code>section</code></dfn>
+  </li><li><dfn id=span><code>span</code></dfn>
+  </li><li><dfn id=sub><code>sub</code></dfn>
+  </li><li><dfn id=sup><code>sup</code></dfn>
+  </li><li><dfn id=table><code>table</code></dfn>
+  </li><li><dfn id=tbody><code>tbody</code></dfn>
+  </li><li><dfn id=td><code>td</code></dfn>
+  </li><li><dfn id=th><code>th</code></dfn>
+  </li><li><dfn id=time><code>time</code></dfn>
+  </li><li><dfn id=tr><code>tr</code></dfn>
+  </li><li><dfn id=ul><code>ul</code></dfn>
+  </li><li><dfn id=var><code>var</code></dfn>
+</li></ul>
 
-</p><p>The <dfn id=suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</dfn> is
+<p>The <dfn id=suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.  The
 <a href=#preferred-prefix>preferred prefix</a> is <code>sw</code>.
 
@@ -358,11 +394,6 @@ ref</span>.
 <section>
 <h1 id=the-swml-text-serialization><span class=secno>3 </span>The <dfn>SWML text serialization</dfn></h1>
 
-<p class=XXX>...
-
-</p><section>
-<h1 id=writing-documents-in-the-swml-text-serialization><span class=secno>3.1 </span>Writing documents in the <a href=#the-swml-text-serialization>SWML text serialization</a></h1>
-
 <p><em>This section is non‐normative.</em>
 
 </p><div class=XXX>
@@ -372,10 +403,17 @@ yet available; some xrefs does not work yet.  It should be specified
 why this is non-normative.  ABNF definition &amp; charset consideration 
 need to be addressed.
 
-</p></div></section>
+</p></div>
 
-<section>
-<h1 id=document-structure-and-header><span class=secno>3.2 </span>Document structure and header</h1>
+<p>Both prose and ABNF descriptions are non-normative.  The
+conformance of a <a href=#the-swml-text-serialization>SWML text serialization</a> document is
+defined in terms of the <a href=#swml-text-serialization-parser title="SWML text serialization
+parser">parser</a> and its output.
+
+</p><p class=XXX>Conformance checking steps
+
+</p><section>
+<h1 id=document-structure-and-header><span class=secno>3.1 </span>Document structure and header</h1>
 
 <p>A <dfn id=concept-document title=concept-document>document</dfn> in the <a href=#the-swml-text-serialization>SWML text
 serialization</a> consists of three parts: <a href=#concept-header-part title=concept-header-part>header part</a>, <a href=#concept-body-part title=concept-body-part>body part</a>, and optional <a href=#concept-image title=concept-image>image</a>.
@@ -590,7 +628,7 @@ SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<a href=#abnf-white-
 </section>
 
 <section>
-<h1 id=body-part-blocks><span class=secno>3.3 </span>Body part blocks</h1>
+<h1 id=body-part-blocks><span class=secno>3.2 </span>Body part blocks</h1>
 
 <p>The <dfn id=concept-body-part title=concept-body-part>body part</dfn> of a <a href=#concept-document title=concept-document>document</a> consists of zero or more <a href=#concept-block title=concept-block>blocks</a>.
 
@@ -642,7 +680,7 @@ This line is <em>not</em> part of the list item.</code></pre>
 </a></dd></dl>
 
 <p>A <dfn id=concept-paragraph title=concept-paragraph>paragraph</dfn> represents a unit of
-the text, similar to HTML's <code>p</code> element.  It consists of an
+the text, similar to HTML's <a href=#p><code>p</code></a> element.  It consists of an
 optional <span title=concept-destination-anchor-number>destination
 anchor number</span>, followed by a <span title=concept-line-contents>line contents</span>, followed by a <a href=#concept-newline title=concept-newline>newline</a>, followed by zero or more <a href=#concept-block-child title=concept-block-child>block children</a>.
 
@@ -821,29 +859,49 @@ cannot contain a <a href=#concept-labeled-list title=concept-labeled-list>labele
 </dd></dl>
 
 <p>A <dfn id=concept-table title=concept-table>table</dfn> represents a two-dimensional
-tabular data.  It is similar to HTML <code>table</code> element, but
+tabular data.  It is similar to HTML <a href=#table><code>table</code></a> element, but
 what can be represented is even narrower than HTML table model.  A
-<a href=#concept-table title=concept-table>table</a> consists of one or more <a href=#concept-table-row title=concept-table-row>table rows</a>.  A <dfn id=concept-table-row title=concept-table-row>table row consists of one or more <span title=concept-table-cell>table cells</span>.  Syntactically a <span title=concept-table-row>table row</span> is followed by a <span title=concept-newline>newline</span>.
+<a href=#concept-table title=concept-table>table</a> consists of one or
+more <a href=#concept-table-row title=concept-table-row>table rows</a>.
+A <dfn id=concept-table-row title=concept-table-row>table row</dfn> consists of one or
+more <a href=#concept-table-cell title=concept-table-cell>table cells</a>.  Syntactically
+a <a href=#concept-table-row title=concept-table-row>table row</a> is followed by
+a <a href=#concept-newline title=concept-newline>newline</a>.
 
-</dfn></p><p>There are two kinds of <dfn id=concept-table-cell title=concept-table-cell>table
-cells</dfn>: <a href=#concept-table-data-cell title=concept-table-data-cell>data cells</a> and
+</p><p>There are three kinds of <dfn id=concept-table-cell title=concept-table-cell>table
+cells</dfn>: <a href=#concept-table-data-cell title=concept-table-data-cell>data cells</a>,
+<a href=#concept-table-header-cell title=concept-table-header-cell>header cells</a>, and
 <a href=#concept-table-colspan-cell title=concept-table-colspan-cell>colspan cells</a>.  The
-first <a href=#concept-table-cell title=concept-table-cell>cell</a> in a <a href=#concept-table-row title=concept-table-row>row</a> has to be a <a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a>.  Syntactically a <a href=#concept-table-cell title=concept-table-cell>cell</a> is preceded by a <code>,</code>
-character followed by zero or more <a href=#white-space-characters>white space
-characters</a>, and is followed by zero or more <a href=#white-space-characters>white space
-characters</a>.
+first <a href=#concept-table-cell title=concept-table-cell>cell</a> in
+a <a href=#concept-table-row title=concept-table-row>row</a> has to be
+a <a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a> or
+a <a href=#concept-table-header-cell title=concept-table-header-cell>header cell</a>.
+Syntactically a <a href=#concept-table-cell title=concept-table-cell>cell</a> is preceded
+by a <code>,</code> character followed by zero or more <a href=#white-space-characters>white
+space characters</a>, and is followed by zero or more <a href=#white-space-characters>white
+space characters</a>.
 
 </p><p>A <dfn id=concept-table-data-cell title=concept-table-data-cell>data cell</dfn> represents a
-cell that contains data, like HTML <code>td</code> element.  The <span title=concept-data-cell>cell</span> consists of an optional <span title=concept-destination-anchor-number>destination anchor
-number</span>, optionally followed by <span title=concept-line-contents>line contents</span>.  Syntactically, the
-<a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a> can be provided
-as a <a href=#concept-quoted-string title=concept-quoted-string>quoted string</a>, in which
+cell that contains data, like HTML <a href=#td><code>td</code></a> element.  Likewise,
+a <dfn id=concept-table-header-cell title=concept-table-header-cell>header cell</dfn> represents a
+cell that contains data, like HTML <a href=#th><code>th</code></a> element.  The data
+of a <a href=#concept-table-header-cell title=concept-table-header-cell>header cell</a> has to
+be preceded by a <code>*</code> character.  The cell consists of an
+optional <span title=concept-destination-anchor-number>destination
+anchor number</span>, optionally followed
+by <span title=concept-line-contents>line contents</span>.
+Syntactically, the cell can be provided as
+a <a href=#concept-quoted-string title=concept-quoted-string>quoted string</a>, in which
 case its <a href=#concept-quoted-string-value title=concept-quoted-string-value>value</a> is
-interpreted as an optional <span title=concept-destination-anchor-number>destination anchor
-number</span>, optionally followed by <span title=concept-line-contents>line contents</span>.  In fact the <a href=#concept-table-data-cell title=concept-table-data-cell>data cell</a> has to be represented
-as a <a href=#concept-quoted-string title=concept-quoted-string>quoted string</a> if it
-contains a <code>,</code> character, a leading <code>"</code>
-character, or leading or trailing <a href=#white-space-characters>white space characters</a>.
+interpreted as an
+optional <span title=concept-destination-anchor-number>destination
+anchor number</span>, optionally followed
+by <span title=concept-line-contents>line contents</span>.<!-- In fact
+the <span title=concept-table-data-cell>data cell</span> has to be
+represented as a <span title=concept-quoted-string>quoted
+string</span> if it contains a <code>,</code> character, a
+leading <code>"</code> character, or leading or trailing <span>white
+space characters</span>.-->
 
 </p><p>A <dfn id=concept-table-colspan-cell title=concept-table-colspan-cell>colspan cell</dfn>
 represents that the <a href=#concept-table-cell title=concept-table-cell>cell</a> that
@@ -861,11 +919,22 @@ would be placed there forms an integrated part of the <a href=#concept-table-cel
 
 </dd><dt><dfn id=abnf-cell title=abnf-cell>cell</dfn>
 
-</dt><dd>= <a href=#abnf-data-cell title=abnf-data-cell>data-cell</a> / <a href=#abnf-colspan-cell title=abnf-colspan-cell>colspan-cell</a>
+</dt><dd>= <a href=#abnf-data-cell title=abnf-data-cell>data-cell</a>
+/ <a href=#abnf-header-cell title=abnf-header-cell>header-cell</a>
+/ <a href=#abnf-colspan-cell title=abnf-colspan-cell>colspan-cell</a>
 
 </dd><dt><dfn id=abnf-data-cell title=abnf-data-cell>data-cell</dfn>
 
 </dt><dd>= *<a href=#abnf-white-space title=abnf-white-space>white-space</a> ([<a href=#abnf-cstartchar title=abnf-cstartchar>cstartchar</a> *<a href=#abnf-cchar title=abnf-cchar>cchar</a>] / <a href=#abnf-quoted-string title=abnf-quoted-string>quoted-string</a>) *<a href=#abnf-white-space title=abnf-white-space>white-space</a>
+
+</dd><dt><dfn id=abnf-header-cell title=abnf-header-cell>header-cell</dfn>
+
+</dt><dd>= *<a href=#abnf-white-space title=abnf-white-space>white-space</a> "*"
+*<a href=#abnf-white-space title=abnf-white-space>white-space</a>
+([<a href=#abnf-cstartchar title=abnf-cstartchar>cstartchar</a>
+*<a href=#abnf-cchar title=abnf-cchar>cchar</a>]
+/ <a href=#abnf-quoted-string title=abnf-quoted-string>quoted-string</a>)
+*<a href=#abnf-white-space title=abnf-white-space>white-space</a>
 
 </dd><dt><dfn id=abnf-cstartchar title=abnf-cstartchar>cstartchar</dfn>
 
@@ -884,7 +953,7 @@ would be placed there forms an integrated part of the <a href=#concept-table-cel
 </section>
 
 <section>
-<h1 id=inline-contents><span class=secno>3.4 </span>Inline contents</h1>
+<h1 id=inline-contents><span class=secno>3.3 </span>Inline contents</h1>
 
 <dl class=abnf>
 
@@ -1024,7 +1093,7 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0 or 1
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Abbreviation (HTML <code>abbr</code> element)
+</td><td>Abbreviation (HTML <a href=#abbr><code>abbr</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1032,14 +1101,14 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Title of a work (HTML <code>cite</code> element)
+</td><td>Title of a work (HTML <a href=#cite><code>cite</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-code title=concept-CODE><code>CODE</code></dfn>
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Code (HTML <code>code</code> element)
+</td><td>Code (HTML <a href=#code><code>code</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1054,28 +1123,28 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0
 </td><td>Allowed
 </td><td>Allowed
-</td><td>Removal (HTML <code>del</code> element)
+</td><td>Removal (HTML <a href=#del><code>del</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-dfn title=concept-DFN><code>DFN</code></dfn>
 </th><td>0 or 1<!-- 0 in SuikaWiki/0.9 -->
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Defined term (HTML <code>dfn</code> element)
+</td><td>Defined term (HTML <a href=#dfn><code>dfn</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-ins title=concept-INS><code>INS</code></dfn>
 </th><td>0
 </td><td>Allowed
 </td><td>Allowed
-</td><td>Insertion (HTML <code>ins</code> element)
+</td><td>Insertion (HTML <a href=#ins><code>ins</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-kbd title=concept-KBD><code>KBD</code></dfn>
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>User input (HTML <code>kbd</code> element)
+</td><td>User input (HTML <a href=#kbd><code>kbd</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1090,7 +1159,7 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0
 </td><td>Allowed
 </td><td>Allowed
-</td><td>Quotation (HTML <code>q</code> element)
+</td><td>Quotation (HTML <a href=#q><code>q</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1105,7 +1174,7 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>1 or 2
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Ruby annotation (HTML <code>ruby</code> element)
+</td><td>Ruby annotation (HTML <a href=#ruby><code>ruby</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-rubyb title=concept-RUBYB><code>RUBYB</code></dfn>
@@ -1119,7 +1188,7 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Sample (HTML <code>samp</code> element)
+</td><td>Sample (HTML <a href=#samp><code>samp</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1127,7 +1196,7 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0 or 1
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Span of text (HTML <code>span</code> element)
+</td><td>Span of text (HTML <a href=#span><code>span</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1142,14 +1211,14 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Superscript (HTML <code>sup</code> element)
+</td><td>Superscript (HTML <a href=#sup><code>sup</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-sub title=concept-SUB><code>SUB</code></dfn>
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Subscript (HTML <code>sub</code> element)
+</td><td>Subscript (HTML <a href=#sub><code>sub</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1157,14 +1226,14 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0 or 1
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Date or time (HTML <code>time</code> element)
+</td><td>Date or time (HTML <a href=#time><code>time</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-var title=concept-VAR><code>VAR</code></dfn>
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Variable (HTML <code>var</code> element)
+</td><td>Variable (HTML <a href=#var><code>var</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-weak title=concept-WEAK><code>WEAK</code></dfn>
@@ -1361,7 +1430,7 @@ used.
 </section>
 
 <section>
-<h1 id=images><span class=secno>3.5 </span>Images</h1>
+<h1 id=images><span class=secno>3.4 </span>Images</h1>
 
 <p>A <a href=#concept-document title=concept-document>document</a> can contain an <dfn id=concept-image title=concept-image>image</dfn> by including a string
 <code>__IMAGE__</code> followed by a <a href=#concept-newline title=concept-newline>newline</a> followed by Base64 <span class=XXX>RFC 2045</span> encoded image data, at the end of the <a href=#concept-document title=concept-document>document</a>.  <a href=#concept-parameter title=concept-parameter>Parameters</a> <a href=#concept-parameter-image-type><code title=concept-parameter-image-type>image-type</code></a> and <a href=#concept-parameter-image-alt><code title=concept-parameter-image-alt>image-alt</code></a> provide metadata
@@ -1378,7 +1447,7 @@ for the <a href=#concept-image title=concept-image>image</a>.
 </section>
 
 <section>
-<h1 id=lexical-structures><span class=secno>3.6 </span>Lexical structures</h1>
+<h1 id=lexical-structures><span class=secno>3.5 </span>Lexical structures</h1>
 
 <p>An <dfn id=concept-entity-reference title=concept-entity-reference>entity reference</dfn> is a
 part of <a href=#concept-document title=concept-document>document</a> that is expected
@@ -1688,7 +1757,7 @@ attribute</dfn> properties.  Default for these properties is null.
 
 </dd><dt><dfn id=table-cell-start-token>Table cell start token</dfn>
 
-</dt><dd>No property.
+</dt><dd><dfn id=table-cell-start-header title=table-cell-start-header>Header</dfn> property.
 
 </dd><dt><dfn id=table-cell-end-token>Table cell end token</dfn>
 
@@ -2017,8 +2086,8 @@ with <var>data</var>.
 </li></ol>
 
 </dd><dt>If <var>line</var> is a string consist of a <code>[</code>
-character, followed by one of <code>INS</code>, <code>DEL</code>, or
-<code>PRE</code>, optionally followed by <a href=#class-specification>class
+character, followed by one of <a href=#ins><code>INS</code></a>, <a href=#del><code>DEL</code></a>, or
+<a href=#pre><code>PRE</code></a>, optionally followed by <a href=#class-specification>class
 specification</a>, followed by a <code>[</code> character, followed
 by zero or more <a href=#white-space-characters>white space characters</a>
 
@@ -2030,7 +2099,7 @@ future revisions. -->
 <ol class=steps>
 
 <li>Emit a <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is one of
-<code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
+<a href=#ins><code>INS</code></a>, <a href=#del><code>DEL</code></a>, or <a href=#pre><code>PRE</code></a>, that appears
 in <var title="">line</var> and <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is the <a href=#body-of-a-class-specification title="body
 of a class specification">body</a> of the <a href=#class-specification>class
 specification</a>, if any, or null otherwise.
@@ -2038,7 +2107,7 @@ specification</a>, if any, or null otherwise.
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
 </li><li>If the <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
-<code>PRE</code>, switch to the "<a href=#preformatted-block>preformatted block</a>"
+<a href=#pre><code>PRE</code></a>, switch to the "<a href=#preformatted-block>preformatted block</a>"
 <a href=#mode>mode</a>.
 
 </li></ol>
@@ -2101,7 +2170,7 @@ characters as character data.
 -->
 
 </dd><dt>If <var>line</var> is a string consist of a <code>]</code>
-character, followed by one of <code>INS</code> or <code>DEL</code>,
+character, followed by one of <a href=#ins><code>INS</code></a> or <a href=#del><code>DEL</code></a>,
 followed by a <code>]</code> character, followed by zero or more
 <a href=#white-space-characters>white space characters</a>
 
@@ -2110,7 +2179,7 @@ followed by a <code>]</code> character, followed by zero or more
 <ol class=steps>
 
 <li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is one of
-<code>INS</code>, <code>DEL</code>, or <code>PRE</code>, that appears
+<a href=#ins><code>INS</code></a>, <a href=#del><code>DEL</code></a>, or <a href=#pre><code>PRE</code></a>, that appears
 in <code>line</code>.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
@@ -2176,7 +2245,7 @@ FEED</code> character.
 </li></ol>
 
 </dd><dt>If <var>line</var> is a string consist of a <code>]</code>
-character, followed by one of <code>INS</code> or <code>DEL</code>,
+character, followed by one of <a href=#ins><code>INS</code></a> or <a href=#del><code>DEL</code></a>,
 followed by a <code>]</code> character, followed by zero or more
 <a href=#white-space-characters>white space characters</a>
 
@@ -2207,7 +2276,7 @@ specify how to implement the latter example.
 <li>Emit a <a href=#preformatted-end-token>preformatted end token</a>.
 
 </li><li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is one of
-<code>INS</code> or <code>DEL</code>, that appears in <var title="">line</var>.
+<a href=#ins><code>INS</code></a> or <a href=#del><code>DEL</code></a>, that appears in <var title="">line</var>.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
@@ -2247,7 +2316,7 @@ followed by zero or more <a href=#white-space-characters>white space characters<
 
 <ol class=steps>
 
-<li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>PRE</code>.
+<li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <a href=#pre><code>PRE</code></a>.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
@@ -2335,6 +2404,10 @@ character</a>, increase <var title="">pos</var> by one (1) and go back
 to the previous step.
 
 </li><li>If the <var title="">pos</var>th character in <var title="">data</var>
+is a <code>*</code> character, set the <var title="">header cell</var>
+flag and increase <var title="">pos</var> by one (1).
+
+</li><li>If the <var title="">pos</var>th character in <var title="">data</var>
 is <code>"</code>, set <var title="">cell quoted</var> to the empty
 string and follow the substeps below:
 
@@ -2386,11 +2459,15 @@ title>pos</var> -->
 
 </li><li>Remove <a href=#white-space-characters>white space characters</a> at the end of <var title="">data</var>, if any.
 
-</li><li>If <var title="">cell quoted</var> is null and <var title="">cell</var>
-is equal to <code>==</code>, emit a <a href=#table-colspan-cell-token>table colspan cell
-token</a> and go back to the step labeled <a href=#tokenize-table-row-loop title=tokenize-table-row-loop><i>LOOP</i></a>.
+</li><li>If <var title="">header cell</var> flag is not set,
+<var title="">cell quoted</var> is null, and <var title="">cell</var> is
+equal to <code>==</code>, then emit a <a href=#table-colspan-cell-token>table colspan cell
+token</a> and go back to the step
+labeled <a href=#tokenize-table-row-loop title=tokenize-table-row-loop><i>LOOP</i></a>.
 
-</li><li>Emit a <a href=#table-cell-start-token>table cell start token</a>.
+</li><li>Emit a <a href=#table-cell-start-token>table cell start token</a> whose 
+<a href=#table-cell-start-header title=table-cell-start-header>header</a> is
+whether <var title="">header cell</var> flag is set or not.
 
 </li><li>If <var title="">cell quoted</var> is <em>not</em> null, run the
 <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with <var title="">cell
@@ -3011,12 +3088,12 @@ tuple unless otherwise specified.
 of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
 
 </p><p><dfn id=structural-elements>Structural elements</dfn> are elements whose local name is one
-of <code title=element-html-body>body</code>, <code>section</code>,
-<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <code>blockquote</code>,
-<code>h1</code>, <code>ul</code>, <code>ol</code>, <code>dl</code>,
-<code>li</code>, <code>dt</code>, <code>dd</code>, <code>table</code>,
-<code>tbody</code>, <code>tr</code>, <code>td</code>, <code>p</code>,
-<a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, or <code>pre</code>.
+of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a href=#section><code>section</code></a>,
+<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <a href=#blockquote><code>blockquote</code></a>,
+<a href=#h1><code>h1</code></a>, <a href=#ul><code>ul</code></a>, <a href=#ol><code>ol</code></a>, <a href=#dl><code>dl</code></a>,
+<a href=#li><code>li</code></a>, <a href=#dt><code>dt</code></a>, <a href=#dd><code>dd</code></a>, <a href=#table><code>table</code></a>,
+<a href=#tbody><code>tbody</code></a>, <a href=#tr><code>tr</code></a>, <a href=#td><code>td</code></a>, <a href=#p><code>p</code></a>,
+<a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, or <a href=#pre><code>pre</code></a>.
 
 </p><section>
 <h1 id=the-in-section-insertion-mode><span class=secno>4.5.1 </span>The "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion mode</a></h1>
@@ -3034,8 +3111,8 @@ follows:
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <code title=element-html-body>body</code>,
-<code>section</code>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
+<em>not</em> one of <a href=#element-html-body><code title=element-html-body>body</code></a>,
+<a href=#section><code>section</code></a>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
 the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
 this substep again.
 
@@ -3050,14 +3127,14 @@ elements</a> and go back to the first substep of these substeps.
 
 </li><li>Otherwise, if <a href=#heading-start-depth title=heading-start-depth>depth</a> of the
 <a href=#token>token</a> is greater than <var title="">current depth</var> + 1,
-create a <code>section</code> element in the <a href=#html-namespace>HTML
+create a <a href=#section><code>section</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>, append the element created to the <a href=#current-element>current
 element</a>, push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a> with <a href=#section-depth>section depth</a> set to <var title="">current depth</var> + 1, <a href=#quotation-depth>quotation depth</a> set to
 zero (0), and <a href=#list-depth>list depth</a> set to zero (0), and go back to
 the first substep of these substeps.
 
-</li><li>Create a <code>section</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#section><code>section</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3066,7 +3143,7 @@ namespace</a>.
 elements</a> with <a href=#section-depth>section depth</a> set to <a href=#heading-start-depth title=heading-start-depth>depth</a>, <a href=#quotation-depth>quotation depth</a>
 set to zero (0), and <a href=#list-depth>list depth</a> set to zero (0).
 
-</li><li>Create a <code>h1</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#h1><code>h1</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3079,7 +3156,7 @@ mode</a>.
 
 </li></ol>
 
-</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <code>INS</code>
+</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <a href=#ins><code>INS</code></a>
 
 </dt><dd>
 
@@ -3101,7 +3178,7 @@ the element created to <a href=#block-start-tag-classes title=block-start-tag-cl
 
 </li></ol>
 
-</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <code>DEL</code>
+</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <a href=#del><code>DEL</code></a>
 
 </dt><dd>
 
@@ -3130,7 +3207,7 @@ the element created to <a href=#block-start-tag-classes title=block-start-tag-cl
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <code>blockquote</code>, <code title=element-html-body>body</code>, <code>section</code>,
+<em>not</em> one of <a href=#blockquote><code>blockquote</code></a>, <a href=#element-html-body><code title=element-html-body>body</code></a>, <a href=#section><code>section</code></a>,
 <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop the element off the
 <a href=#stack-of-open-elements>stack of open elements</a> and follow this substep again.
 
@@ -3145,7 +3222,7 @@ back to the first substep of these substeps.
 
 </li><li>Otherwise, if <a href=#quotation-start-depth title=quotation-start-depth>depth</a> of
 the <a href=#token>token</a> is greater than <var title="">current depth</var>,
-create a <code>blockquote</code> element in the <a href=#html-namespace>HTML
+create a <a href=#blockquote><code>blockquote</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>, append the element created to the <a href=#current-element>current
 element</a>, push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a> with <a href=#section-depth>section depth</a> set to zero (0),
@@ -3166,9 +3243,9 @@ of the <a href=#current-element>current element</a>.
 
 </li><li>Let <var title="">inserted depth</var> be the length of <a href=#list-start-depth title=list-start-depth>depth</a> of the <a href=#token>token</a>.
 
-</li><li>Let <var title="">local name</var> be <code>ul</code>, if the last
+</li><li>Let <var title="">local name</var> be <a href=#ul><code>ul</code></a>, if the last
 character in <a href=#list-start-depth title=list-start-depth>depth</a> is
-<code>-</code>, or <code>ol</code>, otherwise.
+<code>-</code>, or <a href=#ol><code>ol</code></a>, otherwise.
 
 </li><li>If <var title="">current depth</var> is greater than <var title="">inserted depth</var>, pop the <a href=#current-element>current element</a> off
 the <a href=#stack-of-open-elements>stack of open elements</a> and go back to the first
@@ -3191,10 +3268,10 @@ depth</var>, run the following substeps:
 of the <a href=#token>token</a>, where the index of the first character in
 <a href=#list-start-depth title=list-start-depth>depth</a> is zero (0).
 
-</li><li>If <var>type</var> is <code>-</code>, create a <code>ul</code>
+</li><li>If <var>type</var> is <code>-</code>, create a <a href=#ul><code>ul</code></a>
 element in the <a href=#html-namespace>HTML namespace</a>.
 
-</li><li>Otherwise, create a <code>ol</code> element in the <a href=#html-namespace>HTML
+</li><li>Otherwise, create a <a href=#ol><code>ol</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3208,7 +3285,7 @@ depth</var>, run the following substeps:
 
 <ol>
 
-<li>Create a <code>li</code> element in the <a href=#html-namespace>HTML
+<li>Create a <a href=#li><code>li</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3223,7 +3300,7 @@ token</a>.
 
 </li></ol>
 
-</li><li>Create a <code>li</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#li><code>li</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3257,16 +3334,16 @@ specification, it MUST generate a dl element with two ul elements.
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<code>dd</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+<a href=#dd><code>dd</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> <code>dl</code>, create a <code>dl</code> element in the
+<em>not</em> <a href=#dl><code>dl</code></a>, create a <a href=#dl><code>dl</code></a> element in the
 <a href=#html-namespace>HTML namespace</a>, append the element created to the
 <a href=#current-element>current element</a>, and push the element created to the
 <a href=#stack-of-open-elements>stack of open elements</a>.
 
-</li><li>Create a <code>dt</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#dt><code>dt</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3285,7 +3362,7 @@ mode</a>.
 
 <ol class=steps>
 
-<li>Create a <code>table</code> element in the <a href=#html-namespace>HTML
+<li>Create a <a href=#table><code>table</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3293,7 +3370,7 @@ namespace</a>.
 </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
-</li><li>Create a <code>tbody</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#tbody><code>tbody</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3301,7 +3378,7 @@ namespace</a>.
 </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
-</li><li>Create a <code>tr</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#tr><code>tr</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3314,13 +3391,13 @@ mode</a>.
 
 </li></ol>
 
-</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <code>PRE</code>
+</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <a href=#pre><code>PRE</code></a>
 
 </dt><dd>
 
 <ol class=steps>
 
-<li>Create a <code>pre</code> element in the <a href=#html-namespace>HTML
+<li>Create a <a href=#pre><code>pre</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3343,7 +3420,7 @@ mode</a>.
 
 <ol class=steps>
 
-<li>Create a <code>pre</code> element in the <a href=#html-namespace>HTML
+<li>Create a <a href=#pre><code>pre</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3402,14 +3479,14 @@ mode</a>.
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <code title=element-html-body>body</code>,
-<code>section</code>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
+<em>not</em> one of <a href=#element-html-body><code title=element-html-body>body</code></a>,
+<a href=#section><code>section</code></a>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
 the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
 this substep again.
 
 </li></ol>
 
-</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>INS</code>
+</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <a href=#ins><code>INS</code></a>
 
 </dt><dd>
 
@@ -3425,7 +3502,7 @@ from the <a href=#stack-of-open-elements>stack of open elements</a>.
 
 </li></ol>
 
-</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>DEL</code>
+</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <a href=#del><code>DEL</code></a>
 
 </dt><dd>
 
@@ -3471,13 +3548,13 @@ should not appear in this insertion mode -->
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <code>li</code>, <code>dd</code>,
+<em>not</em> one of <a href=#li><code>li</code></a>, <a href=#dd><code>dd</code></a>,
 <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, or <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, run the following
 substeps:
 
 <ol class=steps>
 
-<li>Create a <code>p</code> element in the <a href=#html-namespace>HTML
+<li>Create a <a href=#p><code>p</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3511,7 +3588,11 @@ follows:
 
 <ol class=steps>
 
-<li>Create a <code>td</code> element in the <a href=#html-namespace>HTML
+<li>Let <var title="">local name</var> be <a href=#th><code>th</code></a> if
+the <a href=#table-cell-start-header title=table-cell-start-header>header</a> of
+the <a href=#token>token</a> is true, or <a href=#td><code>td</code></a> otherwise.
+
+</li><li>Create a <var title="">local name</var> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3532,11 +3613,12 @@ mode</a>.
 
 <li>If the local name of the node returned by the
 <code>lastChild</code> <a href=#idl-attribute>IDL attribute</a> of the <a href=#current-element>current
-element</a>, if any, is <code>td</code>, increase the value of
+element</a>, if any, is <a href=#td><code>td</code></a> or <a href=#th><code>th</code></a>,
+increase the value of
 <code>colspan</code> <a href=#idl-attribute>IDL attribute</a> of the node by one (1)
 and abort these substeps.
 
-</li><li>Create a <code>td</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#td><code>td</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3546,7 +3628,7 @@ namespace</a>.
 </dd><dt>A <a href=#table-row-end-token>table row end token</a>
 
 </dt><dd>If the local name of the <a href=#current-element>current element</a> is
-<code>tr</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+<a href=#tr><code>tr</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
 </dd><dt>A <a href=#table-row-start-token>table row start token</a>
@@ -3555,7 +3637,7 @@ elements</a>.
 
 <ol class=steps>
 
-<li>Create a <code>tr</code> element in the <a href=#html-namespace>HTML
+<li>Create a <a href=#tr><code>tr</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -3639,18 +3721,18 @@ following table:
 </td></tr><tr>
 <th><a href=#concept-abbr><code title=concept-ABBR>ABBR</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>abbr</code>
+</td><td><a href=#abbr><code>abbr</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-cite><code title=concept-CITE>CITE</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>cite</code>
+</td><td><a href=#cite><code>cite</code></a>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
 <th><a href=#concept-code><code title=concept-CODE>CODE</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>code</code>
+</td><td><a href=#code><code>code</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-csection><code title=concept-CSECTION>CSECTION</code></a>
@@ -3661,22 +3743,22 @@ following table:
 </td></tr><tr>
 <th><a href=#concept-del><code title=concept-DEL>DEL</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>del</code>
+</td><td><a href=#del><code>del</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-dfn><code title=concept-DFN>DFN</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>dfn</code>
+</td><td><a href=#dfn><code>dfn</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-ins><code title=concept-INS>INS</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>ins</code>
+</td><td><a href=#ins><code>ins</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-kbd><code title=concept-KBD>KBD</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>kbd</code>
+</td><td><a href=#kbd><code>kbd</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-key><code title=concept-KEY>KEY</code></a>
@@ -3686,7 +3768,7 @@ following table:
 </td></tr><tr>
 <th><a href=#concept-q><code title=concept-Q>Q</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>q</code>
+</td><td><a href=#q><code>q</code></a>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
@@ -3698,7 +3780,7 @@ following table:
 </td></tr><tr>
 <th><a href=#concept-ruby><code title=concept-RUBY>RUBY</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>ruby</code>
+</td><td><a href=#ruby><code>ruby</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-rubyb><code title=concept-RUBYB>RUBYB</code></a>
@@ -3708,12 +3790,12 @@ following table:
 </td></tr><tr>
 <th><a href=#concept-samp><code title=concept-SAMP>SAMP</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>samp</code>
+</td><td><a href=#samp><code>samp</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-span><code title=concept-SPAN>SPAN</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>span</code>
+</td><td><a href=#span><code>span</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-src><code title=concept-SRC>SRC</code></a>
@@ -3723,23 +3805,23 @@ following table:
 </td></tr><tr>
 <th><a href=#concept-sub><code title=concept-SUB>SUB</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>sub</code>
+</td><td><a href=#sub><code>sub</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-sup><code title=concept-SUP>SUP</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>sup</code>
+</td><td><a href=#sup><code>sup</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-time><code title=concept-TIME>TIME</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>time</code>
+</td><td><a href=#time><code>time</code></a>
 <!-- SuikaWiki/0.10 (undocumented, not implemented in SuikaWiki3) -->
 
 </td></tr><tr>
 <th><a href=#concept-var><code title=concept-VAR>VAR</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
-</td><td><code>var</code>
+</td><td><a href=#var><code>var</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-weak><code title=concept-WEAK>WEAK</code></a>
@@ -3781,7 +3863,7 @@ elements</a>.
 namespace</a>.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<code>rt</code>, set <var>local name</var> to <code>rt</code>, set
+<a href=#rt><code>rt</code></a>, set <var>local name</var> to <a href=#rt><code>rt</code></a>, set
 <var>namespace</var> to the <a href=#html-namespace>HTML namespace</a>, and pop the
 <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
@@ -3796,8 +3878,8 @@ is <a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>, 
 <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>.
 
 </li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
-is <code>ruby</code> or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var title="">local
-name</var> to <code>rt</code> and set <var title="">namespace</var> to
+is <a href=#ruby><code>ruby</code></a> or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var title="">local
+name</var> to <a href=#rt><code>rt</code></a> and set <var title="">namespace</var> to
 the <a href=#html-namespace>HTML namespace</a>.
 
 </li><li>Create an element whose local name <var>local name</var> in the
@@ -3821,7 +3903,7 @@ elements</a>.
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is one of
-<code>rt</code>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, or
+<a href=#rt><code>rt</code></a>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, or
 <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
@@ -4053,10 +4135,10 @@ elements</a>.
 of open elements</a> and follow this substep again.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<code>dt</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+<a href=#dt><code>dt</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
-</li><li>Create a <code>dd</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#dd><code>dd</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -4077,7 +4159,7 @@ elements</a>.
 of open elements</a> and follow this substep again.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<code>h1</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+<a href=#h1><code>h1</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
 </li><li>Switch to the "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion
@@ -4096,15 +4178,15 @@ mode</a>.
 of open elements</a> and follow this substep again.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<code>td</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
-elements</a>.
+<a href=#td><code>td</code></a> or <a href=#th><code>th</code></a>, pop the element off
+the <a href=#stack-of-open-elements>stack of open elements</a>.
 
 </li><li>Switch to the "<a href=#in-table-row>in table row</a>" <a href=#insertion-mode>insertion
 mode</a>.
 
 </li></ol>
 
-</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <code>PRE</code>
+</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <a href=#pre><code>PRE</code></a>
 
 </dt><dt>A <a href=#preformatted-end-token>preformatted end token</a>
 
@@ -4117,7 +4199,7 @@ mode</a>.
 of open elements</a> and follow this substep again.
 
 </li><li>If the local name of the <a href=#current-element>current element</a> is
-<code>pre</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+<a href=#pre><code>pre</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
 </li><li>Switch to the "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion
@@ -4562,8 +4644,8 @@ requirements as the <a href=http://www.whatwg.org/specs/web-apps/current-work/#t
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>A <code>dt</code> element in the <a href=#xhtml2-namespace>XHTML2 namespace</a>,
-followed by a <code>dd</code> element in the <a href=#xhtml2-namespace>XHTML2
+</dt><dd>A <a href=#dt><code>dt</code></a> element in the <a href=#xhtml2-namespace>XHTML2 namespace</a>,
+followed by a <a href=#dd><code>dd</code></a> element in the <a href=#xhtml2-namespace>XHTML2
 namespace</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
@@ -4733,9 +4815,9 @@ namespace</a> that belongs to the same tree as the first attribute.
 
 <p>The <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
-specified to <code>q</code> elements in the <a href=#html-namespace>HTML
+specified to <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
-<code>ins</code> and <code>del</code> elements in the <a href=#html-namespace>HTML
+<a href=#ins><code>ins</code></a> and <a href=#del><code>del</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a>.  The attribute can also be specified to
 <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> and <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> elements in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
@@ -4802,9 +4884,9 @@ attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h
 
 <p>The <a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-scheme>resScheme</code></a> attribute in
 the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
-specified to <code>q</code> elements in the <a href=#html-namespace>HTML
+specified to <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
-<code>ins</code> and <code>del</code> elements in the <a href=#html-namespace>HTML
+<a href=#ins><code>ins</code></a> and <a href=#del><code>del</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a>.  The attribute can also be specified to an
 <a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a>.
@@ -4820,9 +4902,9 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <p>The <a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-parameter>resParameter</code></a> attribute
 in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em>
-be specified to <code>q</code> elements in the <a href=#html-namespace>HTML
+be specified to <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
-<code>ins</code> and <code>del</code> elements in the <a href=#html-namespace>HTML
+<a href=#ins><code>ins</code></a> and <a href=#del><code>del</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a>.  The attribute can also be specified to an
 <a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a>.
@@ -5073,7 +5155,7 @@ namespace</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd><a href=#phrasing-content>Phrasing content</a>, followed by a <code>rt</code>
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, followed by a <a href=#rt><code>rt</code></a>
 element in the <a href=#html-namespace>HTML namespace</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
@@ -5133,8 +5215,8 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 </dd></dl>
 
 <p>This element <em class=rfc2119>MAY</em> be inserted as the last
-child of <code>abbr</code>, <code>dfn</code>, <code>span</code>, or
-<code>time</code> element in the <a href=#html-namespace>HTML namespace</a> when the
+child of <a href=#abbr><code>abbr</code></a>, <a href=#dfn><code>dfn</code></a>, <a href=#span><code>span</code></a>, or
+<a href=#time><code>time</code></a> element in the <a href=#html-namespace>HTML namespace</a> when the
 <code title=attr-html-title>title</code> attribute of that element is
 not <a href=#specified>specified</a>.
 

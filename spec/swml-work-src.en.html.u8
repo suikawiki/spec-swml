@@ -7,7 +7,7 @@
 <header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">Working Draft [DATE]</h2>
+<h2 class="no-toc no-num">Specification [DATE]</h2>
 </hfroup>
 
 <dl>
@@ -25,7 +25,7 @@
 <section id=abstract>
 <h1 class="no-toc no-num">Abstract</h1>
 
-<p>This document defines SWML syntax and vocabulary.
+<p>This document defines the SWML syntax and the SWML vocabulary.
 </section>
 
 <section>
@@ -44,8 +44,6 @@
 implemented for <a
 href="http://suika.fam.cx/~wakaba/wiki/sw/SuikaWiki">SuikaWiki</a>
 hypertext system.
-
-<p class=XXX>...
 
 <section>
 <h1>History</h1>
@@ -96,14 +94,14 @@ as <em>the</em> SWML specification in 2008.
 <a href="http://suika.fam.cx/www/markup/suikawiki/spec/swml-work">http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>.<!-- http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8
 -->
 
-<p>Revisions of the SWML specification are available in the
-<a href="https://github.com/suikawiki/spec-swml/commits/gh-pages">GitHub
-repository</a>.
-
 <p>There
-is <a href="http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features">a
+was <a href="http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features">a
 list of possible new features</a> that might be introduced in a future
 revision of this specification.
+
+<p>Revisions of the SWML specification are now available in the
+<a href="https://github.com/suikawiki/spec-swml/commits/gh-pages">GitHub
+repository</a>.
 
 </section>
 
@@ -168,7 +166,46 @@ The <span>preferred prefix</span> is <code>aa</code>.
 
 <p>The <dfn>HTML namespace</dfn> is
 <code>http://www.w3.org/1999/xhtml</code>.  The <span>preferred
-prefix</span> is <code>html</code>.
+prefix</span> is <code>html</code>.  Following elements are defined in
+the <a href="https://html.spec.whatwg.org/"><cite>HTML
+Standard</cite></a>:
+<ul class=short>
+  <li><dfn><code>abbr</code></dfn>
+  <li><dfn><code>blockquote</code></dfn>
+  <li><dfn title=element-html-body><code>body</code></dfn>
+  <li><dfn><code>cite</code></dfn>
+  <li><dfn><code>code</code></dfn>
+  <li><dfn><code>dd</code></dfn>
+  <li><dfn><code>del</code></dfn>
+  <li><dfn><code>dfn</code></dfn>
+  <li><dfn><code>dt</code></dfn>
+  <li><dfn><code>dl</code></dfn>
+  <li><dfn><code>h1</code></dfn>
+  <li><dfn><code>head</code></dfn>
+  <li><dfn><code>html</code></dfn>
+  <li><dfn><code>ins</code></dfn>
+  <li><dfn><code>kbd</code></dfn>
+  <li><dfn><code>li</code></dfn>
+  <li><dfn><code>ol</code></dfn>
+  <li><dfn><code>p</code></dfn>
+  <li><dfn><code>pre</code></dfn>
+  <li><dfn><code>q</code></dfn>
+  <li><dfn><code>rt</code></dfn>
+  <li><dfn><code>ruby</code></dfn>
+  <li><dfn><code>samp</code></dfn>
+  <li><dfn><code>section</code></dfn>
+  <li><dfn><code>span</code></dfn>
+  <li><dfn><code>sub</code></dfn>
+  <li><dfn><code>sup</code></dfn>
+  <li><dfn><code>table</code></dfn>
+  <li><dfn><code>tbody</code></dfn>
+  <li><dfn><code>td</code></dfn>
+  <li><dfn><code>th</code></dfn>
+  <li><dfn><code>time</code></dfn>
+  <li><dfn><code>tr</code></dfn>
+  <li><dfn><code>ul</code></dfn>
+  <li><dfn><code>var</code></dfn>
+</ul>
 
 <p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.  The
@@ -241,11 +278,6 @@ ref</span>.
 <section>
 <h1>The <dfn>SWML text serialization</dfn></h1>
 
-<p class=XXX>...
-
-<section>
-<h1>Writing documents in the <span>SWML text serialization</span></h1>
-
 <p><em>This section is non‐normative.</em>
 
 <div class=XXX>
@@ -255,7 +287,14 @@ yet available; some xrefs does not work yet.  It should be specified
 why this is non-normative.  ABNF definition &amp; charset consideration 
 need to be addressed.
 
-</section>
+</div>
+
+<p>Both prose and ABNF descriptions are non-normative.  The
+conformance of a <span>SWML text serialization</span> document is
+defined in terms of the <span title="SWML text serialization
+parser">parser</span> and its output.
+
+<p class=XXX>Conformance checking steps
 
 <section>
 <h1>Document structure and header</h1>
@@ -865,41 +904,47 @@ title=abnf-newline>newline</span>
 <p>A <dfn title=concept-table>table</dfn> represents a two-dimensional
 tabular data.  It is similar to HTML <code>table</code> element, but
 what can be represented is even narrower than HTML table model.  A
-<span title=concept-table>table</span> consists of one or more <span
-title=concept-table-row>table rows</span>.  A <dfn
-title=concept-table-row>table row</span> consists of one or more <span
-title=concept-table-cell>table cells</span>.  Syntactically a <span
-title=concept-table-row>table row</span> is followed by a <span
-title=concept-newline>newline</span>.
+<span title=concept-table>table</span> consists of one or
+more <span title=concept-table-row>table rows</span>.
+A <dfn title=concept-table-row>table row</dfn> consists of one or
+more <span title=concept-table-cell>table cells</span>.  Syntactically
+a <span title=concept-table-row>table row</span> is followed by
+a <span title=concept-newline>newline</span>.
 
-<p>There are two kinds of <dfn title=concept-table-cell>table
-cells</dfn>: <span title=concept-table-data-cell>data cells</span> and
+<p>There are three kinds of <dfn title=concept-table-cell>table
+cells</dfn>: <span title=concept-table-data-cell>data cells</span>,
+<span title=concept-table-header-cell>header cells</span>, and
 <span title=concept-table-colspan-cell>colspan cells</span>.  The
-first <span title=concept-table-cell>cell</span> in a <span
-title=concept-table-row>row</span> has to be a <span
-title=concept-table-data-cell>data cell</span>.  Syntactically a <span
-title=concept-table-cell>cell</span> is preceded by a <code>,</code>
-character followed by zero or more <span>white space
-characters</span>, and is followed by zero or more <span>white space
-characters</span>.
+first <span title=concept-table-cell>cell</span> in
+a <span title=concept-table-row>row</span> has to be
+a <span title=concept-table-data-cell>data cell</span> or
+a <span title=concept-table-header-cell>header cell</span>.
+Syntactically a <span title=concept-table-cell>cell</span> is preceded
+by a <code>,</code> character followed by zero or more <span>white
+space characters</span>, and is followed by zero or more <span>white
+space characters</span>.
 
 <p>A <dfn title=concept-table-data-cell>data cell</dfn> represents a
-cell that contains data, like HTML <code>td</code> element.  The <span
-title=concept-data-cell>cell</span> consists of an optional <span
-title=concept-destination-anchor-number>destination anchor
-number</span>, optionally followed by <span
-title=concept-line-contents>line contents</span>.  Syntactically, the
-<span title=concept-table-data-cell>data cell</span> can be provided
-as a <span title=concept-quoted-string>quoted string</span>, in which
+cell that contains data, like HTML <code>td</code> element.  Likewise,
+a <dfn title=concept-table-header-cell>header cell</dfn> represents a
+cell that contains data, like HTML <code>th</code> element.  The data
+of a <span title=concept-table-header-cell>header cell</span> has to
+be preceded by a <code>*</code> character.  The cell consists of an
+optional <span title=concept-destination-anchor-number>destination
+anchor number</span>, optionally followed
+by <span title=concept-line-contents>line contents</span>.
+Syntactically, the cell can be provided as
+a <span title=concept-quoted-string>quoted string</span>, in which
 case its <span title=concept-quoted-string-value>value</span> is
-interpreted as an optional <span
-title=concept-destination-anchor-number>destination anchor
-number</span>, optionally followed by <span
-title=concept-line-contents>line contents</span>.  In fact the <span
-title=concept-table-data-cell>data cell</span> has to be represented
-as a <span title=concept-quoted-string>quoted string</span> if it
-contains a <code>,</code> character, a leading <code>"</code>
-character, or leading or trailing <span>white space characters</span>.
+interpreted as an
+optional <span title=concept-destination-anchor-number>destination
+anchor number</span>, optionally followed
+by <span title=concept-line-contents>line contents</span>.<!-- In fact
+the <span title=concept-table-data-cell>data cell</span> has to be
+represented as a <span title=concept-quoted-string>quoted
+string</span> if it contains a <code>,</code> character, a
+leading <code>"</code> character, or leading or trailing <span>white
+space characters</span>.-->
 
 <p>A <dfn title=concept-table-colspan-cell>colspan cell</dfn>
 represents that the <span title=concept-table-cell>cell</span> that
@@ -923,8 +968,9 @@ title=abnf-cell>cell</span>) <span title=abnf-newline>newline</span>
 
 <dt><dfn title=abnf-cell>cell</dfn>
 
-<dd>= <span title=abnf-data-cell>data-cell</span> / <span
-title=abnf-colspan-cell>colspan-cell</span>
+<dd>= <span title=abnf-data-cell>data-cell</span>
+/ <span title=abnf-header-cell>header-cell</span>
+/ <span title=abnf-colspan-cell>colspan-cell</span>
 
 <dt><dfn title=abnf-data-cell>data-cell</dfn>
 
@@ -933,6 +979,15 @@ title=abnf-cstartchar>cstartchar</span> *<span
 title=abnf-cchar>cchar</span>] / <span
 title=abnf-quoted-string>quoted-string</span>) *<span
 title=abnf-white-space>white-space</span>
+
+<dt><dfn title=abnf-header-cell>header-cell</dfn>
+
+<dd>= *<span title=abnf-white-space>white-space</span> "*"
+*<span title=abnf-white-space>white-space</span>
+([<span title=abnf-cstartchar>cstartchar</span>
+*<span title=abnf-cchar>cchar</span>]
+/ <span title=abnf-quoted-string>quoted-string</span>)
+*<span title=abnf-white-space>white-space</span>
 
 <dt><dfn title=abnf-cstartchar>cstartchar</dfn>
 
@@ -1847,7 +1902,7 @@ attribute</dfn> properties.  Default for these properties is null.
 
 <dt><dfn>Table cell start token</dfn>
 
-<dd>No property.
+<dd><dfn title=table-cell-start-header>Header</dfn> property.
 
 <dt><dfn>Table cell end token</dfn>
 
@@ -2523,6 +2578,10 @@ character</span>, increase <var title>pos</var> by one (1) and go back
 to the previous step.
 
 <li>If the <var title>pos</var>th character in <var title>data</var>
+is a <code>*</code> character, set the <var title>header cell</var>
+flag and increase <var title>pos</var> by one (1).
+
+<li>If the <var title>pos</var>th character in <var title>data</var>
 is <code>"</code>, set <var title>cell quoted</var> to the empty
 string and follow the substeps below:
 
@@ -2577,12 +2636,15 @@ title>data</var> to <var title>cell</var>.
 <li>Remove <span>white space characters</span> at the end of <var
 title>data</var>, if any.
 
-<li>If <var title>cell quoted</var> is null and <var title>cell</var>
-is equal to <code>==</code>, emit a <span>table colspan cell
-token</span> and go back to the step labeled <span
-title=tokenize-table-row-loop><i>LOOP</i></span>.
+<li>If <var title>header cell</var> flag is not set,
+<var title>cell quoted</var> is null, and <var title>cell</var> is
+equal to <code>==</code>, then emit a <span>table colspan cell
+token</span> and go back to the step
+labeled <span title=tokenize-table-row-loop><i>LOOP</i></span>.
 
-<li>Emit a <span>table cell start token</span>.
+<li>Emit a <span>table cell start token</span> whose 
+<span title=table-cell-start-header>header</span> is
+whether <var title>header cell</var> flag is set or not.
 
 <li>If <var title>cell quoted</var> is <em>not</em> null, run the
 <span>algorithm to tokenize a text</span> with <var title>cell
@@ -3764,7 +3826,11 @@ follows:
 
 <ol class=steps>
 
-<li>Create a <code>td</code> element in the <span>HTML
+<li>Let <var title>local name</var> be <code>th</code> if
+the <span title=table-cell-start-header>header</span> of
+the <span>token</span> is true, or <code>td</code> otherwise.
+
+<li>Create a <var title>local name</var> element in the <span>HTML
 namespace</span>.
 
 <li>Append the element created to the <span>current element</span>.
@@ -3785,7 +3851,8 @@ mode</span>.
 
 <li>If the local name of the node returned by the
 <code>lastChild</code> <span>IDL attribute</span> of the <span>current
-element</span>, if any, is <code>td</code>, increase the value of
+element</span>, if any, is <code>td</code> or <code>th</code>,
+increase the value of
 <code>colspan</code> <span>IDL attribute</span> of the node by one (1)
 and abort these substeps.
 
@@ -4374,8 +4441,8 @@ mode</span>.
 of open elements</span> and follow this substep again.
 
 <li>If the local name of the <span>current element</span> is
-<code>td</code>, pop the element off the <span>stack of open
-elements</span>.
+<code>td</code> or <code>th</code>, pop the element off
+the <span>stack of open elements</span>.
 
 <li>Switch to the "<span>in table row</span>" <span>insertion
 mode</span>.
