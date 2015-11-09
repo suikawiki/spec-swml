@@ -142,22 +142,24 @@ namespace</span></a></li>
 <span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
    <li><a href=#inline-annotations><span class=secno>8.8 </span>Inline annotations</a>
     <ol>
-     <li><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.1 </span>The <code>rubyb</code> element in the
+     <li><a href=#the-f-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.1 </span>The <code>f</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.2 </span>The <code>weak</code> element in the
+     <li><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.2 </span>The <code>rubyb</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>8.8.3 </span>The <code>title</code> element in the
-<span>SuikaWiki/0.10 namespace</span></a></li></ol></li></ol></li>
- <li><a href=#key-names><span class=secno>9 </span>Key names</a>
-  <ol>
-   <li><a href=#the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>9.1 </span>The <code>key</code> element in the
+     <li><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.3 </span>The <code>weak</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>8.8.4 </span>The <code>title</code> element in the
 <span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
- <li><a href=#fallback-elements><span class=secno>10 </span>Fallback elements</a>
-  <ol>
-   <li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>10.1 </span>The <code>attrvalue</code> element in the
+   <li><a href=#key-names><span class=secno>8.9 </span>Key names</a>
+    <ol>
+     <li><a href=#the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>8.9.1 </span>The <code>key</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
+   <li><a href=#fallback-elements><span class=secno>8.10 </span>Fallback elements</a>
+    <ol>
+     <li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>8.10.1 </span>The <code>attrvalue</code> element in the
 <span>SuikaWiki/0.10 namespace</span></a></li>
-   <li><a href=#uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>10.2 </span><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
-namespace</span></a></li></ol></li>
+     <li><a href=#uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>8.10.2 </span><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
+namespace</span></a></li></ol></li></ol></li>
  <li><a class=no-num href=#references>References</a>
   <ol>
    <li><a class=no-num href=#normative-references>Normative references</a></li></ol></li>
@@ -1144,6 +1146,13 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Defined term (HTML <a href=#dfn><code>dfn</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-f title=concept-F><code>F</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Field name (<a href=#the-f-element-in-the-suikawiki/0.9-namespace><code>f</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-frac title=concept-FRAC><code>FRAC</code></dfn>
@@ -3771,6 +3780,11 @@ following table:
 </td><td><a href=#dfn><code>dfn</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-f><code title=concept-F>F</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-f-element-in-the-suikawiki/0.9-namespace><code>f</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-frac><code title=concept-FRAC>FRAC</code></a>
 </th><td>The <a href=#mathml-namespace>MathML namespace</a>
 </td><td><a href=#mfrac><code>mfrac</code></a>
@@ -4776,6 +4790,7 @@ namespace</a></h1>
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -4802,6 +4817,7 @@ namespace</a></h1>
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -4828,6 +4844,7 @@ namespace</a></h1>
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -4909,6 +4926,7 @@ namespace</a> that belongs to the same tree.
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -4979,6 +4997,7 @@ namespace</a>.
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -5064,6 +5083,7 @@ that namespace. -->
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -5089,6 +5109,7 @@ that namespace. -->
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -5119,6 +5140,7 @@ namespace</a></h1>
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -5195,7 +5217,7 @@ namespace</a>.
 
 <section>
 
-<h1 id=the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.1 </span>The <dfn><code>rubyb</code></dfn> element in the
+<h1 id=the-f-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.1 </span>The <dfn><code>f</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5203,6 +5225,35 @@ namespace</a>.
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-f-element-in-the-suikawiki/0.9-namespace><code>f</code></a> element represents a field name or key of some
+structure, such as a field name of a C data structure, a key of a Perl
+hash, or a property name of an XML information item.
+
+</p></section>
+
+<section>
+
+<h1 id=the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.2 </span>The <dfn><code>rubyb</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -5221,7 +5272,7 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 
 <section>
 
-<h1 id=the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.2 </span>The <dfn><code>weak</code></dfn> element in the
+<h1 id=the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>8.8.3 </span>The <dfn><code>weak</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5229,6 +5280,7 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -5246,7 +5298,7 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 
 <section>
 
-<h1 id=the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>8.8.3 </span>The <dfn><code>title</code></dfn> element in the
+<h1 id=the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>8.8.4 </span>The <dfn><code>title</code></dfn> element in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -5287,14 +5339,12 @@ can be inserted after this element.
 
 </p></section>
 
-</section>
-
 <section>
-<h1 id=key-names><span class=secno>9 </span>Key names</h1>
+<h1 id=key-names><span class=secno>8.9 </span>Key names</h1>
 
 <section>
 
-<h1 id=the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>9.1 </span>The <dfn><code>key</code></dfn> element in the
+<h1 id=the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>8.9.1 </span>The <dfn><code>key</code></dfn> element in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -5302,6 +5352,7 @@ can be inserted after this element.
 <dt><a href=#category>Category</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
 
 </dd><dt><a href=#content-model>Content model</a>
 
@@ -5320,11 +5371,11 @@ can be inserted after this element.
 </section>
 
 <section>
-<h1 id=fallback-elements><span class=secno>10 </span>Fallback elements</h1>
+<h1 id=fallback-elements><span class=secno>8.10 </span>Fallback elements</h1>
 
 <section>
 
-<h1 id=the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>10.1 </span>The <dfn><code>attrvalue</code></dfn> element in the
+<h1 id=the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>8.10.1 </span>The <dfn><code>attrvalue</code></dfn> element in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -5351,7 +5402,7 @@ can be inserted after this element.
 
 <section>
 
-<h1 id=uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>10.2 </span><a href=#uppercase-elements>Uppercase elements</a> in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+<h1 id=uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>8.10.2 </span><a href=#uppercase-elements>Uppercase elements</a> in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
 namespace</a></h1>
 
 <dl class=element>
@@ -5388,7 +5439,7 @@ found.
 
 </section>
 
-
+</section>
 
 <section class=reference>
 <h1 class=no-num id=references>References</h1>

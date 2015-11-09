@@ -1214,6 +1214,13 @@ title=abnf-inline-end-tag>inline-end-tag</span>
 <td>Defined term (HTML <code>dfn</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-F><code>F</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Field name (<code>f</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-FRAC><code>FRAC</code></dfn>
 <td>1
 <td>Not allowed
@@ -4010,6 +4017,11 @@ following table:
 <td><code>dfn</code>
 
 <tr>
+<th><code title=concept-F>F</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>f</code>
+
+<tr>
 <th><code title=concept-FRAC>FRAC</code>
 <td>The <span>MathML namespace</span>
 <td><code>mfrac</code>
@@ -5066,6 +5078,7 @@ namespace</span></h1>
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5092,6 +5105,7 @@ namespace</span></h1>
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5118,6 +5132,7 @@ namespace</span></h1>
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5202,6 +5217,7 @@ namespace</span> that belongs to the same tree.
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5273,6 +5289,7 @@ namespace</span>.
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5363,6 +5380,7 @@ that namespace. -->
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5388,6 +5406,7 @@ that namespace. -->
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5418,6 +5437,7 @@ namespace</span></h1>
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5494,6 +5514,34 @@ namespace</span>.
 
 <section>
 
+<h1>The <dfn><code>f</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>f</code> element represents a field name or key of some
+structure, such as a field name of a C data structure, a key of a Perl
+hash, or a property name of an XML information item.
+
+</section>
+
+<section>
+
 <h1>The <dfn><code>rubyb</code></dfn> element in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
@@ -5502,6 +5550,7 @@ namespace</span>.
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5528,6 +5577,7 @@ element in the <span>HTML namespace</span>.
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
@@ -5586,8 +5636,6 @@ can be inserted after this element.
 
 </section>
 
-</section>
-
 <section>
 <h1>Key names</h1>
 
@@ -5601,6 +5649,7 @@ can be inserted after this element.
 <dt><span>Category</span>
 
 <dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
 
 <dt><span>Content model</span>
 
