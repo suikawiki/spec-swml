@@ -102,7 +102,13 @@ in the <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><span class=secno>8.3.4 </span>The <code>comment-p</code> element in the
 <span>SuikaWiki/0.10 namespace</span></a></li>
      <li><a href=#the-ed-element-in-the-suikawiki/0.10-namespace><span class=secno>8.3.5 </span>The <code>ed</code> element in the <span>SuikaWiki/0.10
-namespace</span></a></li></ol></li>
+namespace</span></a></li>
+     <li><a href=#the-refs-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.6 </span>The <code>refs</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-history-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.7 </span>The <code>history</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-example-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.8 </span>The <code>example</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
    <li><a href=#hyperlinks><span class=secno>8.4 </span>Hyperlinks</a>
     <ol>
      <li><a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><span class=secno>8.4.1 </span>The <code>anchor</code> element in the
@@ -307,6 +313,8 @@ Standard</cite></a>:
   </li><li><dfn id=dt><code>dt</code></dfn>
   </li><li><dfn id=dl><code>dl</code></dfn>
   </li><li><dfn id=em><code>em</code></dfn>
+  </li><li><dfn id=figcaption><code>figcaption</code></dfn>
+  </li><li><dfn id=figure><code>figure</code></dfn>
   </li><li><dfn id=h1><code>h1</code></dfn>
   </li><li><dfn id=head><code>head</code></dfn>
   </li><li><dfn id=html><code>html</code></dfn>
@@ -899,8 +907,23 @@ by the following table:
     <th><code title=concept-DELETE>DELETE</code>
     </th><td>Removal (<a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> element)
   </td></tr><tr>
+    <th><code title=concept-EG>EG</code>
+    </th><td>Example (<a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a> element)
+  </td></tr><tr>
+    <th><code title=concept-FIG>FIG</code>
+    </th><td>Figure (HTML <a href=#figure><code>figure</code></a> element)
+  </td></tr><tr>
+    <th><code title=concept-FIGCAPTION>FIGCAPTION</code>
+    </th><td>Figure caption (HTML <a href=#figcaption><code>figcaption</code></a> element)
+  </td></tr><tr>
+    <th><code title=concept-HISTORY>HISTORY</code>
+    </th><td>Historical notes (<a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a> element)
+  </td></tr><tr>
     <th><code title=concept-INSERT>INSERT</code>
     </th><td>Insertion (<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element)
+  </td></tr><tr>
+    <th><code title=concept-REFS>REFS</code>
+    </th><td>Referenced documents (<a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a> element)
 
 </td></tr></tbody></table>
 
@@ -3164,7 +3187,8 @@ of the bottommost entry in the <a href=#stack-of-open-elements>stack of open ele
 
 </p><p><dfn id=block-elements>Block elements</dfn> are elements
 whose <a href=#element-local-name title=element-local-name>local name</a> is one
-of <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> and <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>.
+of <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>, <a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a>,
+<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, and <a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a>.
 
 </p><p><dfn id=structural-elements>Structural elements</dfn> are <a href=#block-elements>block elements</a> and
 elements whose <a href=#element-local-name title=element-local-name>local name</a> is one
@@ -4720,7 +4744,8 @@ requirements as the <a href=http://www.whatwg.org/specs/web-apps/current-work/#t
 
 </dd></dl>
 
-<p class=XXX>...
+<p>The <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element represents an insertion to the
+document.
 
 </p></section>
 
@@ -4745,7 +4770,8 @@ requirements as the <a href=http://www.whatwg.org/specs/web-apps/current-work/#t
 
 </dd></dl>
 
-<p class=XXX>...
+<p>The <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> element represents a removal from the
+document.
 
 </p></section>
 
@@ -4825,6 +4851,83 @@ namespace</a></h1>
 </dd></dl>
 
 <p class=XXX>...
+
+</p></section>
+
+<section>
+
+<h1 id=the-refs-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.6 </span>The <dfn><code>refs</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a> element represents a list of referenced
+documents.
+
+</p></section>
+
+<section>
+
+<h1 id=the-history-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.7 </span>The <dfn><code>history</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a> element represents a description of
+history or an out-of-date content.
+
+</p></section>
+
+<section>
+
+<h1 id=the-example-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.8 </span>The <dfn><code>example</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a> element represents an example.
 
 </p></section>
 

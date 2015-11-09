@@ -181,6 +181,8 @@ Standard</cite></a>:
   <li><dfn><code>dt</code></dfn>
   <li><dfn><code>dl</code></dfn>
   <li><dfn><code>em</code></dfn>
+  <li><dfn><code>figcaption</code></dfn>
+  <li><dfn><code>figure</code></dfn>
   <li><dfn><code>h1</code></dfn>
   <li><dfn><code>head</code></dfn>
   <li><dfn><code>html</code></dfn>
@@ -928,8 +930,23 @@ by the following table:
     <th><code title=concept-DELETE>DELETE</code>
     <td>Removal (<code>delete</code> element)
   <tr>
+    <th><code title=concept-EG>EG</code>
+    <td>Example (<code>example</code> element)
+  <tr>
+    <th><code title=concept-FIG>FIG</code>
+    <td>Figure (HTML <code>figure</code> element)
+  <tr>
+    <th><code title=concept-FIGCAPTION>FIGCAPTION</code>
+    <td>Figure caption (HTML <code>figcaption</code> element)
+  <tr>
+    <th><code title=concept-HISTORY>HISTORY</code>
+    <td>Historical notes (<code>history</code> element)
+  <tr>
     <th><code title=concept-INSERT>INSERT</code>
     <td>Insertion (<code>insert</code> element)
+  <tr>
+    <th><code title=concept-REFS>REFS</code>
+    <td>Referenced documents (<code>refs</code> element)
 
 </table>
 
@@ -3371,7 +3388,8 @@ of the bottommost entry in the <span>stack of open elements</span>.
 
 <p><dfn>Block elements</dfn> are elements
 whose <span title=element-local-name>local name</span> is one
-of <code>delete</code> and <code>insert</code>.
+of <code>delete</code>, <code>example</code>, <code>history</code>,
+<code>insert</code>, and <code>refs</code>.
 
 <p><dfn>Structural elements</dfn> are <span>block elements</span> and
 elements whose <span title=element-local-name>local name</span> is one
@@ -4995,7 +5013,8 @@ title>id</code></a> attribute of HTML5 <span class=XXX>...</span>.
 
 </dl>
 
-<p class=XXX>...
+<p>The <code>insert</code> element represents an insertion to the
+document.
 
 </section>
 
@@ -5020,7 +5039,8 @@ title>id</code></a> attribute of HTML5 <span class=XXX>...</span>.
 
 </dl>
 
-<p class=XXX>...
+<p>The <code>delete</code> element represents a removal from the
+document.
 
 </section>
 
@@ -5100,6 +5120,83 @@ namespace</span></h1>
 </dl>
 
 <p class=XXX>...
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>refs</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>refs</code> element represents a list of referenced
+documents.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>history</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>history</code> element represents a description of
+history or an out-of-date content.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>example</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>example</code> element represents an example.
 
 </section>
 
