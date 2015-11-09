@@ -7,7 +7,7 @@
 <header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">Specification [DATE]</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, [DATE]</h2>
 </hfroup>
 
 <dl>
@@ -620,7 +620,7 @@ title=abnf-heading>heading</span> / <span title=abnf-list>list</span>
 / <span title=abnf-labeled-list>labeled-list</span> / <span
 title=abnf-quotation>quotation</span> / <span
 title=abnf-preformatted-paragraph>preformatted-paragraph</span> /
-<span title=abnf-edited-section>edited-section</span> / <span
+<span title=abnf-section-block>section-block</span> / <span
 title=abnf-table>table</span> / <span
 title=abnf-editorial-note>editorial-note</span> / <span
 title=abnf-comment-paragraph>comment-paragraph</span> / <span
@@ -647,7 +647,7 @@ title=concept-block-child>block children</span>.
 <p>A <span title=concept-paragraph>paragraph</span> cannot begin with
 a <span title=concept-form>form</span> or <span
 title=concept-entity-reference>entity reference</span>, since it is
-treated as a <span title=concept-block</span> when it appears at the
+treated as a <span title=concept-block>block</span> when it appears at the
 beginning of a line.  A <span title=concept-paragraph>paragraph</span>
 cannot begin with a <span title="white space characters">white space
 character</span>, since it is treated as a <span
@@ -664,7 +664,7 @@ title=concept-newline>newline</span>, a <span
 title=concept-list>list</span>, a <span
 title=concept-labeled-list>labeled list</span>, a <span
 title=concept-preformatted-paragraph>preformatted paragraph</span>, an
-<span title=concept-edited-sections>edited section</span>, a <span
+<span title=concept-section-block>section block</span>, a <span
 title=concept-table>table</span>, an <span
 title=concept-editorial-notes>editorial note</span>, or a <span
 title=concept-comment-paragraph>comment paragraph</span>.
@@ -705,7 +705,7 @@ title=abnf-destination-anchor-number>destination-anchor-number</span>]
 title=abnf-newline>newline</span> / <span title=abnf-list>list</span>
 / <span title=abnf-labeled-list>labeled-list</span> / <span
 title=abnf-preformatted-paragraph>preformatted-paragraph</span> /
-<span title=abnf-edited-section>edited-section</span> / <span
+<span title=abnf-section-block>section-block</span> / <span
 title=abnf-table>table</span> / <span
 title=abnf-editorial-note>editorial-note</span> / <span
 title=abnf-comment-paragraph>comment-paragraph</span>
@@ -885,32 +885,66 @@ title=abnf-newline>newline</span>)
 
 </dl>
 
+<p>A <dfn title=concept-section-block>section block</dfn> is a marked
+section of zero or more <span title=concept-block>blocks</span>,
+preceded by a <span title=concept-section-block-start-tag>section
+block start tag</span> and followed by
+a <span title=concept-section-block-end-tag>section block end
+tag</span>.
+
+<p>A <dfn title=concept-section-block-start-tag>section block start
+tag</dfn> is a <code>[</code> character, followed by
+a <span title=concept-section-block-tag-name>section block tag
+name</span>, followed by an
+optional <span title=concept-class-specification>class
+specification</span>, followed by a <code>[</code> character, followed
+by zero or more <span>white space characters</span>, followed by
+a <span title=concept-newline>newline</span>.
+
+<p>A <dfn title=concept-section-block-end-tag>section block end
+tag</dfn> is a <code>]</code> character, followed by
+a <span title=concept-section-block-tag-name>section block tag
+name</span>, followed by a <code>]</code> character, followed by zero
+or more <span>white space characters</span>, followed by
+a <span title=concept-newline>newline</span>.
+
+<p>A <dfn title=concept-section-block-tag-name>section block tag
+name</dfn> represents the type of
+the <span title=concept-section-block>section block</span>.
+The <span title=concept-section-block-tag-name>section block tag
+name</span> of a <span title=concept-section-block>section
+block</span> has to be the same value.  Their semantics are described
+by the following table:
+
+<table>
+
+<thead>
+  <tr>
+    <th><span title=concept-section-block-tag-name>Tag name</span>
+    <th>Semantics
+
+<tbody>
+  <tr>
+    <th><code title=concept-DELETE>DELETE</code>
+    <td>Removal (<code>delete</code> element)
+  <tr>
+    <th><code title=concept-INSERT>INSERT</code>
+    <td>Insertion (<code>insert</code> element)
+
+</table>
+
 <dl class=abnf>
 
-<dt><dfn title=abnf-edited-section>edited-section</dfn>
+<dt><dfn title=abnf-section-block>section-block</dfn>
 
-<dd>= <span title=abnf-inserted-section>inserted-section</span> /
-<span title=abnf-deleted-section>deleted-section</span>
-
-<dt><dfn title=abnf-inserted-section>inserted-section</dfn>
-
-<dd>= '[INS' [<span
-title=abnf-class-specification>class-specification</span>] "[" *<span
-title=abnf-white-space>white-space</span> <span
-title=abnf-newline>newline</span> <span
-title=abnf-body-part>body-part</span> ']INS]' *<span
-title=abnf-white-space>white-space</span> <span
-title=abnf-newline>newline</span>
-
-<dt><dfn title=abnf-deleted-section>deleted-section</dfn>
-
-<dd>= '[DEL' [<span
-title=abnf-class-specification>class-specification</span>] "[" *<span
-title=abnf-white-space>white-space</span> <span
-title=abnf-newline>newline</span> <span
-title=abnf-body-part>body-part</span> ']DEL]' *<span
-title=abnf-white-space>white-space</span> <span
-title=abnf-newline>newline</span>
+<dd>= '[' <span title=abnf-tag-name>tag-name</span>
+[<span title=abnf-class-specification>class-specification</span>] "["
+*<span title=abnf-white-space>white-space</span>
+<span title=abnf-newline>newline</span>
+<span title=abnf-body-part>body-part</span>
+']' <span title=abnf-tag-name>tag-name</span> ']'
+*<span title=abnf-white-space>white-space</span>
+<span title=abnf-newline>newline</span>
 
 </dl>
 
@@ -3335,13 +3369,18 @@ tuple unless otherwise specified.
 <p>The <dfn>current element</dfn> is the <span>element node</span>
 of the bottommost entry in the <span>stack of open elements</span>.
 
-<p><dfn>Structural elements</dfn> are elements whose local name is one
+<p><dfn>Block elements</dfn> are elements
+whose <span title=element-local-name>local name</span> is one
+of <code>delete</code> and <code>insert</code>.
+
+<p><dfn>Structural elements</dfn> are <span>block elements</span> and
+elements whose <span title=element-local-name>local name</span> is one
 of <code title=element-html-body>body</code>, <code>section</code>,
-<code>insert</code>, <code>delete</code>, <code>blockquote</code>,
-<code>h1</code>, <code>ul</code>, <code>ol</code>, <code>dl</code>,
-<code>li</code>, <code>dt</code>, <code>dd</code>, <code>table</code>,
-<code>tbody</code>, <code>tr</code>, <code>td</code>, <code>p</code>,
-<code>comment-p</code>, <code>ed</code>, or <code>pre</code>.
+<code>blockquote</code>, <code>h1</code>, <code>ul</code>,
+<code>ol</code>, <code>dl</code>, <code>li</code>, <code>dt</code>,
+<code>dd</code>, <code>table</code>, <code>tbody</code>, <code>th</code>,
+<code>tr</code>, <code>td</code>, <code>p</code>, <code>comment-p</code>,
+<code>ed</code>, and <code>pre</code>.
 
 <section>
 <h1>The "<span>in section</span>" <span>insertion mode</span></h1>
@@ -3360,9 +3399,9 @@ follows:
 
 <li>If the local name of the <span>current element</span> is
 <em>not</em> one of <code title=element-html-body>body</code>,
-<code>section</code>, <code>insert</code>, or <code>delete</code>, pop
-the element off the <span>stack of open elements</span> and follow
-this substep again.
+<code>section</code>, and <span>block elements</span>, then pop the
+element off the <span>stack of open elements</span> and follow this
+substep again.
 
 <li>Let <var title>current depth</var> be the <span>section
 depth</span> of the bottommost entry in the <span>stack of open
@@ -3462,11 +3501,12 @@ title=block-start-tag-classes>classes</span>.
 
 <ol class=steps>
 
-<li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code>blockquote</code>, <code
-title=element-html-body>body</code>, <code>section</code>,
-<code>insert</code>, or <code>delete</code>, pop the element off the
-<span>stack of open elements</span> and follow this substep again.
+<li>If the <span title=element-local-name>local name</span> of
+the <span>current element</span> is <em>not</em> one
+of <code>blockquote</code>, <code title=element-html-body>body</code>,
+<code>section</code>, and <span>block elements</span>, then pop the
+element off the <span>stack of open elements</span> and follow this
+substep again.
 
 <li>Let <var title>current depth</var> be the <span>quotation
 depth</span> of the bottommost entry in the <span>stack of open
@@ -3742,9 +3782,9 @@ mode</span>.
 
 <li>If the local name of the <span>current element</span> is
 <em>not</em> one of <code title=element-html-body>body</code>,
-<code>section</code>, <code>insert</code>, or <code>delete</code>, pop
-the element off the <span>stack of open elements</span> and follow
-this substep again.
+<code>section</code>, and <span>block elements</span>, then pop the
+element off the <span>stack of open elements</span> and follow this
+substep again.
 
 </ol>
 

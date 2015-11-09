@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">Specification 9 November 2015</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 9 November 2015</h2>
 
 
 <dl>
@@ -686,7 +686,7 @@ This line is <em>not</em> part of the list item.</code></pre>
 
 </dt><dd>= <a href=#abnf-paragraph title=abnf-paragraph>paragraph</a> / <a href=#abnf-heading title=abnf-heading>heading</a> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-quotation title=abnf-quotation>quotation</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
-<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a> / <a href=#abnf-form title=abnf-form>form</a> / <a href=#abnf-obs-entity-reference title=abnf-obs-entity-reference>obs-entity-reference</a>
+<a href=#abnf-section-block title=abnf-section-block>section-block</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a> / <a href=#abnf-form title=abnf-form>form</a> / <a href=#abnf-obs-entity-reference title=abnf-obs-entity-reference>obs-entity-reference</a>
 
 </dd><dt><dfn id=abnf-empty-block title=abnf-empty-block>empty-block</dfn>
 
@@ -703,18 +703,18 @@ anchor number</span>, followed by a <span title=concept-line-contents>line conte
 
 <p>A <a href=#concept-paragraph title=concept-paragraph>paragraph</a> cannot begin with
 a <a href=#concept-form title=concept-form>form</a> or <a href=#concept-entity-reference title=concept-entity-reference>entity reference</a>, since it is
-treated as a <span title=concept-block</span> when it appears at the
+treated as a <a href=#concept-block title=concept-block>block</a> when it appears at the
 beginning of a line.  A <a href=#concept-paragraph title=concept-paragraph>paragraph</a>
 cannot begin with a <a href=#white-space-characters title="white space characters">white space
 character</a>, since it is treated as a <span title=concept-preformatted-paragraph>preformatted paragraph</span>
 then.
 
-</span></p></div>
+</p></div>
 
 <p>A <dfn id=concept-block-child title=concept-block-child>block child</dfn> is one of an
 optional <span title=concept-destination-anchor-number>destination
 anchor number</span> followed by <span title=concept-line-contents>line contents</span> followed by a <a href=#concept-newline title=concept-newline>newline</a>, a <a href=#concept-list title=concept-list>list</a>, a <a href=#concept-labeled-list title=concept-labeled-list>labeled list</a>, a <span title=concept-preformatted-paragraph>preformatted paragraph</span>, an
-<span title=concept-edited-sections>edited section</span>, a <a href=#concept-table title=concept-table>table</a>, an <span title=concept-editorial-notes>editorial note</span>, or a <span title=concept-comment-paragraph>comment paragraph</span>.
+<a href=#concept-section-block title=concept-section-block>section block</a>, a <a href=#concept-table title=concept-table>table</a>, an <span title=concept-editorial-notes>editorial note</span>, or a <span title=concept-comment-paragraph>comment paragraph</span>.
 
 </p><p class=XXX>@@ definition for ;; and @@
 
@@ -740,7 +740,7 @@ anchor number</span> followed by <span title=concept-line-contents>line contents
 </dt><dd>= [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
 <a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <a href=#abnf-newline title=abnf-newline>newline</a> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
-<a href=#abnf-edited-section title=abnf-edited-section>edited-section</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
+<a href=#abnf-section-block title=abnf-section-block>section-block</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
 
 </dd></dl>
 
@@ -856,20 +856,66 @@ cannot contain a <a href=#concept-labeled-list title=concept-labeled-list>labele
 
 </dd></dl>
 
+<p>A <dfn id=concept-section-block title=concept-section-block>section block</dfn> is a marked
+section of zero or more <a href=#concept-block title=concept-block>blocks</a>,
+preceded by a <a href=#concept-section-block-start-tag title=concept-section-block-start-tag>section
+block start tag</a> and followed by
+a <a href=#concept-section-block-end-tag title=concept-section-block-end-tag>section block end
+tag</a>.
+
+</p><p>A <dfn id=concept-section-block-start-tag title=concept-section-block-start-tag>section block start
+tag</dfn> is a <code>[</code> character, followed by
+a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>, followed by an
+optional <a href=#concept-class-specification title=concept-class-specification>class
+specification</a>, followed by a <code>[</code> character, followed
+by zero or more <a href=#white-space-characters>white space characters</a>, followed by
+a <a href=#concept-newline title=concept-newline>newline</a>.
+
+</p><p>A <dfn id=concept-section-block-end-tag title=concept-section-block-end-tag>section block end
+tag</dfn> is a <code>]</code> character, followed by
+a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>, followed by a <code>]</code> character, followed by zero
+or more <a href=#white-space-characters>white space characters</a>, followed by
+a <a href=#concept-newline title=concept-newline>newline</a>.
+
+</p><p>A <dfn id=concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</dfn> represents the type of
+the <a href=#concept-section-block title=concept-section-block>section block</a>.
+The <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a> of a <a href=#concept-section-block title=concept-section-block>section
+block</a> has to be the same value.  Their semantics are described
+by the following table:
+
+</p><table>
+
+<thead>
+  <tr>
+    <th><a href=#concept-section-block-tag-name title=concept-section-block-tag-name>Tag name</a>
+    </th><th>Semantics
+
+</th></tr></thead><tbody>
+  <tr>
+    <th><code title=concept-DELETE>DELETE</code>
+    </th><td>Removal (<a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> element)
+  </td></tr><tr>
+    <th><code title=concept-INSERT>INSERT</code>
+    </th><td>Insertion (<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element)
+
+</td></tr></tbody></table>
+
 <dl class=abnf>
 
-<dt><dfn id=abnf-edited-section title=abnf-edited-section>edited-section</dfn>
+<dt><dfn id=abnf-section-block title=abnf-section-block>section-block</dfn>
 
-</dt><dd>= <a href=#abnf-inserted-section title=abnf-inserted-section>inserted-section</a> /
-<a href=#abnf-deleted-section title=abnf-deleted-section>deleted-section</a>
-
-</dd><dt><dfn id=abnf-inserted-section title=abnf-inserted-section>inserted-section</dfn>
-
-</dt><dd>= '[INS' [<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] "[" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a> <a href=#abnf-body-part title=abnf-body-part>body-part</a> ']INS]' *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a>
-
-</dd><dt><dfn id=abnf-deleted-section title=abnf-deleted-section>deleted-section</dfn>
-
-</dt><dd>= '[DEL' [<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] "[" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a> <a href=#abnf-body-part title=abnf-body-part>body-part</a> ']DEL]' *<a href=#abnf-white-space title=abnf-white-space>white-space</a> <a href=#abnf-newline title=abnf-newline>newline</a>
+</dt><dd>= '[' <a href=#abnf-tag-name title=abnf-tag-name>tag-name</a>
+[<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] "["
+*<a href=#abnf-white-space title=abnf-white-space>white-space</a>
+<a href=#abnf-newline title=abnf-newline>newline</a>
+<a href=#abnf-body-part title=abnf-body-part>body-part</a>
+']' <a href=#abnf-tag-name title=abnf-tag-name>tag-name</a> ']'
+*<a href=#abnf-white-space title=abnf-white-space>white-space</a>
+<a href=#abnf-newline title=abnf-newline>newline</a>
 
 </dd></dl>
 
@@ -3116,13 +3162,18 @@ tuple unless otherwise specified.
 </p><p>The <dfn id=current-element>current element</dfn> is the <a href=#element-node>element node</a>
 of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
 
-</p><p><dfn id=structural-elements>Structural elements</dfn> are elements whose local name is one
+</p><p><dfn id=block-elements>Block elements</dfn> are elements
+whose <a href=#element-local-name title=element-local-name>local name</a> is one
+of <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> and <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>.
+
+</p><p><dfn id=structural-elements>Structural elements</dfn> are <a href=#block-elements>block elements</a> and
+elements whose <a href=#element-local-name title=element-local-name>local name</a> is one
 of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a href=#section><code>section</code></a>,
-<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <a href=#blockquote><code>blockquote</code></a>,
-<a href=#h1><code>h1</code></a>, <a href=#ul><code>ul</code></a>, <a href=#ol><code>ol</code></a>, <a href=#dl><code>dl</code></a>,
-<a href=#li><code>li</code></a>, <a href=#dt><code>dt</code></a>, <a href=#dd><code>dd</code></a>, <a href=#table><code>table</code></a>,
-<a href=#tbody><code>tbody</code></a>, <a href=#tr><code>tr</code></a>, <a href=#td><code>td</code></a>, <a href=#p><code>p</code></a>,
-<a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, or <a href=#pre><code>pre</code></a>.
+<a href=#blockquote><code>blockquote</code></a>, <a href=#h1><code>h1</code></a>, <a href=#ul><code>ul</code></a>,
+<a href=#ol><code>ol</code></a>, <a href=#dl><code>dl</code></a>, <a href=#li><code>li</code></a>, <a href=#dt><code>dt</code></a>,
+<a href=#dd><code>dd</code></a>, <a href=#table><code>table</code></a>, <a href=#tbody><code>tbody</code></a>, <a href=#th><code>th</code></a>,
+<a href=#tr><code>tr</code></a>, <a href=#td><code>td</code></a>, <a href=#p><code>p</code></a>, <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>,
+<a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, and <a href=#pre><code>pre</code></a>.
 
 </p><section>
 <h1 id=the-in-section-insertion-mode><span class=secno>4.5.1 </span>The "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion mode</a></h1>
@@ -3141,9 +3192,9 @@ follows:
 
 <li>If the local name of the <a href=#current-element>current element</a> is
 <em>not</em> one of <a href=#element-html-body><code title=element-html-body>body</code></a>,
-<a href=#section><code>section</code></a>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
-the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
-this substep again.
+<a href=#section><code>section</code></a>, and <a href=#block-elements>block elements</a>, then pop the
+element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow this
+substep again.
 
 </li><li>Let <var title="">current depth</var> be the <a href=#section-depth>section
 depth</a> of the bottommost entry in the <a href=#stack-of-open-elements>stack of open
@@ -3235,10 +3286,12 @@ the element created to <a href=#block-start-tag-classes title=block-start-tag-cl
 
 <ol class=steps>
 
-<li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <a href=#blockquote><code>blockquote</code></a>, <a href=#element-html-body><code title=element-html-body>body</code></a>, <a href=#section><code>section</code></a>,
-<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop the element off the
-<a href=#stack-of-open-elements>stack of open elements</a> and follow this substep again.
+<li>If the <a href=#element-local-name title=element-local-name>local name</a> of
+the <a href=#current-element>current element</a> is <em>not</em> one
+of <a href=#blockquote><code>blockquote</code></a>, <a href=#element-html-body><code title=element-html-body>body</code></a>,
+<a href=#section><code>section</code></a>, and <a href=#block-elements>block elements</a>, then pop the
+element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow this
+substep again.
 
 </li><li>Let <var title="">current depth</var> be the <a href=#quotation-depth>quotation
 depth</a> of the bottommost entry in the <a href=#stack-of-open-elements>stack of open
@@ -3509,9 +3562,9 @@ mode</a>.
 
 <li>If the local name of the <a href=#current-element>current element</a> is
 <em>not</em> one of <a href=#element-html-body><code title=element-html-body>body</code></a>,
-<a href=#section><code>section</code></a>, <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, or <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop
-the element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow
-this substep again.
+<a href=#section><code>section</code></a>, and <a href=#block-elements>block elements</a>, then pop the
+element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow this
+substep again.
 
 </li></ol>
 
