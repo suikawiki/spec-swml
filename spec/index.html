@@ -304,6 +304,7 @@ Standard</cite></a>:
   </li><li><dfn id=dfn><code>dfn</code></dfn>
   </li><li><dfn id=dt><code>dt</code></dfn>
   </li><li><dfn id=dl><code>dl</code></dfn>
+  </li><li><dfn id=em><code>em</code></dfn>
   </li><li><dfn id=h1><code>h1</code></dfn>
   </li><li><dfn id=head><code>head</code></dfn>
   </li><li><dfn id=html><code>html</code></dfn>
@@ -319,6 +320,7 @@ Standard</cite></a>:
   </li><li><dfn id=samp><code>samp</code></dfn>
   </li><li><dfn id=section><code>section</code></dfn>
   </li><li><dfn id=span><code>span</code></dfn>
+  </li><li><dfn id=strong><code>strong</code></dfn>
   </li><li><dfn id=sub><code>sub</code></dfn>
   </li><li><dfn id=sup><code>sup</code></dfn>
   </li><li><dfn id=table><code>table</code></dfn>
@@ -329,6 +331,17 @@ Standard</cite></a>:
   </li><li><dfn id=tr><code>tr</code></dfn>
   </li><li><dfn id=ul><code>ul</code></dfn>
   </li><li><dfn id=var><code>var</code></dfn>
+</li></ul>
+
+<p>The <dfn id=mathml-namespace>MathML namespace</dfn> is
+<code>http://www.w3.org/1998/Math/MathML</code>.  The
+<a href=#preferred-prefix>preferred prefix</a> is <code>math</code>.  Following
+elements are defined in
+the <a href=http://www.w3.org/Math/draft-spec/mathml.html>MathML
+specification</a>:
+</p><ul class=short>
+  <li><dfn id=mfrac><code>mfrac</code></dfn>
+  </li><li><dfn id=mi><code>mi</code></dfn>
 </li></ul>
 
 <p>The <dfn id=suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</dfn> is
@@ -1131,6 +1144,13 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Defined term (HTML <a href=#dfn><code>dfn</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-frac title=concept-FRAC><code>FRAC</code></dfn>
+</th><td>1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Fraction (<a href=#mfrac><code>mfrac</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-ins title=concept-INS><code>INS</code></dfn>
@@ -3751,6 +3771,11 @@ following table:
 </td><td><a href=#dfn><code>dfn</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-frac><code title=concept-FRAC>FRAC</code></a>
+</th><td>The <a href=#mathml-namespace>MathML namespace</a>
+</td><td><a href=#mfrac><code>mfrac</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-ins><code title=concept-INS>INS</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><a href=#ins><code>ins</code></a>
@@ -3842,12 +3867,27 @@ the element created to <a href=#inline-start-tag-classes title=inline-start-tag-
 
 </li><li>If the <a href=#token>token</a>'s <a href=#inline-start-tag-language title=inline-start-tag-language>language</a> is not null, set the
 <a href=#attr-xml-lang><code title=attr-xml-lang>lang</code></a> <a href=#content-attribute>content attribute</a>
-in the <a href=#xml-namespace>XML namespace</a> of the element created to <a href=#inline-start-tag-language title=inline-start-tag-language>language</a>.
+in the <a href=#xml-namespace>XML namespace</a> of the element created to <a href=#inline-start-tag-language title=inline-start-tag-language>language</a>.<!-- xml:lang -->
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
 
 </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a>.
+
+</li><li>If <a href=#token>token</a>'s <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag
+name</a> is <code>FRAC</code>:
+
+  <ol>
+
+  <li>Create a <a href=#mi>mi</a> element in the <a href=#mathml-namespace>MathML
+  namespace</a>.
+
+  </li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+  </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+  elements</a>.
+
+  </li></ol>
 
 </li></ol>
 
@@ -3862,27 +3902,37 @@ elements</a>.
 </li><li>Let <var>namespace</var> be the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
 namespace</a>.
 
-</li><li>If the local name of the <a href=#current-element>current element</a> is
+</li><li>If the <a href=#element-local-name title=element-local-name>local name</a> of
+the <a href=#current-element>current element</a> is
 <a href=#rt><code>rt</code></a>, set <var>local name</var> to <a href=#rt><code>rt</code></a>, set
 <var>namespace</var> to the <a href=#html-namespace>HTML namespace</a>, and pop the
 <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
-</li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
-is <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> or <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, set <var>local name</var>
+</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
+of the <a href=#current-element>current element</a> is <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>
+or <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, set <var>local name</var>
 to <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> and pop the <a href=#current-element>current element</a> off
 the <a href=#stack-of-open-elements>stack of open elements</a>.
 
-</li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
-is <a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>, set <var title="">local name</var> to
+</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
+of the <a href=#current-element>current element</a> is <a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>,
+set <var title="">local name</var> to
 <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>.
 
-</li><li>Otherwise, if the local name of the <a href=#current-element>current element</a>
-is <a href=#ruby><code>ruby</code></a> or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var title="">local
-name</var> to <a href=#rt><code>rt</code></a> and set <var title="">namespace</var> to
+</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
+of the <a href=#current-element>current element</a> is <a href=#ruby><code>ruby</code></a>
+or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var title="">local name</var>
+to <a href=#rt><code>rt</code></a> and set <var title="">namespace</var> to
 the <a href=#html-namespace>HTML namespace</a>.
 
-</li><li>Create an element whose local name <var>local name</var> in the
+</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
+of the <a href=#current-element>current element</a> is <a href=#mi><code>mi</code></a>,
+set <var title="">local name</var> to
+<a href=#mi><code>mi</code></a>.
+
+</li><li>Create an element whose <a href=#element-local-name title=element-local-name>local
+name</a> <var>local name</var> in the
 <var>namespace</var>.
 
 </li><li>If the <a href=#token>token</a>'s <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a> is not null, set the
@@ -3903,13 +3953,14 @@ elements</a>.
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is one of
-<a href=#rt><code>rt</code></a>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, or
+<a href=#rt><code>rt</code></a>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, <a href=#mi><code>mi</code></a>,
+or
 <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
 </li><li>If the <a href=#current-element>current element</a> is one of <a href=#structural-elements>structural
 elements</a>, or if the local name of the <a href=#current-element>current
-element</a> is <code>strong</code> or <code>em</code>, run the
+element</a> is <a href=#strong><code>strong</code></a> or <a href=#em><code>em</code></a>, run the
 following substeps:
 
 <ol class=steps>
@@ -3980,10 +4031,10 @@ elements</a>.
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<code>strong</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+<a href=#strong><code>strong</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a> and abort these substeps.
 
-</li><li>Create a <code>strong</code> element in the <a href=#html-namespace>HTML
+</li><li>Create a <a href=#strong><code>strong</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -4000,10 +4051,10 @@ elements</a>.
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is
-<code>em</code>, pop the element off the <a href=#stack-of-open-elements>stack of open
+<a href=#em><code>em</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a> and abort these substeps.
 
-</li><li>Create an <code>em</code> element in the <a href=#html-namespace>HTML
+</li><li>Create an <a href=#em><code>em</code></a> element in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
