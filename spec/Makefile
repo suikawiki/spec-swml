@@ -1,8 +1,6 @@
 all: index.html
 
-ANOLIS = docker run -i wakaba/docker-anolis anolis
-
 index.html: swml-work-src.en.html.u8
-	$(ANOLIS) < $< > $@
+	curl -f -L -X POST --data-binary @$< https://misc-py.herokuapp.com/anolis > $@
 
 ## License: Public domain.
