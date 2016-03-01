@@ -4741,8 +4741,12 @@ Categories <dfn>flow content</dfn> and <dfn>phrasing content</dfn><!--
 specification <span class=XXX>...</span>.
 
 <p>Terms and algorithms <dfn>valid integer</dfn>, <dfn>rules for
-parsing integers</dfn> are defined in the HTML5 specification <span
-class=XXX>...</span>.
+parsing integers</dfn>,
+<a href=https://html.spec.whatwg.org/#text-content><dfn title="text
+content">text</dfn></a>, and
+<a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn>nothing</dfn></a>
+are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
+Standard</cite></a>.
 
 <p>An attribute is said to be <dfn>specified</dfn> to an element if
 the <code>hasAttributeNS</code> method invoked on the element with
@@ -4874,7 +4878,7 @@ in the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Content model</span>
 
-<dd>Text.
+<dd><span title="text content">Text</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -4940,7 +4944,7 @@ attribute of HTML5 <span class=XXX>...</span>.
 
 <dt><span>Content model</span>
 
-<dd>Empty.
+<dd><span>Nothing</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -4967,7 +4971,7 @@ attribute of HTML5 <span class=XXX>...</span>.
 
 <dt><span>Content model</span>
 
-<dd>Text.
+<dd><span title="text content">Text</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -5435,7 +5439,7 @@ namespace</span>.
 
 <dt><span>Content model</span>
 
-<dd>Empty.
+<dd><span>Nothing</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -5473,7 +5477,7 @@ title=attr-sw-form-option><code>option</code>
 
 <dt><span>Content model</span>
 
-<dd>Text.
+<dd><span title="text content">Text</span>.
 
 <dt><span>Allowed attributes</span>
 
