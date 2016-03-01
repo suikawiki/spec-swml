@@ -5199,6 +5199,17 @@ history or an out-of-date content.
 <section>
 <h1>Hyperlinks</h1>
 
+<p>Some of <span title=element>elements</span> defined by this
+specification or used in SWML documents are considered as
+<dfn>implicit link
+elements</dfn>.  <span title=element>Elements</span>
+<code>abbr</code>,
+<code>cite</code>,
+<code>code</code>, and
+<code>kbd</code>
+in the <span>HTML namespace</span> are <span>impicit link
+elements</span>.
+
 <section>
 
 <h1>The <dfn><code>anchor</code></dfn> element in the
@@ -5654,6 +5665,7 @@ namespace</span>.
 
 <dd><span>Phrasing content</span>.
 <dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
 
 <dt><span>Content model</span>
 
@@ -5781,6 +5793,7 @@ can be inserted after this element.
 
 <dd><span>Phrasing content</span>.
 <dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
 
 <dt><span>Content model</span>
 
