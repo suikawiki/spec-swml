@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 9 November 2015</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 1 March 2016</h2>
 
 
 <dl>
@@ -181,7 +181,8 @@ namespace</span></a></li></ol></li></ol></li>
 
 </p><p>This specification defines <dfn id=suikawiki-markup-language>SuikaWiki Markup Language</dfn>
 (<dfn id=swml>SWML</dfn>).  SWML is the markup language developed and
-implemented for <a href=http://suika.fam.cx/~wakaba/wiki/sw/SuikaWiki>SuikaWiki</a>
+implemented
+for <a href=https://wiki.suikawiki.org/n/SuikaWiki>SuikaWiki</a>
 hypertext system.
 
 </p><section>
@@ -189,12 +190,12 @@ hypertext system.
 
 <p>SuikaWiki's Wiki syntax (now known as <a href=#the-swml-text-serialization>SWML text
 serialization</a>) derived
-from <a href=http://web.archive.org/web/20130124134737/http://digit.que.ne.jp/work/index.cgi?WalWiki>WalWiki</a>,
+from <a href=https://web.archive.org/web/20130124134737/http://digit.que.ne.jp/work/index.cgi?WalWiki>WalWiki</a>,
 which derived
 from <a href=http://www.hyuki.com/yukiwiki/>YukiWiki</a>, in 2002.
 
 </p><p>The first specification of the extended
-language, <a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.9><cite>SuikaWiki/0.9
+language, <a href=https://wiki.suikawiki.org/n/SuikaWiki%2F0.9><cite>SuikaWiki/0.9
 Document Markup Format: Syntax Specification</cite></a>, was published
 in <time>2003-12-12</time> and was frequently updated
 until <time>2006-05-05</time>.
@@ -204,16 +205,16 @@ until <time>2006-05-05</time>.
 
 </p><ul>
 
-<li><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10>SuikaWiki/0.10</a>,
+<li><a href=https://suika.suikawiki.org/~wakaba/wiki/sw/n/SuikaWiki+0%2E10>SuikaWiki/0.10</a>,
 <time>2005-05-31</time>.
 
-</li><li><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++1>SuikaWiki/0.10
+</li><li><a href=https://suika.suikawiki.org/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++1>SuikaWiki/0.10
 — Inline Element Type Additions</a>, <time>2005-05-31</time>.
 
-</li><li><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0.10++1++3>SuikaWiki/0.10
+</li><li><a href=https://suika.suikawiki.org/~wakaba/wiki/sw/n/SuikaWiki+0.10++1++3>SuikaWiki/0.10
 — Language Tags</a>, <time>2005-05-31</time>.
 
-</li><li><a href=http://suika.fam.cx/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++5>SuikaWiki/0.10
+</li><li><a href=https://suika.suikawiki.org/~wakaba/wiki/sw/n/SuikaWiki+0%2E10++1++5>SuikaWiki/0.10
 — Block‐level Additional Vocabulary</a>,
 <time>2005-11-18</time>.
 
@@ -226,13 +227,13 @@ documented and never implemented in SuikaWiki3 -->
 as <em>the</em> SWML specification in 2008.
 
 </p><p>Previous versions of the SWML specification were published at
-<a href=http://suika.fam.cx/www/markup/suikawiki/spec/swml-work>http://suika.fam.cx/www/markup/suikawiki/spec/swml-work</a>.<!-- http://suika.fam.cx/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8
+<a href=https://suika.suikawiki.org/www/markup/suikawiki/spec/swml-work>https://suika.suikawiki.org/www/markup/suikawiki/spec/swml-work</a>.<!-- https://suika.suikawiki.org/gate/cvs/markup/suikawiki/spec/swml-work-src.en.html.u8
 -->
 
 </p><p>There
-was <a href=http://suika.fam.cx/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features>a
-list of possible new features</a> that might be introduced in a future
-revision of this specification.
+is <a href=https://suika.suikawiki.org/%7Ewakaba/wiki/sw/n/SWML%20possible%20new%20features>an
+obsolete list of possible new features</a> that might have been
+introduced in a revision of this specification.
 
 </p><p>Revisions of the SWML specification are now available in the
 <a href=https://github.com/suikawiki/spec-swml/commits/gh-pages>GitHub
@@ -282,7 +283,8 @@ text node for the purposes of the algorithms defined in this
 specification.
 
 </p><p>Web Applications 1.0 specification <cite class="bibref
-normative">[<a href=#ref-WA1>WA1</a>]</cite> defines the terms <a href=http://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace><dfn id=inter-element-whitespace>inter-element
+normative">[<a href=#ref-WA1>WA1</a>]</cite> defines the
+terms <a href=https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace><dfn id=inter-element-whitespace>inter-element
 whitespace</dfn></a>, <dfn id=content-attribute>content attribute</dfn>, and <dfn id=idl-attribute>IDL
 attribute</dfn>.
 
@@ -347,7 +349,7 @@ Standard</cite></a>:
 <code>http://www.w3.org/1998/Math/MathML</code>.  The
 <a href=#preferred-prefix>preferred prefix</a> is <code>math</code>.  Following
 elements are defined in
-the <a href=http://www.w3.org/Math/draft-spec/mathml.html>MathML
+the <a href=https://www.w3.org/Math/draft-spec/mathml.html>MathML
 specification</a>:
 </p><ul class=short>
   <li><dfn id=mfrac><code>mfrac</code></dfn>
@@ -4632,7 +4634,9 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 <section>
 <h1 id=the-class-attribute><span class=secno>8.1.6 </span>The <dfn title=attr-class><code>class</code></dfn> attribute</h1>
 
-<p>All elements in the <a href=#html-namespace>HTML namespace</a> have <a href=http://www.whatwg.org/specs/web-apps/current-work/#classes><dfn id=attr-html-class title=attr-html-class><code>class</code></dfn></a> attribute <span class=XXX>...</span>.
+<p>All elements in the <a href=#html-namespace>HTML namespace</a>
+have <a href=https://www.whatwg.org/specs/web-apps/current-work/#classes><dfn id=attr-html-class title=attr-html-class><code>class</code></dfn></a>
+attribute <span class=XXX>...</span>.
 
 </p><p>The <dfn id=attr-sw-class title=attr-sw-class><code>class</code></dfn> attribute of
 an element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and
@@ -4654,7 +4658,9 @@ namespace. -->
 <p>The <dfn id=attr-sw-id title=attr-sw-id><code>id</code></dfn> attribute of an
 element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> has the same semantics and
-requirements as the <a href=http://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute><code title="">id</code></a> attribute of HTML5 <span class=XXX>...</span>.
+requirements as
+the <a href=https://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute><code title="">id</code></a>
+attribute of HTML5 <span class=XXX>...</span>.
 
 </p></section>
 
@@ -5618,13 +5624,13 @@ found.
 
 </dd><dt id=ref-RFC2119>RFC2119
 
-</dt><dd><cite><a href=http://tools.ietf.org/html/rfc2119>Key words for
+</dt><dd><cite><a href=https://tools.ietf.org/html/rfc2119>Key words for
 use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner,
 IETF BCP 14, March 1997.
 
 </dd><dt id=ref-WA1>WA1
 
-</dt><dd><cite><a href=http://www.whatwg.org/specs/web-apps/current-work/complete.html>Web
+</dt><dd><cite><a href=https://www.whatwg.org/specs/web-apps/current-work/complete.html>Web
 Applications 1.0</a></cite>, Ian Hickson, WHATWG Draft Standard.
 
 </dd><dt id=ref-XHTML2>XHTML2
@@ -5658,11 +5664,11 @@ implementation</a>.
 <h1 class=no-num id=author>Author</h1>
 
 <p>This document is written
-by <a href=http://suika.suikawiki.org/~wakaba/who?>Wakaba</a>
+by <a href=https://suika.suikawiki.org/~wakaba/who?>Wakaba</a>
 &lt;wakaba@suikawiki.org&gt;.
 
 </p><p>This document is developed as part of
-the <a href=http://suikawiki.org/>SuikaWiki project</a>.
+the <a href=https://suikawiki.org/>SuikaWiki project</a>.
 
 </p><p>Per <a href=https://creativecommons.org/publicdomain/zero/1.0/>CC0</a>,
 to the extent possible under law, the author has waived all copyright
