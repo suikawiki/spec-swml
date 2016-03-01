@@ -282,6 +282,12 @@ ref</span>.
 
 </div>
 
+<p>The <dfn title=concept-element-text-content>text content</dfn> of
+an <span>element</span> is the value that would be returned by the
+getter of the
+<a href=https://dom.spec.whatwg.org/#dom-node-textcontent><code>textContent</code></a>
+IDL attribute of the <span>element</span>.
+
 </section>
 
 </section>
@@ -1069,6 +1075,8 @@ title=abnf-white-space>white-space</span>)
 <section>
 <h1>Inline contents</h1>
 
+<p class=XXX>Need prose definitions...
+
 <dl class=abnf>
 
 <dt><dfn title=abnf-line-contents>line-contents</dfn>
@@ -1192,8 +1200,10 @@ title=abnf-LALPHA>LALPHA</span>)
 
 <dt><dfn title=abnf-anchor>anchor</dfn>
 
-<dd>= "[[" [<span title=abnf-line-contents>line-contents</span>] <span
-title=abnf-inline-end-tag>inline-end-tag</span>
+<dd>= "[[" [<span title=abnf-line-contents>line-contents</span>]
+[<span title=abnf-inline-middle-tag>inline-middle-tag</span>
+[<span title=abnf-line-contents>line-contents</span>]]
+<span title=abnf-inline-end-tag>inline-end-tag</span>
 
 </dl>
 
@@ -1233,7 +1243,7 @@ title=abnf-inline-end-tag>inline-end-tag</span>
 
 <tr>
 <th scope=row><dfn title=concept-CODE><code>CODE</code></dfn>
-<td>0
+<td>0 or 1
 <td>Not allowed
 <td>Not allowed
 <td>Code (HTML <code>code</code> element)
@@ -1297,6 +1307,41 @@ title=abnf-inline-end-tag>inline-end-tag</span>
 <td>Keyboard's key (<code>key</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-LAT><code>LAT</code></dfn>
+<td>0 or 1
+<td>Not allowed
+<td>Not allowed
+<td>Latitude (<code>lat</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-LON><code>LON</code></dfn>
+<td>0 or 1
+<td>Not allowed
+<td>Not allowed
+<td>Longitude (<code>lon</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-MAY><code>MAY</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>RFC 2119 keyword "<em class=rfc2119>MAY</em>" (<code>MAY</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-MUST><code>MUST</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>RFC 2119 keyword "<em class=rfc2119>MUST</em>" (<code>MUST</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-N><code>N</code></dfn>
+<td>0 or 1
+<td>Not allowed
+<td>Not allowed
+<td>Number (<code>n</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-Q><code>Q</code></dfn>
 <td>0
 <td>Allowed
@@ -1331,6 +1376,13 @@ title=abnf-inline-end-tag>inline-end-tag</span>
 <td>Not allowed
 <td>Not allowed
 <td>Sample (HTML <code>samp</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-SHOULD><code>SHOULD</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>RFC 2119 keyword "<em class=rfc2119>SHOULD</em>" (<code>SHOULD</code> element)
 
 <tr>
 <!-- SuikaWiki/0.10 -->
@@ -1369,6 +1421,13 @@ title=abnf-inline-end-tag>inline-end-tag</span>
 <td>Not allowed
 <td>Not allowed
 <td>Date or time (HTML <code>time</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-TZ><code>TZ</code></dfn>
+<td>0 or 1
+<td>Not allowed
+<td>Not allowed
+<td>Time zone offset (<code>tz</code> element)
 
 <tr>
 <th scope=row><dfn title=concept-VAR><code>VAR</code></dfn>
@@ -4096,6 +4155,31 @@ following table:
 <td><code>key</code>
 
 <tr>
+<th><code title=concept-LAT>LAT</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>lat</code>
+
+<tr>
+<th><code title=concept-LON>LON</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>lon</code>
+
+<tr>
+<th><code title=concept-MAY>MAY</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>MAY</code>
+
+<tr>
+<th><code title=concept-MUST>MUST</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>MUST</code>
+
+<tr>
+<th><code title=concept-N>N</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>n</code>
+
+<tr>
 <th><code title=concept-Q>Q</code>
 <td>The <span>HTML namespace</span>
 <td><code>q</code>
@@ -4123,6 +4207,11 @@ following table:
 <td><code>samp</code>
 
 <tr>
+<th><code title=concept-SHOULD>SHOULD</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>SHOULD</code>
+
+<tr>
 <th><code title=concept-SPAN>SPAN</code>
 <td>The <span>HTML namespace</span>
 <td><code>span</code>
@@ -4147,6 +4236,11 @@ following table:
 <td>The <span>HTML namespace</span>
 <td><code>time</code>
 <!-- SuikaWiki/0.10 (undocumented, not implemented in SuikaWiki3) -->
+
+<tr>
+<th><code title=concept-TZ>TZ</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>tz</code>
 
 <tr>
 <th><code title=concept-VAR>VAR</code>
@@ -4220,8 +4314,9 @@ the <span>current element</span> is
 elements</span>.
 
 <li>Otherwise, if the <span title=element-local-name>local name</span>
-of the <span>current element</span> is <code>title</code>
-or <code>nsuri</code>, set <var>local name</var>
+of the <span>current element</span>
+is <code>title</code>, <code>nsuri</code>, <code>tz</code>, <code>n</code>,
+<code>lat</code>, or <code>lon</code>, set <var>local name</var>
 to <code>attrvalue</code> and pop the <span>current element</span> off
 the <span>stack of open elements</span>.
 
@@ -5660,35 +5755,6 @@ namespace</span>.
 
 <section>
 
-<h1>The <dfn><code>f</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h1>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-<dd><span>Flow content</span>.
-<dd><span>Implicit link elements</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code title=attr-sw-class>class</code>
-
-</dl>
-
-<p>The <code>f</code> element represents a field name or key of some
-structure, such as a field name of a C data structure, a key of a Perl
-hash, or a property name of an XML information item.
-
-</section>
-
-<section>
-
 <h1>The <dfn><code>rubyb</code></dfn> element in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
@@ -5784,7 +5850,63 @@ can be inserted after this element.
 </section>
 
 <section>
-<h1>Key names</h1>
+<h1>Values</h1>
+
+<p>Some elements are defined as <dfn>elements with value</dfn>.  For
+an <span title="elements with value">element <var>element</var> with
+value</span>, the <dfn>element value</dfn> is the value returned by
+the following steps:
+
+  <ol class=steps>
+
+  <li>If <var>element</var> has
+  a <span>child</span> <code>attrvalue</code> element:
+
+    <ol>
+
+    <li>Let <var>value element</var> be the
+    first <code>attrvalue</code> element <span>child</span>
+    of <var>element</var>.
+
+    <li>Return the <span title=concept-element-text-content>text
+    content</span> of <var>element</var>.
+
+    </ol>
+
+  <li>Otherwise, return
+  the <span title=concept-element-text-content>text content</span>
+  of <var>element</var>.
+
+  </ol>
+
+<section>
+
+<h1>The <dfn><code>f</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>f</code> element represents a field name or key of some
+structure, such as a field name of a C data structure, a key of a Perl
+hash, or a property name of an XML information item.
+
+</section>
 
 <section>
 
@@ -5810,6 +5932,180 @@ can be inserted after this element.
 </dl>
 
 <p class=XXX>...
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>n</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+<dd><span>Elements with value</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by
+an <code>attrvalue</code> element.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>n</code> element <span>represents</span> the number given
+as the <span>element value</span>.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>lat</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+<dd><span>Elements with value</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by
+an <code>attrvalue</code> element.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>lat</code> element <span>represents</span> a latitude
+given as the <span>element value</span>.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>lon</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+<dd><span>Elements with value</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by
+an <code>attrvalue</code> element.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>lon</code> element <span>represents</span> a longitude
+given as the <span>element value</span>.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>MUST</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>MUST</code> element represents an <span>RFC 2119
+keyword</span> "<em class=rfc2119>MUST</em>".
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>SHOULD</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>SHOULD</code> element represents an <span>RFC 2119
+keyword</span> "<em class=rfc2119>SHOULD</em>".
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>MAY</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>MUST</code> element represents an <span>RFC 2119
+keyword</span> "<em class=rfc2119>MAY</em>".
 
 </section>
 
@@ -5839,7 +6135,8 @@ can be inserted after this element.
 
 </dl>
 
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
+<p>Unless otherwise specified, this element <em class=rfc2119>MUST
+NOT</em> be used.
 
 <p class=XXX>...
 
