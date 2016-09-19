@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 1 March 2016</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 19 September 2016</h2>
 
 
 <dl>
@@ -285,21 +285,6 @@ it was something else, this refers only to the processing of the node
 after it is in the DOM. A user agent <em class=rfc2119>MUST NOT</em>
 mutate the DOM in such situations.
 
-</p><p>The language in this specification assumes that the user agent
-expands all entity references, and therefore does not include entity
-reference nodes in the DOM. If user agents do include entity reference
-nodes in the DOM, then user agents <em class=rfc2119>MUST</em> handle
-them as if they were fully expanded when implementing this
-specification.  Entity references to unknown entities <em class=rfc2119>MUST</em> be treated as if they contained just an empty
-text node for the purposes of the algorithms defined in this
-specification.
-
-</p><p>Web Applications 1.0 specification <cite class="bibref
-normative">[<a href=#ref-WA1>WA1</a>]</cite> defines the
-terms <a href=https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace><dfn id=inter-element-whitespace>inter-element
-whitespace</dfn></a>, <dfn id=content-attribute>content attribute</dfn>, and <dfn id=idl-attribute>IDL
-attribute</dfn>.
-
 </p><section>
 <h1 id=namespaces><span class=secno>2.1 </span>Namespaces</h1>
 
@@ -388,7 +373,27 @@ specification</a>:
 <section>
 <h1 id=definitions><span class=secno>2.2 </span>Definitions</h1>
 
-<p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
+<p>Terms
+<dfn id=node-tree>node tree</dfn> and
+<dfn id=element>element</dfn>
+are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
+Standard</cite></a>.
+
+</p><p>Terms
+<dfn id=content-attribute>content attribute</dfn>, <dfn id=idl-attribute>IDL attribute</dfn>,
+<dfn id=valid-integer>valid integer</dfn>, <dfn id=rules-for-parsing-integers>rules for parsing integers</dfn>,
+<dfn id=represents>represents</dfn>,
+<a href=https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace><dfn id=inter-element-whitespace>inter-element
+whitespace</dfn></a>,
+<a href=https://html.spec.whatwg.org/#text-content><dfn id=text-content title="text
+content">text</dfn></a>,
+<dfn id=flow-content>flow content</dfn>, <dfn id=phrasing-content>phrasing content</dfn>,
+and
+<a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn id=nothing>nothing</dfn></a>
+are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
+Standard</cite></a>.
+
+</p><p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
 
 </p><p><dfn id=digits>Digits</dfn> are characters in the range U+0030 <code class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
 NINE</code>.
@@ -425,10 +430,10 @@ ref</span>.
 </p></div>
 
 <p>The <dfn id=concept-element-text-content title=concept-element-text-content>text content</dfn> of
-an <span>element</span> is the value that would be returned by the
+an <a href=#element>element</a> is the value that would be returned by the
 getter of the
 <a href=https://dom.spec.whatwg.org/#dom-node-textcontent><code>textContent</code></a>
-IDL attribute of the <span>element</span>.
+IDL attribute of the <a href=#element>element</a>.
 
 </p></section>
 
@@ -1695,10 +1700,10 @@ removing <code>\</code> characters at the beginning of the <a href=#concept-quot
 <h1 id=parsing-documents-in-the-swml-text-serialization><span class=secno>4 </span>Parsing documents in the <a href=#the-swml-text-serialization>SWML text serialization</a></h1>
 
 <p>This section specifies how to convert a string of characters into a
-DOM <span class=XXX>[DOM]</span> tree, assuming the string is written
-in the <a href=#the-swml-text-serialization>SWML text serialization</a>.  This process is referred
-to as <dfn id=parsing-an-swml-text-serialization title="parsing an SWML text serialization">parsing</dfn>
-and an implementation that performes this process is referred to as
+<a href=#node-tree>node tree</a>, assuming the string is written in
+the <a href=#the-swml-text-serialization>SWML text serialization</a>.  This process is referred to
+as <dfn id=parsing-an-swml-text-serialization title="parsing an SWML text serialization">parsing</dfn> and
+an implementation that performes this process is referred to as
 <dfn id=swml-text-serialization-parser title="SWML text serialization parser">parser</dfn>.
 
 </p><div class="note memo">
@@ -1718,23 +1723,27 @@ process</a> is divided into two stages: <a href=#tokenization>tokenization</a>
 and <a href=#tree-construction-0>tree construction</a>.  The <a href=#tokenization>tokenization</a>
 stage emits a sequence of <a href=#token title=token>tokens</a>, which are
 used as inputs for the <a href=#tree-construction-0>tree construction</a> stage.  The
-<a href=#tree-construction-0>tree construction</a> stage constructs a DOM tree.  Some
-steps invoked in the <a href=#tokenization>tokenization</a> stage might also
-construct a part of the DOM tree.  During the <a href=#parsing-an-swml-text-serialization title="parsing an
-SWML text serialization">parsing</a>, mutation events <em class=rfc2119>MUST NOT</em> be invoked.
+<a href=#tree-construction-0>tree construction</a> stage constructs a <a href=#node-tree>node
+tree</a>.  Some steps invoked in the <a href=#tokenization>tokenization</a>
+stage might also construct a part of the <a href=#node-tree>node tree</a>.
+During the <a href=#parsing-an-swml-text-serialization title="parsing an SWML text
+serialization">parsing</a>, mutation events <em class=rfc2119>MUST
+NOT</em> be invoked.
 
 </p><p>Before the actual <a href=#parsing-an-swml-text-serialization title="parsing an SWML text
-serialization">parsing</a> starts, a new <code title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
-be created.  It represents the DOM tree constructed as a result of the
+serialization">parsing</a> starts, a new <a href=#abnf-document><code>Document</code></a> object <em class=rfc2119>MUST</em>
+be created.  It represents the <a href=#node-tree>node tree</a> constructed as a result of the
 <a href=#parsing-an-swml-text-serialization title="parsing an SWML text serialization">parsing</a>.  The
-<code>innerHTML</code> <a href=#idl-attribute>IDL attribute</a> of the <code title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
-be initially set to
+<code>innerHTML</code> <a href=#idl-attribute>IDL attribute</a> of
+the <a href=#abnf-document><code>Document</code></a> object <em class=rfc2119>MUST</em> be
+initially set to
 <code>&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</code>.
 The <dfn id=document-element>document element</dfn> is what the
-<code>documentElement</code> <a href=#idl-attribute>IDL attribute</a> of the <code title=dom-document>Document</code> returns.  The <dfn id=head-element>head
-element</dfn> is what the <code>firstChild</code> <a href=#idl-attribute>IDL
-attribute</a> of the <a href=#document-element>document element</a> returns at the
-time immediately after the <code>innerHTML</code> is set.  The
+<code>documentElement</code> <a href=#idl-attribute>IDL attribute</a> of
+the <a href=#abnf-document><code>Document</code></a> returns.  The <dfn id=head-element>head element</dfn> is
+what the <code>firstChild</code> <a href=#idl-attribute>IDL attribute</a> of
+the <a href=#document-element>document element</a> returns at the time immediately
+after the <code>innerHTML</code> is set.  The
 <dfn id=body-element>body element</dfn> is what the <code>lastChild</code> <a href=#idl-attribute>IDL
 attribute</a> of the <a href=#document-element>document element</a> returns at the
 time immediately after the <code>innerHTML</code> is set.  The
@@ -3225,8 +3234,9 @@ element</a>.
 <section>
 <h1 id=tree-construction><span class=secno>4.5 </span>Tree construction</h1>
 
-<p>The <dfn id=tree-construction-0>tree construction</dfn> stage constructs a DOM tree from a
-series of <a href=#token title=token>tokens</a> emitted by the
+<p>The <dfn id=tree-construction-0>tree construction</dfn> stage constructs a <a href=#node-tree>node
+tree</a> from a series of <a href=#token title=token>tokens</a> emitted
+by the
 <a href=#tokenization>tokenization</a> stage.  The <a href=#tree-construction-0>tree construction</a>
 stage has two state variables: <a href=#insertion-mode>insertion mode</a> and
 <a href=#stack-of-open-elements>stack of open elements</a>.
@@ -3707,9 +3717,8 @@ paragraph</a>" <a href=#insertion-mode>insertion mode</a>.
 
 </dd><dt>An <a href=#end-of-file-token>end-of-file token</a>
 
-</dt><dd>Now the <code title=dom-document>Document</code> has been
-constructed.  Abort the <a href=#swml-text-serialization-parser title="SWML text serialization
-parser">parser</a>.
+</dt><dd>Now the <a href=#abnf-document><code>Document</code></a> has been constructed.  Abort
+the <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a>.
 
 </dd><dt>Any other <a href=#block-start-tag-token>block start tag token</a>
 
@@ -4588,18 +4597,8 @@ orphan nodes (i.e. without a parent node).
 <a href=#allowed-attributes>allowed attributes</a> entry <em class=rfc2119>MAY</em> be
 specified to an element described in that subsection.
 
-</p><p>Some elements belong to <dfn id=category title=category>categories</dfn>.
-Categories <dfn id=flow-content>flow content</dfn> and <dfn id=phrasing-content>phrasing content</dfn><!--
-, and <dfn>metadata content</dfn>--> are defined in the HTML5
-specification <span class=XXX>...</span>.
-
-</p><p>Terms and algorithms <dfn id=valid-integer>valid integer</dfn>, <dfn id=rules-for-parsing-integers>rules for
-parsing integers</dfn>,
-<a href=https://html.spec.whatwg.org/#text-content><dfn id=text-content title="text
-content">text</dfn></a>, and
-<a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn id=nothing>nothing</dfn></a>
-are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
-Standard</cite></a>.
+</p><p>Some elements belong to <dfn id=category title=category>categories</dfn> such
+as <a href=#flow-content>flow content</a> and <a href=#phrasing-content>phrasing content</a>.
 
 </p><p>An attribute is said to be <dfn id=specified>specified</dfn> to an element if
 the <code>hasAttributeNS</code> method invoked on the element with
@@ -4943,9 +4942,20 @@ namespace</a>.
 
 </dd></dl>
 
-<p class=XXX>...
+<p>The <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a note.
 
-</p></section>
+</p><div class="note memo">
+
+<p>Historically, the <code title="">p</code> suffix in the element name
+implied that it <a href=#represents title=represents>represented</a>
+a <span>paragraph</span>.  As its content is any <a href=#flow-content>flow
+content</a>, it now can contain any number
+of <span title=paragraph>paragraphs</span>.
+
+</p></div>
+
+</section>
 
 <section>
 
@@ -5054,10 +5064,10 @@ history or an out-of-date content.
 <section>
 <h1 id=hyperlinks><span class=secno>8.4 </span>Hyperlinks</h1>
 
-<p>Some of <span title=element>elements</span> defined by this
+<p>Some of <a href=#element title=element>elements</a> defined by this
 specification or used in SWML documents are considered as
 <dfn id=implicit-link-elements>implicit link
-elements</dfn>.  <span title=element>Elements</span>
+elements</dfn>.  <a href=#element title=element>Elements</a>
 <a href=#abbr><code>abbr</code></a>,
 <a href=#cite><code>cite</code></a>,
 <a href=#code><code>code</code></a>, and
@@ -5707,7 +5717,7 @@ an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalu
 
 </dd></dl>
 
-<p>The <a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a> element <span>represents</span> the number given
+<p>The <a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a> element <a href=#represents>represents</a> the number given
 as the <a href=#element-value>element value</a>.
 
 </p></section>
@@ -5737,7 +5747,7 @@ an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalu
 
 </dd></dl>
 
-<p>The <a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a> element <span>represents</span> a latitude
+<p>The <a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a> element <a href=#represents>represents</a> a latitude
 given as the <a href=#element-value>element value</a>.
 
 </p></section>
@@ -5767,7 +5777,7 @@ an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalu
 
 </dd></dl>
 
-<p>The <a href=#the-lon-element-in-the-suikawiki/0.9-namespace><code>lon</code></a> element <span>represents</span> a longitude
+<p>The <a href=#the-lon-element-in-the-suikawiki/0.9-namespace><code>lon</code></a> element <a href=#represents>represents</a> a longitude
 given as the <a href=#element-value>element value</a>.
 
 </p></section>
@@ -5918,7 +5928,8 @@ or more <a href=#uppercase-letters>uppercase letters</a>.
 
 </p><div class="note memo">
 
-<p>These elements might be inserted into the DOM by a <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a> when an
+<p>These elements might be inserted into a <a href=#node-tree>node tree</a> by
+a <a href=#swml-text-serialization-parser title="SWML text serialization parser">parser</a> when an
 <span>inline start tag</span> with unknown <span>tag name</span> is
 found.
 
@@ -5942,10 +5953,6 @@ found.
 
 </dt><dd class=XXX>...
 
-</dd><dt id=ref-DOM>DOM
-
-</dt><dd class=XXX>Web DOM Core? DOM3 Core?
-
 </dd><dt id=ref-MANAKAI>MANAKAI
 
 </dt><dd class=XXX>manakai's DOM extensions.
@@ -5955,11 +5962,6 @@ found.
 </dt><dd><cite><a href=https://tools.ietf.org/html/rfc2119>Key words for
 use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner,
 IETF BCP 14, March 1997.
-
-</dd><dt id=ref-WA1>WA1
-
-</dt><dd><cite><a href=https://www.whatwg.org/specs/web-apps/current-work/complete.html>Web
-Applications 1.0</a></cite>, Ian Hickson, WHATWG Draft Standard.
 
 </dd><dt id=ref-XHTML2>XHTML2
 

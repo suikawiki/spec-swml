@@ -134,22 +134,6 @@ it was something else, this refers only to the processing of the node
 after it is in the DOM. A user agent <em class=rfc2119>MUST NOT</em>
 mutate the DOM in such situations.
 
-<p>The language in this specification assumes that the user agent
-expands all entity references, and therefore does not include entity
-reference nodes in the DOM. If user agents do include entity reference
-nodes in the DOM, then user agents <em class=rfc2119>MUST</em> handle
-them as if they were fully expanded when implementing this
-specification.  Entity references to unknown entities <em
-class=rfc2119>MUST</em> be treated as if they contained just an empty
-text node for the purposes of the algorithms defined in this
-specification.
-
-<p>Web Applications 1.0 specification <cite class="bibref
-normative">[<a href="#ref-WA1">WA1</a>]</cite> defines the
-terms <a href="https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace"><dfn>inter-element
-whitespace</dfn></a>, <dfn>content attribute</dfn>, and <dfn>IDL
-attribute</dfn>.
-
 <section>
 <h1>Namespaces</h1>
 
@@ -237,6 +221,26 @@ specification</a>:
 
 <section>
 <h1>Definitions</h1>
+
+<p>Terms
+<dfn>node tree</dfn> and
+<dfn>element</dfn>
+are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
+Standard</cite></a>.
+
+<p>Terms
+<dfn>content attribute</dfn>, <dfn>IDL attribute</dfn>,
+<dfn>valid integer</dfn>, <dfn>rules for parsing integers</dfn>,
+<dfn>represents</dfn>,
+<a href="https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace"><dfn>inter-element
+whitespace</dfn></a>,
+<a href=https://html.spec.whatwg.org/#text-content><dfn title="text
+content">text</dfn></a>,
+<dfn>flow content</dfn>, <dfn>phrasing content</dfn>,
+and
+<a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn>nothing</dfn></a>
+are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
+Standard</cite></a>.
 
 <p><dfn>White space characters</dfn> are U+0009 <code
 class=charname>CHARACTER TABULATION</code> and U+0020 <code
@@ -1779,10 +1783,10 @@ title=abnf-non-ascii>non-ascii</span>)
 <h1>Parsing documents in the <span>SWML text serialization</span></h1>
 
 <p>This section specifies how to convert a string of characters into a
-DOM <span class=XXX>[DOM]</span> tree, assuming the string is written
-in the <span>SWML text serialization</span>.  This process is referred
-to as <dfn title="parsing an SWML text serialization">parsing</dfn>
-and an implementation that performes this process is referred to as
+<span>node tree</span>, assuming the string is written in
+the <span>SWML text serialization</span>.  This process is referred to
+as <dfn title="parsing an SWML text serialization">parsing</dfn> and
+an implementation that performes this process is referred to as
 <dfn title="SWML text serialization parser">parser</dfn>.
 
 <div class="note memo">
@@ -1804,27 +1808,27 @@ process</span> is divided into two stages: <span>tokenization</span>
 and <span>tree construction</span>.  The <span>tokenization</span>
 stage emits a sequence of <span title=token>tokens</span>, which are
 used as inputs for the <span>tree construction</span> stage.  The
-<span>tree construction</span> stage constructs a DOM tree.  Some
-steps invoked in the <span>tokenization</span> stage might also
-construct a part of the DOM tree.  During the <span title="parsing an
-SWML text serialization">parsing</span>, mutation events <em
-class=rfc2119>MUST NOT</em> be invoked.
+<span>tree construction</span> stage constructs a <span>node
+tree</span>.  Some steps invoked in the <span>tokenization</span>
+stage might also construct a part of the <span>node tree</span>.
+During the <span title="parsing an SWML text
+serialization">parsing</span>, mutation events <em class=rfc2119>MUST
+NOT</em> be invoked.
 
 <p>Before the actual <span title="parsing an SWML text
-serialization">parsing</span> starts, a new <code
-title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
-be created.  It represents the DOM tree constructed as a result of the
+serialization">parsing</span> starts, a new <code>Document</code> object <em class=rfc2119>MUST</em>
+be created.  It represents the <span>node tree</span> constructed as a result of the
 <span title="parsing an SWML text serialization">parsing</span>.  The
-<code>innerHTML</code> <span>IDL attribute</span> of the <code
-title=dom-document>Document</code> object <em class=rfc2119>MUST</em>
-be initially set to
+<code>innerHTML</code> <span>IDL attribute</span> of
+the <code>Document</code> object <em class=rfc2119>MUST</em> be
+initially set to
 <code>&lt;html&#x20;xmlns="http://www.w3.org/1999/xhtml">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
 The <dfn>document element</dfn> is what the
-<code>documentElement</code> <span>IDL attribute</span> of the <code
-title=dom-document>Document</code> returns.  The <dfn>head
-element</dfn> is what the <code>firstChild</code> <span>IDL
-attribute</span> of the <span>document element</span> returns at the
-time immediately after the <code>innerHTML</code> is set.  The
+<code>documentElement</code> <span>IDL attribute</span> of
+the <code>Document</code> returns.  The <dfn>head element</dfn> is
+what the <code>firstChild</code> <span>IDL attribute</span> of
+the <span>document element</span> returns at the time immediately
+after the <code>innerHTML</code> is set.  The
 <dfn>body element</dfn> is what the <code>lastChild</code> <span>IDL
 attribute</span> of the <span>document element</span> returns at the
 time immediately after the <code>innerHTML</code> is set.  The
@@ -3405,8 +3409,9 @@ element</span>.
 <section>
 <h1>Tree construction</h1>
 
-<p>The <dfn>tree construction</dfn> stage constructs a DOM tree from a
-series of <span title=token>tokens</span> emitted by the
+<p>The <dfn>tree construction</dfn> stage constructs a <span>node
+tree</span> from a series of <span title=token>tokens</span> emitted
+by the
 <span>tokenization</span> stage.  The <span>tree construction</span>
 stage has two state variables: <span>insertion mode</span> and
 <span>stack of open elements</span>.
@@ -3905,9 +3910,8 @@ paragraph</span>" <span>insertion mode</span>.
 
 <dt>An <span>end-of-file token</span>
 
-<dd>Now the <code title=dom-document>Document</code> has been
-constructed.  Abort the <span title="SWML text serialization
-parser">parser</span>.
+<dd>Now the <code>Document</code> has been constructed.  Abort
+the <span title="SWML text serialization parser">parser</span>.
 
 <dt>Any other <span>block start tag token</span>
 
@@ -4830,18 +4834,8 @@ orphan nodes (i.e. without a parent node).
 <span>allowed attributes</span> entry <em class=rfc2119>MAY</em> be
 specified to an element described in that subsection.
 
-<p>Some elements belong to <dfn title=category>categories</dfn>.
-Categories <dfn>flow content</dfn> and <dfn>phrasing content</dfn><!--
-, and <dfn>metadata content</dfn>--> are defined in the HTML5
-specification <span class=XXX>...</span>.
-
-<p>Terms and algorithms <dfn>valid integer</dfn>, <dfn>rules for
-parsing integers</dfn>,
-<a href=https://html.spec.whatwg.org/#text-content><dfn title="text
-content">text</dfn></a>, and
-<a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn>nothing</dfn></a>
-are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
-Standard</cite></a>.
+<p>Some elements belong to <dfn title=category>categories</dfn> such
+as <span>flow content</span> and <span>phrasing content</span>.
 
 <p>An attribute is said to be <dfn>specified</dfn> to an element if
 the <code>hasAttributeNS</code> method invoked on the element with
@@ -5187,7 +5181,18 @@ namespace</span>.
 
 </dl>
 
-<p class=XXX>...
+<p>The <code>comment-p</code> <span>element</span> <span>represents</span>
+a note.
+
+<div class="note memo">
+
+<p>Historically, the <code title>p</code> suffix in the element name
+implied that it <span title=represents>represented</span>
+a <span>paragraph</span>.  As its content is any <span>flow
+content</span>, it now can contain any number
+of <span title=paragraph>paragraphs</span>.
+
+</div>
 
 </section>
 
@@ -6171,8 +6176,8 @@ or more <span>uppercase letters</span>.
 
 <div class="note memo">
 
-<p>These elements might be inserted into the DOM by a <span
-title="SWML text serialization parser">parser</span> when an
+<p>These elements might be inserted into a <span>node tree</span> by
+a <span title="SWML text serialization parser">parser</span> when an
 <span>inline start tag</span> with unknown <span>tag name</span> is
 found.
 
@@ -6196,10 +6201,6 @@ found.
 
 <dd class=XXX>...
 
-<dt id=ref-DOM>DOM
-
-<dd class=XXX>Web DOM Core? DOM3 Core?
-
 <dt id=ref-MANAKAI>MANAKAI
 
 <dd class=XXX>manakai's DOM extensions.
@@ -6209,11 +6210,6 @@ found.
 <dd><cite><a href="https://tools.ietf.org/html/rfc2119">Key words for
 use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner,
 IETF BCP 14, March 1997.
-
-<dt id=ref-WA1>WA1
-
-<dd><cite><a href="https://www.whatwg.org/specs/web-apps/current-work/complete.html">Web
-Applications 1.0</a></cite>, Ian Hickson, WHATWG Draft Standard.
 
 <dt id=ref-XHTML2>XHTML2
 
