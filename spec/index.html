@@ -108,6 +108,10 @@ namespace</span></a></li>
      <li><a href=#the-history-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.7 </span>The <code>history</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-example-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.8 </span>The <code>example</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.9 </span>The <code>preamble</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.10 </span>The <code>postamble</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
    <li><a href=#hyperlinks><span class=secno>8.4 </span>Hyperlinks</a>
     <ol>
@@ -316,6 +320,7 @@ Standard</cite></a>:
   </li><li><dfn id=figure><code>figure</code></dfn>
   </li><li><dfn id=h1><code>h1</code></dfn>
   </li><li><dfn id=head><code>head</code></dfn>
+  </li><li><dfn id=hr><code>hr</code></dfn>
   </li><li><dfn id=html><code>html</code></dfn>
   </li><li><dfn id=ins><code>ins</code></dfn>
   </li><li><dfn id=kbd><code>kbd</code></dfn>
@@ -360,6 +365,9 @@ specification</a>:
 </p><p>The <dfn id=suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
 <a href=#preferred-prefix>preferred prefix</a> is <code>sw10</code>.
+
+</p><p>The <dfn id=html3-namespace>HTML3 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
 
 </p><p>The <dfn id=xhtml2-namespace>XHTML2 namespace</dfn> is
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
@@ -682,8 +690,12 @@ SuikaWiki/0.9 spec WSP can be omitted, which is wrong. -->1*<a href=#abnf-white-
 
 </p><p>There are several kinds of <dfn id=concept-block title=concept-block>blocks</dfn>:
 <a href=#concept-paragraph title=concept-paragraph>paragraphs</a>, <a href=#concept-heading title=concept-heading>headings</a>, <a href=#concept-list title=concept-list>lists</a>, <a href=#concept-labeled-list title=concept-labeled-list>labeled lists</a>, <span title=concept-quotation>quotations</span>, <span title=concept-preformatted-paragraph>preformatted paragraphs</span>,
-<span title=concept-edit-section>editted sections</span>, <a href=#concept-table title=concept-table>tables</a>, <span title=concept-editorial-note>editorial notes</span>, <span title=concept-comment-paragraph>comment paragraphs</span>, and <a href=#concept-empty-block title=concept-empty-block>empty blocks</a>.  In addition, <a href=#concept-form title=concept-form>forms</a> and <a href=#concept-entity-reference title=concept-entity-reference>entity references</a> can also be
-used as <span title=concept-blocks>blocks</span>.
+<span title=concept-edit-section>editted sections</span>, <a href=#concept-table title=concept-table>tables</a>, <span title=concept-editorial-note>editorial notes</span>, <a href=#concept-comment-paragraph title=concept-comment-paragraph>comment paragraphs</a>,
+<a href=#concept-hr title=concept-hr>hrs</a>,
+and <a href=#concept-empty-block title=concept-empty-block>empty blocks</a>.  In
+addition, <a href=#concept-form title=concept-form>forms</a>
+and <a href=#concept-entity-reference title=concept-entity-reference>entity references</a> can
+also be used as <span title=concept-blocks>blocks</span>.
 
 </p><p><dfn id=concept-empty-block title=concept-empty-block>Empty blocks</dfn>, which is
 represented by an empty line, can be inserted between any two <a href=#concept-block title=concept-block>blocks</a>.  It is sometimes necessary to
@@ -719,7 +731,14 @@ This line is <em>not</em> part of the list item.</code></pre>
 
 </dt><dd>= <a href=#abnf-paragraph title=abnf-paragraph>paragraph</a> / <a href=#abnf-heading title=abnf-heading>heading</a> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-quotation title=abnf-quotation>quotation</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
-<a href=#abnf-section-block title=abnf-section-block>section-block</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a> / <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a> / <a href=#abnf-form title=abnf-form>form</a> / <a href=#abnf-obs-entity-reference title=abnf-obs-entity-reference>obs-entity-reference</a>
+<a href=#abnf-section-block title=abnf-section-block>section-block</a>
+/ <a href=#abnf-table title=abnf-table>table</a>
+/ <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a>
+/ <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
+/ <a href=#abnf-hr title=abnf-hr>hr</a>
+/ <a href=#abnf-empty-block title=abnf-empty-block>empty-block</a>
+/ <a href=#abnf-form title=abnf-form>form</a>
+/ <a href=#abnf-obs-entity-reference title=abnf-obs-entity-reference>obs-entity-reference</a>
 
 </dd><dt><dfn id=abnf-empty-block title=abnf-empty-block>empty-block</dfn>
 
@@ -747,9 +766,30 @@ then.
 <p>A <dfn id=concept-block-child title=concept-block-child>block child</dfn> is one of an
 optional <span title=concept-destination-anchor-number>destination
 anchor number</span> followed by <span title=concept-line-contents>line contents</span> followed by a <a href=#concept-newline title=concept-newline>newline</a>, a <a href=#concept-list title=concept-list>list</a>, a <a href=#concept-labeled-list title=concept-labeled-list>labeled list</a>, a <span title=concept-preformatted-paragraph>preformatted paragraph</span>, an
-<a href=#concept-section-block title=concept-section-block>section block</a>, a <a href=#concept-table title=concept-table>table</a>, an <span title=concept-editorial-notes>editorial note</span>, or a <span title=concept-comment-paragraph>comment paragraph</span>.
+<a href=#concept-section-block title=concept-section-block>section block</a>,
+a <a href=#concept-table title=concept-table>table</a>,
+an <a href=#concept-editorial-notes title=concept-editorial-notes>editorial note</a>,
+a <a href=#concept-comment-paragraph title=concept-comment-paragraph>comment paragraph</a>, or
+an <a href=#concept-hr title=concept-hr>hr</a>.
 
-</p><p class=XXX>@@ definition for ;; and @@
+</p><p>An <dfn id=concept-editorial-notes title=concept-editorial-notes>editorial note</dfn>
+represents an editorial note.  It is represented by a
+string <code>@@</code>, followed by zero or more <a href=#white-space-characters>white space
+characters</a>, followed by zero or
+more <a href=#concept-block-child title=concept-block-child>block children</a>.
+
+</p><p>A <dfn id=concept-comment-paragraph title=concept-comment-paragraph>comment paragraph</dfn>
+represents a note.  It is represented by a string <code>;;</code>,
+followed by zero or more <a href=#white-space-characters>white space characters</a>, followed
+by zero or more <a href=#concept-block-child title=concept-block-child>block children</a>.
+
+</p><p>An <dfn id=concept-hr title=concept-hr>hr</dfn> represents a break in the run of
+blocks in which it occurs, smilar to the HTML <a href=#hr><code>hr</code></a> element.
+It is represented by a string <code>-*-*-</code>, followed by an
+optional <a href=#concept-class-specification title=concept-class-specification>class
+specification</a>, followed by zero or more <a href=#white-space-characters>white space
+characters</a>, finally followed by
+a <a href=#concept-newline title=concept-newline>newline</a>.
 
 </p><dl class=abnf>
 
@@ -765,15 +805,26 @@ anchor number</span> followed by <span title=concept-line-contents>line contents
 
 </dd><dt><dfn id=abnf-editorial-note title=abnf-editorial-note>editorial-note</dfn>
 
-</dt><dd>= ";;" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+</dt><dd>= "@@" *<a href=#abnf-white-space title=abnf-white-space>white-space</a> [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
 [<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>] <a href=#abnf-newline title=abnf-newline>newline</a> *<a href=#abnf-block-child title=abnf-block-child>block-child</a>
+
+</dd><dt><dfn id=abnf-hr title=abnf-hr>hr</dfn>
+
+</dt><dd>= "-*-*-"
+[<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>]
+*<a href=#abnf-white-space title=abnf-white-space>white-space</a>
+<a href=#abnf-newline title=abnf-newline>newline</a>
 
 </dd><dt><dfn id=abnf-block-child title=abnf-block-child>block-child</dfn>
 
 </dt><dd>= [<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
 <a href=#abnf-line-contents title=abnf-line-contents>line-contents</a> <a href=#abnf-newline title=abnf-newline>newline</a> / <a href=#abnf-list title=abnf-list>list</a>
 / <a href=#abnf-labeled-list title=abnf-labeled-list>labeled-list</a> / <a href=#abnf-preformatted-paragraph title=abnf-preformatted-paragraph>preformatted-paragraph</a> /
-<a href=#abnf-section-block title=abnf-section-block>section-block</a> / <a href=#abnf-table title=abnf-table>table</a> / <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a> / <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
+<a href=#abnf-section-block title=abnf-section-block>section-block</a>
+/ <a href=#abnf-table title=abnf-table>table</a>
+/ <a href=#abnf-editorial-note title=abnf-editorial-note>editorial-note</a>
+/ <a href=#abnf-comment-paragraph title=abnf-comment-paragraph>comment-paragraph</a>
+/ <a href=#abnf-hr title=abnf-hr>hr</a>
 
 </dd></dl>
 
@@ -929,28 +980,44 @@ by the following table:
 
 </th></tr></thead><tbody>
   <tr>
-    <th><code title=concept-DELETE>DELETE</code>
+    <th><dfn id=concept-delete title=concept-DELETE><code>DEL</code></dfn>
     </th><td>Removal (<a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> element)
   </td></tr><tr>
-    <th><code title=concept-EG>EG</code>
+    <th><dfn id=concept-eg title=concept-EG><code>EG</code></dfn>
     </th><td>Example (<a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a> element)
   </td></tr><tr>
-    <th><code title=concept-FIG>FIG</code>
+    <th><dfn id=concept-fig title=concept-FIG><code>FIG</code></dfn>
     </th><td>Figure (HTML <a href=#figure><code>figure</code></a> element)
   </td></tr><tr>
-    <th><code title=concept-FIGCAPTION>FIGCAPTION</code>
+    <th><dfn id=concept-figcaption title=concept-FIGCAPTION><code>FIGCAPTION</code></dfn>
     </th><td>Figure caption (HTML <a href=#figcaption><code>figcaption</code></a> element)
   </td></tr><tr>
-    <th><code title=concept-HISTORY>HISTORY</code>
+    <th><dfn id=concept-history title=concept-HISTORY><code>HISTORY</code></dfn>
     </th><td>Historical notes (<a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a> element)
   </td></tr><tr>
-    <th><code title=concept-INSERT>INSERT</code>
+    <th><dfn id=concept-insert title=concept-INSERT><code>INS</code></dfn>
     </th><td>Insertion (<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element)
   </td></tr><tr>
-    <th><code title=concept-REFS>REFS</code>
+    <th><dfn id=concept-note title=concept-NOTE><code>NOTE</code></dfn>
+    </th><td>Note (HTML3 <code>note</code> element)
+  </td></tr><tr>
+    <th><dfn id=concept-postamble title=concept-POSTAMBLE><code>POSTAMBLE</code></dfn>
+    </th><td>Postamble (<a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a> element)
+  </td></tr><tr>
+    <th><dfn id=concept-preamble title=concept-PREAMBLE><code>PREAMBLE</code></dfn>
+    </th><td>Preamble (<a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><code>preamble</code></a> element)
+  </td></tr><tr>
+    <th><dfn id=concept-refs title=concept-REFS><code>REFS</code></dfn>
     </th><td>Referenced documents (<a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a> element)
 
 </td></tr></tbody></table>
+
+<div class="note memo">
+
+<p>A future revison to this specification might define
+more <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>tag names</a>.
+
+</p></div>
 
 <dl class=abnf>
 
@@ -1423,7 +1490,8 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 
 <div class="note memo">
 
-<p>A future version of this specification might define more <span title=concept-tag-name>tag names</span>.
+<p>A future revison to this specification might define
+more <span title=concept-tag-name>tag names</span>.
 
 </p></div>
 
@@ -1948,6 +2016,11 @@ attribute</dfn> properties.  Default for these properties is null.
 
 </dt><dd>No property.
 
+</dd><dt><dfn id=block-element-token>Block element token</dfn>
+
+</dt><dd><dfn id=block-element-classes title=block-element-classes>classes</dfn> property, whose
+default is null.
+
 </dd></dl>
 
 <p><dfn id=mode>Mode</dfn> is a state of the <a href=#tokenization title=tokenization>tokenizer</a> and is one of
@@ -2062,6 +2135,28 @@ character will be <code>*</code>.)
 </li><li>Finally, set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
 </li></ol>
+
+
+</dd><dt>If <var>line</var> is a string consists of <code>-*-*-</code>,
+optionally followed by a <a href=#class-specification>class specification</a>, followed by
+zero or more <a href=#white-space-characters>white space characters</a>
+
+</dt><dd>
+
+<ol class=steps>
+
+<li>Let <var>classes</var> be the <a href=#body-of-a-class-specification title="body of a class
+specification">body</a> of the <a href=#class-specification>class specification</a> in
+the matched substring of <var>data</var>, if any, or null, otherwise.
+
+</li><li>Emit a <a href=#block-element-token>block element token</a>
+whose <a href=#block-element-classes title=block-element-classes>classes</a> set
+to <var>classes</var>.
+
+</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li></ol>
+
 
 </dd><dt>If <var>line</var> starts with <code>-</code> or <code>=</code>
 
@@ -2267,28 +2362,46 @@ with <var>data</var>.
 </li></ol>
 
 </dd><dt>If <var>line</var> is a string consist of a <code>[</code>
-character, followed by one of <a href=#ins><code>INS</code></a>, <a href=#del><code>DEL</code></a>, or
-<a href=#pre><code>PRE</code></a>, optionally followed by <a href=#class-specification>class
-specification</a>, followed by a <code>[</code> character, followed
-by zero or more <a href=#white-space-characters>white space characters</a>
-
-<!-- No more block start tag with this syntax should be added in
-future revisions. -->
+character, followed by
+a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>, optionally followed by <a href=#class-specification>class specification</a>,
+followed by a <code>[</code> character, followed by zero or
+more <a href=#white-space-characters>white space characters</a>
 
 </dt><dd>
 
 <ol class=steps>
 
-<li>Emit a <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is one of
-<a href=#ins><code>INS</code></a>, <a href=#del><code>DEL</code></a>, or <a href=#pre><code>PRE</code></a>, that appears
-in <var title="">line</var> and <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is the <a href=#body-of-a-class-specification title="body
-of a class specification">body</a> of the <a href=#class-specification>class
-specification</a>, if any, or null otherwise.
+<li>Emit a <a href=#block-start-tag-token>block start tag token</a>
+whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
+the <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>, and <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is
+the <a href=#body-of-a-class-specification title="body of a class specification">body</a> of
+the <a href=#class-specification>class specification</a>, if any, or null otherwise.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
-</li><li>If the <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
-<a href=#pre><code>PRE</code></a>, switch to the "<a href=#preformatted-block>preformatted block</a>"
+</li></ol>
+
+</dd><dt>If <var>line</var> is a string consist of <code>[PRE</code>,
+optionally followed by <a href=#class-specification>class specification</a>, followed by
+a <code>[</code> character, followed by zero or more <a href=#white-space-characters>white space
+characters</a>
+
+</dt><dd>
+
+<ol class=steps>
+
+<li>Emit a <a href=#block-start-tag-token>block start tag token</a>
+whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a>
+is <a href=#pre><code>PRE</code></a>
+and <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is
+the <a href=#body-of-a-class-specification title="body of a class specification">body</a> of
+the <a href=#class-specification>class specification</a>, if any, or null otherwise.
+
+</li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
+
+</li><li>Switch to the "<a href=#preformatted-block>preformatted block</a>"
 <a href=#mode>mode</a>.
 
 </li></ol>
@@ -2351,17 +2464,19 @@ characters as character data.
 -->
 
 </dd><dt>If <var>line</var> is a string consist of a <code>]</code>
-character, followed by one of <a href=#ins><code>INS</code></a> or <a href=#del><code>DEL</code></a>,
-followed by a <code>]</code> character, followed by zero or more
-<a href=#white-space-characters>white space characters</a>
+character, followed by
+a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>, followed by a <code>]</code> character, followed by zero
+or more <a href=#white-space-characters>white space characters</a>
 
 </dt><dd>
 
 <ol class=steps>
 
-<li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is one of
-<a href=#ins><code>INS</code></a>, <a href=#del><code>DEL</code></a>, or <a href=#pre><code>PRE</code></a>, that appears
-in <code>line</code>.
+<li>Emit a <a href=#block-end-tag-token>block end tag token</a>
+whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is
+the <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
@@ -2426,9 +2541,10 @@ FEED</code> character.
 </li></ol>
 
 </dd><dt>If <var>line</var> is a string consist of a <code>]</code>
-character, followed by one of <a href=#ins><code>INS</code></a> or <a href=#del><code>DEL</code></a>,
-followed by a <code>]</code> character, followed by zero or more
-<a href=#white-space-characters>white space characters</a>
+character, followed by
+a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>, followed by a <code>]</code> character, followed by zero
+or more <a href=#white-space-characters>white space characters</a>
 
 <!--
 
@@ -2456,8 +2572,10 @@ specify how to implement the latter example.
 
 <li>Emit a <a href=#preformatted-end-token>preformatted end token</a>.
 
-</li><li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is one of
-<a href=#ins><code>INS</code></a> or <a href=#del><code>DEL</code></a>, that appears in <var title="">line</var>.
+</li><li>Emit a <a href=#block-end-tag-token>block end tag token</a>
+whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is
+the <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
@@ -2497,7 +2615,9 @@ followed by zero or more <a href=#white-space-characters>white space characters<
 
 <ol class=steps>
 
-<li>Emit a <a href=#block-end-tag-token>block end tag token</a> whoes <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <a href=#pre><code>PRE</code></a>.
+<li>Emit a <a href=#block-end-tag-token>block end tag token</a>
+whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a>
+is <a href=#pre><code>PRE</code></a>.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
@@ -3269,13 +3389,15 @@ tuple unless otherwise specified.
 </p><p>The <dfn id=current-element>current element</dfn> is the <a href=#element-node>element node</a>
 of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
 
-</p><p><dfn id=block-elements>Block elements</dfn> are elements
+</p><p><dfn id=block-elements>Block elements</dfn> are <a href=#element title=element>elements</a>
 whose <a href=#element-local-name title=element-local-name>local name</a> is one
 of <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>, <a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a>,
-<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, and <a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a>.
+<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <code>note</code>, <a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a>, 
+<a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><code>preamble</code></a>, and <a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a>.
 
 </p><p><dfn id=structural-elements>Structural elements</dfn> are <a href=#block-elements>block elements</a> and
-elements whose <a href=#element-local-name title=element-local-name>local name</a> is one
+<a href=#element title=element>elements</a>
+whose <a href=#element-local-name title=element-local-name>local name</a> is one
 of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a href=#section><code>section</code></a>,
 <a href=#blockquote><code>blockquote</code></a>, <a href=#h1><code>h1</code></a>, <a href=#ul><code>ul</code></a>,
 <a href=#ol><code>ol</code></a>, <a href=#dl><code>dl</code></a>, <a href=#li><code>li</code></a>, <a href=#dt><code>dt</code></a>,
@@ -3344,14 +3466,73 @@ mode</a>.
 
 </li></ol>
 
-</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <a href=#ins><code>INS</code></a>
+</dd><dt>A <a href=#block-start-tag-token>block start tag token</a>
+whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a>
+is <em>not</em> <a href=#pre><code>PRE</code></a>
 
 </dt><dd>
 
 <ol class=steps>
 
-<li>Create an <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
-namespace</a>.
+<li>Create an <a href=#element>element</a>
+whose <span title=concept-element-namespace>namespace</span>
+and <span title=concept-element-local-name>local name</span> is the
+values in the same row as
+the <a href=#token>token</a>'s <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag
+name</a> in the following table:
+
+  <table>
+
+  <thead>
+
+  <tr>
+    <th><a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a>
+    </th><th><span title=concept-element-local-name>local name</span>
+    </th><th><span title=concept-element-namespace>namespace</span>
+
+  </th></tr></thead><tbody>
+
+  <tr>
+    <th><a href=#concept-delete><code title=concept-DELETE>DEL</code></a>
+    </th><td><a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-delete><code title=concept-DELETE>EG</code></a>
+    </th><td><a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-history><code title=concept-HISTORY>HISTORY</code></a>
+    </th><td><a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-insert><code title=concept-INSERT>INS</code></a>
+    </th><td><a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-note><code title=concept-NOTE>NOTE</code></a>
+    </th><td><code>note</code>
+    </td><td><a href=#html3-namespace>HTML3 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-postamble><code title=concept-POSTAMBLE>POSTAMBLE</code></a>
+    </th><td><a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-preamble><code title=concept-PREAMBLE>PREAMBLE</code></a>
+    </th><td><a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><code>preamble</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-refs><code title=concept-REFS>REFS</code></a>
+    </th><td><a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr></tbody></table>
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
 
@@ -3366,21 +3547,43 @@ the element created to <a href=#block-start-tag-classes title=block-start-tag-cl
 
 </li></ol>
 
-</dd><dt>A <a href=#block-start-tag-token>block start tag token</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is <a href=#del><code>DEL</code></a>
+</dd><dt>A <a href=#block-end-tag-token>block end tag token</a>
+whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a>
+is <em>not</em> <a href=#pre><code>PRE</code></a>
 
 </dt><dd>
 
 <ol class=steps>
 
-<li>Create an <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+<li>Let <var>local name</var> be
+the <span title=concept-element-local-name>local name</span> is the
+values in the same row as
+the <a href=#token>token</a>'s <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag
+name</a> in the previous table.
+
+</li><li>If the <a href=#stack-of-open-elements>stack of open elements</a> contains
+an <a href=#element>element</a>
+whose <span title=concept-element-local-name>local name</span>
+is <var>local name</var>, pop the <a href=#current-element>current element</a> off
+the <a href=#stack-of-open-elements>stack of open elements</a> until an <a href=#element>element</a>
+whose <span title=concept-element-local-name>local name</span>
+is <var>local name</var> has been popped from the <a href=#stack-of-open-elements>stack of open
+elements</a>.
+
+</li><li>Set the <span>continuous line</span> to false.
+
+</li></ol>
+
+</dd><dt>A <a href=#block-element-token>block element token</a>
+
+</dt><dd>
+
+<ol class=steps>
+
+<li>Create an <a href=#hr><code>hr</code></a> <a href=#element>element</a> in the <a href=#html-namespace>HTML
 namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
-
-</li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
-elements</a> with <a href=#section-depth>section depth</a> set to zero (0),
-<a href=#quotation-depth>quotation depth</a> set to zero (0), and <a href=#list-depth>list
-depth</a> set to zero (0).
 
 </li><li>If the <a href=#token>token</a>'s <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is not null, set the
 <a href=#the-class-attribute><code title=attr-class>class</code></a> <a href=#content-attribute>content attribute</a> of
@@ -3673,38 +3876,6 @@ mode</a>.
 <a href=#section><code>section</code></a>, and <a href=#block-elements>block elements</a>, then pop the
 element off the <a href=#stack-of-open-elements>stack of open elements</a> and follow this
 substep again.
-
-</li></ol>
-
-</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <a href=#ins><code>INS</code></a>
-
-</dt><dd>
-
-<ol class=steps>
-
-<li>If the <a href=#stack-of-open-elements>stack of open elements</a> contains an element
-whose local name is <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, pop the <a href=#current-element>current
-element</a> off the <a href=#stack-of-open-elements>stack of open elements</a> until such
-an element whose local name is <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> has been popped
-from the <a href=#stack-of-open-elements>stack of open elements</a>.
-
-</li><li>Set the <span>continuous line</span> to false.
-
-</li></ol>
-
-</dd><dt>A <a href=#block-end-tag-token>block end tag token</a> whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a> is <a href=#del><code>DEL</code></a>
-
-</dt><dd>
-
-<ol class=steps>
-
-<li>If the <a href=#stack-of-open-elements>stack of open elements</a> contains an element
-whose local name is <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, pop the <a href=#current-element>current
-element</a> off the <a href=#stack-of-open-elements>stack of open elements</a> until such
-an element whose local name is <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> has been popped
-from the <a href=#stack-of-open-elements>stack of open elements</a>.
-
-</li><li>Set the <span>continuous line</span> to false.
 
 </li></ol>
 
@@ -5058,6 +5229,59 @@ history or an out-of-date content.
 <p>The <a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a> element represents an example.
 
 </p></section>
+
+<section>
+
+<h1 id=the-preamble-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.9 </span>The <dfn><code>preamble</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><code>preamble</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a preamble or preface.
+
+</p></section>
+
+<section>
+
+<h1 id=the-postamble-element-in-the-suikawiki/0.9-namespace><span class=secno>8.3.10 </span>The <dfn><code>postamble</code></dfn> element in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a postamble.
+
+</p></section>
+
 
 </section>
 
