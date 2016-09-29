@@ -390,9 +390,15 @@ Following element is defined in the <a href=#html3-namespace>HTML3 namespace</a>
 <p>Terms
 <dfn id=node-tree>node tree</dfn>,
 <dfn id=element>element</dfn>,
+<dfn id=concept-element-local-name title=concept-element-local-name>element's local name</dfn>,
+<dfn id=concept-element-namespace title=concept-element-namespace>element's namespace</dfn>,
+<dfn id=concept-element-namespace-prefix title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
+<dfn id=concept-element-children title=concept-element-children>element's children</dfn>,
 <dfn id=attribute>attribute</dfn>,
-<dfn id=namespace>namespace</dfn><!-- element's and attribute's -->, and
-<dfn id=namespace-prefix>namespace prefix</dfn><!-- element's and attribute's -->
+<dfn id=concept-attribute-local-name title=concept-attribute-local-name>attribute's local name</dfn>,
+<dfn id=concept-attribute-namespace title=concept-attribute-namespace>attribute's namespace</dfn>,
+and
+<dfn id=concept-attribute-namespace-prefix title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -1801,17 +1807,17 @@ time immediately after the <code>innerHTML</code> is set.  The
 <code>manakai_append_text</code> method <cite class=XXX>...</cite> <em class=rfc2119>MUST</em> be invoked on <var>node</var> with the
 argument <var>char</var>.
 
-</p><p>When an <a href=#element>element</a> is created, its <a href=#namespace-prefix>namespace
-prefix</a> <em class=rfc2119>MUST</em> be set to <code>null</code>.
+</p><p>When an <a href=#element>element</a> is created, its <span>namespace
+prefix</span> <em class=rfc2119>MUST</em> be set to <code>null</code>.
 
 </p><p>When an <a href=#attribute>attribute</a> is created, its
-<a href=#namespace>namespace</a> and <a href=#namespace-prefix>namespace
-prefix</a> <em class=rfc2119>MUST</em> both set
+<span>namespace</span> and <span>namespace
+prefix</span> <em class=rfc2119>MUST</em> both set
 to <code>null</code>, unless an <a href=#attribute>attribute</a>
 in <var>namespace</var> is created, in which case
-its <a href=#namespace>namespace</a> <em class=rfc2119>MUST</em> be set to
-the <var>namespace</var>'s URL and its <a href=#namespace-prefix>namespace
-prefix</a> <em class=rfc2119>MUST</em> be set
+its <span>namespace</span> <em class=rfc2119>MUST</em> be set to
+the <var>namespace</var>'s URL and its <span>namespace
+prefix</span> <em class=rfc2119>MUST</em> be set
 to <var>namespace</var>'s <dfn id=preferred-prefix>preferred prefix</dfn>.
 
 </p><hr>
@@ -2365,7 +2371,11 @@ from <var>line</var>.
 </li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
 <var>line</var>, if any.
 
-</li><li>Emit a <a href=#block-start-tag-token>block start tag token</a>
+</li><li>If <var>line</var> is not the empty string:
+
+<ol>
+
+<li>Emit a <a href=#block-start-tag-token>block start tag token</a>
 whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a>
 is <a href=#concept-figcaption><code title=concept-FIGCAPTION>FIGCAPTION</code></a>.
 
@@ -2375,6 +2385,8 @@ is <a href=#concept-figcaption><code title=concept-FIGCAPTION>FIGCAPTION</code><
 </li><li>Emit a <a href=#block-end-tag-token>block end tag token</a>
 whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a>
 is <a href=#concept-figcaption><code title=concept-FIGCAPTION>FIGCAPTION</code></a>.
+
+</li></ol>
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
@@ -3462,10 +3474,10 @@ the <a href=#token>token</a>'s <a href=#block-start-tag-tag-name title=block-sta
 name</a>.
 
 </li><li>Create an <a href=#element>element</a>
-whose <span title=concept-element-namespace>namespace</span>
-is <var>row</var>'s <span title=concept-element-namespace>namespace</span>
-and whose <span title=concept-element-local-name>local name</span>
-is <var>row</var>'s <span title=concept-element-namespace>namespace</span>.
+whose <a href=#concept-element-namespace title=concept-element-namespace>namespace</a>
+is <var>row</var>'s <a href=#concept-element-namespace title=concept-element-namespace>namespace</a>
+and whose <a href=#concept-element-local-name title=concept-element-local-name>local name</a>
+is <var>row</var>'s <a href=#concept-element-namespace title=concept-element-namespace>namespace</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
 
@@ -3495,15 +3507,15 @@ the <a href=#token>token</a>'s <a href=#block-end-tag-tag-name title=block-end-t
 name</a>.
 
 </li><li>Let <var>local name</var>
-be <var>row</var>'s <span title=concept-element-local-name>local
-name</span>.
+be <var>row</var>'s <a href=#concept-element-local-name title=concept-element-local-name>local
+name</a>.
 
 </li><li>If the <a href=#stack-of-open-elements>stack of open elements</a> contains
 an <a href=#element>element</a>
-whose <span title=concept-element-local-name>local name</span>
+whose <a href=#concept-element-local-name title=concept-element-local-name>local name</a>
 is <var>local name</var>, pop the <a href=#current-element>current element</a> off
 the <a href=#stack-of-open-elements>stack of open elements</a> until an <a href=#element>element</a>
-whose <span title=concept-element-local-name>local name</span>
+whose <a href=#concept-element-local-name title=concept-element-local-name>local name</a>
 is <var>local name</var> has been popped from the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
@@ -3844,10 +3856,15 @@ should not appear in this insertion mode -->
 
 <ol class=steps>
 
-<li>If the local name of the <a href=#current-element>current element</a> is
-<em>not</em> one of <a href=#li><code>li</code></a>, <a href=#dd><code>dd</code></a>,
-<a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, or <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, run the following
-substeps:
+<li>If the <a href=#current-element>current
+element</a>'s <a href=#concept-element-local-name title=concept-element-local-name>local
+name</a> is <em>not</em> one
+of <a href=#li><code>li</code></a>, <a href=#dd><code>dd</code></a>, <a href=#figcaption><code>figcaption</code></a>,
+<a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>, or <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, or if the <a href=#current-element>current
+element</a>'s <a href=#concept-element-local-name title=concept-element-local-name>local
+name</a> is <a href=#figcaption><code>figcaption</code></a> and the <a href=#current-element>current
+element</a>'s <a href=#concept-element-children title=concept-element-children>children</a>
+is not empty, run the following substeps:
 
 <ol class=steps>
 
@@ -4616,8 +4633,8 @@ parser:
 
   <tr>
     <th><a href=#block-start-tag-tag-name title=block-start-tag-tag-name>Tag name</a>
-    </th><th><span title=concept-element-local-name>Local name</span>
-    </th><th><span title=concept-element-namespace>Namespace</span>
+    </th><th><a href=#concept-element-local-name title=concept-element-local-name>Local name</a>
+    </th><th><a href=#concept-element-namespace title=concept-element-namespace>Namespace</a>
     </th><th>Semantics (non-normative)
     </th><th>Semantics of start tag's <span title=concept-line-contents>line contents</span> (non-normative)
 
@@ -4706,8 +4723,8 @@ corresponding DOM <a href=#element title=element>elements</a>.
 </p></div>
 
 <p><dfn id=block-elements>Block elements</dfn> are <a href=#element title=element>elements</a>
-whose <span title=concept-element-local-name>local name</span> is one
-of <span title=concept-element-local-name>local names</span> in
+whose <a href=#concept-element-local-name title=concept-element-local-name>local name</a> is one
+of <a href=#concept-element-local-name title=concept-element-local-name>local names</a> in
 the <a href=#block-element-table>Block Element Table</a>.
 
 </p><p><dfn id=structural-elements>Structural elements</dfn> are <a href=#block-elements>block elements</a> and
@@ -4723,7 +4740,7 @@ of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a 
 </p><div class="note memo">
 <p>These definitions are referenced from the parser.  The parser does
 not have to
-check <a href=#element title=element>elements</a>' <a href=#namespace title=namespace>namespaces</a>.
+check <a href=#element title=element>elements</a>' <span title=namespace>namespaces</span>.
 </p></div>
 
 

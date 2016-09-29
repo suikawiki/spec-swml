@@ -234,9 +234,15 @@ Following element is defined in the <span>HTML3 namespace</span>:
 <p>Terms
 <dfn>node tree</dfn>,
 <dfn>element</dfn>,
+<dfn title=concept-element-local-name>element's local name</dfn>,
+<dfn title=concept-element-namespace>element's namespace</dfn>,
+<dfn title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
+<dfn title=concept-element-children>element's children</dfn>,
 <dfn>attribute</dfn>,
-<dfn>namespace</dfn><!-- element's and attribute's -->, and
-<dfn>namespace prefix</dfn><!-- element's and attribute's -->
+<dfn title=concept-attribute-local-name>attribute's local name</dfn>,
+<dfn title=concept-attribute-namespace>attribute's namespace</dfn>,
+and
+<dfn title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -2460,6 +2466,10 @@ from <var>line</var>.
 <li>Remove <span>white space characters</span> at the beginning of
 <var>line</var>, if any.
 
+<li>If <var>line</var> is not the empty string:
+
+<ol>
+
 <li>Emit a <span>block start tag token</span>
 whose <span title=block-start-tag-tag-name>tag name</span>
 is <code title=concept-FIGCAPTION>FIGCAPTION</code>.
@@ -2470,6 +2480,8 @@ is <code title=concept-FIGCAPTION>FIGCAPTION</code>.
 <li>Emit a <span>block end tag token</span>
 whose <span title=block-end-tag-tag-name>tag name</span>
 is <code title=concept-FIGCAPTION>FIGCAPTION</code>.
+
+</ol>
 
 <li>Set the <span>continuous line flag</span> to false.
 
@@ -4006,10 +4018,15 @@ should not appear in this insertion mode -->
 
 <ol class=steps>
 
-<li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code>li</code>, <code>dd</code>,
-<code>comment-p</code>, or <code>ed</code>, run the following
-substeps:
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <em>not</em> one
+of <code>li</code>, <code>dd</code>, <code>figcaption</code>,
+<code>comment-p</code>, or <code>ed</code>, or if the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>figcaption</code> and the <span>current
+element</span>'s <span title=concept-element-children>children</span>
+is not empty, run the following substeps:
 
 <ol class=steps>
 
