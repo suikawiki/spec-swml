@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 19 September 2016</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 29 September 2016</h2>
 
 
 <dl>
@@ -368,8 +368,13 @@ specification</a>:
 
 </p><p>The <dfn id=html3-namespace>HTML3 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
+Following element is defined in the <a href=#html3-namespace>HTML3 namespace</a>:
 
-</p><p>The <dfn id=xhtml2-namespace>XHTML2 namespace</dfn> is
+</p><ul class=short>
+<li><dfn id=note><code>note</code></dfn>
+</li></ul>
+
+<p>The <dfn id=xhtml2-namespace>XHTML2 namespace</dfn> is
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
 
 </p><p>The <dfn id=xml-namespace>XML namespace</dfn> is
@@ -382,8 +387,11 @@ specification</a>:
 <h1 id=definitions><span class=secno>2.2 </span>Definitions</h1>
 
 <p>Terms
-<dfn id=node-tree>node tree</dfn> and
-<dfn id=element>element</dfn>
+<dfn id=node-tree>node tree</dfn>,
+<dfn id=element>element</dfn>,
+<dfn id=attribute>attribute</dfn>,
+<dfn id=namespace>namespace</dfn><!-- element's and attribute's -->, and
+<dfn id=namespace-prefix>namespace prefix</dfn><!-- element's and attribute's -->
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -999,7 +1007,7 @@ by the following table:
     </th><td>Insertion (<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element)
   </td></tr><tr>
     <th><dfn id=concept-note title=concept-NOTE><code>NOTE</code></dfn>
-    </th><td>Note (HTML3 <code>note</code> element)
+    </th><td>Note (HTML3 <a href=#note><code>note</code></a> element)
   </td></tr><tr>
     <th><dfn id=concept-postamble title=concept-POSTAMBLE><code>POSTAMBLE</code></dfn>
     </th><td>Postamble (<a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a> element)
@@ -1825,24 +1833,24 @@ time immediately after the <code>innerHTML</code> is set.  The
 <code>manakai_append_text</code> method <cite class=XXX>...</cite> <em class=rfc2119>MUST</em> be invoked on <var>node</var> with the
 argument <var>char</var>.
 
-</p><p>When an element is created, its <code>prefix</code> <a href=#idl-attribute>IDL
-attribute</a> <em class=rfc2119>MUST</em> be set to
-<code>null</code>.
+</p><p>When an <a href=#element>element</a> is created, its <a href=#namespace-prefix>namespace
+prefix</a> <em class=rfc2119>MUST</em> be set to <code>null</code>.
 
-</p><p>When an attribute is created, unless otherwise specified, its
-<code>prefix</code> and <code>namespaceURI</code> <a href=#idl-attribute title="IDL
-attribute">IDL attributes</a> <em class=rfc2119>MUST</em> both set
-to <code>null</code>.
-
-</p><p>When an attribute in a namespace is created, its
-<code>prefix</code> <a href=#idl-attribute>IDL attribute</a> <em class=rfc2119>MUST</em> be set to the <dfn id=preferred-prefix>preferred prefix</dfn> for
-the namespace.
+</p><p>When an <a href=#attribute>attribute</a> is created, its
+<a href=#namespace>namespace</a> and <a href=#namespace-prefix>namespace
+prefix</a> <em class=rfc2119>MUST</em> both set
+to <code>null</code>, unless an <a href=#attribute>attribute</a>
+in <var>namespace</var> is created, in which case
+its <a href=#namespace>namespace</a> <em class=rfc2119>MUST</em> be set to
+the <var>namespace</var>'s URL and its <a href=#namespace-prefix>namespace
+prefix</a> <em class=rfc2119>MUST</em> be set
+to <var>namespace</var>'s <dfn id=preferred-prefix>preferred prefix</dfn>.
 
 </p><hr>
 
 <p>A <dfn id=class-specification>class specification</dfn> is a string consist of a
 <code>(</code> character, followed by zero or more character that is
-<em>not</em> one of <code>)</code>, <code>)</code>, or <a href=#white-space-characters>white
+<em>not</em> one of <code>(</code>, <code>)</code>, or <a href=#white-space-characters>white
 space characters</a>, and finally followed by a <code>)</code>
 character.  <!-- Though the SuikaWiki3 implementation of the parser
 support quoted-pair in class specification in [PRE[ block start tag
@@ -3391,8 +3399,9 @@ of the bottommost entry in the <a href=#stack-of-open-elements>stack of open ele
 
 </p><p><dfn id=block-elements>Block elements</dfn> are <a href=#element title=element>elements</a>
 whose <a href=#element-local-name title=element-local-name>local name</a> is one
-of <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>, <a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a>,
-<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <code>note</code>, <a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a>, 
+of <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>, <a href=#figcaption><code>figcaption</code></a>,
+<a href=#figure><code>figure</code></a>, <a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a>,
+<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <a href=#note><code>note</code></a>, <a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a>, 
 <a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><code>preamble</code></a>, and <a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a>.
 
 </p><p><dfn id=structural-elements>Structural elements</dfn> are <a href=#block-elements>block elements</a> and
@@ -3405,7 +3414,13 @@ of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a 
 <a href=#tr><code>tr</code></a>, <a href=#td><code>td</code></a>, <a href=#p><code>p</code></a>, <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>,
 <a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, and <a href=#pre><code>pre</code></a>.
 
-</p><section>
+</p><div class="note memo">
+<p><a href=#element title=element>Elements</a>' <a href=#namespace title=namespace>namespaces</a>
+are ignored as any element possibly inserted by the parser can be
+distinguished only by its local name.
+</p></div>
+
+<section>
 <h1 id=the-in-section-insertion-mode><span class=secno>4.5.1 </span>The "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion mode</a></h1>
 
 <p>In the "<dfn id=in-section>in section</dfn>" <a href=#insertion-mode>insertion mode</a>, a
@@ -3498,9 +3513,19 @@ name</a> in the following table:
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
 
   </td></tr><tr>
-    <th><a href=#concept-delete><code title=concept-DELETE>EG</code></a>
+    <th><a href=#concept-eg><code title=concept-EG>EG</code></a>
     </th><td><a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-fig><code title=concept-FIG>FIG</code></a>
+    </th><td><a href=#figure><code>figure</code></a>
+    </td><td><a href=#html-namespace>HTML namespace</a>
+
+  </td></tr><tr>
+    <th><a href=#concept-figcaption><code title=concept-FIGCAPTION>FIGCAPTION</code></a>
+    </th><td><a href=#figcaption><code>figcaption</code></a>
+    </td><td><a href=#html-namespace>HTML namespace</a>
 
   </td></tr><tr>
     <th><a href=#concept-history><code title=concept-HISTORY>HISTORY</code></a>
@@ -3514,7 +3539,7 @@ name</a> in the following table:
 
   </td></tr><tr>
     <th><a href=#concept-note><code title=concept-NOTE>NOTE</code></a>
-    </th><td><code>note</code>
+    </th><td><a href=#note><code>note</code></a>
     </td><td><a href=#html3-namespace>HTML3 namespace</a>
 
   </td></tr><tr>

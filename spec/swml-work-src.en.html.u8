@@ -213,6 +213,11 @@ specification</a>:
 
 <p>The <dfn>HTML3 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
+Following element is defined in the <span>HTML3 namespace</span>:
+
+<ul class=short>
+<li><dfn><code>note</code></dfn>
+</ul>
 
 <p>The <dfn>XHTML2 namespace</dfn> is
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
@@ -227,8 +232,11 @@ specification</a>:
 <h1>Definitions</h1>
 
 <p>Terms
-<dfn>node tree</dfn> and
-<dfn>element</dfn>
+<dfn>node tree</dfn>,
+<dfn>element</dfn>,
+<dfn>attribute</dfn>,
+<dfn>namespace</dfn><!-- element's and attribute's -->, and
+<dfn>namespace prefix</dfn><!-- element's and attribute's -->
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -1891,25 +1899,24 @@ time immediately after the <code>innerHTML</code> is set.  The
 class=rfc2119>MUST</em> be invoked on <var>node</var> with the
 argument <var>char</var>.
 
-<p>When an element is created, its <code>prefix</code> <span>IDL
-attribute</span> <em class=rfc2119>MUST</em> be set to
-<code>null</code>.
+<p>When an <span>element</span> is created, its <span>namespace
+prefix</span> <em class=rfc2119>MUST</em> be set to <code>null</code>.
 
-<p>When an attribute is created, unless otherwise specified, its
-<code>prefix</code> and <code>namespaceURI</code> <span title="IDL
-attribute">IDL attributes</span> <em class=rfc2119>MUST</em> both set
-to <code>null</code>.
-
-<p>When an attribute in a namespace is created, its
-<code>prefix</code> <span>IDL attribute</span> <em
-class=rfc2119>MUST</em> be set to the <dfn>preferred prefix</dfn> for
-the namespace.
+<p>When an <span>attribute</span> is created, its
+<span>namespace</span> and <span>namespace
+prefix</span> <em class=rfc2119>MUST</em> both set
+to <code>null</code>, unless an <span>attribute</span>
+in <var>namespace</var> is created, in which case
+its <span>namespace</span> <em class=rfc2119>MUST</em> be set to
+the <var>namespace</var>'s URL and its <span>namespace
+prefix</span> <em class=rfc2119>MUST</em> be set
+to <var>namespace</var>'s <dfn>preferred prefix</dfn>.
 
 <hr>
 
 <p>A <dfn>class specification</dfn> is a string consist of a
 <code>(</code> character, followed by zero or more character that is
-<em>not</em> one of <code>)</code>, <code>)</code>, or <span>white
+<em>not</em> one of <code>(</code>, <code>)</code>, or <span>white
 space characters</span>, and finally followed by a <code>)</code>
 character.  <!-- Though the SuikaWiki3 implementation of the parser
 support quoted-pair in class specification in [PRE[ block start tag
@@ -3542,7 +3549,8 @@ of the bottommost entry in the <span>stack of open elements</span>.
 
 <p><dfn>Block elements</dfn> are <span title=element>elements</span>
 whose <span title=element-local-name>local name</span> is one
-of <code>delete</code>, <code>example</code>, <code>history</code>,
+of <code>delete</code>, <code>example</code>, <code>figcaption</code>,
+<code>figure</code>, <code>history</code>,
 <code>insert</code>, <code>note</code>, <code>postamble</code>, 
 <code>preamble</code>, and <code>refs</code>.
 
@@ -3555,6 +3563,11 @@ of <code title=element-html-body>body</code>, <code>section</code>,
 <code>dd</code>, <code>table</code>, <code>tbody</code>, <code>th</code>,
 <code>tr</code>, <code>td</code>, <code>p</code>, <code>comment-p</code>,
 <code>ed</code>, and <code>pre</code>.
+
+<div class="note memo">
+<p>The parser does not have to
+check <span title=element>elements</span>' <span title=namespace>namespaces</span>.
+</div>
 
 <section>
 <h1>The "<span>in section</span>" <span>insertion mode</span></h1>
@@ -3651,9 +3664,19 @@ name</span> in the following table:
     <td><span>SuikaWiki/0.9 namespace</span>
 
   <tr>
-    <th><code title=concept-DELETE>EG</code>
+    <th><code title=concept-EG>EG</code>
     <td><code>example</code>
     <td><span>SuikaWiki/0.9 namespace</span>
+
+  <tr>
+    <th><code title=concept-FIG>FIG</code>
+    <td><code>figure</code>
+    <td><span>HTML namespace</span>
+
+  <tr>
+    <th><code title=concept-FIGCAPTION>FIGCAPTION</code>
+    <td><code>figcaption</code>
+    <td><span>HTML namespace</span>
 
   <tr>
     <th><code title=concept-HISTORY>HISTORY</code>
