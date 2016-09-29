@@ -962,55 +962,7 @@ the <span title=concept-section-block>section block</span>.
 The <span title=concept-section-block-tag-name>section block tag
 name</span> of a <span title=concept-section-block>section
 block</span> has to be the same value.  Their semantics are described
-by the following table:
-
-<table>
-
-<thead>
-  <tr>
-    <th><span title=concept-section-block-tag-name>Tag name</span>
-    <th>Semantics
-
-<tbody>
-  <tr>
-    <th><dfn title=concept-DELETE><code>DEL</code></dfn>
-    <td>Removal (<code>delete</code> element)
-  <tr>
-    <th><dfn title=concept-EG><code>EG</code></dfn>
-    <td>Example (<code>example</code> element)
-  <tr>
-    <th><dfn title=concept-FIG><code>FIG</code></dfn>
-    <td>Figure (HTML <code>figure</code> element)
-  <tr>
-    <th><dfn title=concept-FIGCAPTION><code>FIGCAPTION</code></dfn>
-    <td>Figure caption (HTML <code>figcaption</code> element)
-  <tr>
-    <th><dfn title=concept-HISTORY><code>HISTORY</code></dfn>
-    <td>Historical notes (<code>history</code> element)
-  <tr>
-    <th><dfn title=concept-INSERT><code>INS</code></dfn>
-    <td>Insertion (<code>insert</code> element)
-  <tr>
-    <th><dfn title=concept-NOTE><code>NOTE</code></dfn>
-    <td>Note (HTML3 <code>note</code> element)
-  <tr>
-    <th><dfn title=concept-POSTAMBLE><code>POSTAMBLE</code></dfn>
-    <td>Postamble (<code>postamble</code> element)
-  <tr>
-    <th><dfn title=concept-PREAMBLE><code>PREAMBLE</code></dfn>
-    <td>Preamble (<code>preamble</code> element)
-  <tr>
-    <th><dfn title=concept-REFS><code>REFS</code></dfn>
-    <td>Referenced documents (<code>refs</code> element)
-
-</table>
-
-<div class="note memo">
-
-<p>A future revison to this specification might define
-more <span title=concept-section-block-tag-name>tag names</span>.
-
-</div>
+by the <a href=#Block-Element-Table>Block Element Table</a>.
 
 <dl class=abnf>
 
@@ -3640,75 +3592,17 @@ is <em>not</em> <code>PRE</code>
 
 <ol class=steps>
 
+<li>Let <var>row</var> be the table row of
+the <a href=#Block-Element-Table>Block Element Table</a>
+whose <span title=block-start-tag-tag-name>tag name</span> is
+the <span>token</span>'s <span title=block-start-tag-tag-name>tag
+name</span>.
+
 <li>Create an <span>element</span>
 whose <span title=concept-element-namespace>namespace</span>
-and <span title=concept-element-local-name>local name</span> is the
-values in the same row as
-the <span>token</span>'s <span title=block-start-tag-tag-name>tag
-name</span> in the following table:
-
-  <table>
-
-  <thead>
-
-  <tr>
-    <th><span title=block-start-tag-tag-name>tag name</span>
-    <th><span title=concept-element-local-name>local name</span>
-    <th><span title=concept-element-namespace>namespace</span>
-
-  <tbody>
-
-  <tr>
-    <th><code title=concept-DELETE>DEL</code>
-    <td><code>delete</code>
-    <td><span>SuikaWiki/0.9 namespace</span>
-
-  <tr>
-    <th><code title=concept-EG>EG</code>
-    <td><code>example</code>
-    <td><span>SuikaWiki/0.9 namespace</span>
-
-  <tr>
-    <th><code title=concept-FIG>FIG</code>
-    <td><code>figure</code>
-    <td><span>HTML namespace</span>
-
-  <tr>
-    <th><code title=concept-FIGCAPTION>FIGCAPTION</code>
-    <td><code>figcaption</code>
-    <td><span>HTML namespace</span>
-
-  <tr>
-    <th><code title=concept-HISTORY>HISTORY</code>
-    <td><code>history</code>
-    <td><span>SuikaWiki/0.9 namespace</span>
-
-  <tr>
-    <th><code title=concept-INSERT>INS</code>
-    <td><code>insert</code>
-    <td><span>SuikaWiki/0.9 namespace</span>
-
-  <tr>
-    <th><code title=concept-NOTE>NOTE</code>
-    <td><code>note</code>
-    <td><span>HTML3 namespace</span>
-
-  <tr>
-    <th><code title=concept-POSTAMBLE>POSTAMBLE</code>
-    <td><code>postamble</code>
-    <td><span>SuikaWiki/0.9 namespace</span>
-
-  <tr>
-    <th><code title=concept-PREAMBLE>PREAMBLE</code>
-    <td><code>preamble</code>
-    <td><span>SuikaWiki/0.9 namespace</span>
-
-  <tr>
-    <th><code title=concept-REFS>REFS</code>
-    <td><code>refs</code>
-    <td><span>SuikaWiki/0.9 namespace</span>
-
-  </table>
+is <var>row</var>'s <span title=concept-element-namespace>namespace</span>
+and whose <span title=concept-element-local-name>local name</span>
+is <var>row</var>'s <span title=concept-element-namespace>namespace</span>.
 
 <li>Append the element created to the <span>current element</span>.
 
@@ -3733,11 +3627,15 @@ is <em>not</em> <code>PRE</code>
 
 <ol class=steps>
 
-<li>Let <var>local name</var> be
-the <span title=concept-element-local-name>local name</span> is the
-values in the same row as
+<li>Let <var>row</var> be the table row of
+the <a href=#Block-Element-Table>Block Element Table</a>
+whose <span title=block-start-tag-tag-name>tag name</span> is
 the <span>token</span>'s <span title=block-end-tag-tag-name>tag
-name</span> in the previous table.
+name</span>.
+
+<li>Let <var>local name</var>
+be <var>row</var>'s <span title=concept-element-local-name>local
+name</span>.
 
 <li>If the <span>stack of open elements</span> contains
 an <span>element</span>
@@ -4877,6 +4775,98 @@ mode</span> and reprocess the <span>token</span>.
 <h1>Serializing <span>SWML text serialization</span> documents</h1>
 
 <p class=XXX>...
+</section>
+
+<section>
+<h1>Element definitions for the SWML text serialization</h1>
+
+<p>The following "<a href=#Block-Element-Table>Block Element
+Table</a>" is referenced from the parser:
+
+  <table id=Block-Element-Table>
+
+  <thead>
+
+  <tr>
+    <th><span title=block-start-tag-tag-name>Tag name</span>
+    <th><span title=concept-element-local-name>Local name</span>
+    <th><span title=concept-element-namespace>Namespace</span>
+    <th>Semantics (non-normative)
+
+  <tbody>
+
+  <tr>
+    <th><dfn title=concept-DELETE><code>DEL</code></dfn>
+    <td><code>delete</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>Removal.
+
+  <tr>
+    <th><dfn title=concept-EG><code>EG</code></dfn>
+    <td><code>example</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>Example.
+
+  <tr>
+    <th><dfn title=concept-FIG><code>FIG</code></dfn>
+    <td><code>figure</code>
+    <td><span>HTML namespace</span>
+    <td>Figure.
+
+  <tr>
+    <th><dfn title=concept-FIGCAPTION><code>FIGCAPTION</code></dfn>
+    <td><code>figcaption</code>
+    <td><span>HTML namespace</span>
+    <td>Figure caption.
+
+  <tr>
+    <th><dfn title=concept-HISTORY><code>HISTORY</code></dfn>
+    <td><code>history</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>Historical notes.
+
+  <tr>
+    <th><dfn title=concept-INSERT><code>INS</code></dfn>
+    <td><code>insert</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>Insertion.
+
+  <tr>
+    <th><dfn title=concept-NOTE><code>NOTE</code></dfn>
+    <td><code>note</code>
+    <td><span>HTML3 namespace</span>
+    <td>Note.
+
+  <tr>
+    <th><dfn title=concept-POSTAMBLE><code>POSTAMBLE</code></dfn>
+    <td><code>postamble</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>Postamble.
+
+  <tr>
+    <th><dfn title=concept-PREAMBLE><code>PREAMBLE</code></dfn>
+    <td><code>preamble</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>Preamble.
+
+  <tr>
+    <th><dfn title=concept-REFS><code>REFS</code></dfn>
+    <td><code>refs</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>References and quotations.
+
+  </table>
+
+<div class="note memo">
+<p>A future revison to this specification might define
+more <span title=concept-section-block-tag-name>tag names</span>.
+</div>
+
+<div class="note memo">
+<p>The semantics of an element is formally defined in terms of
+corresponding DOM <span title=element>elements</span>.
+</div>
+
 </section>
 
 <section>
