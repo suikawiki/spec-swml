@@ -962,7 +962,7 @@ the <span title=concept-section-block>section block</span>.
 The <span title=concept-section-block-tag-name>section block tag
 name</span> of a <span title=concept-section-block>section
 block</span> has to be the same value.  Their semantics are described
-by the <a href=#Block-Element-Table>Block Element Table</a>.
+by the <span>Block Element Table</span>.
 
 <dl class=abnf>
 
@@ -3499,28 +3499,6 @@ tuple unless otherwise specified.
 <p>The <dfn>current element</dfn> is the <span>element node</span>
 of the bottommost entry in the <span>stack of open elements</span>.
 
-<p><dfn>Block elements</dfn> are <span title=element>elements</span>
-whose <span title=element-local-name>local name</span> is one
-of <code>delete</code>, <code>example</code>, <code>figcaption</code>,
-<code>figure</code>, <code>history</code>,
-<code>insert</code>, <code>note</code>, <code>postamble</code>, 
-<code>preamble</code>, and <code>refs</code>.
-
-<p><dfn>Structural elements</dfn> are <span>block elements</span> and
-<span title=element>elements</span>
-whose <span title=element-local-name>local name</span> is one
-of <code title=element-html-body>body</code>, <code>section</code>,
-<code>blockquote</code>, <code>h1</code>, <code>ul</code>,
-<code>ol</code>, <code>dl</code>, <code>li</code>, <code>dt</code>,
-<code>dd</code>, <code>table</code>, <code>tbody</code>, <code>th</code>,
-<code>tr</code>, <code>td</code>, <code>p</code>, <code>comment-p</code>,
-<code>ed</code>, and <code>pre</code>.
-
-<div class="note memo">
-<p>The parser does not have to
-check <span title=element>elements</span>' <span title=namespace>namespaces</span>.
-</div>
-
 <section>
 <h1>The "<span>in section</span>" <span>insertion mode</span></h1>
 
@@ -3592,9 +3570,9 @@ is <em>not</em> <code>PRE</code>
 
 <ol class=steps>
 
-<li>Let <var>row</var> be the table row of
-the <a href=#Block-Element-Table>Block Element Table</a>
-whose <span title=block-start-tag-tag-name>tag name</span> is
+<li>Let <var>row</var> be the table row of the <span>Block Element
+Table</span> whose <span title=block-start-tag-tag-name>tag
+name</span> is
 the <span>token</span>'s <span title=block-start-tag-tag-name>tag
 name</span>.
 
@@ -3627,9 +3605,9 @@ is <em>not</em> <code>PRE</code>
 
 <ol class=steps>
 
-<li>Let <var>row</var> be the table row of
-the <a href=#Block-Element-Table>Block Element Table</a>
-whose <span title=block-start-tag-tag-name>tag name</span> is
+<li>Let <var>row</var> be the table row of the <span>Block Element
+Table</span> whose <span title=block-start-tag-tag-name>tag
+name</span> is
 the <span>token</span>'s <span title=block-end-tag-tag-name>tag
 name</span>.
 
@@ -4780,10 +4758,10 @@ mode</span> and reprocess the <span>token</span>.
 <section>
 <h1>Element definitions for the SWML text serialization</h1>
 
-<p>The following "<a href=#Block-Element-Table>Block Element
-Table</a>" is referenced from the parser:
+<p>The following <dfn>Block Element Table</dfn> is referenced from the
+parser:
 
-  <table id=Block-Element-Table>
+  <table>
 
   <thead>
 
@@ -4866,6 +4844,28 @@ more <span title=concept-section-block-tag-name>tag names</span>.
 <p>The semantics of an element is formally defined in terms of
 corresponding DOM <span title=element>elements</span>.
 </div>
+
+<p><dfn>Block elements</dfn> are <span title=element>elements</span>
+whose <span title=concept-element-local-name>local name</span> is one
+of <span title=concept-element-local-name>local names</span> in
+the <span>Block Element Table</span>.
+
+<p><dfn>Structural elements</dfn> are <span>block elements</span> and
+<span title=element>elements</span>
+whose <span title=element-local-name>local name</span> is one
+of <code title=element-html-body>body</code>, <code>section</code>,
+<code>blockquote</code>, <code>h1</code>, <code>ul</code>,
+<code>ol</code>, <code>dl</code>, <code>li</code>, <code>dt</code>,
+<code>dd</code>, <code>table</code>, <code>tbody</code>, <code>th</code>,
+<code>tr</code>, <code>td</code>, <code>p</code>, <code>comment-p</code>,
+<code>ed</code>, and <code>pre</code>.
+
+<div class="note memo">
+<p>These definitions are referenced from the parser.  The parser does
+not have to
+check <span title=element>elements</span>' <span title=namespace>namespaces</span>.
+</div>
+
 
 </section>
 

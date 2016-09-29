@@ -978,7 +978,7 @@ the <a href=#concept-section-block title=concept-section-block>section block</a>
 The <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
 name</a> of a <a href=#concept-section-block title=concept-section-block>section
 block</a> has to be the same value.  Their semantics are described
-by the <a href=#Block-Element-Table>Block Element Table</a>.
+by the <a href=#block-element-table>Block Element Table</a>.
 
 </p><dl class=abnf>
 
@@ -3350,29 +3350,7 @@ tuple unless otherwise specified.
 </p><p>The <dfn id=current-element>current element</dfn> is the <a href=#element-node>element node</a>
 of the bottommost entry in the <a href=#stack-of-open-elements>stack of open elements</a>.
 
-</p><p><dfn id=block-elements>Block elements</dfn> are <a href=#element title=element>elements</a>
-whose <a href=#element-local-name title=element-local-name>local name</a> is one
-of <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>, <a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>, <a href=#figcaption><code>figcaption</code></a>,
-<a href=#figure><code>figure</code></a>, <a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a>,
-<a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>, <a href=#note><code>note</code></a>, <a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a>, 
-<a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><code>preamble</code></a>, and <a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a>.
-
-</p><p><dfn id=structural-elements>Structural elements</dfn> are <a href=#block-elements>block elements</a> and
-<a href=#element title=element>elements</a>
-whose <a href=#element-local-name title=element-local-name>local name</a> is one
-of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a href=#section><code>section</code></a>,
-<a href=#blockquote><code>blockquote</code></a>, <a href=#h1><code>h1</code></a>, <a href=#ul><code>ul</code></a>,
-<a href=#ol><code>ol</code></a>, <a href=#dl><code>dl</code></a>, <a href=#li><code>li</code></a>, <a href=#dt><code>dt</code></a>,
-<a href=#dd><code>dd</code></a>, <a href=#table><code>table</code></a>, <a href=#tbody><code>tbody</code></a>, <a href=#th><code>th</code></a>,
-<a href=#tr><code>tr</code></a>, <a href=#td><code>td</code></a>, <a href=#p><code>p</code></a>, <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>,
-<a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, and <a href=#pre><code>pre</code></a>.
-
-</p><div class="note memo">
-<p>The parser does not have to
-check <a href=#element title=element>elements</a>' <a href=#namespace title=namespace>namespaces</a>.
-</p></div>
-
-<section>
+</p><section>
 <h1 id=the-in-section-insertion-mode><span class=secno>4.5.1 </span>The "<a href=#in-section>in section</a>" <a href=#insertion-mode>insertion mode</a></h1>
 
 <p>In the "<dfn id=in-section>in section</dfn>" <a href=#insertion-mode>insertion mode</a>, a
@@ -3441,9 +3419,9 @@ is <em>not</em> <a href=#pre><code>PRE</code></a>
 
 <ol class=steps>
 
-<li>Let <var>row</var> be the table row of
-the <a href=#Block-Element-Table>Block Element Table</a>
-whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
+<li>Let <var>row</var> be the table row of the <a href=#block-element-table>Block Element
+Table</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag
+name</a> is
 the <a href=#token>token</a>'s <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag
 name</a>.
 
@@ -3474,9 +3452,9 @@ is <em>not</em> <a href=#pre><code>PRE</code></a>
 
 <ol class=steps>
 
-<li>Let <var>row</var> be the table row of
-the <a href=#Block-Element-Table>Block Element Table</a>
-whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a> is
+<li>Let <var>row</var> be the table row of the <a href=#block-element-table>Block Element
+Table</a> whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag
+name</a> is
 the <a href=#token>token</a>'s <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag
 name</a>.
 
@@ -4593,10 +4571,10 @@ mode</a> and reprocess the <a href=#token>token</a>.
 <section>
 <h1 id=element-definitions-for-the-swml-text-serialization><span class=secno>6 </span>Element definitions for the SWML text serialization</h1>
 
-<p>The following "<a href=#Block-Element-Table>Block Element
-Table</a>" is referenced from the parser:
+<p>The following <dfn id=block-element-table>Block Element Table</dfn> is referenced from the
+parser:
 
-  </p><table id=Block-Element-Table>
+  </p><table>
 
   <thead>
 
@@ -4679,6 +4657,28 @@ more <a href=#concept-section-block-tag-name title=concept-section-block-tag-nam
 <p>The semantics of an element is formally defined in terms of
 corresponding DOM <a href=#element title=element>elements</a>.
 </p></div>
+
+<p><dfn id=block-elements>Block elements</dfn> are <a href=#element title=element>elements</a>
+whose <span title=concept-element-local-name>local name</span> is one
+of <span title=concept-element-local-name>local names</span> in
+the <a href=#block-element-table>Block Element Table</a>.
+
+</p><p><dfn id=structural-elements>Structural elements</dfn> are <a href=#block-elements>block elements</a> and
+<a href=#element title=element>elements</a>
+whose <a href=#element-local-name title=element-local-name>local name</a> is one
+of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a href=#section><code>section</code></a>,
+<a href=#blockquote><code>blockquote</code></a>, <a href=#h1><code>h1</code></a>, <a href=#ul><code>ul</code></a>,
+<a href=#ol><code>ol</code></a>, <a href=#dl><code>dl</code></a>, <a href=#li><code>li</code></a>, <a href=#dt><code>dt</code></a>,
+<a href=#dd><code>dd</code></a>, <a href=#table><code>table</code></a>, <a href=#tbody><code>tbody</code></a>, <a href=#th><code>th</code></a>,
+<a href=#tr><code>tr</code></a>, <a href=#td><code>td</code></a>, <a href=#p><code>p</code></a>, <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>,
+<a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, and <a href=#pre><code>pre</code></a>.
+
+</p><div class="note memo">
+<p>These definitions are referenced from the parser.  The parser does
+not have to
+check <a href=#element title=element>elements</a>' <a href=#namespace title=namespace>namespaces</a>.
+</p></div>
+
 
 </section>
 
