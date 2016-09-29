@@ -962,10 +962,23 @@ a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>s
 name</a>, followed by an
 optional <a href=#concept-class-specification title=concept-class-specification>class
 specification</a>, followed by a <code>[</code> character, followed
-by zero or more <a href=#white-space-characters>white space characters</a>, followed by
-a <a href=#concept-newline title=concept-newline>newline</a>.
+by zero or more <a href=#white-space-characters>white space characters</a>, optionally
+followed by <span title=concept-line-contents>line contents</span>,
+followed by a <a href=#concept-newline title=concept-newline>newline</a>.
 
-</p><p>A <dfn id=concept-section-block-end-tag title=concept-section-block-end-tag>section block end
+</p><p>Whether the <span title=concept-line-contents>line contents</span>
+component is allowed or not and its semantics depends on
+the <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a>.
+
+</p><div class="note memo">
+<p>For example, the <span title=concept-line-contents>line
+contents</span> component of a <a href=#concept-fig><code title=concept-FIG>FIG</code></a>
+block represents a caption (i.e. a short form
+of <a href=#concept-figcaption><code title=concept-FIGCAPTION>FIGCAPTION</code></a> child.
+</p></div>
+
+<p>A <dfn id=concept-section-block-end-tag title=concept-section-block-end-tag>section block end
 tag</dfn> is a <code>]</code> character, followed by
 a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
 name</a>, followed by a <code>]</code> character, followed by zero
@@ -987,6 +1000,8 @@ by the <a href=#block-element-table>Block Element Table</a>.
 </dt><dd>= '[' <a href=#abnf-tag-name title=abnf-tag-name>tag-name</a>
 [<a href=#abnf-class-specification title=abnf-class-specification>class-specification</a>] "["
 *<a href=#abnf-white-space title=abnf-white-space>white-space</a>
+[<a href=#abnf-destination-anchor-number title=abnf-destination-anchor-number>destination-anchor-number</a>]
+[<a href=#abnf-line-contents title=abnf-line-contents>line-contents</a>]
 <a href=#abnf-newline title=abnf-newline>newline</a>
 <a href=#abnf-body-part title=abnf-body-part>body-part</a>
 ']' <a href=#abnf-tag-name title=abnf-tag-name>tag-name</a> ']'
@@ -2327,7 +2342,8 @@ character, followed by
 a <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
 name</a>, optionally followed by <a href=#class-specification>class specification</a>,
 followed by a <code>[</code> character, followed by zero or
-more <a href=#white-space-characters>white space characters</a>
+more <a href=#white-space-characters>white space characters</a>, followed by zero or
+more <span title=character>characters</span>
 
 </dt><dd>
 
@@ -2339,6 +2355,26 @@ the <a href=#concept-section-block-tag-name title=concept-section-block-tag-name
 name</a>, and <a href=#block-start-tag-classes title=block-start-tag-classes>classes</a> is
 the <a href=#body-of-a-class-specification title="body of a class specification">body</a> of
 the <a href=#class-specification>class specification</a>, if any, or null otherwise.
+
+</li><li>Remove the substring of <var>line</var>, from the beginning of the
+string, to the <code>[</code> character after
+the <a href=#concept-section-block-tag-name title=concept-section-block-tag-name>section block tag
+name</a> and <a href=#class-specification>class specification</a> (if any),
+from <var>line</var>.
+
+</li><li>Remove <a href=#white-space-characters>white space characters</a> at the beginning of
+<var>line</var>, if any.
+
+</li><li>Emit a <a href=#block-start-tag-token>block start tag token</a>
+whose <a href=#block-start-tag-tag-name title=block-start-tag-tag-name>tag name</a>
+is <a href=#concept-figcaption><code title=concept-FIGCAPTION>FIGCAPTION</code></a>.
+
+</li><li>Run the <a href=#algorithm-to-tokenize-a-text>algorithm to tokenize a text</a> with
+<var>line</var>.
+
+</li><li>Emit a <a href=#block-end-tag-token>block end tag token</a>
+whose <a href=#block-end-tag-tag-name title=block-end-tag-tag-name>tag name</a>
+is <a href=#concept-figcaption><code title=concept-FIGCAPTION>FIGCAPTION</code></a>.
 
 </li><li>Set the <a href=#continuous-line-flag>continuous line flag</a> to false.
 
@@ -4583,6 +4619,7 @@ parser:
     </th><th><span title=concept-element-local-name>Local name</span>
     </th><th><span title=concept-element-namespace>Namespace</span>
     </th><th>Semantics (non-normative)
+    </th><th>Semantics of start tag's <span title=concept-line-contents>line contents</span> (non-normative)
 
   </th></tr></thead><tbody>
 
@@ -4591,60 +4628,70 @@ parser:
     </th><td><a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>Removal.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-eg title=concept-EG><code>EG</code></dfn>
     </th><td><a href=#the-example-element-in-the-suikawiki/0.9-namespace><code>example</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>Example.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-fig title=concept-FIG><code>FIG</code></dfn>
     </th><td><a href=#figure><code>figure</code></a>
     </td><td><a href=#html-namespace>HTML namespace</a>
     </td><td>Figure.
+    </td><td>Figure caption.
 
   </td></tr><tr>
     <th><dfn id=concept-figcaption title=concept-FIGCAPTION><code>FIGCAPTION</code></dfn>
     </th><td><a href=#figcaption><code>figcaption</code></a>
     </td><td><a href=#html-namespace>HTML namespace</a>
     </td><td>Figure caption.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-history title=concept-HISTORY><code>HISTORY</code></dfn>
     </th><td><a href=#the-history-element-in-the-suikawiki/0.9-namespace><code>history</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>Historical notes.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-insert title=concept-INSERT><code>INS</code></dfn>
     </th><td><a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>Insertion.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-note title=concept-NOTE><code>NOTE</code></dfn>
     </th><td><a href=#note><code>note</code></a>
     </td><td><a href=#html3-namespace>HTML3 namespace</a>
     </td><td>Note.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-postamble title=concept-POSTAMBLE><code>POSTAMBLE</code></dfn>
     </th><td><a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><code>postamble</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>Postamble.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-preamble title=concept-PREAMBLE><code>PREAMBLE</code></dfn>
     </th><td><a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><code>preamble</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>Preamble.
+    </td><td>Not allowed.
 
   </td></tr><tr>
     <th><dfn id=concept-refs title=concept-REFS><code>REFS</code></dfn>
     </th><td><a href=#the-refs-element-in-the-suikawiki/0.9-namespace><code>refs</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>References and quotations.
+    </td><td>Not allowed.
 
   </td></tr></tbody></table>
 

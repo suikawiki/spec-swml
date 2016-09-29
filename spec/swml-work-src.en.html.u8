@@ -946,8 +946,21 @@ a <span title=concept-section-block-tag-name>section block tag
 name</span>, followed by an
 optional <span title=concept-class-specification>class
 specification</span>, followed by a <code>[</code> character, followed
-by zero or more <span>white space characters</span>, followed by
-a <span title=concept-newline>newline</span>.
+by zero or more <span>white space characters</span>, optionally
+followed by <span title=concept-line-contents>line contents</span>,
+followed by a <span title=concept-newline>newline</span>.
+
+<p>Whether the <span title=concept-line-contents>line contents</span>
+component is allowed or not and its semantics depends on
+the <span title=concept-section-block-tag-name>section block tag
+name</span>.
+
+<div class="note memo">
+<p>For example, the <span title=concept-line-contents>line
+contents</span> component of a <code title=concept-FIG>FIG</code>
+block represents a caption (i.e. a short form
+of <code title=concept-FIGCAPTION>FIGCAPTION</code> child.
+</div>
 
 <p>A <dfn title=concept-section-block-end-tag>section block end
 tag</dfn> is a <code>]</code> character, followed by
@@ -971,6 +984,9 @@ by the <span>Block Element Table</span>.
 <dd>= '[' <span title=abnf-tag-name>tag-name</span>
 [<span title=abnf-class-specification>class-specification</span>] "["
 *<span title=abnf-white-space>white-space</span>
+[<span
+title=abnf-destination-anchor-number>destination-anchor-number</span>]
+[<span title=abnf-line-contents>line-contents</span>]
 <span title=abnf-newline>newline</span>
 <span title=abnf-body-part>body-part</span>
 ']' <span title=abnf-tag-name>tag-name</span> ']'
@@ -2421,7 +2437,8 @@ character, followed by
 a <span title=concept-section-block-tag-name>section block tag
 name</span>, optionally followed by <span>class specification</span>,
 followed by a <code>[</code> character, followed by zero or
-more <span>white space characters</span>
+more <span>white space characters</span>, followed by zero or
+more <span title=character>characters</span>
 
 <dd>
 
@@ -2433,6 +2450,26 @@ the <span title=concept-section-block-tag-name>section block tag
 name</span>, and <span title=block-start-tag-classes>classes</span> is
 the <span title="body of a class specification">body</span> of
 the <span>class specification</span>, if any, or null otherwise.
+
+<li>Remove the substring of <var>line</var>, from the beginning of the
+string, to the <code>[</code> character after
+the <span title=concept-section-block-tag-name>section block tag
+name</span> and <span>class specification</span> (if any),
+from <var>line</var>.
+
+<li>Remove <span>white space characters</span> at the beginning of
+<var>line</var>, if any.
+
+<li>Emit a <span>block start tag token</span>
+whose <span title=block-start-tag-tag-name>tag name</span>
+is <code title=concept-FIGCAPTION>FIGCAPTION</code>.
+
+<li>Run the <span>algorithm to tokenize a text</span> with
+<var>line</var>.
+
+<li>Emit a <span>block end tag token</span>
+whose <span title=block-end-tag-tag-name>tag name</span>
+is <code title=concept-FIGCAPTION>FIGCAPTION</code>.
 
 <li>Set the <span>continuous line flag</span> to false.
 
@@ -4770,6 +4807,7 @@ parser:
     <th><span title=concept-element-local-name>Local name</span>
     <th><span title=concept-element-namespace>Namespace</span>
     <th>Semantics (non-normative)
+    <th>Semantics of start tag's <span title=concept-line-contents>line contents</span> (non-normative)
 
   <tbody>
 
@@ -4778,60 +4816,70 @@ parser:
     <td><code>delete</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>Removal.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-EG><code>EG</code></dfn>
     <td><code>example</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>Example.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-FIG><code>FIG</code></dfn>
     <td><code>figure</code>
     <td><span>HTML namespace</span>
     <td>Figure.
+    <td>Figure caption.
 
   <tr>
     <th><dfn title=concept-FIGCAPTION><code>FIGCAPTION</code></dfn>
     <td><code>figcaption</code>
     <td><span>HTML namespace</span>
     <td>Figure caption.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-HISTORY><code>HISTORY</code></dfn>
     <td><code>history</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>Historical notes.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-INSERT><code>INS</code></dfn>
     <td><code>insert</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>Insertion.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-NOTE><code>NOTE</code></dfn>
     <td><code>note</code>
     <td><span>HTML3 namespace</span>
     <td>Note.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-POSTAMBLE><code>POSTAMBLE</code></dfn>
     <td><code>postamble</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>Postamble.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-PREAMBLE><code>PREAMBLE</code></dfn>
     <td><code>preamble</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>Preamble.
+    <td>Not allowed.
 
   <tr>
     <th><dfn title=concept-REFS><code>REFS</code></dfn>
     <td><code>refs</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>References and quotations.
+    <td>Not allowed.
 
   </table>
 
