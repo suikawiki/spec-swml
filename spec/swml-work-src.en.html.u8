@@ -254,7 +254,9 @@ Standard</cite></a>.
 whitespace</dfn></a>,
 <a href=https://html.spec.whatwg.org/#text-content><dfn title="text
 content">text</dfn></a>,
-<dfn>flow content</dfn>, <dfn>phrasing content</dfn>,
+<dfn>flow content</dfn>,
+<dfn>phrasing content</dfn>,
+<dfn>script-supporting elements</dfn>,
 and
 <a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn>nothing</dfn></a>
 are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
@@ -2470,16 +2472,23 @@ from <var>line</var>.
 
 <ol>
 
+<li>Set <var>tag name</var>
+to <code title=concept-FIGCAPTION>FIGCAPTION</code>.
+
+<li>If the the <span title=concept-section-block-tag-name>section
+block tag name</span> is <code title=concept-TALK>TALK</code>,
+set <var>tag name</var> to <code title=concept-SPEAKER>SPEAKER</code>.
+
 <li>Emit a <span>block start tag token</span>
-whose <span title=block-start-tag-tag-name>tag name</span>
-is <code title=concept-FIGCAPTION>FIGCAPTION</code>.
+whose <span title=block-start-tag-tag-name>tag name</span> is <var>tag
+name</var>.
 
 <li>Run the <span>algorithm to tokenize a text</span> with
 <var>line</var>.
 
 <li>Emit a <span>block end tag token</span>
-whose <span title=block-end-tag-tag-name>tag name</span>
-is <code title=concept-FIGCAPTION>FIGCAPTION</code>.
+whose <span title=block-end-tag-tag-name>tag name</span> is <var>tag
+name</var>.
 
 </ol>
 
@@ -3619,6 +3628,43 @@ is <em>not</em> <code>PRE</code>
 
 <ol class=steps>
 
+<li>If
+the <span>token</span>'s <span title=block-start-tag-tag-name>tag
+name</span> is <code title=concept-TALK>TALK</code>:
+
+  <ol>
+
+  <li>If the <span>current
+  element</span>'s <span title=concept-element-local-name>local
+  name</span> is <em>not</em> <code>dialogue</code>:
+
+    <ol>
+
+    <li>Let <var>element</var> be
+    a <code>dialogue</code> <span>element</span> in
+    the <span>SuikaWiki/0.9 namespace</span>.
+
+    <li>Append <var>element</var> created to the <span>current
+    element</span>.
+
+    <li>Push <var>element</var> to the <span>stack of open
+    elements</span>.
+
+    </ol>
+
+  </ul>
+
+<li>Otherwise:
+
+  <ol>
+
+  <li>If the <span>current
+  element</span>'s <span title=concept-element-local-name>local
+  name</span> is <code>dialogue</code>, pop the <span>current
+  element</span> off the <span>stack of open elements</span>.
+
+  </ul>
+
 <li>Let <var>row</var> be the table row of the <span>Block Element
 Table</span> whose <span title=block-start-tag-tag-name>tag
 name</span> is
@@ -3736,6 +3782,11 @@ first substep of these substeps.
 
 <ol class=steps>
 
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
+
 <li>Let <var title>current depth</var> be the <span>list depth</span>
 of the <span>current element</span>.
 
@@ -3833,6 +3884,11 @@ specification, it MUST generate a dl element with two ul elements.
 
 <ol class=steps>
 
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
+
 <li>If the local name of the <span>current element</span> is
 <code>dd</code>, pop the element off the <span>stack of open
 elements</span>.
@@ -3861,6 +3917,11 @@ mode</span>.
 <dd>
 
 <ol class=steps>
+
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
 
 <li>Create a <code>table</code> element in the <span>HTML
 namespace</span>.
@@ -3898,6 +3959,11 @@ title=block-start-tag-tag-name>tag name</span> is <code>PRE</code>
 
 <ol class=steps>
 
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
+
 <li>Create a <code>pre</code> element in the <span>HTML
 namespace</span>.
 
@@ -3923,6 +3989,11 @@ mode</span>.
 
 <ol class=steps>
 
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
+
 <li>Create a <code>pre</code> element in the <span>HTML
 namespace</span>.
 
@@ -3941,6 +4012,11 @@ mode</span>.
 <dd>
 
 <ol class=steps>
+
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
 
 <li>Create a <code>comment-p</code> element in the
 <span>SuikaWiki/0.10 namespace</span>.
@@ -3962,6 +4038,11 @@ mode</span>.
 
 <ol class=steps>
 
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
+
 <li>Create a <code>ed</code> element in the <span>SuikaWiki/0.10
 namespace</span>.
 
@@ -3981,11 +4062,13 @@ mode</span>.
 
 <ol class=steps>
 
-<li>If the local name of the <span>current element</span> is
-<em>not</em> one of <code title=element-html-body>body</code>,
-<code>section</code>, and <span>block elements</span>, then pop the
-element off the <span>stack of open elements</span> and follow this
-substep again.
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
+name</span> is <em>not</em> one
+of <code title=element-html-body>body</code>,
+<code>section</code>, <code>dialogue</code>, and <span>block
+elements</span>, then pop the element off the <span>stack of open
+elements</span> and follow this substep again.
 
 </ol>
 
@@ -4020,11 +4103,17 @@ should not appear in this insertion mode -->
 
 <li>If the <span>current
 element</span>'s <span title=concept-element-local-name>local
+name</span> is <code>dialogue</code>, pop the <span>current
+element</span> off the <span>stack of open elements</span>.
+
+<li>If the <span>current
+element</span>'s <span title=concept-element-local-name>local
 name</span> is <em>not</em> one
-of <code>li</code>, <code>dd</code>, <code>figcaption</code>,
+of <code>p</code>, <code>li</code>, <code>dd</code>, <code>figcaption</code>,
 <code>comment-p</code>, or <code>ed</code>, or if the <span>current
 element</span>'s <span title=concept-element-local-name>local
-name</span> is <code>figcaption</code> and the <span>current
+name</span> is <code>figcaption</code> or <code>speaker</code> and
+the <span>current
 element</span>'s <span title=concept-element-children>children</span>
 is not empty, run the following substeps:
 
@@ -4898,6 +4987,20 @@ parser:
     <td>References and quotations.
     <td>Not allowed.
 
+  <tr>
+    <th><dfn title=concept-SPEAKER><code>SPEAKER</code></dfn>
+    <td><code>speaker</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>Speaker name of a talk.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-TALK><code>TALK</code></dfn>
+    <td><code>talk</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A single talk part in a dialogue.
+    <td>Not allowed.
+
   </table>
 
 <div class="note memo">
@@ -5569,8 +5672,120 @@ a postamble.
 
 </section>
 
+</section>
+
+<section>
+<h1>Dialogues</h1>
+
+<section>
+
+<h1>The <dfn><code>dialogue</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Zero or more <code>talk</code> or <span title="script-supporting
+elements">script-supporting</span> <span title=element>elements</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>The <code>dialogue</code> <span>element</span> <span>represents</span>
+a conversation between one or more persons.
+
+<p>Each piece of the conversation is represented
+by <span title=concept-element-children>child</span> <code>talk</code> <span title=element>elements</span>.
+
+<p>A <code>dialogue</code> <span>element</span> <em class=rfc2119>SHOULD</em>
+have at least
+one <code>talk</code> <span>element</span> <span title=concept-element-children>child</span>.
 
 </section>
+
+<section>
+
+<h1>The <dfn><code>talk</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd>One <code>speaker</code> element followed by <span>flow
+content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>talk</code> <span>element</span> <span>represents</span>
+a group of sentences by a person (or a specific group of persons) in
+the dialogue.
+
+<p>The <dfn title=concept-talk-speaker>speaker</dfn> of
+a <code>talk</code> <span>element</span> is the
+first <code>speaker</code> <span title=concept-element-children>child</span> <span>element</span>
+of the <span>element</span>, if any, or <code>null</code>.  If
+the <span title=concept-talk-speaker>speaker</span> is
+not <code>null</code>, it describes the speaker(s) of the talk.
+Otherwise, the speaker is not explicitly described.
+
+<div class="note memo">
+<p>Interviewer's questions are often identified by lack of explicit
+speaker name.
+</div>
+
+<p>The <code>class</code> attribute can be used to style talks in a
+dialogue based on the speaker of them (e.g. use different colors for
+different speakers).
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>speaker</code></dfn> element in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>speaker</code> <span>element</span> <span>represents</span>
+a short string used to credit the person (or a group of person) of the
+piece of the conversation.
+
+</section>
+
+
+</section>
+
 
 <section>
 <h1>Hyperlinks</h1>
