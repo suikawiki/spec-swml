@@ -61,7 +61,7 @@ in <time>2003-12-12</time> and was frequently updated
 until <time>2006-05-05</time>.
 
 <p>Then several updates to the language, known as SuikaWiki/0.10, were
-(incompetely) defined by following documents:
+(incompletely) defined by following documents:
 
 <ul>
 
@@ -137,8 +137,10 @@ mutate the DOM in such situations.
 <section>
 <h1>Namespaces</h1>
 
-<p>For historical reason, elements and attributes defined or used in
-this specification belong to various namespaces.
+<p>For historical reason, <span title=element>elements</span>
+and <span title=attribute>attributes</span> defined or used in this
+specification belong to
+various <span title=namespace>namespaces</span>.
 
 <p>The <dfn>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
@@ -146,7 +148,8 @@ The <span>preferred prefix</span> is <code>aa</code>.
 
 <p>The <dfn>HTML namespace</dfn> is
 <code>http://www.w3.org/1999/xhtml</code>.  The <span>preferred
-prefix</span> is <code>html</code>.  Following elements are defined in
+prefix</span> is <code>html</code>.
+Following <span title=element>elements</span> are defined in
 the <a href="https://html.spec.whatwg.org/"><cite>HTML
 Standard</cite></a>:
 <ul class=short>
@@ -192,10 +195,19 @@ Standard</cite></a>:
   <li><dfn><code>var</code></dfn>
 </ul>
 
+<p>The <dfn>HTML3 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
+Following <span>element</span> is defined in the <span>HTML3
+namespace</span> <span class=XXX>@@ ref</span>:
+
+<ul class=short>
+<li><dfn><code>note</code></dfn>
+</ul>
+
 <p>The <dfn>MathML namespace</dfn> is
 <code>http://www.w3.org/1998/Math/MathML</code>.  The
 <span>preferred prefix</span> is <code>math</code>.  Following
-elements are defined in
+<span title=element>elements</span> are defined in
 the <a href="https://www.w3.org/Math/draft-spec/mathml.html">MathML
 specification</a>:
 <ul class=short>
@@ -210,14 +222,6 @@ specification</a>:
 <p>The <dfn>SuikaWiki/0.10 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
 <span>preferred prefix</span> is <code>sw10</code>.
-
-<p>The <dfn>HTML3 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
-Following element is defined in the <span>HTML3 namespace</span>:
-
-<ul class=short>
-<li><dfn><code>note</code></dfn>
-</ul>
 
 <p>The <dfn>XHTML2 namespace</dfn> is
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
@@ -5618,6 +5622,9 @@ different speakers).
 <p>The <code>speaker</code> <span>element</span> <span>represents</span>
 a short string used to credit the person (or a group of person) of the
 piece of the conversation.
+
+<p>It can also contain other metadata than person name, such as
+affiliation of the person or the timestamp of the talk, if desired.
 
 </section>
 

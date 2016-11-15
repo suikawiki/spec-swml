@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 29 September 2016</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 15 November 2016</h2>
 
 
 <dl>
@@ -228,7 +228,7 @@ in <time>2003-12-12</time> and was frequently updated
 until <time>2006-05-05</time>.
 
 </p><p>Then several updates to the language, known as SuikaWiki/0.10, were
-(incompetely) defined by following documents:
+(incompletely) defined by following documents:
 
 </p><ul>
 
@@ -303,8 +303,10 @@ mutate the DOM in such situations.
 </p><section>
 <h1 id=namespaces><span class=secno>2.1 </span>Namespaces</h1>
 
-<p>For historical reason, elements and attributes defined or used in
-this specification belong to various namespaces.
+<p>For historical reason, <a href=#element title=element>elements</a>
+and <a href=#attribute title=attribute>attributes</a> defined or used in this
+specification belong to
+various <span title=namespace>namespaces</span>.
 
 </p><p>The <dfn id=aa-namespace>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
@@ -312,7 +314,8 @@ The <a href=#preferred-prefix>preferred prefix</a> is <code>aa</code>.
 
 </p><p>The <dfn id=html-namespace>HTML namespace</dfn> is
 <code>http://www.w3.org/1999/xhtml</code>.  The <a href=#preferred-prefix>preferred
-prefix</a> is <a href=#html><code>html</code></a>.  Following elements are defined in
+prefix</a> is <a href=#html><code>html</code></a>.
+Following <a href=#element title=element>elements</a> are defined in
 the <a href=https://html.spec.whatwg.org/><cite>HTML
 Standard</cite></a>:
 </p><ul class=short>
@@ -358,10 +361,19 @@ Standard</cite></a>:
   </li><li><dfn id=var><code>var</code></dfn>
 </li></ul>
 
+<p>The <dfn id=html3-namespace>HTML3 namespace</dfn> is
+<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
+Following <a href=#element>element</a> is defined in the <a href=#html3-namespace>HTML3
+namespace</a> <span class=XXX>@@ ref</span>:
+
+</p><ul class=short>
+<li><dfn id=note><code>note</code></dfn>
+</li></ul>
+
 <p>The <dfn id=mathml-namespace>MathML namespace</dfn> is
 <code>http://www.w3.org/1998/Math/MathML</code>.  The
 <a href=#preferred-prefix>preferred prefix</a> is <code>math</code>.  Following
-elements are defined in
+<a href=#element title=element>elements</a> are defined in
 the <a href=https://www.w3.org/Math/draft-spec/mathml.html>MathML
 specification</a>:
 </p><ul class=short>
@@ -377,15 +389,7 @@ specification</a>:
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
 <a href=#preferred-prefix>preferred prefix</a> is <code>sw10</code>.
 
-</p><p>The <dfn id=html3-namespace>HTML3 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
-Following element is defined in the <a href=#html3-namespace>HTML3 namespace</a>:
-
-</p><ul class=short>
-<li><dfn id=note><code>note</code></dfn>
-</li></ul>
-
-<p>The <dfn id=xhtml2-namespace>XHTML2 namespace</dfn> is
+</p><p>The <dfn id=xhtml2-namespace>XHTML2 namespace</dfn> is
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
 
 </p><p>The <dfn id=xml-namespace>XML namespace</dfn> is
@@ -5420,6 +5424,9 @@ different speakers).
 <p>The <a href=#the-speaker-element-in-the-suikawiki/0.9-namespace><code>speaker</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
 a short string used to credit the person (or a group of person) of the
 piece of the conversation.
+
+</p><p>It can also contain other metadata than person name, such as
+affiliation of the person or the timestamp of the talk, if desired.
 
 </p></section>
 
