@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 15 November 2016</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 22 May 2017</h2>
 
 
 <dl>
@@ -273,26 +273,8 @@ repository</a>.
 <section>
 <h1 id=terminology><span class=secno>2 </span>Terminology</h1>
 
-<p>All diagrams, examples, and notes in this specification are
-non-normative, as are all sections explicitly marked
-non-normative. Everything else in this specification is normative.
-
-</p><p>The key words “<em class=rfc2119>MUST</em>”, “<em class=rfc2119>MUST NOT</em>”, “<em class=rfc2119>SHOULD</em>”, and 
-“<em class=rfc2119>MAY</em>” in the normative parts of this document
-are to be interpreted as described in RFC 2119 <cite class="bibref
-normative">[<a href=#ref-RFC2119>RFC2119</a>]</cite>.
-
-</p><p>Requirements phrased in the imperative as part of algorithms (such
-as “strip any leading space characters” or “return false and abort
-these steps”) are to be interpreted with the meaning of the key word
-(e.g. “<em class=rfc2119>MUST</em>”) used in introducing the
-algorithm.
-
-</p><p>Conformance requirements phrased as algorithms or specific steps
-<em class=rfc2119>MAY</em> be implemented in any manner, so long as
-the end result is equivalent. (In particular, the algorithms defined
-in this specification are intended to be easy to follow, and not
-intended to be performant.)
+<p>This specification depends on the
+<a href=https://infra.spec.whatwg.org/>Infra Standard</a>.
 
 </p><p>When it is stated that some element or attribute is
 <dfn id=ignored>ignored</dfn>, or treated as some other value, or handled as if
@@ -6237,6 +6219,10 @@ given as the <a href=#element-value>element value</a>.
 <section>
 <h1 id=conformance-keywords><span class=secno>9.10 </span>Conformance keywords</h1>
 
+<a href=#element title=element>Elements</a> in this section <a href=#represents>represents</a> 
+<dfn id=rfc-2119-keyword title="RFC 2119 keyword">keywords</dfn> defined in
+<a href=https://tools.ietf.org/html/rfc2119>RFC 2119</a>.
+
 <section>
 
 <h1 id=the-must-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.1 </span>The <dfn><code>MUST</code></dfn> element in the
@@ -6260,8 +6246,16 @@ given as the <a href=#element-value>element value</a>.
 
 </dd></dl>
 
-<p>The <a href=#the-must-element-in-the-suikawiki/0.9-namespace><code>MUST</code></a> element represents an <span>RFC 2119
-keyword</span> "<em class=rfc2119>MUST</em>".
+<p>The <a href=#the-must-element-in-the-suikawiki/0.9-namespace><code>MUST</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+an <a href=#rfc-2119-keyword>RFC 2119 keyword</a>
+<a href=https://tools.ietf.org/html/rfc2119#section-1>"<em class=rfc2119>MUST</em>"</a>.
+It can also be used for <a href=#rfc-2119-keyword title="RFC 2119 keyword">keywords</a>
+<a href=https://tools.ietf.org/html/rfc2119#section-1>"<em class=rfc2119>REQUIRED</em>"</a>,
+<a href=https://tools.ietf.org/html/rfc2119#section-1>"<em class=rfc2119>SHALL</em>"</a>,
+<a href=https://tools.ietf.org/html/rfc2119#section-2>"<em class=rfc2119>MUST
+NOT</em>"</a>, and
+<a href=https://tools.ietf.org/html/rfc2119#section-2>"<em class=rfc2119>SHALL
+NOT</em>"</a>.
 
 </p></section>
 
@@ -6288,8 +6282,15 @@ keyword</span> "<em class=rfc2119>MUST</em>".
 
 </dd></dl>
 
-<p>The <a href=#the-should-element-in-the-suikawiki/0.9-namespace><code>SHOULD</code></a> element represents an <span>RFC 2119
-keyword</span> "<em class=rfc2119>SHOULD</em>".
+<p>The <a href=#the-should-element-in-the-suikawiki/0.9-namespace><code>SHOULD</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+an <a href=#rfc-2119-keyword>RFC 2119 keyword</a>
+<a href=https://tools.ietf.org/html/rfc2119#section-3>"<em class=rfc2119>SHOULD</em>"</a>.
+It can also be used for <a href=#rfc-2119-keyword title="RFC 2119 keyword">keywords</a>
+<a href=https://tools.ietf.org/html/rfc2119#section-3>"<em class=rfc2119>RECOMMENDED</em>"</a>,
+<a href=https://tools.ietf.org/html/rfc2119#section-4>"<em class=rfc2119>SHOULD
+NOT</em>"</a>, and
+<a href=https://tools.ietf.org/html/rfc2119#section-4>"<em class=rfc2119>NOT
+RECOMMENDED</em>"</a>.
 
 </p></section>
 
@@ -6316,8 +6317,11 @@ keyword</span> "<em class=rfc2119>SHOULD</em>".
 
 </dd></dl>
 
-<p>The <a href=#the-must-element-in-the-suikawiki/0.9-namespace><code>MUST</code></a> element represents an <span>RFC 2119
-keyword</span> "<em class=rfc2119>MAY</em>".
+<p>The <a href=#the-may-element-in-the-suikawiki/0.9-namespace><code>MAY</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+an <a href=#rfc-2119-keyword>RFC 2119 keyword</a>
+<a href=https://tools.ietf.org/html/rfc2119#section-5>"<em class=rfc2119>MAY</em>"</a>.
+It can also be used for <a href=#rfc-2119-keyword title="RFC 2119 keyword">keyword</a>
+<a href=https://tools.ietf.org/html/rfc2119#section-3>"<em class=rfc2119>OPTIONAL</em>"</a>.
 
 </p></section>
 
@@ -6496,12 +6500,6 @@ found.
 </dd><dt id=ref-MANAKAI>MANAKAI
 
 </dt><dd class=XXX>manakai's DOM extensions.
-
-</dd><dt id=ref-RFC2119>RFC2119
-
-</dt><dd><cite><a href=https://tools.ietf.org/html/rfc2119>Key words for
-use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner,
-IETF BCP 14, March 1997.
 
 </dd><dt id=ref-XHTML2>XHTML2
 

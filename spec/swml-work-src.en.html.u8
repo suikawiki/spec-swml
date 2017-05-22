@@ -106,27 +106,8 @@ repository</a>.
 <section>
 <h1>Terminology</h1>
 
-<p>All diagrams, examples, and notes in this specification are
-non-normative, as are all sections explicitly marked
-non-normative. Everything else in this specification is normative.
-
-<p>The key words “<em class=rfc2119>MUST</em>”, “<em
-class=rfc2119>MUST NOT</em>”, “<em class=rfc2119>SHOULD</em>”, and 
-“<em class=rfc2119>MAY</em>” in the normative parts of this document
-are to be interpreted as described in RFC 2119 <cite class="bibref
-normative">[<a href="#ref-RFC2119">RFC2119</a>]</cite>.
-
-<p>Requirements phrased in the imperative as part of algorithms (such
-as “strip any leading space characters” or “return false and abort
-these steps”) are to be interpreted with the meaning of the key word
-(e.g. “<em class=rfc2119>MUST</em>”) used in introducing the
-algorithm.
-
-<p>Conformance requirements phrased as algorithms or specific steps
-<em class=rfc2119>MAY</em> be implemented in any manner, so long as
-the end result is equivalent. (In particular, the algorithms defined
-in this specification are intended to be easy to follow, and not
-intended to be performant.)
+<p>This specification depends on the
+<a href=https://infra.spec.whatwg.org/>Infra Standard</a>.
 
 <p>When it is stated that some element or attribute is
 <dfn>ignored</dfn>, or treated as some other value, or handled as if
@@ -6444,6 +6425,10 @@ given as the <span>element value</span>.
 <section>
 <h1>Conformance keywords</h1>
 
+<span title=element>Elements</span> in this section <span>represents</span> 
+<dfn title="RFC 2119 keyword">keywords</dfn> defined in
+<a href=https://tools.ietf.org/html/rfc2119>RFC 2119</a>.
+
 <section>
 
 <h1>The <dfn><code>MUST</code></dfn> element in the
@@ -6467,8 +6452,16 @@ given as the <span>element value</span>.
 
 </dl>
 
-<p>The <code>MUST</code> element represents an <span>RFC 2119
-keyword</span> "<em class=rfc2119>MUST</em>".
+<p>The <code>MUST</code> <span>element</span> <span>represents</span>
+an <span>RFC 2119 keyword</span>
+<a href=https://tools.ietf.org/html/rfc2119#section-1>"<em class=rfc2119>MUST</em>"</a>.
+It can also be used for <span title="RFC 2119 keyword">keywords</span>
+<a href=https://tools.ietf.org/html/rfc2119#section-1>"<em class=rfc2119>REQUIRED</em>"</a>,
+<a href=https://tools.ietf.org/html/rfc2119#section-1>"<em class=rfc2119>SHALL</em>"</a>,
+<a href=https://tools.ietf.org/html/rfc2119#section-2>"<em class=rfc2119>MUST
+NOT</em>"</a>, and
+<a href=https://tools.ietf.org/html/rfc2119#section-2>"<em class=rfc2119>SHALL
+NOT</em>"</a>.
 
 </section>
 
@@ -6495,8 +6488,15 @@ keyword</span> "<em class=rfc2119>MUST</em>".
 
 </dl>
 
-<p>The <code>SHOULD</code> element represents an <span>RFC 2119
-keyword</span> "<em class=rfc2119>SHOULD</em>".
+<p>The <code>SHOULD</code> <span>element</span> <span>represents</span>
+an <span>RFC 2119 keyword</span>
+<a href=https://tools.ietf.org/html/rfc2119#section-3>"<em class=rfc2119>SHOULD</em>"</a>.
+It can also be used for <span title="RFC 2119 keyword">keywords</span>
+<a href=https://tools.ietf.org/html/rfc2119#section-3>"<em class=rfc2119>RECOMMENDED</em>"</a>,
+<a href=https://tools.ietf.org/html/rfc2119#section-4>"<em class=rfc2119>SHOULD
+NOT</em>"</a>, and
+<a href=https://tools.ietf.org/html/rfc2119#section-4>"<em class=rfc2119>NOT
+RECOMMENDED</em>"</a>.
 
 </section>
 
@@ -6523,8 +6523,11 @@ keyword</span> "<em class=rfc2119>SHOULD</em>".
 
 </dl>
 
-<p>The <code>MUST</code> element represents an <span>RFC 2119
-keyword</span> "<em class=rfc2119>MAY</em>".
+<p>The <code>MAY</code> <span>element</span> <span>represents</span>
+an <span>RFC 2119 keyword</span>
+<a href=https://tools.ietf.org/html/rfc2119#section-5>"<em class=rfc2119>MAY</em>"</a>.
+It can also be used for <span title="RFC 2119 keyword">keyword</span>
+<a href=https://tools.ietf.org/html/rfc2119#section-3>"<em class=rfc2119>OPTIONAL</em>"</a>.
 
 </section>
 
@@ -6703,12 +6706,6 @@ found.
 <dt id=ref-MANAKAI>MANAKAI
 
 <dd class=XXX>manakai's DOM extensions.
-
-<dt id=ref-RFC2119>RFC2119
-
-<dd><cite><a href="https://tools.ietf.org/html/rfc2119">Key words for
-use in RFCs to Indicate Requirement Levels</a></cite>, Scott Bradner,
-IETF BCP 14, March 1997.
 
 <dt id=ref-XHTML2>XHTML2
 
