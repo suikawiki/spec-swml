@@ -104,7 +104,7 @@ in the <span>SuikaWiki/0.9 namespace</span></a></li>
 <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
    <li><a href=#dialogues><span class=secno>9.3 </span>Dialogues</a>
     <ol>
-     <li><a href=#the-dialogue-element-in-the-suikawiki/0.9-namespace><span class=secno>9.3.1 </span>The <code>dialogue</code> element in the
+     <li><a href=#the-dialogue-element-in-the-suikawiki/0.9-namespace><span class=secno>9.3.1 </span>The <code>dialogue</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-talk-element-in-the-suikawiki/0.9-namespace><span class=secno>9.3.2 </span>The <code>talk</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
@@ -180,7 +180,7 @@ the <span>SuikaWiki/0.9 namespace</span></a></li>
 <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.4 </span>The <code>weak</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.5 </span>The <code>title</code> element in the
+     <li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.5 </span>The <code>title</code> <span>element</span> in the
 <span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
    <li><a href=#mathematical-representations><span class=secno>9.10 </span>Mathematical representations</a>
     <ol>
@@ -202,12 +202,12 @@ the <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
 <span>SuikaWiki/0.10 namespace</span></a></li>
      <li><a href=#the-n-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.3 </span>The <code>n</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.4 </span>The <code>lat</code> element in the
+     <li><a href=#the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.4 </span>The <code>lat</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.5 </span>The <code>lon</code> element in the
+     <li><a href=#the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.5 </span>The <code>lon</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-tz-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.6 </span>The <code>tz</code> element in the <span>SuikaWiki/0.9
-namespace</span></a></li>
+     <li><a href=#the-tz-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.6 </span>The <code>tz</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.7 </span>The <code>attrvalue</code> element in the
 <span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
    <li><a href=#conformance-keywords><span class=secno>9.12 </span>Conformance keywords</a>
@@ -5238,7 +5238,7 @@ parser:
     </th><td><a href=#the-talk-element-in-the-suikawiki/0.9-namespace><code>talk</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
     </td><td>A single talk part in a dialogue.
-    </td><td>Not allowed.
+    </td><td>Speaker name of the talk.
 
   </td></tr></tbody></table>
 
@@ -5770,8 +5770,7 @@ center-aligned text, right-aligned text, and vertical text.
 <h1 id=dialogues><span class=secno>9.3 </span>Dialogues</h1>
 
 <section>
-
-<h1 id=the-dialogue-element-in-the-suikawiki/0.9-namespace><span class=secno>9.3.1 </span>The <dfn><code>dialogue</code></dfn> element in the
+<h1 id=the-dialogue-element-in-the-suikawiki/0.9-namespace><span class=secno>9.3.1 </span>The <dfn><code>dialogue</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5782,8 +5781,9 @@ center-aligned text, right-aligned text, and vertical text.
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>Zero or more <a href=#the-talk-element-in-the-suikawiki/0.9-namespace><code>talk</code></a> or <a href=#script-supporting-elements title="script-supporting
-elements">script-supporting</a> <a href=#element title=element>elements</a>.
+</dt><dd>Zero or
+more <a href=#the-talk-element-in-the-suikawiki/0.9-namespace><code>talk</code></a> <a href=#element title=element>elements</a>, optionally
+intermixed with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -5816,8 +5816,9 @@ one <a href=#the-talk-element-in-the-suikawiki/0.9-namespace><code>talk</code></
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>One <a href=#the-speaker-element-in-the-suikawiki/0.9-namespace><code>speaker</code></a> element followed by <a href=#flow-content>flow
-content</a>.
+</dt><dd>One <a href=#the-speaker-element-in-the-suikawiki/0.9-namespace><code>speaker</code></a> <a href=#element>element</a> followed
+by <a href=#flow-content>flow content</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -6334,9 +6335,10 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>An <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> <a href=#element>element</a>,
-followed by a <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a> <a href=#element>element</a>,
-followed by an optional <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a> <a href=#element>element</a>.
+</dt><dd>An <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> <a href=#element>element</a>, followed by
+a <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a> <a href=#element>element</a>, followed by an
+optional <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a> <a href=#element>element</a>, optionally
+intermixed with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -6473,7 +6475,8 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd>Two or more <a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a> <a href=#element title=element>elements</a>.
+</dt><dd>Two or more <a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a> <a href=#element title=element>elements</a>,
+optionally intermixed with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -6607,7 +6610,8 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
-a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a>.
+a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -6732,7 +6736,8 @@ as italic and various kinds of annotation marks.
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, followed by an <a href=#rt><code>rt</code></a>
-<a href=#element>element</a>.
+<a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -6765,10 +6770,11 @@ secondary ruby text (an <a href=#rt><code>rt</code></a> <a href=#element>element
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dt>An <a href=#rt><code>rt</code></a> <a href=#element>element</a>, optionally followed by
-an <a href=#rt><code>rt</code></a> <a href=#element>element</a>.
+</dt><dd>An <a href=#rt><code>rt</code></a> <a href=#element>element</a>, optionally followed by
+an <a href=#rt><code>rt</code></a> <a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
-</dt><dt><a href=#allowed-attributes>Allowed attributes</a>
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
 </dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
 
@@ -6822,8 +6828,7 @@ a <a href=#ruby><code>ruby</code></a> <a href=#element>element</a>).
 </p></section>
 
 <section>
-
-<h1 id=the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.5 </span>The <dfn><code>title</code></dfn> element in the
+<h1 id=the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.5 </span>The <dfn><code>title</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -6849,7 +6854,9 @@ the <a href=#parent>parent</a> <a href=#element>element</a>, if applicable.
 Otherwise, it <a href=#represents>represents</a> nothing.
 
 </p><p>A <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a> <em class=rfc2119>MAY</em>
-be the last <span>child</span> <a href=#element>element</a> of
+be the last
+non-<a href=#script-supporting-elements title="script-supporting elements">script-supporting</a>
+<span>child</span> <a href=#element>element</a> of
 an <a href=#abbr><code>abbr</code></a>, <a href=#dfn><code>dfn</code></a>,
 or <a href=#span><code>span</code></a> <a href=#element>element</a> <var>parent</var> when the
 <code title=attr-html-title>title</code> <a href=#attribute>attribute</a> of
@@ -6944,7 +6951,8 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd>A <a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><code>subscript</code></a> <a href=#element>element</a>, followed by a
-<a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a> <a href=#element>element</a>.
+<a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a> <a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7037,12 +7045,12 @@ the following steps:
   </p><ol class=steps>
 
   <li>If <var>element</var> has
-  a <span>child</span> <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element:
+  a <span>child</span> <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <a href=#element>element</a>:
 
     <ol>
 
     <li>Let <var>value element</var> be the
-    first <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element <span>child</span>
+    first <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <a href=#element>element</a> <span>child</span>
     of <var>element</var>.
 
     </li><li>Return the <a href=#concept-element-text-content title=concept-element-text-content>text
@@ -7079,9 +7087,10 @@ the following steps:
 
 </dd></dl>
 
-<p>The <a href=#the-f-element-in-the-suikawiki/0.9-namespace><code>f</code></a> element represents a field name or key of some
-structure, such as a field name of a C data structure, a key of a Perl
-hash, or a property name of an XML information item.
+<p>The <a href=#the-f-element-in-the-suikawiki/0.9-namespace><code>f</code></a> <a href=#element>element</a> <a href=#represents>represents</a> a
+field name or key of some structure, such as a field name of a C data
+structure, a key of a Perl hash, or a property name of an XML
+information item.
 
 </p></section>
 
@@ -7129,7 +7138,8 @@ hash, or a property name of an XML information item.
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
-an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <a href=#element>element</a>.
+an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7137,14 +7147,13 @@ an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalu
 
 </dd></dl>
 
-<p>The <a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a> element <a href=#represents>represents</a> the number given
-as the <a href=#element-value>element value</a>.
+<p>The <a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a> <a href=#element>element</a> <a href=#represents>represents</a> the
+number given as the <a href=#element-value>element value</a>.
 
 </p></section>
 
 <section>
-
-<h1 id=the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.4 </span>The <dfn><code>lat</code></dfn> element in the
+<h1 id=the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.4 </span>The <dfn><code>lat</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -7159,7 +7168,8 @@ as the <a href=#element-value>element value</a>.
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
-an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element.
+an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7167,14 +7177,13 @@ an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalu
 
 </dd></dl>
 
-<p>The <a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a> element <a href=#represents>represents</a> a latitude
-given as the <a href=#element-value>element value</a>.
+<p>The <a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a> <a href=#element>element</a> <a href=#represents>represents</a> a
+latitude given as the <a href=#element-value>element value</a>.
 
 </p></section>
 
 <section>
-
-<h1 id=the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.5 </span>The <dfn><code>lon</code></dfn> element in the
+<h1 id=the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.5 </span>The <dfn><code>lon</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -7189,7 +7198,8 @@ given as the <a href=#element-value>element value</a>.
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
-an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element.
+an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7203,9 +7213,8 @@ given as the <a href=#element-value>element value</a>.
 </p></section>
 
 <section>
-
-<h1 id=the-tz-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.6 </span>The <dfn><code>tz</code></dfn> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
-namespace</a></h1>
+<h1 id=the-tz-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.6 </span>The <dfn><code>tz</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
 
@@ -7219,7 +7228,8 @@ namespace</a></h1>
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
-an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element.
+an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7263,8 +7273,9 @@ a <a href=#time><code>time</code></a> <a href=#element>element</a> without
 a <code>datetime</code> <a href=#attribute>attribute</a>.  Otherwise,
 it <a href=#represents>represents</a> nothing.
 
-</p><p>An <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <em class=rfc2119>MAY</em> be the
-last <span>child</span> <a href=#element>element</a> of
+</p><p>An <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <em class=rfc2119>MAY</em> be the last
+non-<a href=#script-supporting-elements title="script-supporting elements">script-supporting</a>
+<span>child</span> <a href=#element>element</a> of
 a <a href=#time><code>time</code></a> <a href=#element>element</a>.
 
 </p><p>An <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <em class=rfc2119>MUST NOT</em> be used
@@ -7472,8 +7483,8 @@ namespace</a></h1>
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by a
-<a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
-namespace</a>.
+<a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a> <a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
