@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 22 May 2017</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 5 November 2017</h2>
 
 
 <dl>
@@ -98,7 +98,9 @@ in the <span>SuikaWiki/0.9 namespace</span></a></li>
 <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-preamble-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.5 </span>The <code>preamble</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.6 </span>The <code>postamble</code> element in the
+     <li><a href=#the-postamble-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.6 </span>The <code>postamble</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-box-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.7 </span>The <code>box</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
    <li><a href=#dialogues><span class=secno>9.3 </span>Dialogues</a>
     <ol>
@@ -126,14 +128,13 @@ attribute in the <span>SuikaWiki/0.9 namespace</span></a></li>
 in the <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
    <li><a href=#embedded-objects><span class=secno>9.5 </span>Embedded objects</a>
     <ol>
-     <li><a href=#the-aa-element-in-the-aa-namespace><span class=secno>9.5.1 </span>The <code>aa</code> element in the <span>AA namespace</span></a></li>
-     <li><a href=#the-form-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.2 </span>The <code>form</code> element in the
+     <li><a href=#the-form-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.1 </span>The <code>form</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-image-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.3 </span>The <code>image</code> element in the
+     <li><a href=#the-image-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.2 </span>The <code>image</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-replace-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.4 </span>The <code>replace</code> element in the
+     <li><a href=#the-replace-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.3 </span>The <code>replace</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-text-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.5 </span>The <code>text</code> element in the
+     <li><a href=#the-text-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.4 </span>The <code>text</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
    <li><a href=#citations><span class=secno>9.6 </span>Citations</a>
     <ol>
@@ -143,55 +144,97 @@ in the <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
 <span>SuikaWiki/0.10 namespace</span></a></li>
      <li><a href=#the-refs-element-in-the-suikawiki/0.9-namespace><span class=secno>9.6.3 </span>The <code>refs</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
-   <li><a href=#editorial-annotations><span class=secno>9.7 </span>Editorial annotations</a>
+   <li><a href=#inline-structures><span class=secno>9.7 </span>Inline structures</a>
     <ol>
-     <li><a href=#the-insert-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.1 </span>The <code>insert</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-delete-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.2 </span>The <code>delete</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-ed-element-in-the-suikawiki/0.10-namespace><span class=secno>9.7.3 </span>The <code>ed</code> element in the <span>SuikaWiki/0.10
-namespace</span></a></li></ol></li>
-   <li><a href=#inline-annotations><span class=secno>9.8 </span>Inline annotations</a>
+     <li><a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.1 </span>The <code>fenced</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.2 </span>The <code>openfence</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.3 </span>The <code>fencedtext</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.4 </span>The <code>closefence</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-lines-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.5 </span>The <code>lines</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-line-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.6 </span>The <code>line</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
+   <li><a href=#editorial-annotations><span class=secno>9.8 </span>Editorial annotations</a>
     <ol>
-     <li><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.1 </span>The <code>rubyb</code> element in the
+     <li><a href=#the-insert-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.1 </span>The <code>insert</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.2 </span>The <code>weak</code> element in the
+     <li><a href=#the-delete-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.2 </span>The <code>delete</code> element in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.8.3 </span>The <code>title</code> element in the
-<span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
-   <li><a href=#values><span class=secno>9.9 </span>Values</a>
-    <ol>
-     <li><a href=#the-f-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.1 </span>The <code>f</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.2 </span>The <code>key</code> element in the
-<span>SuikaWiki/0.10 namespace</span></a></li>
-     <li><a href=#the-n-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.3 </span>The <code>n</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.4 </span>The <code>lat</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.5 </span>The <code>lon</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
-   <li><a href=#conformance-keywords><span class=secno>9.10 </span>Conformance keywords</a>
-    <ol>
-     <li><a href=#the-must-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.1 </span>The <code>MUST</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-should-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.2 </span>The <code>SHOULD</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-may-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.3 </span>The <code>MAY</code> element in the
-<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
-   <li><a href=#qualified-names><span class=secno>9.11 </span>Qualified names</a>
-    <ol>
-     <li><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.1 </span>The <code>qn</code> element in the <span>SuikaWiki/0.10
+     <li><a href=#the-ed-element-in-the-suikawiki/0.10-namespace><span class=secno>9.8.3 </span>The <code>ed</code> element in the <span>SuikaWiki/0.10
 namespace</span></a></li>
-     <li><a href=#the-qname-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.2 </span>The <code>qname</code> element in the
-<span>SuikaWiki/0.10 namespace</span></a></li>
-     <li><a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.3 </span>The <code>nsuri</code> element in the
-<span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
-   <li><a href=#fallback-elements><span class=secno>9.12 </span>Fallback elements</a>
+     <li><a href=#the-asis-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.4 </span>The <code>asis</code> element in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-snip-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.5 </span>The <code>snip</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
+   <li><a href=#inline-annotations><span class=secno>9.9 </span>Inline annotations</a>
     <ol>
-     <li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.12.1 </span>The <code>attrvalue</code> element in the
+     <li><a href=#the-emph-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.1 </span>The <code>emph</code> element in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.2 </span>The <code>rubyb</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-okuri-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.3 </span>The <code>okuri</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.4 </span>The <code>weak</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.5 </span>The <code>title</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
+   <li><a href=#mathematical-representations><span class=secno>9.10 </span>Mathematical representations</a>
+    <ol>
+     <li><a href=#the-dotabove-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.1 </span>The <code>dotabove</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-vector-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.2 </span>The <code>vector</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-subsup-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.3 </span>The <code>subsup</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.4 </span>The <code>subscript</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.5 </span>The <code>superscript</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
+   <li><a href=#values><span class=secno>9.11 </span>Values</a>
+    <ol>
+     <li><a href=#the-f-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.1 </span>The <code>f</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.2 </span>The <code>key</code> element in the
 <span>SuikaWiki/0.10 namespace</span></a></li>
-     <li><a href=#uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>9.12.2 </span><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
+     <li><a href=#the-n-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.3 </span>The <code>n</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.4 </span>The <code>lat</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.5 </span>The <code>lon</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-tz-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.6 </span>The <code>tz</code> element in the <span>SuikaWiki/0.9
+namespace</span></a></li>
+     <li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.7 </span>The <code>attrvalue</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
+   <li><a href=#conformance-keywords><span class=secno>9.12 </span>Conformance keywords</a>
+    <ol>
+     <li><a href=#the-must-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.1 </span>The <code>MUST</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-should-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.2 </span>The <code>SHOULD</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-may-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.3 </span>The <code>MAY</code> element in the
+<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
+   <li><a href=#physical-representations><span class=secno>9.13 </span>Physical representations</a>
+    <ol>
+     <li><a href=#the-smallcaps-element-in-the-suikawiki/0.9-namespace><span class=secno>9.13.1 </span>The <code>smallcaps</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-yoko-element-in-the-suikawiki/0.9-namespace><span class=secno>9.13.2 </span>The <code>yoko</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
+   <li><a href=#qualified-names><span class=secno>9.14 </span>Qualified names</a>
+    <ol>
+     <li><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><span class=secno>9.14.1 </span>The <code>qn</code> element in the <span>SuikaWiki/0.10
+namespace</span></a></li>
+     <li><a href=#the-qname-element-in-the-suikawiki/0.10-namespace><span class=secno>9.14.2 </span>The <code>qname</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li>
+     <li><a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><span class=secno>9.14.3 </span>The <code>nsuri</code> element in the
+<span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
+   <li><a href=#fallback-elements><span class=secno>9.15 </span>Fallback elements</a>
+    <ol>
+     <li><a href=#uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>9.15.1 </span><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
 namespace</span></a></li></ol></li></ol></li>
  <li><a class=no-num href=#references>References</a>
   <ol>
@@ -292,7 +335,10 @@ various <span title=namespace>namespaces</span>.
 
 </p><p>The <dfn id=aa-namespace>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
-The <a href=#preferred-prefix>preferred prefix</a> is <code>aa</code>.
+The <a href=#preferred-prefix>preferred prefix</a> is <code title="">aa</code>.
+The <dfn id=aa><code>aa</code></dfn> <a href=#element>element</a> is defined by
+<a href=https://pc5.5ch.net/test/read.cgi/hp/1096723178/16><cite lang=ja>Strict-HTML
+スレッド24</cite> &gt;&gt;16</a>.
 
 </p><p>The <dfn id=html-namespace>HTML namespace</dfn> is
 <code>http://www.w3.org/1999/xhtml</code>.  The <a href=#preferred-prefix>preferred
@@ -302,6 +348,7 @@ the <a href=https://html.spec.whatwg.org/><cite>HTML
 Standard</cite></a>:
 </p><ul class=short>
   <li><dfn id=abbr><code>abbr</code></dfn>
+  </li><li><dfn id=b><code>b</code></dfn>
   </li><li><dfn id=blockquote><code>blockquote</code></dfn>
   </li><li><dfn id=element-html-body title=element-html-body><code>body</code></dfn>
   </li><li><dfn id=cite><code>cite</code></dfn>
@@ -318,6 +365,7 @@ Standard</cite></a>:
   </li><li><dfn id=head><code>head</code></dfn>
   </li><li><dfn id=hr><code>hr</code></dfn>
   </li><li><dfn id=html><code>html</code></dfn>
+  </li><li><dfn id=i><code>i</code></dfn>
   </li><li><dfn id=ins><code>ins</code></dfn>
   </li><li><dfn id=kbd><code>kbd</code></dfn>
   </li><li><dfn id=li><code>li</code></dfn>
@@ -339,20 +387,18 @@ Standard</cite></a>:
   </li><li><dfn id=th><code>th</code></dfn>
   </li><li><dfn id=time><code>time</code></dfn>
   </li><li><dfn id=tr><code>tr</code></dfn>
+  </li><li><dfn id=u><code>u</code></dfn>
   </li><li><dfn id=ul><code>ul</code></dfn>
   </li><li><dfn id=var><code>var</code></dfn>
 </li></ul>
 
 <p>The <dfn id=html3-namespace>HTML3 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
-Following <a href=#element>element</a> is defined in the <a href=#html3-namespace>HTML3
-namespace</a> <span class=XXX>@@ ref</span>:
+The <dfn id=note><code>note</code></dfn> <a href=#element>element</a> is defined in
+the HTML 3.0 specification and belongs to the <a href=#html3-namespace>HTML3
+namespace</a> for the purpose of this specification.
 
-</p><ul class=short>
-<li><dfn id=note><code>note</code></dfn>
-</li></ul>
-
-<p>The <dfn id=mathml-namespace>MathML namespace</dfn> is
+</p><p>The <dfn id=mathml-namespace>MathML namespace</dfn> is
 <code>http://www.w3.org/1998/Math/MathML</code>.  The
 <a href=#preferred-prefix>preferred prefix</a> is <code>math</code>.  Following
 <a href=#element title=element>elements</a> are defined in
@@ -360,7 +406,11 @@ the <a href=https://www.w3.org/Math/draft-spec/mathml.html>MathML
 specification</a>:
 </p><ul class=short>
   <li><dfn id=mfrac><code>mfrac</code></dfn>
-  </li><li><dfn id=mi><code>mi</code></dfn>
+  </li><li><dfn id=mroot><code>mroot</code></dfn>
+  </li><li><dfn id=msqrt><code>msqrt</code></dfn>
+  </li><li><dfn id=mtext><code>mtext</code></dfn>
+  </li><li><dfn id=munder><code>munder</code></dfn>
+  </li><li><dfn id=munderover><code>munderover</code></dfn>
 </li></ul>
 
 <p>The <dfn id=suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</dfn> is
@@ -384,6 +434,7 @@ specification</a>:
 <h1 id=definitions><span class=secno>2.2 </span>Definitions</h1>
 
 <p>Terms
+<dfn id=parent>parent</dfn>,
 <dfn id=node-tree>node tree</dfn>,
 <dfn id=element>element</dfn>,
 <dfn id=concept-element-local-name title=concept-element-local-name>element's local name</dfn>,
@@ -1247,7 +1298,7 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Character art (so-called ASCII-art, <code>aa</code> element)
+</td><td>Character art (so-called ASCII-art, <a href=#aa><code>aa</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-abbr title=concept-ABBR><code>ABBR</code></dfn>
@@ -1255,6 +1306,20 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Abbreviation (HTML <a href=#abbr><code>abbr</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-asis title=concept-ASIS><code>ASIS</code></dfn>
+</th><td>1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>“As-is” annotation (<a href=#the-asis-element-in-the-suikawiki/0.9-namespace><code>asis</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-b title=concept-B><code>B</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Bold (or sans-serif) text (HTML <a href=#b><code>b</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1294,6 +1359,20 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Defined term (HTML <a href=#dfn><code>dfn</code></a> element)
 
 </td></tr><tr>
+<th scope=row><dfn id=concept-dotabove title=concept-DOTABOVE><code>DOTABOVE</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Text with dot above (<a href=#the-dotabove-element-in-the-suikawiki/0.9-namespace><code>dotabove</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-emph title=concept-EMPH><code>EMPH</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Emphasized text (<a href=#the-emph-element-in-the-suikawiki/0.9-namespace><code>emph</code></a> element)
+
+</td></tr><tr>
 <th scope=row><dfn id=concept-f title=concept-F><code>F</code></dfn>
 </th><td>0
 </td><td>Not allowed
@@ -1301,11 +1380,25 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Field name (<a href=#the-f-element-in-the-suikawiki/0.9-namespace><code>f</code></a> element)
 
 </td></tr><tr>
+<th scope=row><dfn id=concept-fenced title=concept-FENCED><code>FENCED</code></dfn>
+</th><td>0, 1, or 2
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Text enclosed by parentheses (<a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> element)
+
+</td></tr><tr>
 <th scope=row><dfn id=concept-frac title=concept-FRAC><code>FRAC</code></dfn>
 </th><td>1
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Fraction (<a href=#mfrac><code>mfrac</code></a> element)
+</td><td>Fraction (MathML <a href=#mfrac><code>mfrac</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-i title=concept-I><code>I</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Italic text (HTML <a href=#i><code>i</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-ins title=concept-INS><code>INS</code></dfn>
@@ -1337,6 +1430,13 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Latitude (<a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a> element)
 
 </td></tr><tr>
+<th scope=row><dfn id=concept-lines title=concept-LINES><code>LINES</code></dfn>
+</th><td>1 or more
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Set of sublines (<a href=#the-lines-element-in-the-suikawiki/0.9-namespace><code>lines</code></a> element)
+
+</td></tr><tr>
 <th scope=row><dfn id=concept-lon title=concept-LON><code>LON</code></dfn>
 </th><td>0 or 1
 </td><td>Not allowed
@@ -1365,6 +1465,13 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Number (<a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a> element)
 
 </td></tr><tr>
+<th scope=row><dfn id=concept-okuri title=concept-OKURI><code>OKURI</code></dfn>
+</th><td>0 or 1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Okuri-gana annotations in Kambun (<a href=#the-okuri-element-in-the-suikawiki/0.9-namespace><code>okuri</code></a> element)
+
+</td></tr><tr>
 <th scope=row><dfn id=concept-q title=concept-Q><code>Q</code></dfn>
 </th><td>0
 </td><td>Allowed
@@ -1378,6 +1485,13 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Qualified name (<a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-root title=concept-ROOT><code>ROOT</code></dfn>
+</th><td>1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Root (MathML <a href=#mroot><code>mroot</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-ruby title=concept-RUBY><code>RUBY</code></dfn>
@@ -1408,12 +1522,33 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>RFC 2119 keyword "<em class=rfc2119>SHOULD</em>" (<a href=#the-should-element-in-the-suikawiki/0.9-namespace><code>SHOULD</code></a> element)
 
 </td></tr><tr>
+<th scope=row><dfn id=concept-smallcaps title=concept-SMALLCAPS><code>SMALLCAPS</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Small-caps text (<a href=#the-smallcaps-element-in-the-suikawiki/0.9-namespace><code>smallcaps</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-snip title=concept-SNIP><code>SNIP</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Snipped point annotation (<a href=#the-snip-element-in-the-suikawiki/0.9-namespace><code>snip</code></a> element)
+
+</td></tr><tr>
 <!-- SuikaWiki/0.10 -->
 <th scope=row><dfn id=concept-span title=concept-SPAN><code>SPAN</code></dfn>
 </th><td>0 or 1
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Span of text (HTML <a href=#span><code>span</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-sqrt title=concept-SQRT><code>SQRT</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Square root (MathML <a href=#msqrt><code>msqrt</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1424,11 +1559,11 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Short annotation for citation (<a href=#the-src-element-in-the-suikawiki/0.10-namespace><code>src</code></a> element)
 
 </td></tr><tr>
-<th scope=row><dfn id=concept-sup title=concept-SUP><code>SUP</code></dfn>
-</th><td>0
+<th scope=row><dfn id=concept-subsup title=concept-SUBSUP><code>SUBSUP</code></dfn>
+</th><td>1
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Superscript (HTML <a href=#sup><code>sup</code></a> element)
+</td><td>Pair of subscript and superscript (<a href=#the-subsup-element-in-the-suikawiki/0.9-namespace><code>subsup</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-sub title=concept-SUB><code>SUB</code></dfn>
@@ -1436,6 +1571,13 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Subscript (HTML <a href=#sub><code>sub</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-sup title=concept-SUP><code>SUP</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Superscript (HTML <a href=#sup><code>sup</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -1450,7 +1592,28 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </th><td>0 or 1
 </td><td>Not allowed
 </td><td>Not allowed
-</td><td>Time zone offset (<code>tz</code> element)
+</td><td>Time zone offset (<a href=#the-tz-element-in-the-suikawiki/0.9-namespace><code>tz</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-u title=concept-U><code>U</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Underlined text (HTML <a href=#u><code>u</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-under title=concept-UNDER><code>UNDER</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Text with an annotation under it (MathML <a href=#munder><code>munder</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-underover title=concept-UNDEROVER><code>UNDEROVER</code></dfn>
+</th><td>1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Text with annotations under and over it (MathML <a href=#munderover><code>munderover</code></a> element)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-var title=concept-VAR><code>VAR</code></dfn>
@@ -1460,11 +1623,25 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Variable (HTML <a href=#var><code>var</code></a> element)
 
 </td></tr><tr>
+<th scope=row><dfn id=concept-vector title=concept-VECTOR><code>VECTOR</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Text with vector symbol (<a href=#the-vector-element-in-the-suikawiki/0.9-namespace><code>vector</code></a> element)
+
+</td></tr><tr>
 <th scope=row><dfn id=concept-weak title=concept-WEAK><code>WEAK</code></dfn>
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Small print (<a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>weak</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-yoko title=concept-YOKO><code>YOKO</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Horizontal text (<a href=#the-yoko-element-in-the-suikawiki/0.9-namespace><code>yoko</code></a> element)
 
 </td></tr></tbody></table>
 
@@ -4114,13 +4291,23 @@ following table:
 <tr>
 <th><a href=#concept-aa><code title=concept-AA>AA</code></a>
 </th><td>The <a href=#aa-namespace>AA namespace</a>
-</td><td><code>aa</code>
+</td><td><a href=#aa><code>aa</code></a>
 <!-- SuikaWiki/0.10 -->
 
 </td></tr><tr>
 <th><a href=#concept-abbr><code title=concept-ABBR>ABBR</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><a href=#abbr><code>abbr</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-asis><code title=concept-ASIS>ASIS</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-asis-element-in-the-suikawiki/0.9-namespace><code>asis</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-b><code title=concept-B>B</code></a>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><a href=#b><code>b</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-cite><code title=concept-CITE>CITE</code></a>
@@ -4150,14 +4337,34 @@ following table:
 </td><td><a href=#dfn><code>dfn</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-dotabove><code title=concept-DOTABOVE>DOTABOVE</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-dotabove-element-in-the-suikawiki/0.9-namespace><code>dotabove</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-emph><code title=concept-EMPH>EMPH</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-emph-element-in-the-suikawiki/0.9-namespace><code>emph</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-f><code title=concept-F>F</code></a>
 </th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
 </td><td><a href=#the-f-element-in-the-suikawiki/0.9-namespace><code>f</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-fenced><code title=concept-FENCED>FENCED</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-frac><code title=concept-FRAC>FRAC</code></a>
 </th><td>The <a href=#mathml-namespace>MathML namespace</a>
 </td><td><a href=#mfrac><code>mfrac</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-i><code title=concept-I>I</code></a>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><a href=#i><code>i</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-ins><code title=concept-INS>INS</code></a>
@@ -4180,6 +4387,11 @@ following table:
 </td><td><a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-lines><code title=concept-LINES>LINES</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-lines-element-in-the-suikawiki/0.9-namespace><code>lines</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-lon><code title=concept-LON>LON</code></a>
 </th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
 </td><td><a href=#the-lon-element-in-the-suikawiki/0.9-namespace><code>lon</code></a>
@@ -4200,6 +4412,11 @@ following table:
 </td><td><a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-okuri><code title=concept-OKURI>OKURI</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-okuri-element-in-the-suikawiki/0.9-namespace><code>okuri</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-q><code title=concept-Q>Q</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><a href=#q><code>q</code></a>
@@ -4210,6 +4427,11 @@ following table:
 </th><td>The <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
 </td><td><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>
 <!-- SuikaWiki/0.10 -->
+
+</td></tr><tr>
+<th><a href=#concept-root><code title=concept-ROOT>ROOT</code></a>
+</th><td>The <a href=#mathml-namespace>MathML namespace</a>
+</td><td><a href=#mroot><code>mroot</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-ruby><code title=concept-RUBY>RUBY</code></a>
@@ -4232,9 +4454,24 @@ following table:
 </td><td><a href=#the-should-element-in-the-suikawiki/0.9-namespace><code>SHOULD</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-smallcaps><code title=concept-SMALLCAPS>SMALLCAPS</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-smallcaps-element-in-the-suikawiki/0.9-namespace><code>smallcaps</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-snip><code title=concept-SNIP>SNIP</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-snip-element-in-the-suikawiki/0.9-namespace><code>snip</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-span><code title=concept-SPAN>SPAN</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><a href=#span><code>span</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-sqrt><code title=concept-SQRT>SQRT</code></a>
+</th><td>The <a href=#mathml-namespace>MathML namespace</a>
+</td><td><a href=#msqrt><code>msqrt</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-src><code title=concept-SRC>SRC</code></a>
@@ -4245,6 +4482,11 @@ following table:
 <th><a href=#concept-sub><code title=concept-SUB>SUB</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><a href=#sub><code>sub</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-subsup><code title=concept-SUBSUP>SUBSUP</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-subsup-element-in-the-suikawiki/0.9-namespace><code>subsup</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-sup><code title=concept-SUP>SUP</code></a>
@@ -4260,7 +4502,22 @@ following table:
 </td></tr><tr>
 <th><a href=#concept-tz><code title=concept-TZ>TZ</code></a>
 </th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
-</td><td><code>tz</code>
+</td><td><a href=#the-tz-element-in-the-suikawiki/0.9-namespace><code>tz</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-u><code title=concept-U>U</code></a>
+</th><td>The <a href=#html-namespace>HTML namespace</a>
+</td><td><a href=#u><code>u</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-under><code title=concept-UNDER>UNDER</code></a>
+</th><td>The <a href=#mathml-namespace>MathML namespace</a>
+</td><td><a href=#munder><code>munder</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-underover><code title=concept-UNDEROVER>UNDEROVER</code></a>
+</th><td>The <a href=#mathml-namespace>MathML namespace</a>
+</td><td><a href=#munderover><code>munderover</code></a>
 
 </td></tr><tr>
 <th><a href=#concept-var><code title=concept-VAR>VAR</code></a>
@@ -4268,9 +4525,19 @@ following table:
 </td><td><a href=#var><code>var</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-vector><code title=concept-VECTOR>VECTOR</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-vector-element-in-the-suikawiki/0.9-namespace><code>vector</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-weak><code title=concept-WEAK>WEAK</code></a>
 </th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
 </td><td><a href=#the-weak-element-in-the-suikawiki/0.9-namespace><code>weak</code></a>
+
+</td></tr><tr>
+<th><a href=#concept-emph><code title=concept-EMPH>YOKO</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-yoko-element-in-the-suikawiki/0.9-namespace><code>yoko</code></a>
 
 </td></tr><tr>
 <th>Anything else
@@ -4293,12 +4560,20 @@ in the <a href=#xml-namespace>XML namespace</a> of the element created to <a hre
 </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
-</li><li>If <a href=#token>token</a>'s <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag
-name</a> is <code>FRAC</code>:
+</li><li>Switch
+by <a href=#token>token</a>'s <a href=#inline-start-tag-tag-name title=inline-start-tag-tag-name>tag
+name</a>:
 
+  <dl class=switch>
+
+  <div>
+  <dt><code>FRAC</code>, <code>ROOT</code>, <code>SQRT</code>,
+  <code>UNDER</code>, or <code>UNDEROVER</code>
+
+  </dt><dd>
   <ol>
 
-  <li>Create an <a href=#mi><code>mi</code></a> element in the <a href=#mathml-namespace>MathML
+  <li>Create an <a href=#mtext><code>mtext</code></a> element in the <a href=#mathml-namespace>MathML
   namespace</a>.
 
   </li><li>Append the element created to the <a href=#current-element>current element</a>.
@@ -4307,6 +4582,77 @@ name</a> is <code>FRAC</code>:
   elements</a>.
 
   </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-lines-element-in-the-suikawiki/0.9-namespace><code>LINES</code></a>
+
+  </dt><dd>
+  <ol>
+
+  <li>Create a <a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+  namespace</a>.
+
+  </li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+  </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+  elements</a>.
+
+  </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-subsup-element-in-the-suikawiki/0.9-namespace><code>SUBSUP</code></a>
+
+  </dt><dd>
+  <ol>
+
+  <li>Create a <a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><code>subscript</code></a> element in
+  the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+  </li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+  </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+  elements</a>.
+
+  </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>FENCED</code></a>
+
+  </dt><dd>
+  <ol>
+
+  <li>Create an <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> element in
+  the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+
+  </li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+  </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+  elements</a>.
+
+  </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-okuri-element-in-the-suikawiki/0.9-namespace><code>OKURI</code></a>
+
+  </dt><dd>
+  <ol>
+
+  <li>Create a <a href=#rt><code>rt</code></a> element in the <a href=#html-namespace>HTML
+  namespace</a>.
+
+  </li><li>Append the element created to the <a href=#current-element>current element</a>.
+
+  </li><li>Push the element created to the <a href=#stack-of-open-elements>stack of open
+  elements</a>.
+
+  </li></ol>
+  </dd></div>
+
+  </dl>
 
 </li></ol>
 
@@ -4321,35 +4667,111 @@ name</a> is <code>FRAC</code>:
 </li><li>Let <var>namespace</var> be the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
 namespace</a>.
 
-</li><li>If the <a href=#element-local-name title=element-local-name>local name</a> of
-the <a href=#current-element>current element</a> is
-<a href=#rt><code>rt</code></a>, set <var>local name</var> to <a href=#rt><code>rt</code></a>, set
-<var>namespace</var> to the <a href=#html-namespace>HTML namespace</a>, and pop the
-<a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
-elements</a>.
+</li><li>Switch by the <a href=#element-local-name title=element-local-name>local name</a> of
+the <a href=#current-element>current element</a>:
 
-</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
-of the <a href=#current-element>current element</a>
-is <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, <code>tz</code>, <a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a>,
-<a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a>, or <a href=#the-lon-element-in-the-suikawiki/0.9-namespace><code>lon</code></a>, set <var>local name</var>
-to <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> and pop the <a href=#current-element>current element</a> off
-the <a href=#stack-of-open-elements>stack of open elements</a>.
+  <dl class=switch>
 
-</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
-of the <a href=#current-element>current element</a> is <a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>,
-set <var title="">local name</var> to
-<a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>.
+  <div>
+  <dt><a href=#rt><code>rt</code></a>
 
-</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
-of the <a href=#current-element>current element</a> is <a href=#ruby><code>ruby</code></a>
-or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>, set <var title="">local name</var>
-to <a href=#rt><code>rt</code></a> and set <var title="">namespace</var> to
-the <a href=#html-namespace>HTML namespace</a>.
+  </dt><dd>
+    <ol>
+    <li>Set <var>local name</var> to <a href=#rt><code>rt</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#html-namespace>HTML namespace</a>.
+    </li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+    elements</a>.
+    </li></ol>
+  </dd></div>
 
-</li><li>Otherwise, if the <a href=#element-local-name title=element-local-name>local name</a>
-of the <a href=#current-element>current element</a> is <a href=#mi><code>mi</code></a>,
-set <var title="">local name</var> to
-<a href=#mi><code>mi</code></a>.
+  <div>
+  <dt><a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, <a href=#the-tz-element-in-the-suikawiki/0.9-namespace><code>tz</code></a>, <a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a>,
+  <a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a>, <a href=#the-lon-element-in-the-suikawiki/0.9-namespace><code>lon</code></a>, <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a>,
+  or <a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a>
+
+  </dt><dd>
+    <ol>
+    <li>Set <var>local name</var> to <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>.
+    </li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of
+    open elements</a>.
+    </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-qn-element-in-the-suikawiki/0.10-namespace><code>qn</code></a>
+  </dt><dd>
+    <ol>
+    <li>Set <var title="">local name</var> to <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>.
+    </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#ruby><code>ruby</code></a> or <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a>
+  </dt><dd>
+    <ol>
+    <li>Set <var title="">local name</var> to <a href=#rt><code>rt</code></a>.
+    </li><li>Set <var title="">namespace</var> to the <a href=#html-namespace>HTML namespace</a>.
+    </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#mtext><code>mtext</code></a>
+  </dt><dd>
+    <ol>
+    <li>Set <var title="">local name</var> to <a href=#mtext><code>mtext</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#mathml-namespace>MathML namespace</a>.
+    </li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+    elements</a>.
+    </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a>
+  </dt><dd>
+    <ol>
+    <li>Set <var title="">local name</var> to <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+    </li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+    elements</a>.
+    </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a>
+  </dt><dd>
+    <ol>
+    <li>Set <var title="">local name</var> to <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+    </li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+    elements</a>.
+    </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><code>subscript</code></a>
+  </dt><dd>
+    <ol>
+    <li>Set <var title="">local name</var> to <a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+    </li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+    elements</a>.
+    </li></ol>
+  </dd></div>
+
+  <div>
+  <dt><a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a>
+  </dt><dd>
+    <ol>
+    <li>Set <var title="">local name</var> to <a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a>.
+    </li><li>Set <var>namespace</var> to the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
+    </li><li>Pop the <a href=#current-element>current element</a> off the <a href=#stack-of-open-elements>stack of open
+    elements</a>.
+    </li></ol>
+  </dd></div>
+
+  </dl>
 
 </li><li>Create an element whose <a href=#element-local-name title=element-local-name>local
 name</a> <var>local name</var> in the
@@ -4373,7 +4795,9 @@ elements</a>.
 <ol class=steps>
 
 <li>If the local name of the <a href=#current-element>current element</a> is one of
-<a href=#rt><code>rt</code></a>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, <a href=#mi><code>mi</code></a>,
+<a href=#rt><code>rt</code></a>, <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, <a href=#mtext><code>mtext</code></a>,
+<a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a>, <a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><code>subscript</code></a>, <a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a>,
+<a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a>, <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a>, <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a>,
 or <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a>, pop the element off the <a href=#stack-of-open-elements>stack of open
 elements</a>.
 
@@ -4726,6 +5150,13 @@ parser:
   </th></tr></thead><tbody>
 
   <tr>
+    <th><dfn id=concept-box title=concept-BOX><code>BOX</code></dfn>
+    </th><td><a href=#the-box-element-in-the-suikawiki/0.9-namespace><code>box</code></a>
+    </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+    </td><td>A group of page content.
+    </td><td>Not allowed.
+
+  </td></tr><tr>
     <th><dfn id=concept-delete title=concept-DELETE><code>DEL</code></dfn>
     </th><td><a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a>
     </td><td><a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
@@ -4834,7 +5265,7 @@ of <a href=#element-html-body><code title=element-html-body>body</code></a>, <a 
 <a href=#ol><code>ol</code></a>, <a href=#dl><code>dl</code></a>, <a href=#li><code>li</code></a>, <a href=#dt><code>dt</code></a>,
 <a href=#dd><code>dd</code></a>, <a href=#table><code>table</code></a>, <a href=#tbody><code>tbody</code></a>, <a href=#th><code>th</code></a>,
 <a href=#tr><code>tr</code></a>, <a href=#td><code>td</code></a>, <a href=#p><code>p</code></a>, <a href=#the-comment-p-element-in-the-suikawiki/0.10-namespace><code>comment-p</code></a>,
-<a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, and <a href=#pre><code>pre</code></a>.
+<a href=#the-ed-element-in-the-suikawiki/0.10-namespace><code>ed</code></a>, <a href=#the-box-element-in-the-suikawiki/0.9-namespace><code>box</code></a>, and <a href=#pre><code>pre</code></a>.
 
 </p><div class="note memo">
 <p>These definitions are referenced from the parser.  The parser does
@@ -5273,8 +5704,7 @@ a preamble or preface.
 </p></section>
 
 <section>
-
-<h1 id=the-postamble-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.6 </span>The <dfn><code>postamble</code></dfn> element in the
+<h1 id=the-postamble-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.6 </span>The <dfn><code>postamble</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5297,6 +5727,42 @@ a preamble or preface.
 a postamble.
 
 </p></section>
+
+<section>
+<h1 id=the-box-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.7 </span>The <dfn><code>box</code></dfn> <a href=#element>element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-box-element-in-the-suikawiki/0.9-namespace><code>box</code></a> <a href=#element>element</a> <a href=#represents>represents</a> a
+physically grouped chunk of contents.
+
+</p><p>The <a href=#attr-sw-class><code title=attr-sw-class>class</code></a> <a href=#attribute>attribute</a>
+and CSS can be used to specify presentations of
+the <a href=#element>element</a>.
+
+</p><div class="note memo">
+<p>This <a href=#element>element</a> can be used to mark up a chunk of text
+quoted from other materials when it is not apparently mapped into any
+other <a href=#element>element</a>'s semantics, e.g. indented text,
+center-aligned text, right-aligned text, and vertical text.
+</p></div>
+
+</section>
 
 </section>
 
@@ -5637,21 +6103,16 @@ namespace</a>.
 <section>
 <h1 id=embedded-objects><span class=secno>9.5 </span>Embedded objects</h1>
 
-<section>
-<h1 id=the-aa-element-in-the-aa-namespace><span class=secno>9.5.1 </span>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a></h1>
+<p>Unless otherwise specified by an <span>applicable
+specification</span>, the <a href=#aa><code>aa</code></a> <a href=#element>element</a> is
+a <a href=#phrasing-content>phrasing content</a> and its <a href=#content-model>content model</a>
+is <a href=#phrasing-content>phrasing content</a>.<!-- As the original specification
+does not define details of the element's author requirements, we
+define them for our purposes only here. -->
 
-<p>The <code>aa</code> element in the <a href=#aa-namespace>AA namespace</a> <span class=XXX>...</span> falls into the <a href=#phrasing-content>phrasing content</a>
-category for the purpose of the content models in this specification.
+</p><section>
 
-</p><p>The <a href=#content-model>content model</a> of this element <em class=rfc2119>SHOULD</em> be considered as <a href=#phrasing-content>phrasing
-content</a>. <!-- SHOULD, not MUST, since we don't have control for
-that namespace. -->
-
-</p></section>
-
-<section>
-
-<h1 id=the-form-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.2 </span>The <dfn><code>form</code></dfn> element in the
+<h1 id=the-form-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.1 </span>The <dfn><code>form</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5687,7 +6148,7 @@ that namespace. -->
 
 <section>
 
-<h1 id=the-image-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.3 </span>The <dfn><code>image</code></dfn> element in the
+<h1 id=the-image-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.2 </span>The <dfn><code>image</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5720,7 +6181,7 @@ element in the <span>HTML namespace</span>.
 
 <section>
 
-<h1 id=the-replace-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.4 </span>The <dfn><code>replace</code></dfn> element in the
+<h1 id=the-replace-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.3 </span>The <dfn><code>replace</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5747,7 +6208,7 @@ element in the <span>HTML namespace</span>.
 
 <section>
 
-<h1 id=the-text-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.5 </span>The <dfn><code>text</code></dfn> element in the
+<h1 id=the-text-element-in-the-suikawiki/0.9-namespace><span class=secno>9.5.4 </span>The <dfn><code>text</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5858,11 +6319,208 @@ documents.
 </section>
 
 <section>
-<h1 id=editorial-annotations><span class=secno>9.7 </span>Editorial annotations</h1>
+<h1 id=inline-structures><span class=secno>9.7 </span>Inline structures</h1>
+
+<section>
+<h1 id=the-fenced-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.1 </span>The <dfn><code>fenced</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>An <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> <a href=#element>element</a>,
+followed by a <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a> <a href=#element>element</a>,
+followed by an optional <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a> <a href=#element>element</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a chunk of content with parentheses enclosing it.
+
+</p><p>The <dfn id=open-fence>open fence</dfn> of
+a <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> is the
+first <span>child</span> <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> <a href=#element>element</a>,
+if any.
+
+</p><p>The <dfn id=fenced-content>fenced content</dfn> of
+a <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> is the
+first <span>child</span> <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a>
+<a href=#element>element</a>, if any, after the <a href=#open-fence>open fence</a> if
+there is.
+
+</p><p>The <dfn id=close-fence>close fence</dfn> of
+a <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> is the
+first <span>child</span> <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a>
+<a href=#element>element</a>, if any, after the <a href=#fenced-content>fenced content</a> if
+there is.
+
+</p><p>Any other <span>child</span> <a href=#represents>represents</a> nothing.
+
+</p><p>The <a href=#open-fence>open fence</a> and <a href=#close-fence>close fence</a>
+<em class=rfc2119>MAY</em> be <span>empty</span>.  It is equivalent to
+missing of <a href=#open-fence>open fence</a> or <a href=#close-fence>close fence</a>,
+respectively.
+
+</p><p>It is <span>expected</span> that the <a href=#open-fence>open fence</a>
+and <a href=#close-fence>close fence</a>, if any, are rendered by the same line
+height as the maximum of the height of the <span>fenced content and
+the height of the <span>line box</span> usually generated by
+the <a href=#open-fence>open fence</a> or <a href=#close-fence>close fence</a></span>.
+
+</p></section>
+
+<section>
+<h1 id=the-openfence-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.2 </span>The <dfn><code>openfence</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+the parenthese before the <a href=#fenced-content>fenced content</a> if it is an
+<a href=#open-fence>open fence</a>.  Otherwise, it <a href=#represents>represents</a>
+its <span>content</span>.
+
+</p></section>
+
+<section>
+<h1 id=the-fencedtext-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.3 </span>The <dfn><code>fencedtext</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+the content enclosed by parentheses if it is a
+<a href=#fenced-content>fenced content</a>.  Otherwise, it <a href=#represents>represents</a>
+its <span>content</span>.
+
+</p></section>
+
+<section>
+<h1 id=the-closefence-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.4 </span>The <dfn><code>closefence</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+the parenthese after the <a href=#fenced-content>fenced content</a> if it is an
+<a href=#close-fence>close fence</a>.  Otherwise, it <a href=#represents>represents</a> its
+<span>content</span>.
+
+</p></section>
+
+<section>
+<h1 id=the-lines-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.5 </span>The <dfn><code>lines</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>Two or more <a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a> <a href=#element title=element>elements</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-lines-element-in-the-suikawiki/0.9-namespace><code>lines</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+zero or more spans of parallel contents embedded within a line.
+
+</p></section>
+
+<section>
+<h1 id=the-line-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.6 </span>The <dfn><code>line</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-line-element-in-the-suikawiki/0.9-namespace><code>line</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a piece of content in the <a href=#parent>parent</a>
+<a href=#the-lines-element-in-the-suikawiki/0.9-namespace><code>lines</code></a> <a href=#element>element</a>, if any.  Otherwise,
+it <a href=#represents>represents</a> its content.
+
+</p></section>
+
+</section>
+
+<section>
+<h1 id=editorial-annotations><span class=secno>9.8 </span>Editorial annotations</h1>
 
 <section>
 
-<h1 id=the-insert-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.1 </span>The <dfn><code>insert</code></dfn> element in the
+<h1 id=the-insert-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.1 </span>The <dfn><code>insert</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5881,14 +6539,13 @@ documents.
 
 </dd></dl>
 
-<p>The <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> element represents an insertion to the
-document.
+<p>The <a href=#the-insert-element-in-the-suikawiki/0.9-namespace><code>insert</code></a> <a href=#element>element</a> is equivalent to
+the <a href=#ins><code>ins</code></a> <a href=#element>element</a>.
 
 </p></section>
 
 <section>
-
-<h1 id=the-delete-element-in-the-suikawiki/0.9-namespace><span class=secno>9.7.2 </span>The <dfn><code>delete</code></dfn> element in the
+<h1 id=the-delete-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.2 </span>The <dfn><code>delete</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5907,14 +6564,13 @@ document.
 
 </dd></dl>
 
-<p>The <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> element represents a removal from the
-document.
+<p>The <a href=#the-delete-element-in-the-suikawiki/0.9-namespace><code>delete</code></a> <a href=#element>element</a> is equivalent to
+the <a href=#del><code>del</code></a> <a href=#element>element</a>.
 
 </p></section>
 
 <section>
-
-<h1 id=the-ed-element-in-the-suikawiki/0.10-namespace><span class=secno>9.7.3 </span>The <dfn><code>ed</code></dfn> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+<h1 id=the-ed-element-in-the-suikawiki/0.10-namespace><span class=secno>9.8.3 </span>The <dfn><code>ed</code></dfn> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
 namespace</a></h1>
 
 <dl class=element>
@@ -5937,41 +6593,54 @@ namespace</a></h1>
 
 </p></section>
 
+<section>
+<h1 id=the-asis-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.4 </span>The <dfn><code>asis</code></dfn> element in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
+a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-asis-element-in-the-suikawiki/0.9-namespace><code>asis</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a chunk of content with an annotation that the content is repeated
+from the source material as-is.  This annotation is typically used
+within a quotation to describe that the content has an error that
+occurs in the original text (and is <em>not</em> produced by the
+author of the document).
+
+</p><p>If there is a last <span>child</span> <a href=#element>element</a> that is a  <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>
+<a href=#element>element</a>, it is the annotation (and is not part of the
+annotated content).  A user agent is <span>expected</span> to show the
+annotation as such.  If there is
+no <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a> <span>child</span>, a
+<span title="user agent">user-agent</span> dependent
+annotation <em class=rfc2119>SHOULD</em> be used instead.
+
+</p><div class="note memo">
+
+<p>Typically a short text such as “(sic)” or “<span lang=ja>ママ</span>” 
+is used as the annotation.
+
+</p></div>
+
 </section>
 
 <section>
-<h1 id=inline-annotations><span class=secno>9.8 </span>Inline annotations</h1>
-
-<section>
-
-<h1 id=the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.1 </span>The <dfn><code>rubyb</code></dfn> element in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
-
-<dl class=element>
-
-<dt><a href=#category>Category</a>
-
-</dt><dd><a href=#phrasing-content>Phrasing content</a>.
-</dd><dd><a href=#flow-content>Flow content</a>.
-
-</dd><dt><a href=#content-model>Content model</a>
-
-</dt><dd><a href=#phrasing-content>Phrasing content</a>, followed by a <a href=#rt><code>rt</code></a>
-element in the <a href=#html-namespace>HTML namespace</a>.
-
-</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
-
-</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
-
-</dd></dl>
-
-<p class=XXX>...
-
-</p></section>
-
-<section>
-
-<h1 id=the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.2 </span>The <dfn><code>weak</code></dfn> element in the
+<h1 id=the-snip-element-in-the-suikawiki/0.9-namespace><span class=secno>9.8.5 </span>The <dfn><code>snip</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -5991,13 +6660,170 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 
 </dd></dl>
 
+<p>The <a href=#the-snip-element-in-the-suikawiki/0.9-namespace><code>snip</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+the point where some content in the source material are omitted.  It
+is typically used within a quotation.
+
+</p><p>If the <span>content</span> is not <span>empty</span>,
+it <a href=#represents>represents</a> the annotation placed instead of the
+original text.
+
+</p><p>It is <span>expected</span> that the <span>content</span> of
+the <a href=#element>element</a> is rendered.  If it is <span>empty</span>, a
+<span title="user agent">user-agent</span> dependent
+annotation <em class=rfc2119>SHOULD</em> be used instead.
+
+</p><div class="note memo">
+
+<p>Typically, a short text such as “...” or
+“<span lang=ja>(中略)</span>” is used as the annotation.
+
+</p></div>
+
+</section>
+
+</section>
+
+<section>
+<h1 id=inline-annotations><span class=secno>9.9 </span>Inline annotations</h1>
+
+
+<section>
+<h1 id=the-emph-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.1 </span>The <dfn><code>emph</code></dfn> element in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-emph-element-in-the-suikawiki/0.9-namespace><code>emph</code></a> <a href=#element>element</a> is equivalent to
+the <a href=#em><code>em</code></a> <a href=#element>element</a>.
+
+</p><p>The <a href=#attr-sw-class><code title=attr-sw-class>class</code></a> <a href=#attribute>attribute</a>
+and CSS can be used to specify presentations of emphasized texts, such
+as italic and various kinds of annotation marks.
+
+</p></section>
+
+<section>
+<h1 id=the-rubyb-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.2 </span>The <dfn><code>rubyb</code></dfn> <a href=#element>element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, followed by an <a href=#rt><code>rt</code></a>
+<a href=#element>element</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-rubyb-element-in-the-suikawiki/0.9-namespace><code>rubyb</code></a> <a href=#element>element</a> is equivalent to
+the <a href=#ruby><code>ruby</code></a> <a href=#element>element</a> except that it only
+contains the base text (<a href=#phrasing-content>phrasing content</a>) and the
+secondary ruby text (an <a href=#rt><code>rt</code></a> <a href=#element>element</a>).
+
+</p><p>It is <span>expected</span> that the first <a href=#rt><code>rt</code></a> 
+<a href=#element>element</a> <span>child</span>, if any, is rendered
+<span>after</span> the other <span>content</span> before it.
+
+</p></section>
+
+
+<section>
+<h1 id=the-okuri-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.3 </span>The <dfn><code>okuri</code></dfn> <a href=#element>element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dt>An <a href=#rt><code>rt</code></a> <a href=#element>element</a>, optionally followed by
+an <a href=#rt><code>rt</code></a> <a href=#element>element</a>.
+
+</dt><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-okuri-element-in-the-suikawiki/0.9-namespace><code>okuri</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+<i lang=ja>okuri-gana</i>s (<span lang=ja>送り仮名</span>) annotated
+after the base character in <i lang=ja>Kambun</i> 
+(<span lang=ja>漢文</span>).
+
+</p><p>Its first <a href=#rt><code>rt</code></a> <a href=#element>element</a> <span>child</span>,
+if any, <a href=#represents>represents</a> the primary ruby text.  Its
+second <a href=#rt><code>rt</code></a> <a href=#element>element</a> <span>child</span>, if
+any, <a href=#represents>represents</a> the secondary ruby text.  The base
+character is the character just before
+the <a href=#the-okuri-element-in-the-suikawiki/0.9-namespace><code>okuri</code></a> <a href=#element>element</a> (ignoring out-of-flow
+content such as another ruby texts).
+
+</p><p>It is <span>expected</span> that the primary ruby text, if any, is
+rendered at the right bottom of the base character and the secondary
+ruby text, if any, is rendered at the left bottom of the base
+character, in a vertical text.  Note that the base character might
+have its own ruby texts (i.e. it is part of
+a <a href=#ruby><code>ruby</code></a> <a href=#element>element</a>).
+
+</p></section>
+
+<section>
+<h1 id=the-weak-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.4 </span>The <dfn><code>weak</code></dfn> <a href=#element>element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
 <p class=XXX>...
 
 </p></section>
 
 <section>
 
-<h1 id=the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.8.3 </span>The <dfn><code>title</code></dfn> element in the
+<h1 id=the-title-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.5 </span>The <dfn><code>title</code></dfn> element in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -6016,30 +6842,192 @@ element in the <a href=#html-namespace>HTML namespace</a>.
 
 </dd></dl>
 
-<p>This element <em class=rfc2119>MAY</em> be inserted as the last
-child of <a href=#abbr><code>abbr</code></a>, <a href=#dfn><code>dfn</code></a>, <a href=#span><code>span</code></a>, or
-<a href=#time><code>time</code></a> element in the <a href=#html-namespace>HTML namespace</a> when the
-<code title=attr-html-title>title</code> attribute of that element is
-not <a href=#specified>specified</a>.
+<p>The <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a text that would be specified to
+the <code title=attr-html-title>title</code> <a href=#attribute>attribute</a> of
+the <a href=#parent>parent</a> <a href=#element>element</a>, if applicable.
+Otherwise, it <a href=#represents>represents</a> nothing.
 
-</p><p>If the parent element of the element has a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>
-attribute <a href=#specified>specified</a>, or the element is <em>not</em> the
-last child, the element <em class=rfc2119>MUST</em> be
-<a href=#ignored>ignored</a>.
+</p><p>A <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a> <em class=rfc2119>MAY</em>
+be the last <span>child</span> <a href=#element>element</a> of
+an <a href=#abbr><code>abbr</code></a>, <a href=#dfn><code>dfn</code></a>,
+or <a href=#span><code>span</code></a> <a href=#element>element</a> <var>parent</var> when the
+<code title=attr-html-title>title</code> <a href=#attribute>attribute</a> of
+<var>parent</var> is not <a href=#specified>specified</a>.
 
-</p><div class="note memo">
+</p><p>An <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <em class=rfc2119>MUST NOT</em> be used when
+it <a href=#represents>represents</a> nothing.
 
-<p>Inter-element whitespaces, comments, and processing instructions
-can be inserted after this element.
+</p></section>
 
-</p></div></section>
+</section>
 
-<p class=XXX>...
+<section>
+<h1 id=mathematical-representations><span class=secno>9.10 </span>Mathematical representations</h1>
+
+
+<section>
+<h1 id=the-dotabove-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.1 </span>The <dfn><code>dotabove</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-dotabove-element-in-the-suikawiki/0.9-namespace><code>dotabove</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a content with a dot above it.  This is used in mathematical
+expressions, such as recurring decimals.
+
+</p><p>It is <span>expected</span> that a dot symbol is rendered above
+the <span>content</span> of the <a href=#element>element</a>.
 
 </p></section>
 
 <section>
-<h1 id=values><span class=secno>9.9 </span>Values</h1>
+<h1 id=the-vector-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.2 </span>The <dfn><code>vector</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-vector-element-in-the-suikawiki/0.9-namespace><code>vector</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a content with a right-pointing arrow above it.  This is used in
+mathematical expressions to denote a vector.
+
+</p><p>It is <span>expected</span> that a right-pointing arrow is rendered
+above the <span>content</span> of the <a href=#element>element</a>.
+
+</p><p>This <a href=#element>element</a> <em class=rfc2119>SHOULD NOT</em> be used
+for other possible presentations of vectors, such as bold face without
+arrow.
+
+</p></section>
+
+<section>
+<h1 id=the-subsup-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.3 </span>The <dfn><code>subsup</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd>A <a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><code>subscript</code></a> <a href=#element>element</a>, followed by a
+<a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a> <a href=#element>element</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-subsup-element-in-the-suikawiki/0.9-namespace><code>subsup</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a pair of subscript and superscript chunks of contents.
+
+</p><p>The <dfn id=subscript-content>subscript content</dfn> of
+a <a href=#the-subsup-element-in-the-suikawiki/0.9-namespace><code>subsup</code></a> <a href=#element>element</a> is the
+first <a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><code>subscript</code></a> <a href=#element>element</a> <span>child</span>,
+if any.
+
+</p><p>The <dfn id=superscript-content>superscript content</dfn> of
+a <a href=#the-subsup-element-in-the-suikawiki/0.9-namespace><code>subsup</code></a> <a href=#element>element</a> is the
+first <span>child</span> <a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a> <a href=#element>element</a>,
+if any, after the <a href=#subscript-content>subscript content</a> if there is.
+
+</p><p>Any other <span>child</span> <a href=#represents>represents</a> nothing.
+
+</p><p>It is <span>expected</span> that the <a href=#subscript-content>subscript content</a>
+is rendered as subscript and the <a href=#superscript-content>superscript content</a> is
+rendered as superscript sharing the same horizontal spaces.
+
+</p></section>
+
+<section>
+<h1 id=the-subscript-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.4 </span>The <dfn><code>subscript</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-subscript-element-in-the-suikawiki/0.9-namespace><code>subscript</code></a> <a href=#element>element</a> is equivalent to
+the <a href=#sub><code>sub</code></a> <a href=#element>element</a>.
+
+</p></section>
+
+<section>
+<h1 id=the-superscript-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.5 </span>The <dfn><code>superscript</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a> <a href=#element>element</a> is equivalent to
+the <a href=#sup><code>sup</code></a> <a href=#element>element</a>.
+
+</p></section>
+
+
+</section>
+
+<section>
+<h1 id=values><span class=secno>9.11 </span>Values</h1>
 
 <p>Some elements are defined as <dfn id=elements-with-value>elements with value</dfn>.  For
 an <a href=#elements-with-value title="elements with value">element <var>element</var> with
@@ -6070,7 +7058,7 @@ the following steps:
 
 <section>
 
-<h1 id=the-f-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.1 </span>The <dfn><code>f</code></dfn> element in the
+<h1 id=the-f-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.1 </span>The <dfn><code>f</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -6099,7 +7087,7 @@ hash, or a property name of an XML information item.
 
 <section>
 
-<h1 id=the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>9.9.2 </span>The <dfn><code>key</code></dfn> element in the
+<h1 id=the-key-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.2 </span>The <dfn><code>key</code></dfn> element in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -6126,7 +7114,7 @@ hash, or a property name of an XML information item.
 
 <section>
 
-<h1 id=the-n-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.3 </span>The <dfn><code>n</code></dfn> element in the
+<h1 id=the-n-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.3 </span>The <dfn><code>n</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -6141,7 +7129,7 @@ hash, or a property name of an XML information item.
 </dd><dt><a href=#content-model>Content model</a>
 
 </dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
-an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element.
+an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <a href=#element>element</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -6156,7 +7144,7 @@ as the <a href=#element-value>element value</a>.
 
 <section>
 
-<h1 id=the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.4 </span>The <dfn><code>lat</code></dfn> element in the
+<h1 id=the-lat-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.4 </span>The <dfn><code>lat</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -6186,7 +7174,7 @@ given as the <a href=#element-value>element value</a>.
 
 <section>
 
-<h1 id=the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.9.5 </span>The <dfn><code>lon</code></dfn> element in the
+<h1 id=the-lon-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.5 </span>The <dfn><code>lon</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -6214,10 +7202,80 @@ given as the <a href=#element-value>element value</a>.
 
 </p></section>
 
+<section>
+
+<h1 id=the-tz-element-in-the-suikawiki/0.9-namespace><span class=secno>9.11.6 </span>The <dfn><code>tz</code></dfn> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+</dd><dd><a href=#implicit-link-elements>Implicit link elements</a>.
+</dd><dd><a href=#elements-with-value>Elements with value</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
+an <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> element.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>A <a href=#the-tz-element-in-the-suikawiki/0.9-namespace><code>tz</code></a> element <a href=#represents>represents</a> a time-zone
+offset given as the <a href=#element-value>element value</a>.
+
+</p></section>
+
+<section>
+
+<h1 id=the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.7 </span>The <dfn><code>attrvalue</code></dfn> element in the
+<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd>None.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+the <a href=#element-value>element value</a> of
+the <a href=#parent>parent</a> <a href=#element>element</a>, if applicable, or the
+text that would be specified to the <code>datetime</code>
+<a href=#attribute>attribute</a> of
+the <a href=#parent>parent</a> <a href=#element>element</a>, if it is
+a <a href=#time><code>time</code></a> <a href=#element>element</a> without
+a <code>datetime</code> <a href=#attribute>attribute</a>.  Otherwise,
+it <a href=#represents>represents</a> nothing.
+
+</p><p>An <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <em class=rfc2119>MAY</em> be the
+last <span>child</span> <a href=#element>element</a> of
+a <a href=#time><code>time</code></a> <a href=#element>element</a>.
+
+</p><p>An <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <em class=rfc2119>MUST NOT</em> be used
+when it <a href=#represents>represents</a> nothing.
+
+</p></section>
+
 </section>
 
 <section>
-<h1 id=conformance-keywords><span class=secno>9.10 </span>Conformance keywords</h1>
+<h1 id=conformance-keywords><span class=secno>9.12 </span>Conformance keywords</h1>
 
 <a href=#element title=element>Elements</a> in this section <a href=#represents>represents</a> 
 <dfn id=rfc-2119-keyword title="RFC 2119 keyword">keywords</dfn> defined in
@@ -6225,7 +7283,7 @@ given as the <a href=#element-value>element value</a>.
 
 <section>
 
-<h1 id=the-must-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.1 </span>The <dfn><code>MUST</code></dfn> element in the
+<h1 id=the-must-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.1 </span>The <dfn><code>MUST</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -6261,7 +7319,7 @@ NOT</em>"</a>.
 
 <section>
 
-<h1 id=the-should-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.2 </span>The <dfn><code>SHOULD</code></dfn> element in the
+<h1 id=the-should-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.2 </span>The <dfn><code>SHOULD</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -6296,7 +7354,7 @@ RECOMMENDED</em>"</a>.
 
 <section>
 
-<h1 id=the-may-element-in-the-suikawiki/0.9-namespace><span class=secno>9.10.3 </span>The <dfn><code>MAY</code></dfn> element in the
+<h1 id=the-may-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.3 </span>The <dfn><code>MAY</code></dfn> element in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -6328,11 +7386,80 @@ It can also be used for <a href=#rfc-2119-keyword title="RFC 2119 keyword">keywo
 </section>
 
 <section>
-<h1 id=qualified-names><span class=secno>9.11 </span>Qualified names</h1>
+<h1 id=physical-representations><span class=secno>9.13 </span>Physical representations</h1>
+
+<section>
+<h1 id=the-smallcaps-element-in-the-suikawiki/0.9-namespace><span class=secno>9.13.1 </span>The <dfn><code>smallcaps</code></dfn> <a href=#element>element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-smallcaps-element-in-the-suikawiki/0.9-namespace><code>smallcaps</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a text in small-capitals.
+
+</p><p>The <span title=character>characters</span> in
+the <a href=#the-smallcaps-element-in-the-suikawiki/0.9-namespace><code>smallcaps</code></a> <a href=#element>element</a>, including but not
+limited to uppercase and lowercase latin letters,
+are <span>expected</span> to be rendered using small-capital glyphs,
+whenever possible.
+
+</p></section>
+
+<section>
+<h1 id=the-yoko-element-in-the-suikawiki/0.9-namespace><span class=secno>9.13.2 </span>The <dfn><code>yoko</code></dfn> <a href=#element>element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#attr-sw-class><code title=attr-sw-class>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-yoko-element-in-the-suikawiki/0.9-namespace><code>yoko</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a horizontal text span in a vertically-flowed text (known
+as <span lang=ja>縦中横</span>).
+
+</p><p>It is <span>expected</span> that the <span>content</span> is
+rendered horizontally even when its <a href=#parent>parent</a> is rendered
+vertically.
+
+</p></section>
+
+
+</section>
+
+<section>
+<h1 id=qualified-names><span class=secno>9.14 </span>Qualified names</h1>
 
 <section>
 
-<h1 id=the-qn-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.1 </span>The <dfn><code>qn</code></dfn> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+<h1 id=the-qn-element-in-the-suikawiki/0.10-namespace><span class=secno>9.14.1 </span>The <dfn><code>qn</code></dfn> element in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
 namespace</a></h1>
 
 <dl class=element>
@@ -6360,7 +7487,7 @@ namespace</a>.
 
 <section>
 
-<h1 id=the-qname-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.2 </span>The <dfn><code>qname</code></dfn> element in the
+<h1 id=the-qname-element-in-the-suikawiki/0.10-namespace><span class=secno>9.14.2 </span>The <dfn><code>qname</code></dfn> element in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -6387,7 +7514,7 @@ namespace</a>.
 
 <section>
 
-<h1 id=the-nsuri-element-in-the-suikawiki/0.10-namespace><span class=secno>9.11.3 </span>The <dfn><code>nsuri</code></dfn> element in the
+<h1 id=the-nsuri-element-in-the-suikawiki/0.10-namespace><span class=secno>9.14.3 </span>The <dfn><code>nsuri</code></dfn> element in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>
@@ -6413,39 +7540,11 @@ namespace</a>.
 </section>
 
 <section>
-<h1 id=fallback-elements><span class=secno>9.12 </span>Fallback elements</h1>
+<h1 id=fallback-elements><span class=secno>9.15 </span>Fallback elements</h1>
 
 <section>
 
-<h1 id=the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.12.1 </span>The <dfn><code>attrvalue</code></dfn> element in the
-<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
-
-<dl class=element>
-
-<dt><a href=#category>Category</a>
-
-</dt><dd>None.
-
-</dd><dt><a href=#content-model>Content model</a>
-
-</dt><dd><a href=#phrasing-content>Phrasing content</a>.
-
-</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
-
-</dt><dd>None.
-
-</dd></dl>
-
-<p>Unless otherwise specified, this element <em class=rfc2119>MUST
-NOT</em> be used.
-
-</p><p class=XXX>...
-
-</p></section>
-
-<section>
-
-<h1 id=uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>9.12.2 </span><a href=#uppercase-elements>Uppercase elements</a> in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
+<h1 id=uppercase-elements-in-the-suikawiki/0.10-namespace><span class=secno>9.15.1 </span><a href=#uppercase-elements>Uppercase elements</a> in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
 namespace</a></h1>
 
 <dl class=element>
@@ -6493,11 +7592,7 @@ found.
 
 <dl>
 
-<dt id=ref-AAVOCAB>AAVOCAB
-
-</dt><dd class=XXX>...
-
-</dd><dt id=ref-MANAKAI>MANAKAI
+<dt id=ref-MANAKAI>MANAKAI
 
 </dt><dd class=XXX>manakai's DOM extensions.
 

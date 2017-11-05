@@ -125,7 +125,10 @@ various <span title=namespace>namespaces</span>.
 
 <p>The <dfn>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
-The <span>preferred prefix</span> is <code>aa</code>.
+The <span>preferred prefix</span> is <code title>aa</code>.
+The <dfn><code>aa</code></dfn> <span>element</span> is defined by
+<a href=https://pc5.5ch.net/test/read.cgi/hp/1096723178/16><cite lang=ja>Strict-HTML
+スレッド24</cite> >>16</a>.
 
 <p>The <dfn>HTML namespace</dfn> is
 <code>http://www.w3.org/1999/xhtml</code>.  The <span>preferred
@@ -135,6 +138,7 @@ the <a href="https://html.spec.whatwg.org/"><cite>HTML
 Standard</cite></a>:
 <ul class=short>
   <li><dfn><code>abbr</code></dfn>
+  <li><dfn><code>b</code></dfn>
   <li><dfn><code>blockquote</code></dfn>
   <li><dfn title=element-html-body><code>body</code></dfn>
   <li><dfn><code>cite</code></dfn>
@@ -151,6 +155,7 @@ Standard</cite></a>:
   <li><dfn><code>head</code></dfn>
   <li><dfn><code>hr</code></dfn>
   <li><dfn><code>html</code></dfn>
+  <li><dfn><code>i</code></dfn>
   <li><dfn><code>ins</code></dfn>
   <li><dfn><code>kbd</code></dfn>
   <li><dfn><code>li</code></dfn>
@@ -172,18 +177,16 @@ Standard</cite></a>:
   <li><dfn><code>th</code></dfn>
   <li><dfn><code>time</code></dfn>
   <li><dfn><code>tr</code></dfn>
+  <li><dfn><code>u</code></dfn>
   <li><dfn><code>ul</code></dfn>
   <li><dfn><code>var</code></dfn>
 </ul>
 
 <p>The <dfn>HTML3 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
-Following <span>element</span> is defined in the <span>HTML3
-namespace</span> <span class=XXX>@@ ref</span>:
-
-<ul class=short>
-<li><dfn><code>note</code></dfn>
-</ul>
+The <dfn><code>note</code></dfn> <span>element</span> is defined in
+the HTML 3.0 specification and belongs to the <span>HTML3
+namespace</span> for the purpose of this specification.
 
 <p>The <dfn>MathML namespace</dfn> is
 <code>http://www.w3.org/1998/Math/MathML</code>.  The
@@ -193,7 +196,11 @@ the <a href="https://www.w3.org/Math/draft-spec/mathml.html">MathML
 specification</a>:
 <ul class=short>
   <li><dfn><code>mfrac</code></dfn>
-  <li><dfn><code>mi</code></dfn>
+  <li><dfn><code>mroot</code></dfn>
+  <li><dfn><code>msqrt</code></dfn>
+  <li><dfn><code>mtext</code></dfn>
+  <li><dfn><code>munder</code></dfn>
+  <li><dfn><code>munderover</code></dfn>
 </ul>
 
 <p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
@@ -217,6 +224,7 @@ specification</a>:
 <h1>Definitions</h1>
 
 <p>Terms
+<dfn>parent</dfn>,
 <dfn>node tree</dfn>,
 <dfn>element</dfn>,
 <dfn title=concept-element-local-name>element's local name</dfn>,
@@ -1255,6 +1263,20 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Abbreviation (HTML <code>abbr</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-ASIS><code>ASIS</code></dfn>
+<td>1
+<td>Not allowed
+<td>Not allowed
+<td>“As-is” annotation (<code>asis</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-B><code>B</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Bold (or sans-serif) text (HTML <code>b</code> element)
+
+<tr>
 <!-- SuikaWiki/0.10 -->
 <th scope=row><dfn title=concept-CITE><code>CITE</code></dfn>
 <td>0
@@ -1292,6 +1314,20 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Defined term (HTML <code>dfn</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-DOTABOVE><code>DOTABOVE</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Text with dot above (<code>dotabove</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-EMPH><code>EMPH</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Emphasized text (<code>emph</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-F><code>F</code></dfn>
 <td>0
 <td>Not allowed
@@ -1299,11 +1335,25 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Field name (<code>f</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-FENCED><code>FENCED</code></dfn>
+<td>0, 1, or 2
+<td>Not allowed
+<td>Not allowed
+<td>Text enclosed by parentheses (<code>fenced</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-FRAC><code>FRAC</code></dfn>
 <td>1
 <td>Not allowed
 <td>Not allowed
-<td>Fraction (<code>mfrac</code> element)
+<td>Fraction (MathML <code>mfrac</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-I><code>I</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Italic text (HTML <code>i</code> element)
 
 <tr>
 <th scope=row><dfn title=concept-INS><code>INS</code></dfn>
@@ -1335,6 +1385,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Latitude (<code>lat</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-LINES><code>LINES</code></dfn>
+<td>1 or more
+<td>Not allowed
+<td>Not allowed
+<td>Set of sublines (<code>lines</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-LON><code>LON</code></dfn>
 <td>0 or 1
 <td>Not allowed
@@ -1363,6 +1420,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Number (<code>n</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-OKURI><code>OKURI</code></dfn>
+<td>0 or 1
+<td>Not allowed
+<td>Not allowed
+<td>Okuri-gana annotations in Kambun (<code>okuri</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-Q><code>Q</code></dfn>
 <td>0
 <td>Allowed
@@ -1376,6 +1440,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Not allowed
 <td>Not allowed
 <td>Qualified name (<code>qn</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-ROOT><code>ROOT</code></dfn>
+<td>1
+<td>Not allowed
+<td>Not allowed
+<td>Root (MathML <code>mroot</code> element)
 
 <tr>
 <th scope=row><dfn title=concept-RUBY><code>RUBY</code></dfn>
@@ -1406,12 +1477,33 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>RFC 2119 keyword "<em class=rfc2119>SHOULD</em>" (<code>SHOULD</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-SMALLCAPS><code>SMALLCAPS</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Small-caps text (<code>smallcaps</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-SNIP><code>SNIP</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Snipped point annotation (<code>snip</code> element)
+
+<tr>
 <!-- SuikaWiki/0.10 -->
 <th scope=row><dfn title=concept-SPAN><code>SPAN</code></dfn>
 <td>0 or 1
 <td>Not allowed
 <td>Not allowed
 <td>Span of text (HTML <code>span</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-SQRT><code>SQRT</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Square root (MathML <code>msqrt</code> element)
 
 <tr>
 <!-- SuikaWiki/0.10 -->
@@ -1422,11 +1514,11 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Short annotation for citation (<code>src</code> element)
 
 <tr>
-<th scope=row><dfn title=concept-SUP><code>SUP</code></dfn>
-<td>0
+<th scope=row><dfn title=concept-SUBSUP><code>SUBSUP</code></dfn>
+<td>1
 <td>Not allowed
 <td>Not allowed
-<td>Superscript (HTML <code>sup</code> element)
+<td>Pair of subscript and superscript (<code>subsup</code> element)
 
 <tr>
 <th scope=row><dfn title=concept-SUB><code>SUB</code></dfn>
@@ -1434,6 +1526,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Not allowed
 <td>Not allowed
 <td>Subscript (HTML <code>sub</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-SUP><code>SUP</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Superscript (HTML <code>sup</code> element)
 
 <tr>
 <!-- SuikaWiki/0.10 -->
@@ -1451,6 +1550,27 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Time zone offset (<code>tz</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-U><code>U</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Underlined text (HTML <code>u</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-UNDER><code>UNDER</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Text with an annotation under it (MathML <code>munder</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-UNDEROVER><code>UNDEROVER</code></dfn>
+<td>1
+<td>Not allowed
+<td>Not allowed
+<td>Text with annotations under and over it (MathML <code>munderover</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-VAR><code>VAR</code></dfn>
 <td>0
 <td>Not allowed
@@ -1458,11 +1578,25 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Variable (HTML <code>var</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-VECTOR><code>VECTOR</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Text with vector symbol (<code>vector</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-WEAK><code>WEAK</code></dfn>
 <td>0
 <td>Not allowed
 <td>Not allowed
 <td>Small print (<code>weak</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-YOKO><code>YOKO</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Horizontal text (<code>yoko</code> element)
 
 </table>
 
@@ -4275,6 +4409,16 @@ following table:
 <td><code>abbr</code>
 
 <tr>
+<th><code title=concept-ASIS>ASIS</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>asis</code>
+
+<tr>
+<th><code title=concept-B>B</code>
+<td>The <span>HTML namespace</span>
+<td><code>b</code>
+
+<tr>
 <th><code title=concept-CITE>CITE</code>
 <td>The <span>HTML namespace</span>
 <td><code>cite</code>
@@ -4302,14 +4446,34 @@ following table:
 <td><code>dfn</code>
 
 <tr>
+<th><code title=concept-DOTABOVE>DOTABOVE</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>dotabove</code>
+
+<tr>
+<th><code title=concept-EMPH>EMPH</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>emph</code>
+
+<tr>
 <th><code title=concept-F>F</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>f</code>
 
 <tr>
+<th><code title=concept-FENCED>FENCED</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>fenced</code>
+
+<tr>
 <th><code title=concept-FRAC>FRAC</code>
 <td>The <span>MathML namespace</span>
 <td><code>mfrac</code>
+
+<tr>
+<th><code title=concept-I>I</code>
+<td>The <span>HTML namespace</span>
+<td><code>i</code>
 
 <tr>
 <th><code title=concept-INS>INS</code>
@@ -4332,6 +4496,11 @@ following table:
 <td><code>lat</code>
 
 <tr>
+<th><code title=concept-LINES>LINES</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>lines</code>
+
+<tr>
 <th><code title=concept-LON>LON</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>lon</code>
@@ -4352,6 +4521,11 @@ following table:
 <td><code>n</code>
 
 <tr>
+<th><code title=concept-OKURI>OKURI</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>okuri</code>
+
+<tr>
 <th><code title=concept-Q>Q</code>
 <td>The <span>HTML namespace</span>
 <td><code>q</code>
@@ -4362,6 +4536,11 @@ following table:
 <td>The <span>SuikaWiki/0.10 namespace</span>
 <td><code>qn</code>
 <!-- SuikaWiki/0.10 -->
+
+<tr>
+<th><code title=concept-ROOT>ROOT</code>
+<td>The <span>MathML namespace</span>
+<td><code>mroot</code>
 
 <tr>
 <th><code title=concept-RUBY>RUBY</code>
@@ -4384,9 +4563,24 @@ following table:
 <td><code>SHOULD</code>
 
 <tr>
+<th><code title=concept-SMALLCAPS>SMALLCAPS</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>smallcaps</code>
+
+<tr>
+<th><code title=concept-SNIP>SNIP</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>snip</code>
+
+<tr>
 <th><code title=concept-SPAN>SPAN</code>
 <td>The <span>HTML namespace</span>
 <td><code>span</code>
+
+<tr>
+<th><code title=concept-SQRT>SQRT</code>
+<td>The <span>MathML namespace</span>
+<td><code>msqrt</code>
 
 <tr>
 <th><code title=concept-SRC>SRC</code>
@@ -4397,6 +4591,11 @@ following table:
 <th><code title=concept-SUB>SUB</code>
 <td>The <span>HTML namespace</span>
 <td><code>sub</code>
+
+<tr>
+<th><code title=concept-SUBSUP>SUBSUP</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>subsup</code>
 
 <tr>
 <th><code title=concept-SUP>SUP</code>
@@ -4415,14 +4614,39 @@ following table:
 <td><code>tz</code>
 
 <tr>
+<th><code title=concept-U>U</code>
+<td>The <span>HTML namespace</span>
+<td><code>u</code>
+
+<tr>
+<th><code title=concept-UNDER>UNDER</code>
+<td>The <span>MathML namespace</span>
+<td><code>munder</code>
+
+<tr>
+<th><code title=concept-UNDEROVER>UNDEROVER</code>
+<td>The <span>MathML namespace</span>
+<td><code>munderover</code>
+
+<tr>
 <th><code title=concept-VAR>VAR</code>
 <td>The <span>HTML namespace</span>
 <td><code>var</code>
 
 <tr>
+<th><code title=concept-VECTOR>VECTOR</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>vector</code>
+
+<tr>
 <th><code title=concept-WEAK>WEAK</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>weak</code>
+
+<tr>
+<th><code title=concept-EMPH>YOKO</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>yoko</code>
 
 <tr>
 <th>Anything else
@@ -4450,12 +4674,20 @@ title=inline-start-tag-language>language</span>.<!-- xml:lang -->
 <li>Push the element created to the <span>stack of open
 elements</span>.
 
-<li>If <span>token</span>'s <span title=inline-start-tag-tag-name>tag
-name</span> is <code>FRAC</code>:
+<li>Switch
+by <span>token</span>'s <span title=inline-start-tag-tag-name>tag
+name</span>:
 
+  <dl class=switch>
+
+  <div>
+  <dt><code>FRAC</code>, <code>ROOT</code>, <code>SQRT</code>,
+  <code>UNDER</code>, or <code>UNDEROVER</code>
+
+  <dd>
   <ol>
 
-  <li>Create an <code>mi</code> element in the <span>MathML
+  <li>Create an <code>mtext</code> element in the <span>MathML
   namespace</span>.
 
   <li>Append the element created to the <span>current element</span>.
@@ -4464,6 +4696,77 @@ name</span> is <code>FRAC</code>:
   elements</span>.
 
   </ol>
+  </div>
+
+  <div>
+  <dt><code>LINES</code>
+
+  <dd>
+  <ol>
+
+  <li>Create a <code>line</code> element in the <span>SuikaWiki/0.9
+  namespace</span>.
+
+  <li>Append the element created to the <span>current element</span>.
+
+  <li>Push the element created to the <span>stack of open
+  elements</span>.
+
+  </ol>
+  </div>
+
+  <div>
+  <dt><code>SUBSUP</code>
+
+  <dd>
+  <ol>
+
+  <li>Create a <code>subscript</code> element in
+  the <span>SuikaWiki/0.9 namespace</span>.
+
+  <li>Append the element created to the <span>current element</span>.
+
+  <li>Push the element created to the <span>stack of open
+  elements</span>.
+
+  </ol>
+  </div>
+
+  <div>
+  <dt><code>FENCED</code>
+
+  <dd>
+  <ol>
+
+  <li>Create an <code>openfence</code> element in
+  the <span>SuikaWiki/0.9 namespace</span>.
+
+  <li>Append the element created to the <span>current element</span>.
+
+  <li>Push the element created to the <span>stack of open
+  elements</span>.
+
+  </ol>
+  </div>
+
+  <div>
+  <dt><code>OKURI</code>
+
+  <dd>
+  <ol>
+
+  <li>Create a <code>rt</code> element in the <span>HTML
+  namespace</span>.
+
+  <li>Append the element created to the <span>current element</span>.
+
+  <li>Push the element created to the <span>stack of open
+  elements</span>.
+
+  </ol>
+  </div>
+
+  </dl>
 
 </ol>
 
@@ -4478,35 +4781,111 @@ name</span> is <code>FRAC</code>:
 <li>Let <var>namespace</var> be the <span>SuikaWiki/0.10
 namespace</span>.
 
-<li>If the <span title=element-local-name>local name</span> of
-the <span>current element</span> is
-<code>rt</code>, set <var>local name</var> to <code>rt</code>, set
-<var>namespace</var> to the <span>HTML namespace</span>, and pop the
-<span>current element</span> off the <span>stack of open
-elements</span>.
+<li>Switch by the <span title=element-local-name>local name</span> of
+the <span>current element</span>:
 
-<li>Otherwise, if the <span title=element-local-name>local name</span>
-of the <span>current element</span>
-is <code>title</code>, <code>nsuri</code>, <code>tz</code>, <code>n</code>,
-<code>lat</code>, or <code>lon</code>, set <var>local name</var>
-to <code>attrvalue</code> and pop the <span>current element</span> off
-the <span>stack of open elements</span>.
+  <dl class=switch>
 
-<li>Otherwise, if the <span title=element-local-name>local name</span>
-of the <span>current element</span> is <code>qn</code>,
-set <var title>local name</var> to
-<code>nsuri</code>.
+  <div>
+  <dt><code>rt</code>
 
-<li>Otherwise, if the <span title=element-local-name>local name</span>
-of the <span>current element</span> is <code>ruby</code>
-or <code>rubyb</code>, set <var title>local name</var>
-to <code>rt</code> and set <var title>namespace</var> to
-the <span>HTML namespace</span>.
+  <dd>
+    <ol>
+    <li>Set <var>local name</var> to <code>rt</code>.
+    <li>Set <var>namespace</var> to the <span>HTML namespace</span>.
+    <li>Pop the <span>current element</span> off the <span>stack of open
+    elements</span>.
+    </ol>
+  </div>
 
-<li>Otherwise, if the <span title=element-local-name>local name</span>
-of the <span>current element</span> is <code>mi</code>,
-set <var title>local name</var> to
-<code>mi</code>.
+  <div>
+  <dt><code>title</code>, <code>nsuri</code>, <code>tz</code>, <code>n</code>,
+  <code>lat</code>, <code>lon</code>, <code>closefence</code>,
+  or <code>superscript</code>
+
+  <dd>
+    <ol>
+    <li>Set <var>local name</var> to <code>attrvalue</code>.
+    <li>Set <var>namespace</var> to the <span>SuikaWiki/0.10 namespace</span>.
+    <li>Pop the <span>current element</span> off the <span>stack of
+    open elements</span>.
+    </ol>
+  </div>
+
+  <div>
+  <dt><code>qn</code>
+  <dd>
+    <ol>
+    <li>Set <var title>local name</var> to <code>nsuri</code>.
+    <li>Set <var>namespace</var> to the <span>SuikaWiki/0.10 namespace</span>.
+    </ol>
+  </div>
+
+  <div>
+  <dt><code>ruby</code> or <code>rubyb</code>
+  <dd>
+    <ol>
+    <li>Set <var title>local name</var> to <code>rt</code>.
+    <li>Set <var title>namespace</var> to the <span>HTML namespace</span>.
+    </ol>
+  </div>
+
+  <div>
+  <dt><code>mtext</code>
+  <dd>
+    <ol>
+    <li>Set <var title>local name</var> to <code>mtext</code>.
+    <li>Set <var>namespace</var> to the <span>MathML namespace</span>.
+    <li>Pop the <span>current element</span> off the <span>stack of open
+    elements</span>.
+    </ol>
+  </div>
+
+  <div>
+  <dt><code>openfence</code>
+  <dd>
+    <ol>
+    <li>Set <var title>local name</var> to <code>fencedtext</code>.
+    <li>Set <var>namespace</var> to the <span>SuikaWiki/0.9 namespace</span>.
+    <li>Pop the <span>current element</span> off the <span>stack of open
+    elements</span>.
+    </ol>
+  </div>
+
+  <div>
+  <dt><code>fencedtext</code>
+  <dd>
+    <ol>
+    <li>Set <var title>local name</var> to <code>closefence</code>.
+    <li>Set <var>namespace</var> to the <span>SuikaWiki/0.9 namespace</span>.
+    <li>Pop the <span>current element</span> off the <span>stack of open
+    elements</span>.
+    </ol>
+  </div>
+
+  <div>
+  <dt><code>subscript</code>
+  <dd>
+    <ol>
+    <li>Set <var title>local name</var> to <code>superscript</code>.
+    <li>Set <var>namespace</var> to the <span>SuikaWiki/0.9 namespace</span>.
+    <li>Pop the <span>current element</span> off the <span>stack of open
+    elements</span>.
+    </ol>
+  </div>
+
+  <div>
+  <dt><code>line</code>
+  <dd>
+    <ol>
+    <li>Set <var title>local name</var> to <code>line</code>.
+    <li>Set <var>namespace</var> to the <span>SuikaWiki/0.9 namespace</span>.
+    <li>Pop the <span>current element</span> off the <span>stack of open
+    elements</span>.
+    </ol>
+  </div>
+
+  </dl>
 
 <li>Create an element whose <span title=element-local-name>local
 name</span> <var>local name</var> in the
@@ -4532,7 +4911,9 @@ elements</span>.
 <ol class=steps>
 
 <li>If the local name of the <span>current element</span> is one of
-<code>rt</code>, <code>title</code>, <code>nsuri</code>, <code>mi</code>,
+<code>rt</code>, <code>title</code>, <code>nsuri</code>, <code>mtext</code>,
+<code>line</code>, <code>subscript</code>, <code>superscript</code>,
+<code>fencedtext</code>, <code>openfence</code>, <code>closefence</code>,
 or <code>attrvalue</code>, pop the element off the <span>stack of open
 elements</span>.
 
@@ -4903,6 +5284,13 @@ parser:
   <tbody>
 
   <tr>
+    <th><dfn title=concept-BOX><code>BOX</code></dfn>
+    <td><code>box</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A group of page content.
+    <td>Not allowed.
+
+  <tr>
     <th><dfn title=concept-DELETE><code>DEL</code></dfn>
     <td><code>delete</code>
     <td><span>SuikaWiki/0.9 namespace</span>
@@ -5011,7 +5399,7 @@ of <code title=element-html-body>body</code>, <code>section</code>,
 <code>ol</code>, <code>dl</code>, <code>li</code>, <code>dt</code>,
 <code>dd</code>, <code>table</code>, <code>tbody</code>, <code>th</code>,
 <code>tr</code>, <code>td</code>, <code>p</code>, <code>comment-p</code>,
-<code>ed</code>, and <code>pre</code>.
+<code>ed</code>, <code>box</code>, and <code>pre</code>.
 
 <div class="note memo">
 <p>These definitions are referenced from the parser.  The parser does
@@ -5470,8 +5858,7 @@ a preamble or preface.
 </section>
 
 <section>
-
-<h1>The <dfn><code>postamble</code></dfn> element in the
+<h1>The <dfn><code>postamble</code></dfn> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dl class=element>
@@ -5492,6 +5879,42 @@ a preamble or preface.
 
 <p>The <code>postamble</code> <span>element</span> <span>represents</span>
 a postamble.
+
+</section>
+
+<section>
+<h1>The <dfn><code>box</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>box</code> <span>element</span> <span>represents</span> a
+physically grouped chunk of contents.
+
+<p>The <code title=attr-sw-class>class</code> <span>attribute</span>
+and CSS can be used to specify presentations of
+the <span>element</span>.
+
+<div class="note memo">
+<p>This <span>element</span> can be used to mark up a chunk of text
+quoted from other materials when it is not apparently mapped into any
+other <span>element</span>'s semantics, e.g. indented text,
+center-aligned text, right-aligned text, and vertical text.
+</div>
 
 </section>
 
@@ -5838,19 +6261,12 @@ namespace</span>.
 <section>
 <h1>Embedded objects</h1>
 
-<section>
-<h1>The <code>aa</code> element in the <span>AA namespace</span></h1>
-
-<p>The <code>aa</code> element in the <span>AA namespace</span> <span
-class=XXX>...</span> falls into the <span>phrasing content</span>
-category for the purpose of the content models in this specification.
-
-<p>The <span>content model</span> of this element <em
-class=rfc2119>SHOULD</em> be considered as <span>phrasing
-content</span>. <!-- SHOULD, not MUST, since we don't have control for
-that namespace. -->
-
-</section>
+<p>Unless otherwise specified by an <span>applicable
+specification</span>, the <code>aa</code> <span>element</span> is
+a <span>phrasing content</span> and its <span>content model</span>
+is <span>phrasing content</span>.<!-- As the original specification
+does not define details of the element's author requirements, we
+define them for our purposes only here. -->
 
 <section>
 
@@ -6064,6 +6480,203 @@ documents.
 </section>
 
 <section>
+<h1>Inline structures</h1>
+
+<section>
+<h1>The <dfn><code>fenced</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>An <code>openfence</code> <span>element</span>,
+followed by a <code>fencedtext</code> <span>element</span>,
+followed by an optional <code>closefence</code> <span>element</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>fenced</code> <span>element</span> <span>represents</span>
+a chunk of content with parentheses enclosing it.
+
+<p>The <dfn>open fence</dfn> of
+a <code>fenced</code> <span>element</span> is the
+first <span>child</span> <code>openfence</code> <span>element</span>,
+if any.
+
+<p>The <dfn>fenced content</dfn> of
+a <code>fenced</code> <span>element</span> is the
+first <span>child</span> <code>fencedtext</code>
+<span>element</span>, if any, after the <span>open fence</span> if
+there is.
+
+<p>The <dfn>close fence</dfn> of
+a <code>fenced</code> <span>element</span> is the
+first <span>child</span> <code>closefence</code>
+<span>element</span>, if any, after the <span>fenced content</span> if
+there is.
+
+<p>Any other <span>child</span> <span>represents</span> nothing.
+
+<p>The <span>open fence</span> and <span>close fence</span>
+<em class=rfc2119>MAY</em> be <span>empty</span>.  It is equivalent to
+missing of <span>open fence</span> or <span>close fence</span>,
+respectively.
+
+<p>It is <span>expected</span> that the <span>open fence</span>
+and <span>close fence</span>, if any, are rendered by the same line
+height as the maximum of the height of the <span>fenced content and
+the height of the <span>line box</span> usually generated by
+the <span>open fence</span> or <span>close fence</span></span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>openfence</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>openfence</code> <span>element</span> <span>represents</span>
+the parenthese before the <span>fenced content</span> if it is an
+<span>open fence</span>.  Otherwise, it <span>represents</span>
+its <span>content</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>fencedtext</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>fencedtext</code> <span>element</span> <span>represents</span>
+the content enclosed by parentheses if it is a
+<span>fenced content</span>.  Otherwise, it <span>represents</span>
+its <span>content</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>closefence</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>closefence</code> <span>element</span> <span>represents</span>
+the parenthese after the <span>fenced content</span> if it is an
+<span>close fence</span>.  Otherwise, it <span>represents</span> its
+<span>content</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>lines</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>Two or more <code>line</code> <span title=element>elements</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>lines</code> <span>element</span> <span>represents</span>
+zero or more spans of parallel contents embedded within a line.
+
+</section>
+
+<section>
+<h1>The <dfn><code>line</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>line</code> <span>element</span> <span>represents</span>
+a piece of content in the <span>parent</span>
+<code>lines</code> <span>element</span>, if any.  Otherwise,
+it <span>represents</span> its content.
+
+</section>
+
+</section>
+
+<section>
 <h1>Editorial annotations</h1>
 
 <section>
@@ -6087,13 +6700,12 @@ documents.
 
 </dl>
 
-<p>The <code>insert</code> element represents an insertion to the
-document.
+<p>The <code>insert</code> <span>element</span> is equivalent to
+the <code>ins</code> <span>element</span>.
 
 </section>
 
 <section>
-
 <h1>The <dfn><code>delete</code></dfn> element in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
@@ -6113,13 +6725,12 @@ document.
 
 </dl>
 
-<p>The <code>delete</code> element represents a removal from the
-document.
+<p>The <code>delete</code> <span>element</span> is equivalent to
+the <code>del</code> <span>element</span>.
 
 </section>
 
 <section>
-
 <h1>The <dfn><code>ed</code></dfn> element in the <span>SuikaWiki/0.10
 namespace</span></h1>
 
@@ -6143,14 +6754,54 @@ namespace</span></h1>
 
 </section>
 
+<section>
+<h1>The <dfn><code>asis</code></dfn> element in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by
+a <code>title</code> <span>element</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>asis</code> <span>element</span> <span>represents</span>
+a chunk of content with an annotation that the content is repeated
+from the source material as-is.  This annotation is typically used
+within a quotation to describe that the content has an error that
+occurs in the original text (and is <em>not</em> produced by the
+author of the document).
+
+<p>If there is a last <span>child</span> <span>element</span> that is a  <code>title</code>
+<span>element</span>, it is the annotation (and is not part of the
+annotated content).  A user agent is <span>expected</span> to show the
+annotation as such.  If there is
+no <code>title</code> <span>element</span> <span>child</span>, a
+<span title="user agent">user-agent</span> dependent
+annotation <em class=rfc2119>SHOULD</em> be used instead.
+
+<div class="note memo">
+
+<p>Typically a short text such as “(sic)” or “<span lang=ja>ママ</span>” 
+is used as the annotation.
+
+</div>
+
 </section>
 
 <section>
-<h1>Inline annotations</h1>
-
-<section>
-
-<h1>The <dfn><code>rubyb</code></dfn> element in the
+<h1>The <dfn><code>snip</code></dfn> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dl class=element>
@@ -6162,8 +6813,7 @@ namespace</span></h1>
 
 <dt><span>Content model</span>
 
-<dd><span>Phrasing content</span>, followed by a <code>rt</code>
-element in the <span>HTML namespace</span>.
+<dd><span>Phrasing content</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -6171,13 +6821,144 @@ element in the <span>HTML namespace</span>.
 
 </dl>
 
-<p class=XXX>...
+<p>The <code>snip</code> <span>element</span> <span>represents</span>
+the point where some content in the source material are omitted.  It
+is typically used within a quotation.
+
+<p>If the <span>content</span> is not <span>empty</span>,
+it <span>represents</span> the annotation placed instead of the
+original text.
+
+<p>It is <span>expected</span> that the <span>content</span> of
+the <span>element</span> is rendered.  If it is <span>empty</span>, a
+<span title="user agent">user-agent</span> dependent
+annotation <em class=rfc2119>SHOULD</em> be used instead.
+
+<div class="note memo">
+
+<p>Typically, a short text such as “...” or
+“<span lang=ja>(中略)</span>” is used as the annotation.
+
+</div>
+
+</section>
 
 </section>
 
 <section>
+<h1>Inline annotations</h1>
 
-<h1>The <dfn><code>weak</code></dfn> element in the
+
+<section>
+<h1>The <dfn><code>emph</code></dfn> element in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>emph</code> <span>element</span> is equivalent to
+the <code>em</code> <span>element</span>.
+
+<p>The <code title=attr-sw-class>class</code> <span>attribute</span>
+and CSS can be used to specify presentations of emphasized texts, such
+as italic and various kinds of annotation marks.
+
+</section>
+
+<section>
+<h1>The <dfn><code>rubyb</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, followed by an <code>rt</code>
+<span>element</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>rubyb</code> <span>element</span> is equivalent to
+the <code>ruby</code> <span>element</span> except that it only
+contains the base text (<span>phrasing content</span>) and the
+secondary ruby text (an <code>rt</code> <span>element</span>).
+
+<p>It is <span>expected</span> that the first <code>rt</code> 
+<span>element</span> <span>child</span>, if any, is rendered
+<span>after</span> the other <span>content</span> before it.
+
+</section>
+
+
+<section>
+<h1>The <dfn><code>okuri</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dt>An <code>rt</code> <span>element</span>, optionally followed by
+an <code>rt</code> <span>element</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>okuri</code> <span>element</span> <span>represents</span>
+<i lang=ja>okuri-gana</i>s (<span lang=ja>送り仮名</span>) annotated
+after the base character in <i lang=ja>Kambun</i> 
+(<span lang=ja>漢文</span>).
+
+<p>Its first <code>rt</code> <span>element</span> <span>child</span>,
+if any, <span>represents</span> the primary ruby text.  Its
+second <code>rt</code> <span>element</span> <span>child</span>, if
+any, <span>represents</span> the secondary ruby text.  The base
+character is the character just before
+the <code>okuri</code> <span>element</span> (ignoring out-of-flow
+content such as another ruby texts).
+
+<p>It is <span>expected</span> that the primary ruby text, if any, is
+rendered at the right bottom of the base character and the secondary
+ruby text, if any, is rendered at the left bottom of the base
+character, in a vertical text.  Note that the base character might
+have its own ruby texts (i.e. it is part of
+a <code>ruby</code> <span>element</span>).
+
+</section>
+
+<section>
+<h1>The <dfn><code>weak</code></dfn> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dl class=element>
@@ -6222,25 +7003,187 @@ element in the <span>HTML namespace</span>.
 
 </dl>
 
-<p>This element <em class=rfc2119>MAY</em> be inserted as the last
-child of <code>abbr</code>, <code>dfn</code>, <code>span</code>, or
-<code>time</code> element in the <span>HTML namespace</span> when the
-<code title=attr-html-title>title</code> attribute of that element is
-not <span>specified</span>.
+<p>The <code>title</code> <span>element</span> <span>represents</span>
+a text that would be specified to
+the <code title=attr-html-title>title</code> <span>attribute</span> of
+the <span>parent</span> <span>element</span>, if applicable.
+Otherwise, it <span>represents</span> nothing.
 
-<p>If the parent element of the element has a <code>title</code>
-attribute <span>specified</span>, or the element is <em>not</em> the
-last child, the element <em class=rfc2119>MUST</em> be
-<span>ignored</span>.
+<p>A <code>title</code> <span>element</span> <em class=rfc2119>MAY</em>
+be the last <span>child</span> <span>element</span> of
+an <code>abbr</code>, <code>dfn</code>,
+or <code>span</code> <span>element</span> <var>parent</var> when the
+<code title=attr-html-title>title</code> <span>attribute</span> of
+<var>parent</var> is not <span>specified</span>.
 
-<div class="note memo">
-
-<p>Inter-element whitespaces, comments, and processing instructions
-can be inserted after this element.
+<p>An <code>title</code> <em class=rfc2119>MUST NOT</em> be used when
+it <span>represents</span> nothing.
 
 </section>
 
-<p class=XXX>...
+</section>
+
+<section>
+<h1>Mathematical representations</h1>
+
+
+<section>
+<h1>The <dfn><code>dotabove</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>dotabove</code> <span>element</span> <span>represents</span>
+a content with a dot above it.  This is used in mathematical
+expressions, such as recurring decimals.
+
+<p>It is <span>expected</span> that a dot symbol is rendered above
+the <span>content</span> of the <span>element</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>vector</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>vector</code> <span>element</span> <span>represents</span>
+a content with a right-pointing arrow above it.  This is used in
+mathematical expressions to denote a vector.
+
+<p>It is <span>expected</span> that a right-pointing arrow is rendered
+above the <span>content</span> of the <span>element</span>.
+
+<p>This <span>element</span> <em class=rfc2119>SHOULD NOT</em> be used
+for other possible presentations of vectors, such as bold face without
+arrow.
+
+</section>
+
+<section>
+<h1>The <dfn><code>subsup</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>A <code>subscript</code> <span>element</span>, followed by a
+<code>superscript</code> <span>element</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>subsup</code> <span>element</span> <span>represents</span>
+a pair of subscript and superscript chunks of contents.
+
+<p>The <dfn>subscript content</dfn> of
+a <code>subsup</code> <span>element</span> is the
+first <code>subscript</code> <span>element</span> <span>child</span>,
+if any.
+
+<p>The <dfn>superscript content</dfn> of
+a <code>subsup</code> <span>element</span> is the
+first <span>child</span> <code>superscript</code> <span>element</span>,
+if any, after the <span>subscript content</span> if there is.
+
+<p>Any other <span>child</span> <span>represents</span> nothing.
+
+<p>It is <span>expected</span> that the <span>subscript content</span>
+is rendered as subscript and the <span>superscript content</span> is
+rendered as superscript sharing the same horizontal spaces.
+
+</section>
+
+<section>
+<h1>The <dfn><code>subscript</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>subscript</code> <span>element</span> is equivalent to
+the <code>sub</code> <span>element</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>superscript</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>superscript</code> <span>element</span> is equivalent to
+the <code>sup</code> <span>element</span>.
+
+</section>
+
 
 </section>
 
@@ -6347,7 +7290,7 @@ hash, or a property name of an XML information item.
 <dt><span>Content model</span>
 
 <dd><span>Phrasing content</span>, optionally followed by
-an <code>attrvalue</code> element.
+an <code>attrvalue</code> <span>element</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -6417,6 +7360,76 @@ an <code>attrvalue</code> element.
 
 <p>The <code>lon</code> element <span>represents</span> a longitude
 given as the <span>element value</span>.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>tz</code></dfn> element in the <span>SuikaWiki/0.9
+namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+<dd><span>Elements with value</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by
+an <code>attrvalue</code> element.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>A <code>tz</code> element <span>represents</span> a time-zone
+offset given as the <span>element value</span>.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>attrvalue</code></dfn> element in the
+<span>SuikaWiki/0.10 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>attrvalue</code> <span>element</span> <span>represents</span>
+the <span>element value</span> of
+the <span>parent</span> <span>element</span>, if applicable, or the
+text that would be specified to the <code>datetime</code>
+<span>attribute</span> of
+the <span>parent</span> <span>element</span>, if it is
+a <code>time</code> <span>element</span> without
+a <code>datetime</code> <span>attribute</span>.  Otherwise,
+it <span>represents</span> nothing.
+
+<p>An <code>attrvalue</code> <em class=rfc2119>MAY</em> be the
+last <span>child</span> <span>element</span> of
+a <code>time</code> <span>element</span>.
+
+<p>An <code>attrvalue</code> <em class=rfc2119>MUST NOT</em> be used
+when it <span>represents</span> nothing.
 
 </section>
 
@@ -6534,6 +7547,75 @@ It can also be used for <span title="RFC 2119 keyword">keyword</span>
 </section>
 
 <section>
+<h1>Physical representations</h1>
+
+<section>
+<h1>The <dfn><code>smallcaps</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>smallcaps</code> <span>element</span> <span>represents</span>
+a text in small-capitals.
+
+<p>The <span title=character>characters</span> in
+the <code>smallcaps</code> <span>element</span>, including but not
+limited to uppercase and lowercase latin letters,
+are <span>expected</span> to be rendered using small-capital glyphs,
+whenever possible.
+
+</section>
+
+<section>
+<h1>The <dfn><code>yoko</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code title=attr-sw-class>class</code>
+
+</dl>
+
+<p>The <code>yoko</code> <span>element</span> <span>represents</span>
+a horizontal text span in a vertically-flowed text (known
+as <span lang=ja>縦中横</span>).
+
+<p>It is <span>expected</span> that the <span>content</span> is
+rendered horizontally even when its <span>parent</span> is rendered
+vertically.
+
+</section>
+
+
+</section>
+
+<section>
 <h1>Qualified names</h1>
 
 <section>
@@ -6623,34 +7705,6 @@ namespace</span>.
 
 <section>
 
-<h1>The <dfn><code>attrvalue</code></dfn> element in the
-<span>SuikaWiki/0.10 namespace</span></h1>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd>None.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd>None.
-
-</dl>
-
-<p>Unless otherwise specified, this element <em class=rfc2119>MUST
-NOT</em> be used.
-
-<p class=XXX>...
-
-</section>
-
-<section>
-
 <h1><span>Uppercase elements</span> in the <span>SuikaWiki/0.10
 namespace</span></h1>
 
@@ -6698,10 +7752,6 @@ found.
 <h1 class=no-num>Normative references</h1>
 
 <dl>
-
-<dt id=ref-AAVOCAB>AAVOCAB
-
-<dd class=XXX>...
 
 <dt id=ref-MANAKAI>MANAKAI
 
