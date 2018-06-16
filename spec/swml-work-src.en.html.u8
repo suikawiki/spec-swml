@@ -220,6 +220,8 @@ is <code>xml</code>.
 
 <p>The terms
 <dfn>string</dfn>,
+<dfn>forgiving-base64 encode</dfn>,
+<dfn>forgiving-base64 decode</dfn>,
 <dfn>HTML namespace</dfn>,
 <dfn>MathML namespace</dfn>,
 <dfn>XML namespace</dfn>,
@@ -246,8 +248,10 @@ are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
 <p>Terms
+<dfn>applicable specification</dfn>,
 <dfn>content attribute</dfn>, <dfn>IDL attribute</dfn>,
 <dfn>valid integer</dfn>, <dfn>rules for parsing integers</dfn>,
+<dfn>HTML element</dfn>,
 <dfn>represents</dfn>,
 <a href="https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace"><dfn>inter-element
 whitespace</dfn></a>,
@@ -1636,7 +1640,7 @@ title=concept-character>characters</span> excluding <code>(</code>,
 <code>)</code>, and <code>\</code>.  The <span
 title=concept-class-specification-body>body of the class
 specification</span> has similar semantics and processed similarly to
-HTML <code>class</code> attribute.
+HTML <code>class</code> <span>attribute</span>.
 
 <dl class=abnf>
 
@@ -1835,15 +1839,15 @@ title=abnf-identifier>identifier</span>)
 <section>
 <h1>Images</h1>
 
-<p>A <span title=concept-document>document</span> can contain an <dfn
-title=concept-image>image</dfn> by including a string
-<code>__IMAGE__</code> followed by a <span
-title=concept-newline>newline</span> followed by Base64 <span
-class=XXX>RFC 2045</span> encoded image data, at the end of the <span title=concept-document>document</span>.  <span
-title=concept-parameter>Parameters</span> <code
-title=concept-parameter-image-type>image-type</code> and <code
-title=concept-parameter-image-alt>image-alt</code> provide metadata
-for the <span title=concept-image>image</span>.
+<p>A <span title=concept-document>document</span> can contain
+an <dfn title=concept-image>image</dfn> by including a
+string <code>__IMAGE__</code> followed by
+a <span title=concept-newline>newline</span> followed
+by <span title="forgiving-base64 encode">Base64-encoded</span> image
+data, at the end of
+the <span title=concept-document>document</span>.  <span title=concept-parameter>Parameters</span> <code title=concept-parameter-image-type>image-type</code>
+and <code title=concept-parameter-image-alt>image-alt</code> provide
+metadata for the <span title=concept-image>image</span>.
 
 <dl class=abnf>
 
@@ -3824,11 +3828,10 @@ elements</span> with <span>section depth</span> set to zero (0),
 <span>quotation depth</span> set to zero (0), and <span>list
 depth</span> set to zero (0).
 
-<li>If the <span>token</span>'s <span
-title=block-start-tag-classes>classes</span> is not null, set the
-<code title=attr-class>class</code> <span>content attribute</span> of
-the element created to <span
-title=block-start-tag-classes>classes</span>.
+<li>If
+the <span>token</span>'s <span title=block-start-tag-classes>classes</span>
+is not null, set the <code>class</code> <span>attribute</span> of the
+element created to <span title=block-start-tag-classes>classes</span>.
 
 </ol>
 
@@ -3874,11 +3877,10 @@ namespace</span>.
 
 <li>Append the element created to the <span>current element</span>.
 
-<li>If the <span>token</span>'s <span
-title=block-start-tag-classes>classes</span> is not null, set the
-<code title=attr-class>class</code> <span>content attribute</span> of
-the element created to <span
-title=block-start-tag-classes>classes</span>.
+<li>If
+the <span>token</span>'s <span title=block-start-tag-classes>classes</span>
+is not null, set the <code>class</code> <span>attribute</span> of the
+element created to <span title=block-start-tag-classes>classes</span>.
 
 </ol>
 
@@ -4112,11 +4114,10 @@ namespace</span>.
 <li>Push the element created to the <span>stack of open
 elements</span>.
 
-<li>If the <span>token</span>'s <span
-title=block-start-tag-classes>classes</span> is not null, set the
-<code title=attr-class>class</code> <span>content attribute</span> of
-the element created to <span
-title=block-start-tag-classes>classes</span>.
+<li>If
+the <span>token</span>'s <span title=block-start-tag-classes>classes</span>
+is not null, set the <code>class</code> <span>attribute</span> of the
+element created to <span title=block-start-tag-classes>classes</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span>.
@@ -4678,11 +4679,11 @@ title=inline-start-tag-tag-name>tag name</span></span>
 
 </table>
 
-<li>If the <span>token</span>'s <span
-title=inline-start-tag-classes>classes</span> is not null, set the
-<code title=attr-class>class</code> <span>content attribute</span> of
-the element created to <span
-title=inline-start-tag-classes>classes</span>.
+<li>If
+the <span>token</span>'s <span title=inline-start-tag-classes>classes</span>
+is not null, set the <code>class</code> <span>attribute</span> of the
+element created
+to <span title=inline-start-tag-classes>classes</span>.
 
 <li>If the <span>token</span>'s <span
 title=inline-start-tag-language>language</span> is not null, set the
@@ -5698,24 +5699,19 @@ in the <span>SuikaWiki/0.9 namespace</span></h1>
 </section>
 
 <section>
-<h1>The <dfn title=attr-class><code>class</code></dfn> attribute</h1>
+<h1>The <dfn><code>class</code></dfn> <span>attribute</span></h1>
 
-<p>All elements in the <span>HTML namespace</span>
-have <a href="https://www.whatwg.org/specs/web-apps/current-work/#classes"><dfn title=attr-html-class><code>class</code></dfn></a>
-attribute <span class=XXX>...</span>.
+<p>The <code>class</code> <span>attribute</span> of
+an <span>element</span> in the <span>SuikaWiki/0.9 namespace</span> or
+in the <span>SuikaWiki/0.10 namespace</span> has the same semantics
+and requirements as the <code>class</code> <span>attribute</span> of
+the <span title="HTML element">HTML elements</span>.
 
-<p>The <dfn title=attr-sw-class><code>class</code></dfn> attribute of
-an element in the <span>SuikaWiki/0.9 namespace</span> and
-<span>SuikaWiki/0.10 namespace</span> has the same semantics and
-requirements as the HTML <code title=attr-html-class>class</code>
-attribute.
-
-<p>The <dfn title=attr-aa-class><code>class</code></dfn> attribute of
-an element in the <span>AA namespace</span> <em
-class=rfc2119>SHOULD</em> be considered as having the same semantics
-and requirements as the HTML <code title=attr-html-class>class</code>
-attribute. <!-- SHOULD, not MUST, since we don't have control for that
-namespace. -->
+<p>Unless otherwise specified by other <span>applicable
+specification</span>, the <code>class</code> <span>attribute</span> of
+an <span>element</span> in the <span>AA namespace</span> has the same
+semantics and requirements as the <code>class</code> of
+the <span title="HTML element">HTML elements</span>.
 
 </section>
 
@@ -5818,7 +5814,7 @@ of <span title=paragraph>paragraphs</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -5844,7 +5840,7 @@ history or an out-of-date content.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -5869,7 +5865,7 @@ history or an out-of-date content.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -5894,7 +5890,7 @@ a preamble or preface.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -5919,16 +5915,15 @@ a postamble.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
 <p>The <code>box</code> <span>element</span> <span>represents</span> a
 physically grouped chunk of contents.
 
-<p>The <code title=attr-sw-class>class</code> <span>attribute</span>
-and CSS can be used to specify presentations of
-the <span>element</span>.
+<p>The <code>class</code> <span>attribute</span> and CSS can be used
+to specify presentations of the <span>element</span>.
 
 <div class="note memo">
 <p>This <span>element</span> can be used to mark up a chunk of text
@@ -5997,7 +5992,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6041,7 +6036,7 @@ different speakers).
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6331,8 +6326,8 @@ title=attr-sw-form-option><code>option</code>
 
 <section>
 
-<h1>The <dfn><code>image</code></dfn> element in the
-<span>SuikaWiki/0.9 namespace</span></h1>
+<h1>The <dfn><code>image</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dl class=element>
 
@@ -6350,15 +6345,43 @@ title=attr-sw-form-option><code>option</code>
 
 </dl>
 
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
+<p>This <span>element</span> <em class=rfc2119>MUST NOT</em> be used.
+It was used to embed an image data associated with
+the <span>document</span>.
 
-<!--
-<p>At most one <code>image</code> element <em class=rfc2119>MAY</em>
-be inserted after the <code title=element-html-body>body</code>
-element in the <span>HTML namespace</span>.
--->
+<p>An <code>image</code> <span>element</span> <var>element</var> in
+the <span>SuikaWiki/0.9 namespace</span> <span>represents</span> the
+result of the following steps:
 
-<p class=XXX>...
+  <ol class=steps>
+
+  <li>Let <var>encoded</var> be <var>elmeent</var>'s <span>text
+  content</span>.
+
+  <li>Let <var>decoded</var> be the result
+  of <span title="forgiving-base64
+  decode">decoding</span> <var>encoded</var>.
+
+  <li>If <var>decoded</var> is failure, return nothing.
+
+  <li>If <var>decoded</var> is not a valid <span>PNG</span>
+  or <span>JFIF</span> image data, return nothing.
+
+  <li>Return an image represented by <var>decoded</var>.
+
+  </ol>
+
+<div class=note>
+
+<p>Historically, at most one <code>image</code> <span>element</span>
+was allowed to be inserted after
+the <code>body</code> <span>element</span> in the <span>HTML
+namespace</span>.  Its content has to be
+a <span title="forgiving-base64
+encode">Base64-encoded</span> <span>PNG</span> or JPEG
+(<span>JFIF</span>) image data.
+
+</div>
 
 </section>
 
@@ -6439,7 +6462,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6465,7 +6488,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6490,7 +6513,7 @@ element in the <span>HTML namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6524,7 +6547,7 @@ intermixed with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6579,7 +6602,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6606,7 +6629,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6633,7 +6656,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6662,7 +6685,7 @@ optionally intermixed with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6687,7 +6710,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6720,7 +6743,7 @@ it <span>represents</span> its content.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6745,7 +6768,7 @@ the <code>ins</code> <span>element</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6797,7 +6820,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6842,7 +6865,7 @@ is used as the annotation.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6891,16 +6914,16 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
 <p>The <code>emph</code> <span>element</span> is equivalent to
 the <code>em</code> <span>element</span>.
 
-<p>The <code title=attr-sw-class>class</code> <span>attribute</span>
-and CSS can be used to specify presentations of emphasized texts, such
-as italic and various kinds of annotation marks.
+<p>The <code>class</code> <span>attribute</span> and CSS can be used
+to specify presentations of emphasized texts, such as italic and
+various kinds of annotation marks.
 
 </section>
 
@@ -6923,7 +6946,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -6958,7 +6981,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7001,7 +7024,7 @@ a <code>ruby</code> <span>element</span>).
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7072,7 +7095,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7102,7 +7125,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7138,7 +7161,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7179,7 +7202,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7204,7 +7227,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7265,7 +7288,7 @@ the following steps:
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7295,7 +7318,7 @@ information item.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7325,7 +7348,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7355,7 +7378,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7385,7 +7408,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7415,7 +7438,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7441,7 +7464,7 @@ offset given as the <span>element value</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7493,7 +7516,7 @@ when it <span>represents</span> nothing.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7529,7 +7552,7 @@ NOT</em>"</a>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7564,7 +7587,7 @@ RECOMMENDED</em>"</a>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7598,7 +7621,7 @@ It can also be used for <span title="RFC 2119 keyword">keyword</span>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7630,7 +7653,7 @@ whenever possible.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7670,7 +7693,7 @@ with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7752,7 +7775,7 @@ namespace</span></h1>
 
 <dt><span>Allowed attributes</span>
 
-<dd><code title=attr-sw-class>class</code>
+<dd><code>class</code>
 
 </dl>
 
@@ -7774,6 +7797,33 @@ found.
 </section>
 
 </section>
+
+</section>
+
+<section>
+<h1>Security</h1>
+
+<p>The <span>node tree</span> returned by the <span title="parsing an
+SWML text serialization">parsing algorithm</span> does not contain
+any <code>script</code> <span>element</span><!-- in HTML/SVG namespace
+-->.  The following <span title=node>nodes</span> might
+contain <span title=URL>URLs</span>, which might be potentially
+dangerous (e.g. <code>javascript:</code> URL):
+
+  <ul>
+
+  <li>The <code title=attr-sw-res-parameter>resParameter</code>
+  <span>attribute</span> in the <span>SuikaWiki/0.9 namespace</span>
+
+  <li>The <code>nsuri</code> <span>element</span> in
+  the <span>SuikaWiki/0.10 namespace</span>
+
+  </ul>
+
+<p>The <code>image</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span> might contain
+a <span title="forgiving-base64 encode">Base64-encoded</span> binary
+data that is not in fact an image (e.g an executable binary).
 
 </section>
 
