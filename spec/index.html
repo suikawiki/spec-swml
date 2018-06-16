@@ -65,12 +65,9 @@
      <li><a href=#the-in-paragraph-insertion-mode><span class=secno>4.5.3 </span>The "<span>in paragraph</span>" <span>insertion mode</span></a></li></ol></li></ol></li>
  <li><a href=#serializing-swml-text-serialization-documents><span class=secno>5 </span>Serializing <span>SWML text serialization</span> documents</a></li>
  <li><a href=#element-definitions-for-the-swml-text-serialization><span class=secno>6 </span>Element definitions for the SWML text serialization</a></li>
- <li><a href=#the-text/x-suikawiki-and-text/x.suikawiki.image-internet-media-types><span class=secno>7 </span>The <code>text/x-suikawiki</code> and
-<code>text/x.suikawiki.image</code> Internet Media Types</a></li>
- <li><a href=#the-swml-xml-serialization><span class=secno>8 </span>The SWML XML serialization</a>
-  <ol>
-   <li><a class=XXX href=#...-xml-media-type><span class=secno>8.1 </span>... xml media type</a></li></ol></li>
- <li><a href=#semantics-of-elements-and-attributes><span class=secno>9 </span>Semantics of Elements and Attributes</a>
+ <li><a href=#swml-mime-types><span class=secno>7 </span>SWML MIME types</a></li>
+ <li><a href=#the-swml-xml-serialization><span class=secno>8 </span>The SWML XML serialization</a></li>
+ <li><a href=#semantics-of-elements-and-attributes><span class=secno>9 </span>Semantics of elements and attributes</a>
   <ol>
    <li><a href=#document-structures><span class=secno>9.1 </span>Document structures</a>
     <ol>
@@ -431,7 +428,9 @@ is <code>xml</code>.
 <h1 id=definitions><span class=secno>2.2 </span>Definitions</h1>
 
 <p>The terms
+<dfn id=byte-sequence>byte sequence</dfn>,
 <dfn id=string>string</dfn>,
+<dfn id=ascii-case-insensitive>ASCII case-insensitive</dfn>,
 <dfn id=forgiving-base64-encode>forgiving-base64 encode</dfn>,
 <dfn id=forgiving-base64-decode>forgiving-base64 decode</dfn>,
 <dfn id=html-namespace>HTML namespace</dfn>,
@@ -481,12 +480,24 @@ and
 are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
 Standard</cite></a>.
 
+</p><p>Term
+<dfn id=utf-8>UTF-8</dfn>
+is
+defined by the <a href=https://encoding.spec.whatwg.org/><cite>Encoding
+Standard</cite></a>.
+
 </p><p>Terms
 <dfn id=url>URL</dfn>
 and
 <dfn id=valid-url-string>valid URL string</dfn>
 are defined by the <a href=https://url.spec.whatwg.org/><cite>URL
 Standard</cite></a>.
+
+</p><p>Term
+<dfn id=mime-type>MIME type</dfn>
+is
+defined by the <a href=https://mimesniff.spec.whatwg.org/><cite>MIME
+Sniffing Standard</cite></a>.
 
 </p><p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <a href=#space><code class=charname>SPACE</code></a>.
 
@@ -1954,10 +1965,10 @@ as <dfn id=parsing-an-swml-text-serialization title="parsing an SWML text serial
 an implementation that performes this process is referred to as
 <dfn id=swml-text-serialization-parser title="SWML text serialization parser">parser</dfn>.
 
-</p><div class="note memo">
+</p><div class=note>
 
-<p>How to convert a byte sequence into a <a href=#string>string</a> is
-outside of the scope of this specification.
+<p>How to convert a <a href=#byte-sequence>byte sequence</a> into
+a <a href=#string>string</a> is outside of the scope of this specification.
 
 </p></div>
 
@@ -5330,22 +5341,17 @@ check <a href=#element title=element>elements</a>' <span title=namespace>namespa
 </section>
 
 <section>
-<h1 id=the-text/x-suikawiki-and-text/x.suikawiki.image-internet-media-types><span class=secno>7 </span>The <a href=#text/x-suikawiki><code>text/x-suikawiki</code></a> and
-<a href=#text/x.suikawiki.image><code>text/x.suikawiki.image</code></a> Internet Media Types</h1>
+<h1 id=swml-mime-types><span class=secno>7 </span>SWML MIME types</h1>
 
-<p>The <a href=#the-swml-text-serialization>SWML text serialization</a> can be identified by
-Internet Media Type <dfn id=text/x-suikawiki><code>text/x-suikawiki</code></dfn>.
+<p>The <a href=#the-swml-text-serialization>SWML text serialization</a> can be identified
+by <a href=#mime-type title="MIME type">MIME
+types</a> <dfn id=text/x-suikawiki><code>text/x-suikawiki</code></dfn>
+and <dfn id=text/x.suikawiki.image><code>text/x.suikawiki.image</code></dfn>.
+<a href=#mime-type>MIME
+type</a> <a href=#text/x.suikawiki.image><code>text/x.suikawiki.image</code></a> <em class=rfc2119>MUST
+NOT</em> be used.
 
-</p><p>An entity labeled as <a href=#text/x-suikawiki><code>text/x-suikawiki</code></a> <em class=rfc2119>MUST</em> be an <a href=#the-swml-text-serialization>SWML text serialization</a> and
-<em class=rfc2119>MUST</em> be processed as an <a href=#the-swml-text-serialization>SWML text
-serialization</a>.
-
-</p><p>Additionally, for historical reason, an entity labeled as
-<dfn id=text/x.suikawiki.image><code>text/x.suikawiki.image</code></dfn> <em class=rfc2119>MUST</em> be processed as an <a href=#the-swml-text-serialization>SWML text
-serialization</a>.  This Internet Media Type <em class=rfc2119>MUST
-NOT</em> be used for a new entity.
-
-</p><div class="note memo">
+</p><div class=note>
 
 <p>It was originally intended that a <a href=#concept-document title=concept-document>document</a> with <a href=#concept-format-name title=concept-format-name>format name</a> equal to <a href=#concept-magic-format-suikawiki><code title=concept-magic-format-suikawiki>SuikaWiki</code></a> is labeled as
 <a href=#text/x-suikawiki><code>text/x-suikawiki</code></a> while a <a href=#concept-document title=concept-document>document</a> with <a href=#concept-format-name title=concept-format-name>format name</a> equal to <a href=#concept-magic-format-suikawikiimage><code title=concept-magic-format-suikawikiimage>SuikaWikiImage</code></a> is
@@ -5353,23 +5359,48 @@ labeled as <a href=#text/x.suikawiki.image><code>text/x.suikawiki.image</code></
 
 </p></div>
 
-<p>The <dfn id=parameter-charset title=parameter-charset><code>charset</code></dfn>
-parameter of these Internet Media Types represents the character
-encoding used for the entity.  It has the same requirements as the
-<code title="">charset</code> parameter for the <code>text/html</code>
-Internet Media Type <span class=XXX>@@ todo: ref</span>.<!-- todo: xref
-charset processing model -->
+<p>If a <a href=#string>string</a> is labeled by one of
+these <a href=#mime-type title="MIME type">MIME types</a>,
+it <em class=rfc2119>MUST</em> be an <a href=#the-swml-text-serialization>SWML text
+serialization</a> <a href=#concept-document title=concept-document>document</a>.
 
-</p><p>The <dfn id=parameter-version title=parameter-version><code>version</code></dfn>
-parameter <em class=rfc2119>MAY</em> has the value <dfn id=parameter-version-0.9 title=parameter-version-0.9><code>0.9</code></dfn> or <dfn id=parameter-version-0.10 title=parameter-version-0.10><code>0.10</code></dfn> but <em class=rfc2119>SHOULD NOT</em> be used.  The parameter <em class=rfc2119>MUST</em> be ignored.
+</p><p>If a <a href=#byte-sequence>byte sequence</a> is labeled by one of
+these <a href=#mime-type title="MIME type">MIME types</a>,
+it <em class=rfc2119>MUST</em> be an <a href=#the-swml-text-serialization>SWML text
+serialization</a> <a href=#concept-document title=concept-document>document</a>,
+encoded in <a href=#utf-8>UTF-8</a>.
 
-</p><div class="note memo">
+</p><p>When a <a href=#string>string</a> labeled by one of
+these <a href=#mime-type title="MIME type">MIME types</a> is processed,
+the <a href=#swml-text-serialization-parser title="SWML text serialization
+parser">parser</a> <em class=rfc2119>MUST</em> be used.
 
-<p>This parameter was originally used to encode <a href=#concept-format-version title=concept-format-version>format version</a> in favor of <a href=#concept-magic-line title=concept-magic-line>magic line</a>.
+</p><hr>
+
+<p>If
+the <dfn id=parameter-charset title=parameter-charset><code>charset</code></dfn> <span>parameter</span>
+is specified with these <a href=#mime-type title="MIME type">MIME types</a>, its
+value <em class=rfc2119>MUST</em> be <a href=#utf-8><code>UTF-8</code></a>, <a href=#ascii-case-insensitive>ASCII
+case-insensitive</a>.  It <em class=rfc2119>MUST NOT</em> be used
+to decode a <a href=#byte-sequence>byte sequence</a> labeled with
+the <a href=#mime-type title="MIME type">MIME types</a>.
+
+</p><p>Any other <span>parameter</span> <em class=rfc2119>MUST NOT</em> be
+specified.
+
+</p><div class=note>
+
+<p>Historically, there was
+the <dfn id=parameter-version title=parameter-version><code>version</code></dfn> <span>parameter</span>
+whose value is <dfn id=parameter-version-0.9 title=parameter-version-0.9><code>0.9</code></dfn>
+or <dfn id=parameter-version-0.10 title=parameter-version-0.10><code>0.10</code></dfn>.
+This <span>parameter</span> was used to
+encode <a href=#concept-format-version title=concept-format-version>format version</a> in
+favor of <a href=#concept-magic-line title=concept-magic-line>magic line</a>.
 
 </p></div>
 
-<p class=XXX>... IMT template; fragment identifier
+<p class=XXX>fragment identifier
 
 </p></section>
 
@@ -5378,18 +5409,15 @@ parameter <em class=rfc2119>MAY</em> has the value <dfn id=parameter-version-0.9
 <section>
 <h1 id=the-swml-xml-serialization><span class=secno>8 </span>The <dfn>SWML XML serialization</dfn></h1>
 
-<p class=XXX>...
+<p>A <a href=#abnf-document>document</a> using
+SWML <a href=#element title=element>elements</a>
+and <a href=#attribute title=attribute>attributes</a> can be serialized using
+the XML syntax.  It has no dedicated <a href=#mime-type>MIME type</a>.
 
-</p><section>
-<h1 class=XXX id=...-xml-media-type><span class=secno>8.1 </span>... xml media type</h1>
-
-<p class=XXX>
 </p></section>
 
-</section>
-
 <section>
-<h1 id=semantics-of-elements-and-attributes><span class=secno>9 </span>Semantics of Elements and Attributes</h1>
+<h1 id=semantics-of-elements-and-attributes><span class=secno>9 </span>Semantics of elements and attributes</h1>
 
 <p>This specification is <em>the</em> specification for the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10

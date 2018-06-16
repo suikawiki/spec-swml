@@ -219,7 +219,9 @@ is <code>xml</code>.
 <h1>Definitions</h1>
 
 <p>The terms
+<dfn>byte sequence</dfn>,
 <dfn>string</dfn>,
+<dfn>ASCII case-insensitive</dfn>,
 <dfn>forgiving-base64 encode</dfn>,
 <dfn>forgiving-base64 decode</dfn>,
 <dfn>HTML namespace</dfn>,
@@ -269,12 +271,24 @@ and
 are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
 Standard</cite></a>.
 
+<p>Term
+<dfn>UTF-8</dfn>
+is
+defined by the <a href=https://encoding.spec.whatwg.org/><cite>Encoding
+Standard</cite></a>.
+
 <p>Terms
 <dfn>URL</dfn>
 and
 <dfn>valid URL string</dfn>
 are defined by the <a href=https://url.spec.whatwg.org/><cite>URL
 Standard</cite></a>.
+
+<p>Term
+<dfn>MIME type</dfn>
+is
+defined by the <a href=https://mimesniff.spec.whatwg.org/><cite>MIME
+Sniffing Standard</cite></a>.
 
 <p><dfn>White space characters</dfn> are U+0009 <code
 class=charname>CHARACTER TABULATION</code> and U+0020 <code
@@ -1954,10 +1968,10 @@ as <dfn title="parsing an SWML text serialization">parsing</dfn> and
 an implementation that performes this process is referred to as
 <dfn title="SWML text serialization parser">parser</dfn>.
 
-<div class="note memo">
+<div class=note>
 
-<p>How to convert a byte sequence into a <span>string</span> is
-outside of the scope of this specification.
+<p>How to convert a <span>byte sequence</span> into
+a <span>string</span> is outside of the scope of this specification.
 
 </div>
 
@@ -5439,24 +5453,17 @@ check <span title=element>elements</span>' <span title=namespace>namespaces</spa
 </section>
 
 <section>
-<h1>The <code>text/x-suikawiki</code> and
-<code>text/x.suikawiki.image</code> Internet Media Types</h1>
+<h1>SWML MIME types</h1>
 
-<p>The <span>SWML text serialization</span> can be identified by
-Internet Media Type <dfn><code>text/x-suikawiki</code></dfn>.
+<p>The <span>SWML text serialization</span> can be identified
+by <span title="MIME type">MIME
+types</span> <dfn><code>text/x-suikawiki</code></dfn>
+and <dfn><code>text/x.suikawiki.image</code></dfn>.
+<span>MIME
+type</span> <code>text/x.suikawiki.image</code> <em class=rfc2119>MUST
+NOT</em> be used.
 
-<p>An entity labeled as <code>text/x-suikawiki</code> <em
-class=rfc2119>MUST</em> be an <span>SWML text serialization</span> and
-<em class=rfc2119>MUST</em> be processed as an <span>SWML text
-serialization</span>.
-
-<p>Additionally, for historical reason, an entity labeled as
-<dfn><code>text/x.suikawiki.image</code></dfn> <em
-class=rfc2119>MUST</em> be processed as an <span>SWML text
-serialization</span>.  This Internet Media Type <em class=rfc2119>MUST
-NOT</em> be used for a new entity.
-
-<div class="note memo">
+<div class="note">
 
 <p>It was originally intended that a <span
 title=concept-document>document</span> with <span
@@ -5470,29 +5477,48 @@ labeled as <code>text/x.suikawiki.image</code>.
 
 </div>
 
-<p>The <dfn title=parameter-charset><code>charset</code></dfn>
-parameter of these Internet Media Types represents the character
-encoding used for the entity.  It has the same requirements as the
-<code title>charset</code> parameter for the <code>text/html</code>
-Internet Media Type <span class=XXX>@@ todo: ref</span>.<!-- todo: xref
-charset processing model -->
+<p>If a <span>string</span> is labeled by one of
+these <span title="MIME type">MIME types</span>,
+it <em class=rfc2119>MUST</em> be an <span>SWML text
+serialization</span> <span title=concept-document>document</span>.
 
-<p>The <dfn title=parameter-version><code>version</code></dfn>
-parameter <em class=rfc2119>MAY</em> has the value <dfn
-title=parameter-version-0.9><code>0.9</code></dfn> or <dfn
-title=parameter-version-0.10><code>0.10</code></dfn> but <em
-class=rfc2119>SHOULD NOT</em> be used.  The parameter <em
-class=rfc2119>MUST</em> be ignored.
+<p>If a <span>byte sequence</span> is labeled by one of
+these <span title="MIME type">MIME types</span>,
+it <em class=rfc2119>MUST</em> be an <span>SWML text
+serialization</span> <span title=concept-document>document</span>,
+encoded in <span>UTF-8</span>.
 
-<div class="note memo">
+<p>When a <span>string</span> labeled by one of
+these <span title="MIME type">MIME types</span> is processed,
+the <span title="SWML text serialization
+parser">parser</span> <em class=rfc2119>MUST</em> be used.
 
-<p>This parameter was originally used to encode <span
-title=concept-format-version>format version</span> in favor of <span
-title=concept-magic-line>magic line</span>.
+<hr>
+
+<p>If
+the <dfn title=parameter-charset><code>charset</code></dfn> <span>parameter</span>
+is specified with these <span title="MIME type">MIME types</span>, its
+value <em class=rfc2119>MUST</em> be <code>UTF-8</code>, <span>ASCII
+case-insensitive</span>.  It <em class=rfc2119>MUST NOT</em> be used
+to decode a <span>byte sequence</span> labeled with
+the <span title="MIME type">MIME types</span>.
+
+<p>Any other <span>parameter</span> <em class=rfc2119>MUST NOT</em> be
+specified.
+
+<div class=note>
+
+<p>Historically, there was
+the <dfn title=parameter-version><code>version</code></dfn> <span>parameter</span>
+whose value is <dfn title=parameter-version-0.9><code>0.9</code></dfn>
+or <dfn title=parameter-version-0.10><code>0.10</code></dfn>.
+This <span>parameter</span> was used to
+encode <span title=concept-format-version>format version</span> in
+favor of <span title=concept-magic-line>magic line</span>.
 
 </div>
 
-<p class=XXX>... IMT template; fragment identifier
+<p class=XXX>fragment identifier
 
 </section>
 
@@ -5501,18 +5527,15 @@ title=concept-magic-line>magic line</span>.
 <section>
 <h1>The <dfn>SWML XML serialization</dfn></h1>
 
-<p class=XXX>...
-
-<section>
-<h1 class=XXX>... xml media type</h1>
-
-<p class=XXX>
-</section>
+<p>A <span>document</span> using
+SWML <span title=element>elements</span>
+and <span title=attribute>attributes</span> can be serialized using
+the XML syntax.  It has no dedicated <span>MIME type</span>.
 
 </section>
 
 <section>
-<h1>Semantics of Elements and Attributes</h1>
+<h1>Semantics of elements and attributes</h1>
 
 <p>This specification is <em>the</em> specification for the
 <span>SuikaWiki/0.9 namespace</span> and the <span>SuikaWiki/0.10
