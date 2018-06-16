@@ -85,7 +85,8 @@ element in the <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-value-element-in-the-suikawiki/0.9-namespace><span class=secno>9.1.5 </span>The <code>value</code> element
 in the <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-class-attribute><span class=secno>9.1.6 </span>The <code>class</code> <span>attribute</span></a></li>
-     <li><a href=#the-id-attribute><span class=secno>9.1.7 </span>The <code title=attr-sw-id>id</code> attribute</a></li></ol></li>
+     <li><a href=#the-id-attribute><span class=secno>9.1.7 </span>The <code>id</code> <span>attribute</span></a></li>
+     <li><a href=#the-xml:lang-attribute><span class=secno>9.1.8 </span>The <code>xml:lang</code> <span>attribute</span></a></li></ol></li>
    <li><a href=#blocks><span class=secno>9.2 </span>Blocks</a>
     <ol>
      <li><a href=#the-dr-element-in-the-suikawiki/0.9-namespace><span class=secno>9.2.1 </span>The <code>dr</code> element in the
@@ -487,7 +488,7 @@ and
 are defined by the <a href=https://url.spec.whatwg.org/><cite>URL
 Standard</cite></a>.
 
-</p><p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
+</p><p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <a href=#space><code class=charname>SPACE</code></a>.
 
 </p><p><dfn id=digits>Digits</dfn> are characters in the range U+0030 <code class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
 NINE</code>.
@@ -518,8 +519,8 @@ It might be the empty string.
 </p><div class="note memo">
 
 <p>Semantically, the <a href=#body-of-a-language-specification>body of a language specification</a>
-represents a language tag, similar to the <a href=#attr-xml-lang><code title=attr-xml-lang>xml:lang</code></a> attribute <span class=XXX>@@
-ref</span>.
+represents a <span>language tag</span>, similar to
+the <a href=#the-xml:lang-attribute><code>xml:lang</code></a> <a href=#attribute>attribute</a>.
 
 </p></div>
 
@@ -4595,9 +4596,12 @@ is not null, set the <a href=#the-class-attribute><code>class</code></a> <a href
 element created
 to <a href=#inline-start-tag-classes title=inline-start-tag-classes>classes</a>.
 
-</li><li>If the <a href=#token>token</a>'s <a href=#inline-start-tag-language title=inline-start-tag-language>language</a> is not null, set the
-<a href=#attr-xml-lang><code title=attr-xml-lang>lang</code></a> <a href=#content-attribute>content attribute</a>
-in the <a href=#xml-namespace>XML namespace</a> of the element created to <a href=#inline-start-tag-language title=inline-start-tag-language>language</a>.<!-- xml:lang -->
+</li><li>If
+the <a href=#token>token</a>'s <a href=#inline-start-tag-language title=inline-start-tag-language>language</a>
+is not null, <a href=#set-an-attribute-value title="set an attribute value">set</a>
+the <a href=#the-xml:lang-attribute><code title=xml:lang>lang</code></a> <a href=#attribute>attribute</a> in
+the <a href=#xml-namespace>XML namespace</a> of the element created
+to <a href=#inline-start-tag-language title=inline-start-tag-language>language</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
 
@@ -4821,9 +4825,12 @@ the <a href=#current-element>current element</a>:
 name</a> <var>local name</var> in the
 <var>namespace</var>.
 
-</li><li>If the <a href=#token>token</a>'s <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a> is not null, set the
-<a href=#attr-xml-lang><code title=attr-xml-lang>lang</code></a> <a href=#content-attribute>content attribute</a>
-in the <a href=#xml-namespace>XML namespace</a> of the element created to <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a>.
+</li><li>If
+the <a href=#token>token</a>'s <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a>
+is not null, <span tilte="set an attribute value">set</span>
+the <a href=#the-xml:lang-attribute><code title=xml:lang>lang</code></a> <a href=#attribute>attribute</a> in
+the <a href=#xml-namespace>XML namespace</a> of the element created
+to <a href=#inline-middle-tag-language title=inline-middle-tag-language>language</a>.
 
 </li><li>Append the element created to the <a href=#current-element>current element</a>.
 
@@ -4961,9 +4968,10 @@ is <a href=#the-form-element-in-the-suikawiki/0.9-namespace><code>form</code></a
 <li>Create a <a href=#the-form-element-in-the-suikawiki/0.9-namespace><code>form</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a>.
 
-</li><li>If <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form token</a> is
-<em>not</em> null, set the <a href=#attr-sw-id><code title=attr-sw-id>id</code></a>
-<a href=#content-attribute>content attribute</a> of the element created to <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form token</a>.
+</li><li>If <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form token</a>
+is <em>not</em> null, <a href=#set-an-attribute-value title="set an attribute value">set</a>
+the <a href=#the-id-attribute><code>id</code></a> <a href=#attribute>attribute</a> of the element created
+to <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form token</a>.
 
 </li><li>Set the <a href=#attr-sw-form-input><code title=attr-sw-form-input>input</code></a> <a href=#content-attribute>content
 attribute</a> of the element created to the first item in <a href=#form-parameters title=form-parameters>parameters</a> of the <a href=#form-token>form
@@ -5001,8 +5009,9 @@ namespace</a>.
 </li><li>Set the <a href=#attr-sw-form-ref><code title=attr-sw-form-ref>ref</code></a> <a href=#content-attribute>content
 attribute</a> of the element created to <a href=#form-name title=form-name>name</a> of the <a href=#form-token>form token</a>.
 
-</li><li>Set the <a href=#form-id><code title=form-id>id</code></a> of the <a href=#form-token>form
-token</a> is <em>not</em> null, set the <a href=#attr-sw-id><code title=attr-sw-id>id</code></a> <a href=#content-attribute>content attribute</a> of the
+</li><li>If the <a href=#form-id><code title=form-id>id</code></a> of the <a href=#form-token>form
+token</a> is <em>not</em> null, <a href=#set-an-attribute-value title="set an attribute
+value">set</a> the <a href=#the-id-attribute><code>id</code></a> <a href=#attribute>attribute</a> of the
 element created to <a href=#form-id title=form-id>id</a> of the <a href=#form-token>form
 token</a>.
 
@@ -5392,19 +5401,7 @@ and in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>, as we
 attributes in no namespace for elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a> and in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>, <em class=rfc2119>MUST NOT</em> be used in context where they are not <dfn id=allowed-attributes title="allowed attributes">allowed</dfn> explicitly.
 
-</p><div class="note memo">
-
-<p>A namespaced attribute allowed in another specification can be used
-on elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and in the
-<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>.  For example, a <dfn id=attr-xml-lang title=attr-xml-lang><code>lang</code></dfn> attribute in the <a href=#xml-namespace>XML
-namespace</a> is allowed to be specified for an XML element, as
-defined in the XML specification <cite class="bibref normative">[<a href=#ref-XML>XML</a>]</cite>.  Note the <a href=#allowed-attributes>allowed
-attributes</a> entry in following subsections only lists up
-attributes defined in this specification.
-
-</p></div>
-
-<p>Elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and in the
+</p><p>Elements in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> defined in this specification
 <em class=rfc2119>MUST</em> conform to their <dfn id=content-model>content model</dfn>.
 
@@ -5419,23 +5416,12 @@ orphan nodes (i.e. without a parent node).
 
 </p><p>In the following subsections, attributes listed in the
 <a href=#allowed-attributes>allowed attributes</a> entry <em class=rfc2119>MAY</em> be
-specified to an element described in that subsection.
+set to an element described in that subsection.
 
 </p><p>Some elements belong to <dfn id=category title=category>categories</dfn> such
 as <a href=#flow-content>flow content</a> and <a href=#phrasing-content>phrasing content</a>.
 
-</p><p>An attribute is said to be <dfn id=specified>specified</dfn> to an element if
-the <code>hasAttributeNS</code> method invoked on the element with
-appropriate arguments would return true.
-
-</p><div class="note memo">
-
-<p>That is, the term <a href=#specified>specified</a> is irrelevant from the
-<code title="">specified</code> <a href=#idl-attribute>IDL attribute</a>.
-
-</p></div>
-
-<section>
+</p><section>
 <h1 id=document-structures><span class=secno>9.1 </span>Document structures</h1>
 
 <section>
@@ -5482,8 +5468,8 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 <!--
 <p>The <code title=attr-sw-version>Name</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to an <code>html</code> element in the <span>HTML
-namespace</span>.  The attribute can also be specified to an <code
+set to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be set to an <code
 title=element-sw-document>document</code> element in the
 <span>SuikaWiki/0.9 namespace</span>.
 -->
@@ -5501,8 +5487,8 @@ attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h
 
 <!-- <p>The <code title=attr-sw-version>Version</code> attribute in
 the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to an <code>html</code> element in the <span>HTML
-namespace</span>.  The attribute can also be specified to an <code
+set to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be set to an <code
 title=element-sw-document>document</code> element in the
 <span>SuikaWiki/0.9 namespace</span>.  -->
 
@@ -5578,21 +5564,69 @@ the <a href=#html-element title="HTML element">HTML elements</a>.
 
 </p><p>Unless otherwise specified by other <a href=#applicable-specification>applicable
 specification</a>, the <a href=#the-class-attribute><code>class</code></a> <a href=#attribute>attribute</a> of
-an <a href=#element>element</a> in the <a href=#aa-namespace>AA namespace</a> has the same
-semantics and requirements as the <a href=#the-class-attribute><code>class</code></a> of
-the <a href=#html-element title="HTML element">HTML elements</a>.
+an <a href=#element>element</a> in the <a href=#aa-namespace>AA namespace</a>, in
+the <a href=#html3-namespace>HTML3 namespace</a>, or in the <a href=#html3-namespace>HTML3
+namespace</a> has the same semantics and requirements as
+the <a href=#the-class-attribute><code>class</code></a> <a href=#attribute>attribute</a> of the <a href=#html-element title="HTML
+element">HTML elements</a>.
 
 </p></section>
 
 <section>
-<h1 id=the-id-attribute><span class=secno>9.1.7 </span>The <a href=#attr-sw-id><code title=attr-sw-id>id</code></a> attribute</h1>
+<h1 id=the-id-attribute><span class=secno>9.1.7 </span>The <dfn><code>id</code></dfn> <a href=#attribute>attribute</a></h1>
 
-<p>The <dfn id=attr-sw-id title=attr-sw-id><code>id</code></dfn> attribute of an
-element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and
-<a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> has the same semantics and
-requirements as
-the <a href=https://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute><code title="">id</code></a>
-attribute of HTML5 <span class=XXX>...</span>.
+<p>The <a href=#the-id-attribute><code>id</code></a> <a href=#attribute>attribute</a> of
+an <a href=#element>element</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> or
+in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a> has the same semantics
+and requirements as the <a href=#the-id-attribute><code>id</code></a> <a href=#attribute>attribute</a> of
+the <a href=#html-element title="HTML element">HTML elements</a>.
+
+</p><p>Unless otherwise specified by other <a href=#applicable-specification>applicable
+specification</a>, the <a href=#the-id-attribute><code>id</code></a> <a href=#attribute>attribute</a> of
+an <a href=#element>element</a> in the <a href=#aa-namespace>AA namespace</a>, in
+the <a href=#html3-namespace>HTML3 namespace</a>, or in the <a href=#xhtml2-namespace>XHTML2
+namespace</a> has the same semantics and requirements as
+the <a href=#the-id-attribute><code>id</code></a> <a href=#attribute>attribute</a> of the <a href=#html-element title="HTML
+element">HTML elements</a>.
+
+</p></section>
+
+<section>
+<h1 id=the-xml:lang-attribute><span class=secno>9.1.8 </span>The <dfn><code>xml:lang</code></dfn> <a href=#attribute>attribute</a></h1>
+
+<p>The <a href=#the-xml:lang-attribute><code title=xml:lang>lang</code></a> <a href=#attribute>attribute</a> in
+the <a href=#xml-namespace>XML namespace</a> <em class=rfc2119>MAY</em> be set to
+any <a href=#element>element</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+or in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>.
+
+</p><p>Unless otherwise specified by other <a href=#applicable-specification>applicable
+specification</a>,
+the <a href=#the-xml:lang-attribute><code title=xml:lang>lang</code></a> <a href=#attribute>attribute</a> in
+the <a href=#xml-namespace>XML namespace</a> <em class=rfc2119>MAY</em> be set to
+any <a href=#element>element</a> in the <a href=#aa-namespace>AA namespace</a>, in
+the <a href=#html3-namespace>HTML3 namespace</a>, or in the <a href=#xhtml2-namespace>XHTML2
+namespace</a>.
+
+</p><hr>
+
+<p>The <dfn id=space><code title=xml:space>space</code></dfn> <a href=#attribute>attribute</a>
+in the <a href=#xml-namespace>XML namespace</a> has no effect for
+the <a href=#element title=element>elements</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
+namespace</a> or in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
+and <em class=rfc2119>MUST NOT</em> be used.
+
+</p><p>Unless otherwise specified by other <a href=#applicable-specification>applicable
+specification</a>,
+the <code title=xml:space>space</code> <a href=#attribute>attribute</a> in
+the <a href=#xml-namespace>XML namespace</a> has no effect for
+the <a href=#element title=element>elements</a> in the <a href=#aa-namespace>AA
+namespace</a>, in the <a href=#html3-namespace>HTML3 namespace</a>, or in
+the <a href=#xhtml2-namespace>XHTML2 namespace</a> and <em class=rfc2119>MUST NOT</em>
+be used.
+
+</p><p>The <dfn id=xml:base><code>xml:base</code></dfn> <a href=#attribute>attribute</a> and
+the <dfn id=xml:id><code>xml:id</code></dfn> <a href=#attribute>attribute</a> <em class=rfc2119>MUST
+NOT</em> be used or supported.
 
 </p></section>
 
@@ -6023,15 +6057,15 @@ elements</span>.
 in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <p>The <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>, when specified to an
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>, when set to an
 <a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><code>anchor-end</code></a> element, defines an <dfn id=anchor-number>anchor number</dfn>
 for the parent element of the <a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><code>anchor-end</code></a> element, if any.
 
-</p><p>The attribute <em class=rfc2119>MUST</em> be specified and its
+</p><p>The attribute <em class=rfc2119>MUST</em> be present and its
 value <em class=rfc2119>MUST</em> be a <a href=#valid-integer>valid integer</a>.
 The integer <em class=rfc2119>MUST</em> have different value from any
 other <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> specified in an
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> of an
 <a href=#the-anchor-end-element-in-the-suikawiki/0.9-namespace><code>anchor-end</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a> that belongs to the same tree as the first attribute.
 
@@ -6039,34 +6073,34 @@ namespace</a> that belongs to the same tree as the first attribute.
 
 <p>The <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
-specified to <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
+set to <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
 <a href=#ins><code>ins</code></a> and <a href=#del><code>del</code></a> elements in the <a href=#html-namespace>HTML
-namespace</a>.  The attribute can also be specified to
+namespace</a>.  The attribute can also be present to
 <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> and <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> elements in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.
 
 </p><p>In these cases, the attribute represents the <a href=#anchor-number>anchor
 number</a> of the element referenced.  If the element on which the
-attribute is specified is an <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> element, the element
+attribute is found is an <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> element, the element
 referenced might be found in the document referenced by the element.
 Otherwise, the element is in the tree the element belongs to.
 
-</p><p>If the element on which the attribute is specified is <em>not</em>
+</p><p>If the element on which the attribute is found is <em>not</em>
 an <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a> or <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> element, the
 attribute has similar semantics to that of the <code title="">cite</code>
 attribute on the element.  In such cases, the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MUST NOT</em>
-be specified when the <code title="">cite</code> attribute is specified.
+be present when there is a <code title="">cite</code> attribute.
 A user agent <em class=rfc2119>MUST</em> <span title=ignored>ignore</span> the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute in the
-<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> if the <code title="">cite</code>
-attribute is specified.
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> if there is a <code title="">cite</code>
+attribute.
 
 </p><p>The attribute value <em class=rfc2119>MUST</em> be a <a href=#valid-integer>valid
 integer</a>.  Unless the element is <a href=#the-anchor-element-in-the-suikawiki/0.9-namespace><code>anchor</code></a>, the
 integer <em class=rfc2119>MUST</em> be equal to one of the integer
 represented by the <a href=#the-anchor-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-anchor>anchor</code></a> attribute
-in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> specified to an
+in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> set to an
 <a href=#the-anchor-internal-element-in-the-suikawiki/0.9-namespace><code>anchor-internal</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a> that belongs to the same tree.
 
@@ -6109,10 +6143,10 @@ attribute in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h
 
 <p>The <a href=#the-resscheme-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-scheme>resScheme</code></a> attribute in
 the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em> be
-specified to <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
+used for <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
 <a href=#ins><code>ins</code></a> and <a href=#del><code>del</code></a> elements in the <a href=#html-namespace>HTML
-namespace</a>.  The attribute can also be specified to an
+namespace</a>.  The attribute can also be used for an
 <a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a>.
 
@@ -6127,10 +6161,10 @@ in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <p>The <a href=#the-resparameter-attribute-in-the-suikawiki/0.9-namespace><code title=attr-sw-res-parameter>resParameter</code></a> attribute
 in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <em class=rfc2119>MAY</em>
-be specified to <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
+be used for <a href=#q><code>q</code></a> elements in the <a href=#html-namespace>HTML
 namespace</a> and in the <a href=#xhtml2-namespace>XHTML2 namespace</a>, as well as
 <a href=#ins><code>ins</code></a> and <a href=#del><code>del</code></a> elements in the <a href=#html-namespace>HTML
-namespace</a>.  The attribute can also be specified to an
+namespace</a>.  The attribute can also be used for an
 <a href=#the-anchor-external-element-in-the-suikawiki/0.9-namespace><code>anchor-external</code></a> element in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a>.
 
@@ -6172,7 +6206,7 @@ string</a>.
 <section>
 <h1 id=embedded-objects><span class=secno>9.5 </span>Embedded objects</h1>
 
-<p>Unless otherwise specified by an <a href=#applicable-specification>applicable
+<p>Unless otherwise specified by other <a href=#applicable-specification>applicable
 specification</a>, the <a href=#aa><code>aa</code></a> <a href=#element>element</a> is
 a <a href=#phrasing-content>phrasing content</a> and its <a href=#content-model>content model</a>
 is <a href=#phrasing-content>phrasing content</a>.<!-- As the original specification
@@ -6197,7 +6231,7 @@ define them for our purposes only here. -->
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
-</dt><dd><a href=#attr-sw-id><code title=attr-sw-id>id</code></a>
+</dt><dd><code title=attr-sw-id>id</code>
 </dd><dd><a href=#attr-sw-form-input><code title=attr-sw-form-input>input</code></a>
 </dd><dd><a href=#attr-sw-form-option><code title=attr-sw-form-option>option</code></a>
 </dd><dd><a href=#attr-sw-form-parameter><code title=attr-sw-form-parameter>parameter</code></a>
@@ -6954,9 +6988,9 @@ be the last
 non-<a href=#script-supporting-elements title="script-supporting elements">script-supporting</a>
 <span>child</span> <a href=#element>element</a> of
 an <a href=#abbr><code>abbr</code></a>, <a href=#dfn><code>dfn</code></a>,
-or <a href=#span><code>span</code></a> <a href=#element>element</a> <var>parent</var> when the
-<code title=attr-html-title>title</code> <a href=#attribute>attribute</a> of
-<var>parent</var> is not <a href=#specified>specified</a>.
+or <a href=#span><code>span</code></a> <a href=#element>element</a> <var>parent</var> when there
+is no <code title=attr-html-title>title</code> <a href=#attribute>attribute</a>
+in <var>parent</var>.
 
 </p><p>An <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <em class=rfc2119>MUST NOT</em> be used when
 it <a href=#represents>represents</a> nothing.
@@ -7362,7 +7396,7 @@ offset given as the <a href=#element-value>element value</a>.
 <p>The <a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><code>attrvalue</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
 the <a href=#element-value>element value</a> of
 the <a href=#parent>parent</a> <a href=#element>element</a>, if applicable, or the
-text that would be specified to the <code>datetime</code>
+text that would be set to the <code>datetime</code>
 <a href=#attribute>attribute</a> of
 the <a href=#parent>parent</a> <a href=#element>element</a>, if it is
 a <a href=#time><code>time</code></a> <a href=#element>element</a> without
@@ -7731,10 +7765,6 @@ data that is not in fact an image (e.g an executable binary).
 </dt><dd class=XXX>manakai's DOM extensions.
 
 </dd><dt id=ref-XHTML2>XHTML2
-
-</dt><dd class=XXX>...
-
-</dd><dt id=ref-XML>XML
 
 </dt><dd class=XXX>...
 

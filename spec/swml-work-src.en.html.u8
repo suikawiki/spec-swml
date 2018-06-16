@@ -314,9 +314,8 @@ It might be the empty string.
 <div class="note memo">
 
 <p>Semantically, the <span>body of a language specification</span>
-represents a language tag, similar to the <code
-title=attr-xml-lang>xml:lang</code> attribute <span class=XXX>@@
-ref</span>.
+represents a <span>language tag</span>, similar to
+the <code>xml:lang</code> <span>attribute</span>.
 
 </div>
 
@@ -4690,11 +4689,12 @@ is not null, set the <code>class</code> <span>attribute</span> of the
 element created
 to <span title=inline-start-tag-classes>classes</span>.
 
-<li>If the <span>token</span>'s <span
-title=inline-start-tag-language>language</span> is not null, set the
-<code title=attr-xml-lang>lang</code> <span>content attribute</span>
-in the <span>XML namespace</span> of the element created to <span
-title=inline-start-tag-language>language</span>.<!-- xml:lang -->
+<li>If
+the <span>token</span>'s <span title=inline-start-tag-language>language</span>
+is not null, <span title="set an attribute value">set</span>
+the <code title=xml:lang>lang</code> <span>attribute</span> in
+the <span>XML namespace</span> of the element created
+to <span title=inline-start-tag-language>language</span>.
 
 <li>Append the element created to the <span>current element</span>.
 
@@ -4918,11 +4918,12 @@ the <span>current element</span>:
 name</span> <var>local name</var> in the
 <var>namespace</var>.
 
-<li>If the <span>token</span>'s <span
-title=inline-middle-tag-language>language</span> is not null, set the
-<code title=attr-xml-lang>lang</code> <span>content attribute</span>
-in the <span>XML namespace</span> of the element created to <span
-title=inline-middle-tag-language>language</span>.
+<li>If
+the <span>token</span>'s <span title=inline-middle-tag-language>language</span>
+is not null, <span tilte="set an attribute value">set</span>
+the <code title=xml:lang>lang</code> <span>attribute</span> in
+the <span>XML namespace</span> of the element created
+to <span title=inline-middle-tag-language>language</span>.
 
 <li>Append the element created to the <span>current element</span>.
 
@@ -5064,10 +5065,10 @@ is <code>form</code>
 <li>Create a <code>form</code> element in the <span>SuikaWiki/0.9
 namespace</span>.
 
-<li>If <span title=form-id>id</span> of the <span>form token</span> is
-<em>not</em> null, set the <code title=attr-sw-id>id</code>
-<span>content attribute</span> of the element created to <span
-title=form-id>id</span> of the <span>form token</span>.
+<li>If <span title=form-id>id</span> of the <span>form token</span>
+is <em>not</em> null, <span title="set an attribute value">set</span>
+the <code>id</code> <span>attribute</span> of the element created
+to <span title=form-id>id</span> of the <span>form token</span>.
 
 <li>Set the <code title=attr-sw-form-input>input</code> <span>content
 attribute</span> of the element created to the first item in <span
@@ -5108,9 +5109,9 @@ namespace</span>.
 attribute</span> of the element created to <span
 title=form-name>name</span> of the <span>form token</span>.
 
-<li>Set the <code title=form-id>id</code> of the <span>form
-token</span> is <em>not</em> null, set the <code
-title=attr-sw-id>id</code> <span>content attribute</span> of the
+<li>If the <code title=form-id>id</code> of the <span>form
+token</span> is <em>not</em> null, <span title="set an attribute
+value">set</span> the <code>id</code> <span>attribute</span> of the
 element created to <span title=form-id>id</span> of the <span>form
 token</span>.
 
@@ -5525,20 +5526,6 @@ namespace</span> and in the <span>SuikaWiki/0.10 namespace</span>, <em
 class=rfc2119>MUST NOT</em> be used in context where they are not <dfn
 title="allowed attributes">allowed</dfn> explicitly.
 
-<div class="note memo">
-
-<p>A namespaced attribute allowed in another specification can be used
-on elements in the <span>SuikaWiki/0.9 namespace</span> and in the
-<span>SuikaWiki/0.10 namespace</span>.  For example, a <dfn
-title=attr-xml-lang><code>lang</code></dfn> attribute in the <span>XML
-namespace</span> is allowed to be specified for an XML element, as
-defined in the XML specification <cite class="bibref normative">[<a
-href="#ref-XML">XML</a>]</cite>.  Note the <span>allowed
-attributes</span> entry in following subsections only lists up
-attributes defined in this specification.
-
-</div>
-
 <p>Elements in the <span>SuikaWiki/0.9 namespace</span> and in the
 <span>SuikaWiki/0.10 namespace</span> defined in this specification
 <em class=rfc2119>MUST</em> conform to their <dfn>content model</dfn>.
@@ -5554,21 +5541,10 @@ orphan nodes (i.e. without a parent node).
 
 <p>In the following subsections, attributes listed in the
 <span>allowed attributes</span> entry <em class=rfc2119>MAY</em> be
-specified to an element described in that subsection.
+set to an element described in that subsection.
 
 <p>Some elements belong to <dfn title=category>categories</dfn> such
 as <span>flow content</span> and <span>phrasing content</span>.
-
-<p>An attribute is said to be <dfn>specified</dfn> to an element if
-the <code>hasAttributeNS</code> method invoked on the element with
-appropriate arguments would return true.
-
-<div class="note memo">
-
-<p>That is, the term <span>specified</span> is irrelevant from the
-<code title>specified</code> <span>IDL attribute</span>.
-
-</div>
 
 <section>
 <h1>Document structures</h1>
@@ -5618,8 +5594,8 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 <!--
 <p>The <code title=attr-sw-version>Name</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to an <code>html</code> element in the <span>HTML
-namespace</span>.  The attribute can also be specified to an <code
+set to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be set to an <code
 title=element-sw-document>document</code> element in the
 <span>SuikaWiki/0.9 namespace</span>.
 -->
@@ -5637,8 +5613,8 @@ attribute in the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <!-- <p>The <code title=attr-sw-version>Version</code> attribute in
 the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to an <code>html</code> element in the <span>HTML
-namespace</span>.  The attribute can also be specified to an <code
+set to an <code>html</code> element in the <span>HTML
+namespace</span>.  The attribute can also be set to an <code
 title=element-sw-document>document</code> element in the
 <span>SuikaWiki/0.9 namespace</span>.  -->
 
@@ -5714,21 +5690,69 @@ the <span title="HTML element">HTML elements</span>.
 
 <p>Unless otherwise specified by other <span>applicable
 specification</span>, the <code>class</code> <span>attribute</span> of
-an <span>element</span> in the <span>AA namespace</span> has the same
-semantics and requirements as the <code>class</code> of
-the <span title="HTML element">HTML elements</span>.
+an <span>element</span> in the <span>AA namespace</span>, in
+the <span>HTML3 namespace</span>, or in the <span>HTML3
+namespace</span> has the same semantics and requirements as
+the <code>class</code> <span>attribute</span> of the <span title="HTML
+element">HTML elements</span>.
 
 </section>
 
 <section>
-<h1>The <code title=attr-sw-id>id</code> attribute</h1>
+<h1>The <dfn><code>id</code></dfn> <span>attribute</span></h1>
 
-<p>The <dfn title=attr-sw-id><code>id</code></dfn> attribute of an
-element in the <span>SuikaWiki/0.9 namespace</span> and
-<span>SuikaWiki/0.10 namespace</span> has the same semantics and
-requirements as
-the <a href="https://www.whatwg.org/specs/web-apps/current-work/#the-id-attribute"><code title>id</code></a>
-attribute of HTML5 <span class=XXX>...</span>.
+<p>The <code>id</code> <span>attribute</span> of
+an <span>element</span> in the <span>SuikaWiki/0.9 namespace</span> or
+in the <span>SuikaWiki/0.10 namespace</span> has the same semantics
+and requirements as the <code>id</code> <span>attribute</span> of
+the <span title="HTML element">HTML elements</span>.
+
+<p>Unless otherwise specified by other <span>applicable
+specification</span>, the <code>id</code> <span>attribute</span> of
+an <span>element</span> in the <span>AA namespace</span>, in
+the <span>HTML3 namespace</span>, or in the <span>XHTML2
+namespace</span> has the same semantics and requirements as
+the <code>id</code> <span>attribute</span> of the <span title="HTML
+element">HTML elements</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>xml:lang</code></dfn> <span>attribute</span></h1>
+
+<p>The <code title=xml:lang>lang</code> <span>attribute</span> in
+the <span>XML namespace</span> <em class=rfc2119>MAY</em> be set to
+any <span>element</span> in the <span>SuikaWiki/0.9 namespace</span>
+or in the <span>SuikaWiki/0.10 namespace</span>.
+
+<p>Unless otherwise specified by other <span>applicable
+specification</span>,
+the <code title=xml:lang>lang</code> <span>attribute</span> in
+the <span>XML namespace</span> <em class=rfc2119>MAY</em> be set to
+any <span>element</span> in the <span>AA namespace</span>, in
+the <span>HTML3 namespace</span>, or in the <span>XHTML2
+namespace</span>.
+
+<hr>
+
+<p>The <dfn><code title=xml:space>space</code></dfn> <span>attribute</span>
+in the <span>XML namespace</span> has no effect for
+the <span title=element>elements</span> in the <span>SuikaWiki/0.9
+namespace</span> or in the <span>SuikaWiki/0.10 namespace</span>
+and <em class=rfc2119>MUST NOT</em> be used.
+
+<p>Unless otherwise specified by other <span>applicable
+specification</span>,
+the <code title=xml:space>space</code> <span>attribute</span> in
+the <span>XML namespace</span> has no effect for
+the <span title=element>elements</span> in the <span>AA
+namespace</span>, in the <span>HTML3 namespace</span>, or in
+the <span>XHTML2 namespace</span> and <em class=rfc2119>MUST NOT</em>
+be used.
+
+<p>The <dfn><code>xml:base</code></dfn> <span>attribute</span> and
+the <dfn><code>xml:id</code></dfn> <span>attribute</span> <em class=rfc2119>MUST
+NOT</em> be used or supported.
 
 </section>
 
@@ -6159,15 +6183,15 @@ elements</span>.
 in the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <p>The <code title=attr-sw-anchor>anchor</code> attribute in the
-<span>SuikaWiki/0.9 namespace</span>, when specified to an
+<span>SuikaWiki/0.9 namespace</span>, when set to an
 <code>anchor-end</code> element, defines an <dfn>anchor number</dfn>
 for the parent element of the <code>anchor-end</code> element, if any.
 
-<p>The attribute <em class=rfc2119>MUST</em> be specified and its
+<p>The attribute <em class=rfc2119>MUST</em> be present and its
 value <em class=rfc2119>MUST</em> be a <span>valid integer</span>.
 The integer <em class=rfc2119>MUST</em> have different value from any
 other <code title=attr-sw-anchor>anchor</code> attribute in the
-<span>SuikaWiki/0.9 namespace</span> specified in an
+<span>SuikaWiki/0.9 namespace</span> of an
 <code>anchor-end</code> element in the <span>SuikaWiki/0.9
 namespace</span> that belongs to the same tree as the first attribute.
 
@@ -6175,37 +6199,37 @@ namespace</span> that belongs to the same tree as the first attribute.
 
 <p>The <code title=attr-sw-anchor>anchor</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to <code>q</code> elements in the <span>HTML
+set to <code>q</code> elements in the <span>HTML
 namespace</span> and in the <span>XHTML2 namespace</span>, as well as
 <code>ins</code> and <code>del</code> elements in the <span>HTML
-namespace</span>.  The attribute can also be specified to
+namespace</span>.  The attribute can also be present to
 <code>anchor</code> and <code>anchor-internal</code> elements in the
 <span>SuikaWiki/0.9 namespace</span>.
 
 <p>In these cases, the attribute represents the <span>anchor
 number</span> of the element referenced.  If the element on which the
-attribute is specified is an <code>anchor</code> element, the element
+attribute is found is an <code>anchor</code> element, the element
 referenced might be found in the document referenced by the element.
 Otherwise, the element is in the tree the element belongs to.
 
-<p>If the element on which the attribute is specified is <em>not</em>
+<p>If the element on which the attribute is found is <em>not</em>
 an <code>anchor</code> or <code>anchor-internal</code> element, the
 attribute has similar semantics to that of the <code title>cite</code>
 attribute on the element.  In such cases, the <code
 title=attr-sw-anchor>anchor</code> attribute in the
 <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MUST NOT</em>
-be specified when the <code title>cite</code> attribute is specified.
+be present when there is a <code title>cite</code> attribute.
 A user agent <em class=rfc2119>MUST</em> <span
 title=ignored>ignore</span> the <code
 title=attr-sw-anchor>anchor</code> attribute in the
-<span>SuikaWiki/0.9 namespace</span> if the <code title>cite</code>
-attribute is specified.
+<span>SuikaWiki/0.9 namespace</span> if there is a <code title>cite</code>
+attribute.
 
 <p>The attribute value <em class=rfc2119>MUST</em> be a <span>valid
 integer</span>.  Unless the element is <code>anchor</code>, the
 integer <em class=rfc2119>MUST</em> be equal to one of the integer
 represented by the <code title=attr-sw-anchor>anchor</code> attribute
-in the <span>SuikaWiki/0.9 namespace</span> specified to an
+in the <span>SuikaWiki/0.9 namespace</span> set to an
 <code>anchor-internal</code> element in the <span>SuikaWiki/0.9
 namespace</span> that belongs to the same tree.
 
@@ -6248,10 +6272,10 @@ attribute in the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <p>The <code title=attr-sw-res-scheme>resScheme</code> attribute in
 the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em> be
-specified to <code>q</code> elements in the <span>HTML
+used for <code>q</code> elements in the <span>HTML
 namespace</span> and in the <span>XHTML2 namespace</span>, as well as
 <code>ins</code> and <code>del</code> elements in the <span>HTML
-namespace</span>.  The attribute can also be specified to an
+namespace</span>.  The attribute can also be used for an
 <code>anchor-external</code> element in the <span>SuikaWiki/0.9
 namespace</span>.
 
@@ -6267,10 +6291,10 @@ in the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <p>The <code title=attr-sw-res-parameter>resParameter</code> attribute
 in the <span>SuikaWiki/0.9 namespace</span> <em class=rfc2119>MAY</em>
-be specified to <code>q</code> elements in the <span>HTML
+be used for <code>q</code> elements in the <span>HTML
 namespace</span> and in the <span>XHTML2 namespace</span>, as well as
 <code>ins</code> and <code>del</code> elements in the <span>HTML
-namespace</span>.  The attribute can also be specified to an
+namespace</span>.  The attribute can also be used for an
 <code>anchor-external</code> element in the <span>SuikaWiki/0.9
 namespace</span>.
 
@@ -6312,7 +6336,7 @@ string</span>.
 <section>
 <h1>Embedded objects</h1>
 
-<p>Unless otherwise specified by an <span>applicable
+<p>Unless otherwise specified by other <span>applicable
 specification</span>, the <code>aa</code> <span>element</span> is
 a <span>phrasing content</span> and its <span>content model</span>
 is <span>phrasing content</span>.<!-- As the original specification
@@ -7097,9 +7121,9 @@ be the last
 non-<span title="script-supporting elements">script-supporting</span>
 <span>child</span> <span>element</span> of
 an <code>abbr</code>, <code>dfn</code>,
-or <code>span</code> <span>element</span> <var>parent</var> when the
-<code title=attr-html-title>title</code> <span>attribute</span> of
-<var>parent</var> is not <span>specified</span>.
+or <code>span</code> <span>element</span> <var>parent</var> when there
+is no <code title=attr-html-title>title</code> <span>attribute</span>
+in <var>parent</var>.
 
 <p>An <code>title</code> <em class=rfc2119>MUST NOT</em> be used when
 it <span>represents</span> nothing.
@@ -7505,7 +7529,7 @@ offset given as the <span>element value</span>.
 <p>The <code>attrvalue</code> <span>element</span> <span>represents</span>
 the <span>element value</span> of
 the <span>parent</span> <span>element</span>, if applicable, or the
-text that would be specified to the <code>datetime</code>
+text that would be set to the <code>datetime</code>
 <span>attribute</span> of
 the <span>parent</span> <span>element</span>, if it is
 a <code>time</code> <span>element</span> without
@@ -7874,10 +7898,6 @@ data that is not in fact an image (e.g an executable binary).
 <dd class=XXX>manakai's DOM extensions.
 
 <dt id=ref-XHTML2>XHTML2
-
-<dd class=XXX>...
-
-<dt id=ref-XML>XML
 
 <dd class=XXX>...
 
