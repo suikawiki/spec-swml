@@ -37,13 +37,14 @@
 <section>
 <h1>Introduction</h1>
 
-<p><em>This section is non‐normative.</em>
+<p><em>This section is non-normative.</em>
 
 <p>This specification defines <dfn>SuikaWiki Markup Language</dfn>
 (<dfn>SWML</dfn>).  SWML is the markup language developed and
 implemented
 for <a href="https://wiki.suikawiki.org/n/SuikaWiki">SuikaWiki</a>
-hypertext system.
+hypertext system.  It is also used by other systems as a
+human-friendly document authoring format.
 
 <section>
 <h1>History</h1>
@@ -52,7 +53,8 @@ hypertext system.
 serialization</span>) derived
 from <a href="https://web.archive.org/web/20130124134737/http://digit.que.ne.jp/work/index.cgi?WalWiki">WalWiki</a>,
 which derived
-from <a href="http://www.hyuki.com/yukiwiki/">YukiWiki</a>, in 2002.
+from <a href="http://www.hyuki.com/yukiwiki/">YukiWiki</a>,
+in <time>2002</time>.
 
 <p>The first specification of the extended
 language, <a href="https://wiki.suikawiki.org/n/SuikaWiki%2F0.9"><cite>SuikaWiki/0.9
@@ -109,19 +111,14 @@ repository</a>.
 <p>This specification depends on the
 <a href=https://infra.spec.whatwg.org/>Infra Standard</a>.
 
-<p>When it is stated that some element or attribute is
-<dfn>ignored</dfn>, or treated as some other value, or handled as if
-it was something else, this refers only to the processing of the node
-after it is in the DOM. A user agent <em class=rfc2119>MUST NOT</em>
-mutate the DOM in such situations.
-
 <section>
 <h1>Namespaces</h1>
 
-<p>For historical reason, <span title=element>elements</span>
+<p>For historical reason,
+different <span title=element>elements</span>
 and <span title=attribute>attributes</span> defined or used in this
 specification belong to
-various <span title=namespace>namespaces</span>.
+different <span title=namespace>namespaces</span>.
 
 <p>The <dfn>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
@@ -130,12 +127,11 @@ The <dfn><code>aa</code></dfn> <span>element</span> is defined by
 <a href=https://pc5.5ch.net/test/read.cgi/hp/1096723178/16><cite lang=ja>Strict-HTML
 スレッド24</cite> >>16</a>.
 
-<p>The <dfn>HTML namespace</dfn> is
-<code>http://www.w3.org/1999/xhtml</code>.  The <span>preferred
-prefix</span> is <code>html</code>.
-Following <span title=element>elements</span> are defined in
-the <a href="https://html.spec.whatwg.org/"><cite>HTML
+<p>The <span>HTML namespace</span>'s <span>preferred prefix</span>
+is <code>html</code>.  Following <span title=element>elements</span>
+are defined by the <a href="https://html.spec.whatwg.org/"><cite>HTML
 Standard</cite></a>:
+
 <ul class=short>
   <li><dfn><code>abbr</code></dfn>
   <li><dfn><code>b</code></dfn>
@@ -188,12 +184,12 @@ The <dfn><code>note</code></dfn> <span>element</span> is defined in
 the HTML 3.0 specification and belongs to the <span>HTML3
 namespace</span> for the purpose of this specification.
 
-<p>The <dfn>MathML namespace</dfn> is
-<code>http://www.w3.org/1998/Math/MathML</code>.  The
-<span>preferred prefix</span> is <code>math</code>.  Following
-<span title=element>elements</span> are defined in
+<p>The <span>MathML namespace</span>'s <span>preferred prefix</span>
+is <code>math</code>.  Following <span title=element>elements</span>
+are defined by
 the <a href="https://www.w3.org/Math/draft-spec/mathml.html">MathML
 specification</a>:
+
 <ul class=short>
   <li><dfn><code>mfrac</code></dfn>
   <li><dfn><code>mroot</code></dfn>
@@ -214,24 +210,34 @@ specification</a>:
 <p>The <dfn>XHTML2 namespace</dfn> is
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
 
-<p>The <dfn>XML namespace</dfn> is
-<code>http://www.w3.org/XML/1998/namespace</code>.  The
-<span>preferred prefix</span> is <code>xml</code>.
+<p>The <span>XML namespace</span>'s <span>preferred prefix</span>
+is <code>xml</code>.
 
 </section>
 
 <section>
 <h1>Definitions</h1>
 
+<p>The terms
+<dfn>string</dfn>,
+<dfn>HTML namespace</dfn>,
+<dfn>MathML namespace</dfn>,
+<dfn>XML namespace</dfn>,
+<dfn>XMLNS namespace</dfn>,
+are defined by the <a href=https://infra.spec.whatwg.org/>Infra Standard</a>.
+
 <p>Terms
 <dfn>parent</dfn>,
 <dfn>node tree</dfn>,
+<dfn>append</dfn> (of <span>node</span>),
 <dfn>element</dfn>,
+<dfn>create an element</dfn>,
 <dfn title=concept-element-local-name>element's local name</dfn>,
 <dfn title=concept-element-namespace>element's namespace</dfn>,
 <dfn title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
 <dfn title=concept-element-children>element's children</dfn>,
 <dfn>attribute</dfn>,
+<dfn>set an attribute value</dfn>,
 <dfn title=concept-attribute-local-name>attribute's local name</dfn>,
 <dfn title=concept-attribute-namespace>attribute's namespace</dfn>,
 and
@@ -1933,7 +1939,7 @@ title=abnf-non-ascii>non-ascii</span>)
 <section>
 <h1>Parsing documents in the <span>SWML text serialization</span></h1>
 
-<p>This section specifies how to convert a string of characters into a
+<p>This section specifies how to convert a <span>string</span> into a
 <span>node tree</span>, assuming the string is written in
 the <span>SWML text serialization</span>.  This process is referred to
 as <dfn title="parsing an SWML text serialization">parsing</dfn> and
@@ -1942,62 +1948,77 @@ an implementation that performes this process is referred to as
 
 <div class="note memo">
 
-<p>How to convert a string of bytes into a string of characters is
+<p>How to convert a byte sequence into a <span>string</span> is
 outside of the scope of this specification.
 
 </div>
 
-<p>The <span title="parsing an SWML text serialization">parsing
-process</span> is defined in terms of DOM and relies on HTML5 <span
-class=XXX>...</span> and manakai's extensions to DOM <span
-class=XXX>...</span>.  However, a conforming <span title="SWML text
-serialization parser">parser</span> don't have to implement them, as
-long as the end result is equivalent.
+<p>The <span title="SWML text serialization
+paraser">parser</span> <em class=rfc2119>MUST</em> run these steps
+to <span title="parsing an SWML text serialization">parse</span> a
+string <var>string</var>:
 
-<p>The <span title="parsing an SWML text serialization">parsing
-process</span> is divided into two stages: <span>tokenization</span>
-and <span>tree construction</span>.  The <span>tokenization</span>
-stage emits a sequence of <span title=token>tokens</span>, which are
-used as inputs for the <span>tree construction</span> stage.  The
-<span>tree construction</span> stage constructs a <span>node
-tree</span>.  Some steps invoked in the <span>tokenization</span>
-stage might also construct a part of the <span>node tree</span>.
-During the <span title="parsing an SWML text
-serialization">parsing</span>, mutation events <em class=rfc2119>MUST
-NOT</em> be invoked.
+  <ol class=steps>
 
-<p>Before the actual <span title="parsing an SWML text
-serialization">parsing</span> starts, a new <code>Document</code> object <em class=rfc2119>MUST</em>
-be created.  It represents the <span>node tree</span> constructed as a result of the
-<span title="parsing an SWML text serialization">parsing</span>.  The
-<code>innerHTML</code> <span>IDL attribute</span> of
-the <code>Document</code> object <em class=rfc2119>MUST</em> be
-initially set to
-<code>&lt;html&#x20;xmlns="http://www.w3.org/1999/xhtml">&lt;head>&lt;/head>&lt;body>&lt/body>&lt;/html></code>.
-The <dfn>document element</dfn> is what the
-<code>documentElement</code> <span>IDL attribute</span> of
-the <code>Document</code> returns.  The <dfn>head element</dfn> is
-what the <code>firstChild</code> <span>IDL attribute</span> of
-the <span>document element</span> returns at the time immediately
-after the <code>innerHTML</code> is set.  The
-<dfn>body element</dfn> is what the <code>lastChild</code> <span>IDL
-attribute</span> of the <span>document element</span> returns at the
-time immediately after the <code>innerHTML</code> is set.  The
-<dfn>image element</dfn> is initially null.
+  <li>Let <var>document</var> be a new <code>Document</code>.
 
-<hr>
+  <li>Let <var>html</var> be the result of <span title="create an
+  element">creating</span> an <code>html</code> <span>element</span>
+  in the <span>HTML namespace</span> in <var>document</var>.
 
-<p>When the <span title="SWML text serialization parser">parser</span>
+  <li><span title="set an attribute value">Set</span>
+  <code>xmlns</code> <span>attribute</span> in the <span>XMLNS
+  namespace</span> to the <span>HTML namespace</span>.
+
+  <li><span title=append>Append</span> <var>html</var>
+  to <var>document</var>
+
+  <li>Let <var>head</var> be the result of <span title="create an
+  elmeent">creating</span> a <code>head</code> <span>element</span> in
+  the <span>HTML namespace</span>.
+
+  <li><span title=append>Append</span> <var>head</var>
+  to <var>html</var>.
+
+  <li>Let <var>body</var> be the result of <span title="create an
+  elmeent">creating</span> a <code>body</code> <span>element</span> in
+  the <span>HTML namespace</span>.
+
+  <li><span title=append>Append</span> <var>body</var>
+  to <var>html</var>.
+
+  <li>Let <var>tokens</var> be the result of running
+  the <span>tokenization</span> stage with <var>string</var>.
+
+  <li>Run  the <span>tree construction</span> stage
+  with <var>tokens</var> and <var>document</var>.
+
+  <li>Return <var>document</var>.
+
+  </ol>
+
+<p>Following definitions are used to describe the <span title="parsing
+an SWML text serialization">parsing algorithm</span>:
+
+<ul>
+
+<li>The <dfn>document element</dfn> is <var>html</var>.
+
+<li>The <dfn>head element</dfn> is <var>head</var>.
+
+<li>The <dfn>body element</dfn> is <var>body</var>.
+
+<li>The <dfn>image element</dfn> is initially null.
+
+<li>When the <span title="SWML text serialization
+parser">parser</span>
 <dfn title="append a character">appends a character</dfn>
 <var>char</var> to node <var>node</var>, the
 <code>manakai_append_text</code> method <cite class=XXX>...</cite> <em
 class=rfc2119>MUST</em> be invoked on <var>node</var> with the
 argument <var>char</var>.
 
-<p>When an <span>element</span> is created, its <span>namespace
-prefix</span> <em class=rfc2119>MUST</em> be set to <code>null</code>.
-
-<p>When an <span>attribute</span> is created, its
+<li>When an <span>attribute</span> is created, its
 <span>namespace</span> and <span>namespace
 prefix</span> <em class=rfc2119>MUST</em> both set
 to <code>null</code>, unless an <span>attribute</span>
@@ -2007,9 +2028,7 @@ the <var>namespace</var>'s URL and its <span>namespace
 prefix</span> <em class=rfc2119>MUST</em> be set
 to <var>namespace</var>'s <dfn>preferred prefix</dfn>.
 
-<hr>
-
-<p>A <dfn>class specification</dfn> is a string consist of a
+<li>A <dfn>class specification</dfn> is a string consist of a
 <code>(</code> character, followed by zero or more character that is
 <em>not</em> one of <code>(</code>, <code>)</code>, or <span>white
 space characters</span>, and finally followed by a <code>)</code>
@@ -2022,6 +2041,8 @@ specification does not support such escaping syntax. --> The <dfn>body
 of a class specification</dfn> is the substring of the <span>class
 specification</span> between parentheses (exclusive).  It might be the
 empty string.
+
+</ul>
 
 <section>
 <h1>Tokenization of lines</h1>
