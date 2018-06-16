@@ -450,11 +450,14 @@ are defined by the <a href=https://infra.spec.whatwg.org/>Infra Standard</a>.
 <dfn id=concept-element-namespace-prefix title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
 <dfn id=concept-element-children title=concept-element-children>element's children</dfn>,
 <dfn id=attribute>attribute</dfn>,
+<dfn id=get-an-attribute-value>get an attribute value</dfn>,
 <dfn id=set-an-attribute-value>set an attribute value</dfn>,
 <dfn id=concept-attribute-local-name title=concept-attribute-local-name>attribute's local name</dfn>,
 <dfn id=concept-attribute-namespace title=concept-attribute-namespace>attribute's namespace</dfn>,
 and
 <dfn id=concept-attribute-namespace-prefix title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>
+<dfn id=attribute-value title="attribute value">value</dfn> (of <a href=#attribute>attribute</a>),
+<dfn id=owner-element title="owner element">element</dfn> (of <a href=#attribute>attribute</a>),
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -462,6 +465,7 @@ Standard</cite></a>.
 <dfn id=applicable-specification>applicable specification</dfn>,
 <dfn id=content-attribute>content attribute</dfn>, <dfn id=idl-attribute>IDL attribute</dfn>,
 <dfn id=valid-integer>valid integer</dfn>, <dfn id=rules-for-parsing-integers>rules for parsing integers</dfn>,
+<dfn id=valid-e-mail-address>valid e-mail address</dfn>,
 <dfn id=html-element>HTML element</dfn>,
 <dfn id=represents>represents</dfn>,
 <a href=https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace><dfn id=inter-element-whitespace>inter-element
@@ -474,6 +478,13 @@ content">text</dfn></a>,
 and
 <a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn id=nothing>nothing</dfn></a>
 are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
+Standard</cite></a>.
+
+</p><p>Terms
+<dfn id=url>URL</dfn>
+and
+<dfn id=valid-url-string>valid URL string</dfn>
+are defined by the <a href=https://url.spec.whatwg.org/><cite>URL
 Standard</cite></a>.
 
 </p><p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
@@ -1213,28 +1224,22 @@ by a parameter)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-mail title=concept-MAIL><code>MAIL</code></dfn>
-</th><td>RFC 2822 <code class=abnf>addr-spec</code> but not RFC 2822
-<code class=abnf>obs-addr-spec</code>; no leading or trailing
-RFC 2822 <code class=abnf>FWS</code>; no control characters
-(<code class=abnf>%x00-1f / %x7f</code>)
-</td><td>E-mail address
+</th><td><a href=#valid-e-mail-address>valid e-mail address</a>
+</td><td>Internet mail address
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-uri title=concept-URI><code>URI</code></dfn>
-</th><td>RFC 3986 URI reference
-</td><td>URL
+</th><td><a href=#valid-url-string>valid URL string</a>
+</td><td><a href=#url>URL</a>
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-url title=concept-URL><code>URL</code></dfn>
-</th><td>RFC 3986 URI reference
-</td><td>URL
+</th><td><a href=#valid-url-string>valid URL string</a>
+</td><td><a href=#url>URL</a>
 
 </td></tr></tbody></table>
 
-<p class=XXX>Maybe these schemes should reference Web Applications
-1.0's URL and mail address syntax.
-
-</p><p><dfn id=concept-interwiki title=concept-InterWiki>InterWiki</dfn> is a mechanism for the
+<p><dfn id=concept-interwiki title=concept-InterWiki>InterWiki</dfn> is a mechanism for the
 hyperlinking and the combination of an <dfn id=concept-interwikiname title=concept-InterWikiName>InterWikiName</dfn> and a parameter
 identifies the destination of the link.  The interpretation of an
 <a href=#concept-interwiki title=concept-InterWiki>InterWiki</a> link is implementation
@@ -6131,6 +6136,35 @@ namespace</a>.
 
 </p><p class=XXX>...
 
+</p><p>The <dfn id="element's-resscheme">element's <code>resScheme</code></dfn> of
+an <code>resParameter</code> <a href=#attribute>attribute</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> <var>attr</var> is the result
+of the following steps:
+
+  </p><ol class=steps>
+
+  <li>If <var>attr</var>'s <a href=#owner-element title="owner element">element</a>
+  is <span>null</span>, return the <span>empty string</span>.
+
+  </li><li>Return the result of <a href=#get-an-attribute-value title="get an attribute
+  value">getting</a> <var>attr</var>'s <a href=#owner-element title="owner
+  element">element</a>'s <code>resScheme</code> <a href=#attribute>attribute</a>
+  in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>.<!-- attribute value or
+  the empty string -->
+
+  </li></ol>
+
+<p>If the <a href="#element's-resscheme">element's <code>resScheme</code></a>
+is <a href=#concept-mail><code title=concept-MAIL>MAIL</code></a>, the <a href=#attribute-value>attribute
+value</a> <em class=rfc2119>MUST</em> be a <a href=#valid-e-mail-address>valid e-mail
+address</a>.
+
+</p><p>If the <a href="#element's-resscheme">element's <code>resScheme</code></a>
+is <a href=#concept-url><code title=concept-URL>URL</code></a>
+or <a href=#concept-uri><code title=concept-URI>URI</code></a>, the <a href=#attribute-value>attribute
+value</a> <em class=rfc2119>MUST</em> be a <a href=#valid-url-string>valid URL
+string</a>.
+
 </p></section>
 
 </section>
@@ -7664,7 +7698,7 @@ found.
 SWML text serialization">parsing algorithm</a> does not contain
 any <code>script</code> <a href=#element>element</a><!-- in HTML/SVG namespace
 -->.  The following <span title=node>nodes</span> might
-contain <span title=URL>URLs</span>, which might be potentially
+contain <a href=#url title=URL>URLs</a>, which might be potentially
 dangerous (e.g. <code>javascript:</code> URL):
 
   </p><ul>

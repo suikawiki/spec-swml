@@ -239,11 +239,14 @@ are defined by the <a href=https://infra.spec.whatwg.org/>Infra Standard</a>.
 <dfn title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
 <dfn title=concept-element-children>element's children</dfn>,
 <dfn>attribute</dfn>,
+<dfn>get an attribute value</dfn>,
 <dfn>set an attribute value</dfn>,
 <dfn title=concept-attribute-local-name>attribute's local name</dfn>,
 <dfn title=concept-attribute-namespace>attribute's namespace</dfn>,
 and
 <dfn title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>
+<dfn title="attribute value">value</dfn> (of <span>attribute</span>),
+<dfn title="owner element">element</dfn> (of <span>attribute</span>),
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -251,6 +254,7 @@ Standard</cite></a>.
 <dfn>applicable specification</dfn>,
 <dfn>content attribute</dfn>, <dfn>IDL attribute</dfn>,
 <dfn>valid integer</dfn>, <dfn>rules for parsing integers</dfn>,
+<dfn>valid e-mail address</dfn>,
 <dfn>HTML element</dfn>,
 <dfn>represents</dfn>,
 <a href="https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace"><dfn>inter-element
@@ -263,6 +267,13 @@ content">text</dfn></a>,
 and
 <a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn>nothing</dfn></a>
 are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
+Standard</cite></a>.
+
+<p>Terms
+<dfn>URL</dfn>
+and
+<dfn>valid URL string</dfn>
+are defined by the <a href=https://url.spec.whatwg.org/><cite>URL
 Standard</cite></a>.
 
 <p><dfn>White space characters</dfn> are U+0009 <code
@@ -1160,26 +1171,20 @@ by a parameter)
 
 <tr>
 <th scope=row><dfn title=concept-MAIL><code>MAIL</code></dfn>
-<td>RFC 2822 <code class=abnf>addr-spec</code> but not RFC 2822
-<code class=abnf>obs-addr-spec</code>; no leading or trailing
-RFC 2822 <code class=abnf>FWS</code>; no control characters
-(<code class=abnf>%x00-1f / %x7f</code>)
-<td>E-mail address
+<td><span>valid e-mail address</span>
+<td>Internet mail address
 
 <tr>
 <th scope=row><dfn title=concept-URI><code>URI</code></dfn>
-<td>RFC 3986 URI reference
-<td>URL
+<td><span>valid URL string</span>
+<td><span>URL</span>
 
 <tr>
 <th scope=row><dfn title=concept-URL><code>URL</code></dfn>
-<td>RFC 3986 URI reference
-<td>URL
+<td><span>valid URL string</span>
+<td><span>URL</span>
 
 </table>
-
-<p class=XXX>Maybe these schemes should reference Web Applications
-1.0's URL and mail address syntax.
 
 <p><dfn title=concept-InterWiki>InterWiki</dfn> is a mechanism for the
 hyperlinking and the combination of an <dfn
@@ -6270,6 +6275,35 @@ namespace</span>.  The attribute can also be specified to an
 namespace</span>.
 
 <p class=XXX>...
+
+<p>The <dfn>element's <code>resScheme</code></dfn> of
+an <code>resParameter</code> <span>attribute</span> in
+the <span>SuikaWiki/0.9 namespace</span> <var>attr</var> is the result
+of the following steps:
+
+  <ol class=steps>
+
+  <li>If <var>attr</var>'s <span title="owner element">element</span>
+  is <span>null</span>, return the <span>empty string</span>.
+
+  <li>Return the result of <span title="get an attribute
+  value">getting</span> <var>attr</var>'s <span title="owner
+  element">element</span>'s <code>resScheme</code> <span>attribute</span>
+  in the <span>SuikaWiki/0.9 namespace</span>.<!-- attribute value or
+  the empty string -->
+
+  </ol>
+
+<p>If the <span>element's <code>resScheme</code></span>
+is <code title=concept-MAIL>MAIL</code>, the <span>attribute
+value</span> <em class=rfc2119>MUST</em> be a <span>valid e-mail
+address</span>.
+
+<p>If the <span>element's <code>resScheme</code></span>
+is <code title=concept-URL>URL</code>
+or <code title=concept-URI>URI</code>, the <span>attribute
+value</span> <em class=rfc2119>MUST</em> be a <span>valid URL
+string</span>.
 
 </section>
 
