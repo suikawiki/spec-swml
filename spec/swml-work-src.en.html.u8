@@ -1320,6 +1320,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Code (HTML <code>code</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-CURSIVE><code>CURSIVE</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Cursive text (<code>sw-cursive</code> <span>element</span>)
+
+<tr>
 <!-- SuikaWiki/0.10 -->
 <th scope=row><dfn title=concept-CSECTION><code>CSECTION</code></dfn>
 <td>0
@@ -1427,6 +1434,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Longitude (<code>lon</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-MACRON><code>MACRON</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Text with macron (<code>sw-macron</code> <span>element</span>)
+
+<tr>
 <th scope=row><dfn title=concept-MAY><code>MAY</code></dfn>
 <td>0
 <td>Not allowed
@@ -1496,6 +1510,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Not allowed
 <td>Not allowed
 <td>Sample (HTML <code>samp</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-SEE><code>SEE</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>"See also" references (<code>sw-see</code> <span>element</span>)
 
 <tr>
 <th scope=row><dfn title=concept-SHOULD><code>SHOULD</code></dfn>
@@ -4470,6 +4491,11 @@ following table:
 <td><code>code</code>
 
 <tr>
+<th><code title=concept-CURSIVE>CURSIVE</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-cursive</code>
+
+<tr>
 <th><code title=concept-CSECTION>CSECTION</code>
 <td>The <span>SuikaWiki/0.10 namespace</span>
 <td><code>csection</code>
@@ -4546,6 +4572,11 @@ following table:
 <td><code>lon</code>
 
 <tr>
+<th><code title=concept-MACRON>MACRON</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-macron</code>
+
+<tr>
 <th><code title=concept-MAY>MAY</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>MAY</code>
@@ -4596,6 +4627,11 @@ following table:
 <th><code title=concept-SAMP>SAMP</code>
 <td>The <span>HTML namespace</span>
 <td><code>samp</code>
+
+<tr>
+<th><code title=concept-SEE>SEE</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-see</code>
 
 <tr>
 <th><code title=concept-SHOULD>SHOULD</code>
@@ -6603,6 +6639,34 @@ documents.
 
 </section>
 
+<section>
+<h1>The <dfn><code>sw-see</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-see</code> <span>element</span> <span>represents</span>
+a text that contains references to other relevant parts (typically
+another pages in the same Wiki or another pieces in the same document)
+associated with the surrounding texts.
+
+</section>
+
 </section>
 
 <section>
@@ -7190,6 +7254,36 @@ the <span>content</span> of the <span>element</span>.
 </section>
 
 <section>
+<h1>The <dfn><code>sw-macron</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-macron</code> <span>element</span> <span>represents</span>
+a content with a dot above it.  This is used in mathematical
+expressions, such as sample mean variables.
+
+<p>It is <span>expected</span> that an overline is rendered above
+the <span>content</span> of the <span>element</span>.
+
+</section>
+
+<section>
 <h1>The <dfn><code>vector</code></dfn> <span>element</span> in
 the <span>SuikaWiki/0.9 namespace</span></h1>
 
@@ -7684,6 +7778,32 @@ It can also be used for <span title="RFC 2119 keyword">keyword</span>
 
 <section>
 <h1>Physical representations</h1>
+
+<section>
+<h1>The <dfn><code>sw-cursive</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-cursive</code> <span>element</span> <span>represents</span>
+a text in a cursive font.
+
+</section>
 
 <section>
 <h1>The <dfn><code>smallcaps</code></dfn> <span>element</span> in the
