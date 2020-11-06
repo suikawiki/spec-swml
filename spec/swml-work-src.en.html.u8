@@ -142,6 +142,7 @@ Standard</cite></a>:
   <li><dfn><code>dd</code></dfn>
   <li><dfn><code>del</code></dfn>
   <li><dfn><code>dfn</code></dfn>
+  <li><dfn><code>div</code></dfn>
   <li><dfn><code>dt</code></dfn>
   <li><dfn><code>dl</code></dfn>
   <li><dfn><code>em</code></dfn>
@@ -254,6 +255,7 @@ Standard</cite></a>.
 
 <p>Terms
 <dfn>applicable specification</dfn>,
+<dfn>expected</dfn>,
 <dfn>content attribute</dfn>, <dfn>IDL attribute</dfn>,
 <dfn>valid integer</dfn>, <dfn>rules for parsing integers</dfn>,
 <dfn>valid e-mail address</dfn>,
@@ -1413,6 +1415,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Keyboard's key (<code>key</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-L><code>L</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Horizontal left-to-right text (<code>sw-l</code> <span>element</span>)
+
+<tr>
 <th scope=row><dfn title=concept-LAT><code>LAT</code></dfn>
 <td>0 or 1
 <td>Not allowed
@@ -1434,6 +1443,14 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Longitude (<code>lon</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-LT><code>LT</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Horizontal left-to-right, turned text (<code>sw-lt</code>
+<span>element</span>)
+
+<tr>
 <th scope=row><dfn title=concept-MACRON><code>MACRON</code></dfn>
 <td>0
 <td>Not allowed
@@ -1446,6 +1463,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Not allowed
 <td>Not allowed
 <td>RFC 2119 keyword "<em class=rfc2119>MAY</em>" (<code>MAY</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-MIRRORED><code>MIRRORED</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Mirrored text (<code>sw-mirrored</code> <span>element</span>)
 
 <tr>
 <th scope=row><dfn title=concept-MUST><code>MUST</code></dfn>
@@ -1481,7 +1505,14 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>0 or 1
 <td>Not allowed
 <td>Not allowed
-<td>Qualified name (<code>qn</code> element)
+<td>Qualified name (<code>qn</code> <span>element</span>)
+
+<tr>
+<th scope=row><dfn title=concept-R><code>R</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Horizontal right-to-left text (<code>sw-r</code> <span>element</span>)
 
 <tr>
 <th scope=row><dfn title=concept-ROOT><code>ROOT</code></dfn>
@@ -1489,6 +1520,14 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Not allowed
 <td>Not allowed
 <td>Root (MathML <code>mroot</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-RT><code>RT</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Horizontal right-to-left, turned text (<code>sw-rt</code>
+<span>element</span>)
 
 <tr>
 <th scope=row><dfn title=concept-RUBY><code>RUBY</code></dfn>
@@ -1584,6 +1623,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Superscript (HTML <code>sup</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-TATE><code>TATE</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Vertical text (<code>sw-tate</code> <span>element</span>)
+
+<tr>
 <!-- SuikaWiki/0.10 -->
 <th scope=row><dfn title=concept-TIME><code>TIME</code></dfn>
 <td>0 or 1
@@ -1620,11 +1666,41 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Text with annotations under and over it (MathML <code>munderover</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-V><code>V</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Vertical top-to-bottom text (<code>sw-v</code> <span>element</span>)
+
+<tr>
+<th scope=row><dfn title=concept-VB><code>VB</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Vertical bottom-to-top text (<code>sw-vb</code> <span>element</span>)
+
+<tr>
+<th scope=row><dfn title=concept-VT><code>VT</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Vertical top-to-bottom, turned text (<code>sw-vt</code>
+<span>element</span>)
+
+<tr>
+<th scope=row><dfn title=concept-VBT><code>VBT</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Vertical bottom-to-top, turned text (<code>sw-vbt</code>
+<span>element</span>)
+
+<tr>
 <th scope=row><dfn title=concept-VAR><code>VAR</code></dfn>
 <td>0
 <td>Not allowed
 <td>Not allowed
-<td>Variable (HTML <code>var</code> element)
+<td>Variable (HTML <code>var</code> <span>element</span>)
 
 <tr>
 <th scope=row><dfn title=concept-VECTOR><code>VECTOR</code></dfn>
@@ -1645,7 +1721,7 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>0
 <td>Not allowed
 <td>Not allowed
-<td>Horizontal text (<code>yoko</code> element)
+<td>Horizontal text (<code>yoko</code> <span>element</span>)
 
 </table>
 
@@ -4557,6 +4633,11 @@ following table:
 <td><code>key</code>
 
 <tr>
+<th><code title=concept-L>L</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-l</code>
+
+<tr>
 <th><code title=concept-LAT>LAT</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>lat</code>
@@ -4572,6 +4653,11 @@ following table:
 <td><code>lon</code>
 
 <tr>
+<th><code title=concept-LT>LT</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-lt</code>
+
+<tr>
 <th><code title=concept-MACRON>MACRON</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>sw-macron</code>
@@ -4580,6 +4666,11 @@ following table:
 <th><code title=concept-MAY>MAY</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>MAY</code>
+
+<tr>
+<th><code title=concept-MIRRORED>MIRRORED</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-mirrored</code>
 
 <tr>
 <th><code title=concept-MUST>MUST</code>
@@ -4609,9 +4700,19 @@ following table:
 <!-- SuikaWiki/0.10 -->
 
 <tr>
+<th><code title=concept-R>R</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-r</code>
+
+<tr>
 <th><code title=concept-ROOT>ROOT</code>
 <td>The <span>MathML namespace</span>
 <td><code>mroot</code>
+
+<tr>
+<th><code title=concept-RT>RT</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-rt</code>
 
 <tr>
 <th><code title=concept-RUBY>RUBY</code>
@@ -4679,6 +4780,11 @@ following table:
 <td><code>sup</code>
 
 <tr>
+<th><code title=concept-TATE>TATE</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-tate</code>
+
+<tr>
 <th><code title=concept-TIME>TIME</code>
 <td>The <span>HTML namespace</span>
 <td><code>time</code>
@@ -4705,14 +4811,34 @@ following table:
 <td><code>munderover</code>
 
 <tr>
+<th><code title=concept-V>V</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-v</code>
+
+<tr>
 <th><code title=concept-VAR>VAR</code>
 <td>The <span>HTML namespace</span>
 <td><code>var</code>
 
 <tr>
+<th><code title=concept-VB>VB</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-vb</code>
+
+<tr>
+<th><code title=concept-VBT>VBT</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-vbt</code>
+
+<tr>
 <th><code title=concept-VECTOR>VECTOR</code>
 <td>The <span>SuikaWiki/0.9 namespace</span>
 <td><code>vector</code>
+
+<tr>
+<th><code title=concept-VT>VT</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-vt</code>
 
 <tr>
 <th><code title=concept-WEAK>WEAK</code>
@@ -5411,6 +5537,30 @@ parser:
     <td>Not allowed.
 
   <tr>
+    <th><dfn title=concept-LEFT><code>LEFT</code></dfn>
+    <td><code>sw-left</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A left-to-right defaulted horizontal content where lines
+    are stacked top-to-bottom.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-LEFTBOX><code>LEFTBOX</code></dfn>
+    <td><code>sw-leftbox</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A box for left-to-right defaulted horizontal content where lines
+    are stacked top-to-bottom.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-LEFTBTBOX><code>LEFTBTBOX</code></dfn>
+    <td><code>sw-leftbtbox</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A box for left-to-right defaulted horizontal content where lines
+    are stacked bottom-to-top.
+    <td>Not allowed.
+
+  <tr>
     <th><dfn title=concept-NOTE><code>NOTE</code></dfn>
     <td><code>note</code>
     <td><span>HTML3 namespace</span>
@@ -5439,6 +5589,30 @@ parser:
     <td>Not allowed.
 
   <tr>
+    <th><dfn title=concept-RIGHT><code>RIGHT</code></dfn>
+    <td><code>sw-right</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A right-to-left defaulted horizontal content where lines
+    are stacked top-to-bottom.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-RIGHTBOX><code>RIGHTBOX</code></dfn>
+    <td><code>sw-rightbox</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A box for right-to-left defaulted horizontal content where lines
+    are stacked top-to-bottom.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-RIGHTBTBOX><code>RIGHTBTBOX</code></dfn>
+    <td><code>sw-rightbtbox</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A box for right-to-left defaulted horizontal content where lines
+    are stacked bottom-to-top.
+    <td>Not allowed.
+
+  <tr>
     <th><dfn title=concept-SPEAKER><code>SPEAKER</code></dfn>
     <td><code>speaker</code>
     <td><span>SuikaWiki/0.9 namespace</span>
@@ -5451,6 +5625,38 @@ parser:
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>A single talk part in a dialogue.
     <td>Speaker name of the talk.
+
+  <tr>
+    <th><dfn title=concept-VLR><code>VLR</code></dfn>
+    <td><code>sw-vlr</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A top-to-bottom defaulted vertical content where lines are stacked
+    left-to-right.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-VLRBOX><code>VLRBOX</code></dfn>
+    <td><code>sw-vlrbox</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A box for top-to-bottom defaulted vertical content where lines are
+    stacked left-to-right.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-VRL><code>VRL</code></dfn>
+    <td><code>sw-vrl</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A top-to-bottom defaulted vertical content where lines are stacked
+    right-to-left.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-VRLBOX><code>VRLBOX</code></dfn>
+    <td><code>sw-vrlbox</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td>A box for top-to-bottom defaulted vertical content where lines
+    are stacked right-to-left.
+    <td>Not allowed.
 
   </table>
 
@@ -5822,7 +6028,7 @@ NOT</em> be used or supported.
 
 <section>
 
-<h1>The <dfn><code>dr</code></dfn> element in the
+<h1>The <dfn><code>dr</code></dfn> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dl class=element>
@@ -5833,9 +6039,9 @@ NOT</em> be used or supported.
 
 <dt><span>Content model</span>
 
-<dd>A <code>dt</code> element in the <span>XHTML2 namespace</span>,
-followed by a <code>dd</code> element in the <span>XHTML2
-namespace</span>.
+<dd>A <code>dt</code> <span>element</span> in the <span>XHTML2
+namespace</span>, followed by a <code>dd</code> <span>element</span>
+in the <span>XHTML2 namespace</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -5843,9 +6049,13 @@ namespace</span>.
 
 </dl>
 
-<p>This element <em class=rfc2119>MUST NOT</em> be used.
+<p>The <code>dr</code> <span>element</span>
+is <span title=represents>semantically</span> equals to the
+HTML <code>div</code> <span>element</span> that is
+a <span title=concept-element-children>child</span> of the
+HTML <code>dl</code> <span>element</span>.
 
-<p class=XXX>...
+<p>This <span>element</span> <em class=rfc2119>MUST NOT</em> be used.
 
 </section>
 
@@ -6670,6 +6880,95 @@ associated with the surrounding texts.
 </section>
 
 <section>
+<h1>Writing directions</h1>
+
+<p>In a <dfn>horizontal mode</dfn> text, the characters in the text
+are <span>expected</span> to be stacked horizontally.
+
+<p>In a <dfn>vertical mode</dfn> text, the characters in the text
+are <span>expected</span> to be stacked vertically.
+
+<p class=XXX>XXX
+  <dfn><code>sw-l</code></dfn>
+  <dfn><code>sw-lt</code></dfn>
+  <dfn><code>sw-r</code></dfn>
+  <dfn><code>sw-rt</code></dfn>
+  <dfn><code>sw-v</code></dfn>
+  <dfn><code>sw-vt</code></dfn>
+  <dfn><code>sw-vb</code></dfn>
+  <dfn><code>sw-vbt</code></dfn>
+  <dfn><code>sw-left</code></dfn>
+  <dfn><code>sw-right</code></dfn>
+  <dfn><code>sw-vlr</code></dfn>
+  <dfn><code>sw-vrl</code></dfn>
+  <dfn><code>sw-leftbox</code></dfn>
+  <dfn><code>sw-rightbox</code></dfn>
+  <dfn><code>sw-leftbtbox</code></dfn>
+  <dfn><code>sw-rightbtbox</code></dfn>
+  <dfn><code>sw-vlrbox</code></dfn>
+  <dfn><code>sw-vrlbox</code></dfn>
+  <dfn><code>sw-mirrored</code></dfn>
+
+<section>
+<h1>The <dfn><code>sw-tate</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-tate</code> <span>element</span> <span>represents</span>
+a <span>vertical mode</span> text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>yoko</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>yoko</code> <span>element</span> <span>represents</span>
+a <span>horizontal mode</span> text.
+
+  <div class=note>
+    <p>The <span>element</span> can be used to mark up
+    a <span lang=ja>縦中横</span> text span.
+  </div>
+
+</section>
+
+</section>
+
+<section>
 <h1>Inline structures</h1>
 
 <section>
@@ -7381,7 +7680,8 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 </dl>
 
-<p>The <code>subscript</code> <span>element</span> is equivalent to
+<p>The <code>subscript</code> <span>element</span>
+is <span title=represents>semantically</span> equivalent to
 the <code>sub</code> <span>element</span>.
 
 </section>
@@ -7406,7 +7706,8 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 </dl>
 
-<p>The <code>superscript</code> <span>element</span> is equivalent to
+<p>The <code>superscript</code> <span>element</span>
+is <span title=represents>semantically</span> equivalent to
 the <code>sup</code> <span>element</span>.
 
 </section>
@@ -7834,37 +8135,6 @@ the <code>smallcaps</code> <span>element</span>, including but not
 limited to uppercase and lowercase latin letters,
 are <span>expected</span> to be rendered using small-capital glyphs,
 whenever possible.
-
-</section>
-
-<section>
-<h1>The <dfn><code>yoko</code></dfn> <span>element</span> in the
-<span>SuikaWiki/0.9 namespace</span></h1>
-
-<dl class=element>
-
-<dt><span>Category</span>
-
-<dd><span>Phrasing content</span>.
-<dd><span>Flow content</span>.
-
-<dt><span>Content model</span>
-
-<dd><span>Phrasing content</span>.
-
-<dt><span>Allowed attributes</span>
-
-<dd><code>class</code>
-
-</dl>
-
-<p>The <code>yoko</code> <span>element</span> <span>represents</span>
-a horizontal text span in a vertically-flowed text (known
-as <span lang=ja>縦中横</span>).
-
-<p>It is <span>expected</span> that the <span>content</span> is
-rendered horizontally even when its <span>parent</span> is rendered
-vertically.
 
 </section>
 
