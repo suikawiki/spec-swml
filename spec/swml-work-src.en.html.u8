@@ -226,6 +226,10 @@ is <code>xml</code>.
 <dfn>ASCII case-insensitive</dfn>,
 <dfn>forgiving-base64 encode</dfn>,
 <dfn>forgiving-base64 decode</dfn>,
+<a href=https://infra.spec.whatwg.org/#ordered-map><dfn>ordered map</dfn></a>,
+<a href=https://infra.spec.whatwg.org/#map-key><dfn title=map-key>key</dfn></a>,
+<a href=https://infra.spec.whatwg.org/#map-value><dfn title=map-value>value</dfn></a>,
+<a href=https://infra.spec.whatwg.org/#map-exists><dfn>exists</dfn></a>,
 <dfn>HTML namespace</dfn>,
 <dfn>MathML namespace</dfn>,
 <dfn>XML namespace</dfn>,
@@ -458,11 +462,11 @@ character, followed by a <span title=concept-quoted-string>quoted
 string</span> whose <span
 title=concept-quoted-string-value>value</span> representing zero or
 more <dfn title=concept-parameter-value>values</dfn> separeted by a
-<code>,</code> character.  A <span
-title=concept-parameter-value>parameter value</span> consists of zero
-or more <span title=concept-character>characters</span> except for the
-separator character <code>,</code>.  Historically, following
-combinations of <span title=concept-parameter-name>parameter
+<code>,</code> character.
+A <span title=concept-parameter-value>parameter value</span> consists
+of zero or more <span title=concept-character>text characters</span>
+except for the separator character <code>,</code>.  Historically,
+following combinations of <span title=concept-parameter-name>parameter
 names</span> and <span title=concept-parameter-value>values</span> was
 defined and used:
 
@@ -478,7 +482,8 @@ defined and used:
 
 <tr>
 <th scope=row><dfn title=concept-parameter-default-name><code>default-name</code></dfn>
-<td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+<td>Zero or more <span title=concept-character>text characters</span>
+except for <code>,</code>
 <td>The <span title=concept-parameter-value>value</span> represetns
 the default user name for <span title=concept-wikiform>WikiForm</span>
 input fields.  Exactly one <span title=concept-parameter-value>value</span>
@@ -487,7 +492,8 @@ is implementation dependent.
 
 <tr>
 <th scope=row><dfn title=concept-parameter-import><code>import</code></dfn>
-<td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+<td>Zero or more <span title=concept-character>text characters</span>
+except for <code>,</code>
 <td>A <span title=concept-parameter-value>value</span> represents the
 <span title=concept-WikiName>WikiName</span> by which definitions for
 <span title=concept-entity-reference>entity references</span> are
@@ -534,7 +540,7 @@ title=concept-parameter-obsoleted>obsoleted</code>.
 
 <tr> <th scope=row><dfn
 title=concept-parameter-page-icon><code>page-icon</code></dfn>
-<td>Zero or more <span title=concept-character>characters</span>
+<td>Zero or more <span title=concept-character>text characters</span>
 except for <code>,</code>
 <td>The <span title=concept-parameter-value>value</span> represents
 the <span title=concept-WikiName>WikiName</span> by which the page
@@ -548,7 +554,8 @@ implementation dependent.
 
 <tr>
 <th scope=row><dfn title=concept-parameter-image-alt><code>image-alt</code></dfn>
-<td>Zero or more <span title=concept-character>characters</span> except for <code>,</code>
+<td>Zero or more <span title=concept-character>text characters</span>
+except for <code>,</code>
 <td>The <span title=concept-parameter-value>value</span> represents the
 alternative text for the <span title=concept-image>image</span> embedded in the
 <span title=concept-document>document</span>.  Exactly one
@@ -698,7 +705,7 @@ title=abnf-preformatted-paragraph>preformatted-paragraph</span> /
 / <span title=abnf-hr>hr</span>
 / <span title=abnf-empty-block>empty-block</span>
 / <span title=abnf-form>form</span>
-/ <span title=abnf-obs-entity-reference>obs-entity-reference</span>
+/ <span title=abnf-entity-reference>entity-reference</span>
 
 <dt><dfn title=abnf-empty-block>empty-block</dfn>
 
@@ -818,14 +825,16 @@ title=concept-destination-anchor-number>destination anchor
 number</span>, optionally followed by <span
 title=concept-line-contents>line contents</span>, followed by a <span
 title=concept-newline>newline</span>.  The number of the
-<code>*</code> represents the depth of the <span
-title=concept-section>section</span>.  A <span
-title=concept-heading>heading</span> with only one <code>*</code>
-character begins a larger <span title=concept-section>section</span>
-than a <span title=concept-heading>heading>heading</span> with more
-than one <code>*</code> characters.  The <span
-title=concept-line-contents>line contents</span> represents the name
-or caption for the <span title=concept-section>section</span>.
+<code>*</code> represents the depth of
+the <span title=concept-section>section</span>.
+A <span title=concept-heading>heading</span> with only
+one <code>*</code> character begins a
+larger <span title=concept-section>section</span> than
+a <span title=concept-heading>heading</span> with more than
+one <code>*</code> characters.
+The <span title=concept-line-contents>line contents</span> represents
+the name or caption for
+the <span title=concept-section>section</span>.
 
 <dl class=abnf>
 
@@ -1166,7 +1175,7 @@ title=abnf-anchor>anchor</span> / <span
 title=abnf-tagged-inline-element>tagged-inline-element</span> / <span
 title=abnf-form>form</span> / <span title=abnf-strong>strong</span> /
 <span title=abnf-em>emphasis</span> / <span
-title=abnf-obs-entity-reference>obs-entity-reference</span>)
+title=abnf-entity-reference>entity-reference</span>)
 
 <dt><dfn title=abnf-text>text</dfn>
 
@@ -1296,7 +1305,7 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>0
 <td>Not allowed
 <td>Not allowed
-<td>Character art (so-called ASCII-art, <code>aa</code> element)
+<td>So-called ASCII-art (<code>aa</code> element)
 
 <tr>
 <th scope=row><dfn title=concept-ABBR><code>ABBR</code></dfn>
@@ -1756,15 +1765,17 @@ start tag</span>.
 
 </div>
 
+<!-- similar terms are defined in parser specification -->
 <p>A <dfn title=concept-class-specification>class specification</dfn>
 represents class names unless otherwise specified.  The <span
 title=concept-class-specification>class specification</span>
 syntactically consist of a <code>(</code> character followed by the
 <span title=concept-class-specification-body>body of the class
-specification</span> followed by a <code>)</code> character.  The <dfn
-title=concept-class-specification-body>body of a class
-specification</dfn> consists of zero or more <span
-title=concept-character>characters</span> excluding <code>(</code>,
+specification</span> followed by a <code>)</code> character.
+The <dfn title=concept-class-specification-body>body of a class
+specification</dfn> consists of zero or
+more <span title=concept-character>text characters</span>
+excluding <code>(</code>,
 <code>)</code>, and <code>\</code>.  The <span
 title=concept-class-specification-body>body of the class
 specification</span> has similar semantics and processed similarly to
@@ -1991,43 +2002,62 @@ metadata for the <span title=concept-image>image</span>.
 <h1>Lexical structures</h1>
 
 <p>An <dfn title=concept-entity-reference>entity reference</dfn> is a
-part of <span title=concept-document>document</span> that is expected
+string <code>__&amp;&amp;</code>, followed by
+a <span title=concept-entity-reference-name>entity reference
+name</span>, followed by a string <code>&amp;&amp;__</code>.
+
+<p>An <dfn title=concept-entity-reference-name>entity reference
+name</dfn> is a string of one or
+more <span title=concept-character>text characters</span> that does
+not contain substring <code>&amp;&amp;__</code>.
+
+<p>If the <span>Character Reference Table</span>
+[<span title=concept-entity-reference-name>entity reference
+name</span>] <span>exists</span>,
+the <span title=concept-entity-reference>entity reference</span>
+represent a character <span>Character Reference Table</span>
+[<span title=concept-entity-reference-name>entity reference
+name</span>].
+
+<p>Otherwise, the <span title=concept-entity-reference>entity
+reference</span> is an obsolete entity reference, which was expected
 to be replaced by a fragment imported from another document.  It is no
 longer supported.
 
 <dl class=abnf>
 
-<dt><dfn title=abnf-obs-entity-reference>obs-entity-reference</dfn>
+<dt><dfn title=abnf-entity-reference>entity-reference</dfn>
 
 <dd>= "__&&" 1*<span title=abnf-char>char</span> "&&__"
 
+<dt><dfn title=abnf-entity-reference-name>entity-reference-name</dfn>
+
+<dd>= 1*<span title=abnf-char>char</span> &minus;
+*<span title=abnf-char>char</span> "&&__"
+*<span title=abnf-char>char</span>
+
 </dl>
 
-<p>A <dfn title=concept-character>character</dfn> is a character from
-the coded character set<!-- ISO/IEC terminology --> used to encode the
-<span title=concept-document>document</span>.  Unless otherwise
-specified, for the purpose of this specification, control characters
-(characters in the range U+0000 .. U+001F and U+007F) are not a <span
-title=concept-character>character</span>.
+<p>A <dfn title=concept-character>text character</dfn> is a <span>code
+point</span> that is <em>not</em> U+000A or U+000D.
 
-<p>A <dfn title=concept-newline>newline</dfn> can be represented in
-any of three common conventions: <code class=charname>CR</code>
-(U+000D), <code class=charname>LF</code> (U+000A), or <code
-class=charname>CR</code> followed by <code class=charname>LF</code>.
+<p>A <dfn title=concept-newline>newline</dfn> is a U+000D character, a
+U+000A character, or a U+000D character followed by a U+000A
+character.
 
 <p>A <dfn title=concept-quoted-string>quoted string</dfn> is zero or
-more <span title=concept-character>characters</span> enclosed by
-<code>"</code> characters.  In a <span
-title=concept-quoted-string>quoted string</span>, character
-<code>\</code> can only be used as part of <dfn
-title=concept-quoted-pair>quoted pair</dfn>.  A <span
-title=concept-quoted-pair>quoted pair</span> is <code>\</code>
-followed by a <span title=concept-character>character</span>.  The
-<dfn title=concept-quoted-string-value>value of a quoted string</dfn>
-is the string obtained by removing <code>"</code> characters enclosing
-the <span title=concept-quoted-string>quoted string</span> and
-removing <code>\</code> characters at the beginning of the <span
-title=concept-quoted-pair>quoted pairs</span>.
+more <span title=concept-character>text characters</span> preceded by a 
+<code>"</code> character and followed by a <code>"</code> character.
+In a <span title=concept-quoted-string>quoted string</span>, character
+<code>\</code> can only be used as part
+of <dfn title=concept-quoted-pair>quoted pair</dfn>.
+A <span title=concept-quoted-pair>quoted pair</span> is <code>\</code>
+followed by a <span title=concept-character>text character</span>.
+The <dfn title=concept-quoted-string-value>value of a quoted
+string</dfn> is the string obtained by removing the first and
+last <code>"</code> characters removing the <code>\</code> characters
+at the beginning of any <span title=concept-quoted-pair>quoted
+pair</span>.
 
 <dl class=abnf>
 
@@ -2043,7 +2073,7 @@ title=abnf-non-ascii>non-ascii</span>)
 
 <dt><dfn title=abnf-char>char</dfn>
 
-<dd>= &lt;Any character> &minus; (%x00-1f / %x7f)
+<dd>= &lt;Any character> &minus; (%x0d / %x0a)
 
 <dt><dfn title=abnf-quoted-string>quoted-string</dfn>
 
@@ -2160,10 +2190,12 @@ the <var>namespace</var>'s URL and its <span>namespace
 prefix</span> <em class=rfc2119>MUST</em> be set
 to <var>namespace</var>'s <dfn>preferred prefix</dfn>.
 
+<!-- similar terms are defined in syntax section -->
 <li>A <dfn>class specification</dfn> is a string consist of a
-<code>(</code> character, followed by zero or more character that is
-<em>not</em> one of <code>(</code>, <code>)</code>, or <span>white
-space characters</span>, and finally followed by a <code>)</code>
+<code>(</code> character, followed by zero or more sequence
+of <span>code point</span> that is <em>not</em> one
+of <code>(</code>, <code>)</code>, or <span>white space
+characters</span>, and finally followed by a <code>)</code>
 character.  <!-- Though the SuikaWiki3 implementation of the parser
 support quoted-pair in class specification in [PRE[ block start tag
 and inline start tags, it is not allowed in [INS[ and [DEL[, and is
@@ -3620,25 +3652,56 @@ matched substring.
 
 <li>If <var>data</var> begins with <code>&amp;&amp;__</code>, or if
 <var>data</var> does not contain <code>&amp;&amp;__</code> as a
-substring, emit four <span title="character token">character
-tokens</span> whose <span title=character-data>data</span> are
-<code>_</code>, <code>_</code>, <code>&amp;</code>, and
-<code>&amp;</code> respectively and remove the first four characters
-of <var>data</var> and abort these steps.
+substring:
 
-<li>Let <var title>name</var> be the substring of <var
-title>data</var> between the beginning of the string and the first
-occurence of <code>&amp;&amp;__</code> (exclusive).
+  <ol>
 
-<li>Remove the first occurence of <code>&amp;&amp;__</code> and any
-character before it from <var title>data</var>.
+  <li>Emit four <span title="character token">character tokens</span>
+  whose <span title=character-data>data</span>
+  are <code>_</code>, <code>_</code>, <code>&amp;</code>,
+  and <code>&amp;</code>, respectively.
 
-<li>Emit an <span>element token</span> whose <span
-title=element-local-name>local name</span> is <code>replace</code>,
-<span title=element-namespace>namespace</span> is the
-<span>SuikaWiki/0.9 namespace</span>, <span
-title=element-by-attribute>by attribute</span> is <var
-title>name</var>.
+  <li>Remove the first four characters from <var>data</var>.
+
+  </ol>
+
+<li>Otherwise:
+
+  <ol>
+  
+  <li>Let <var title>name</var> be the substring
+  of <var title>data</var>, from the start of the string to the first
+  occurence of <code>&amp;&amp;__</code>, exclusive.
+
+  <li>Remove the substring of <var title>data</var>, from the start of
+  the string to the first occurence of <code>&amp;&amp;__</code>,
+  inclusive, from <var title>data</var>.
+
+  <li>If <span>Character Reference Table</span>
+  [<var title>name</var>] <span>exists</span>:
+
+    <ol>
+
+    <li>Emit a <span>character token</span>
+    whose <span title=character-data>data</span> is <span>Character
+    Reference Table</span> [<var title>name</var>].
+
+    </ol>
+
+  <li>Otherwise:
+
+    <ol>
+    
+    <li>Emit an <span>element token</span>
+    whose <span title=element-local-name>local name</span>
+    is <code>replace</code>, <span title=element-namespace>namespace</span>
+    is the <span>SuikaWiki/0.9
+    namespace</span>, <span title=element-by-attribute>by
+    attribute</span> is <var title>name</var>.
+
+    </ol>
+
+  </ol>
 
 </ol>
 
@@ -5482,6 +5545,27 @@ mode</span> and reprocess the <span>token</span>.
 
 <section>
 <h1>Element definitions for the SWML text serialization</h1>
+
+<p>The following <span>ordered map</span> known as <dfn>Character
+Reference Table</dfn> is referenced from the parser:
+
+  <table>
+
+  <thead>
+
+  <tr><th><span title=map-key>Key</span><th><span title=map-value>Value</span>
+
+  <tbody>
+
+  <tr><th><code>&amp;</code><td><code>&amp;</code>
+  <tr><th><code>'</code><td><code>'</code>
+  <tr><th><code>&lt;</code><td><code>&lt;</code>
+  <tr><th><code>&gt;</code><td><code>&gt;</code>
+  <tr><th><code>_</code><td><code>_</code>
+  <tr><th><code>[</code><td><code>[</code>
+  <tr><th><code>]</code><td><code>]</code>
+
+  </table>
 
 <p>The following <dfn>Block Element Table</dfn> is referenced from the
 parser:
