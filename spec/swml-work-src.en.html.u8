@@ -221,6 +221,7 @@ is <code>xml</code>.
 
 <p>The terms
 <dfn>byte sequence</dfn>,
+<a href=https://infra.spec.whatwg.org/#code-point><dfn>code point</dfn></a>,
 <dfn>string</dfn>,
 <dfn>ASCII case-insensitive</dfn>,
 <dfn>forgiving-base64 encode</dfn>,
@@ -229,18 +230,30 @@ is <code>xml</code>.
 <dfn>MathML namespace</dfn>,
 <dfn>XML namespace</dfn>,
 <dfn>XMLNS namespace</dfn>,
-are defined by the <a href=https://infra.spec.whatwg.org/>Infra Standard</a>.
+
+are defined by the <a href=https://infra.spec.whatwg.org/><cite>Infra
+Standard</cite></a>.
+
+<p>The term
+
+<dfn><code>Vertical_Orientation</code></dfn>
+
+is defined by
+<a href=https://www.unicode.org/versions/latest/><cite>The Unicode
+Standard</cite></a> and
+<a href=https://www.unicode.org/reports/tr50/>UAX #50</a>.
 
 <p>Terms
-<dfn>parent</dfn>,
 <dfn>node tree</dfn>,
+<dfn>node</dfn>,
+<dfn>parent</dfn>,
+<dfn>child</dfn>,
 <dfn>append</dfn> (of <span>node</span>),
 <dfn>element</dfn>,
 <dfn>create an element</dfn>,
 <dfn title=concept-element-local-name>element's local name</dfn>,
 <dfn title=concept-element-namespace>element's namespace</dfn>,
 <dfn title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
-<dfn title=concept-element-children>element's children</dfn>,
 <dfn>attribute</dfn>,
 <dfn>get an attribute value</dfn>,
 <dfn>set an attribute value</dfn>,
@@ -4369,9 +4382,8 @@ of <code>p</code>, <code>li</code>, <code>dd</code>, <code>figcaption</code>,
 <code>comment-p</code>, or <code>ed</code>, or if the <span>current
 element</span>'s <span title=concept-element-local-name>local
 name</span> is <code>figcaption</code> or <code>speaker</code> and
-the <span>current
-element</span>'s <span title=concept-element-children>children</span>
-is not empty, run the following substeps:
+the <span>current element</span> has any <span>child</span>, run the
+following substeps:
 
 <ol class=steps>
 
@@ -6052,8 +6064,7 @@ in the <span>XHTML2 namespace</span>.
 <p>The <code>dr</code> <span>element</span>
 is <span title=represents>semantically</span> equals to the
 HTML <code>div</code> <span>element</span> that is
-a <span title=concept-element-children>child</span> of the
-HTML <code>dl</code> <span>element</span>.
+a <span>child</span> of the HTML <code>dl</code> <span>element</span>.
 
 <p>This <span>element</span> <em class=rfc2119>MUST NOT</em> be used.
 
@@ -6263,11 +6274,11 @@ intermixed with <span>script-supporting elements</span>.
 a conversation between one or more persons.
 
 <p>Each piece of the conversation is represented
-by <span title=concept-element-children>child</span> <code>talk</code> <span title=element>elements</span>.
+by <span>child</span> <code>talk</code> <span title=element>elements</span>.
 
 <p>A <code>dialogue</code> <span>element</span> <em class=rfc2119>SHOULD</em>
 have at least
-one <code>talk</code> <span>element</span> <span title=concept-element-children>child</span>.
+one <code>talk</code> <span>element</span> <span>child</span>.
 
 </section>
 
@@ -6300,8 +6311,8 @@ the dialogue.
 
 <p>The <dfn title=concept-talk-speaker>speaker</dfn> of
 a <code>talk</code> <span>element</span> is the
-first <code>speaker</code> <span title=concept-element-children>child</span> <span>element</span>
-of the <span>element</span>, if any, or <code>null</code>.  If
+first <code>speaker</code> <span>child</span> <span>element</span> of
+the <span>element</span>, if any, or <code>null</code>.  If
 the <span title=concept-talk-speaker>speaker</span> is
 not <code>null</code>, it describes the speaker(s) of the talk.
 Otherwise, the speaker is not explicitly described.
@@ -6882,32 +6893,291 @@ associated with the surrounding texts.
 <section>
 <h1>Writing directions</h1>
 
-<p>In a <dfn>horizontal mode</dfn> text, the characters in the text
-are <span>expected</span> to be stacked horizontally.
+<p>A <span>node</span>'s <dfn>inline direction mode</dfn> is
+either <span>horizontal mode</span> or <span>vertical mode</span>.
+Unless otherwise specified, the <span>node</span>'s <span>inline
+direction mode</span> is same as
+the <span>node</span>'s <span>parent</span>'s <span>inline direction
+mode</span> if the <span>node</span>'s <span>parent</span> is
+not <code>null</code>, or <span>horizontal mode</span> otherwise.
 
-<p>In a <dfn>vertical mode</dfn> text, the characters in the text
-are <span>expected</span> to be stacked vertically.
+<p>In <dfn>horizontal mode</dfn>, characters are intended to be
+stacked horizontally, left-to-right or
+right-to-left.  <span title="vertical glyph">Vertical glyphs</span>
+are <em>not</em> used.
 
-<p class=XXX>XXX
-  <dfn><code>sw-l</code></dfn>
-  <dfn><code>sw-lt</code></dfn>
-  <dfn><code>sw-r</code></dfn>
-  <dfn><code>sw-rt</code></dfn>
-  <dfn><code>sw-v</code></dfn>
-  <dfn><code>sw-vt</code></dfn>
-  <dfn><code>sw-vb</code></dfn>
-  <dfn><code>sw-vbt</code></dfn>
-  <dfn><code>sw-left</code></dfn>
-  <dfn><code>sw-right</code></dfn>
-  <dfn><code>sw-vlr</code></dfn>
-  <dfn><code>sw-vrl</code></dfn>
-  <dfn><code>sw-leftbox</code></dfn>
-  <dfn><code>sw-rightbox</code></dfn>
-  <dfn><code>sw-leftbtbox</code></dfn>
-  <dfn><code>sw-rightbtbox</code></dfn>
-  <dfn><code>sw-vlrbox</code></dfn>
-  <dfn><code>sw-vrlbox</code></dfn>
-  <dfn><code>sw-mirrored</code></dfn>
+<p>In <dfn>vertical mode</dfn>, characters are intended to be stacked
+vertically, top-to-bottom or bottom-to-top.  <span title="vertical
+glyph">Vertical glyphs</span> are used.
+
+<p><dfn title="vertical glyph">Vertical glyphs</dfn>
+are <span title=glyph>glyphs</span> used in vertical writings.  For
+Unicode characters, they are described by
+the <code>Vertical_Orientation</code> property of
+the <span title="code point">code points</code>.
+
+<p>When an <span>element</span> is defined as <dfn>turned</dfn>, it is
+rotated 180 degree.  For example, a left-to-right text becomes a
+right-to-text text with 180-degree
+rotated <span title=glyph>glyphs</span>, a top-to-bottom text becomes
+a bottom-to-top text with 180-degree
+rotated <span title=glyph>glyphs</span>, and an underline becomes an
+overline.
+
+<p>When an <span>element</span> is defined as <dfn>mirrored</dfn>, it
+is reversed at the horizontal center line in <span>horizontal
+mode</span> or at the vertical center line in <span>vertical
+mode</span>.  For example, a left-to-right text becomes a
+right-to-text text with horizontally mirrored
+<span title=glyph>glyphs</span> and a top-to-bottom text becomes a
+bottom-to-top text with vertically mirrored
+<span title=glyph>glyphs</span>.
+
+<p>An <span>node</span> has <dfn>horizontal orientation</dfn>
+and <dfn>vertical orientation</dfn>.  Unless otherwise specified,
+a  <span>horizontal mode</span>
+<span>node</span>'s <span>horizontal orientation</span> is its natural
+orientation and <span>vertical orientation</span> is its 90-degree
+clockwise rotation (that is, the left of the context becomes the
+bottom for the <span>node</span>'s content).  Unless otherwise
+specified, a <span>vertical
+mode</span> <span>node</span>'s <span>vertical orientation</span> is
+its natural orientation and the <span>node</span>'s <span>horizontal
+orientation</span> is its 270-degree clockwise rotation (that is, the
+right of the context becomes the top for the <span>node</span>'s
+content).  These rotations are applied after
+any <span title=turned>turning</span>.
+
+<p>For a <span>horizontal mode</span> <span>node</span>,
+its <span title=child>children</span> <span title=represents>represent</span>
+their <span>horizontal orientation</span>.  For a <span>vertical
+mode</span> <span>node</span>,
+its <span title=child>children</span> <span title=represents>represent</span>
+their <span>vertical orientation</span>.
+
+<hr>
+
+<p>A <dfn>directional group</dfn> is a sequence of zero or
+more <span>flow content</span> with a specific set of
+inline-direction/block-direction.  It is <span>expected</span> to be
+rendered in a way that is appropriate for the directions.  For
+example, a right-to-left/top-to-bottom <span>directional group</span>
+is styled such that texts are right-aligned and blocks are
+top-aligned.
+
+<p>A <dfn>directional box</dfn> is a <span>directional group</span>.
+A <span>directional box</span>'s <span>horizontal orientation</span>
+and <span>vertical orientation</span> are its natural orientation.
+
+<section>
+<h1>The <dfn><code>sw-l</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-l</code> <span>element</span> <span>represents</span>
+a left-to-right, <span>horizontal mode</span> text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-lt</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-lt</code> <span>element</span> <span>represents</span>
+a <span>turned</span> left-to-right, <span>horizontal mode</span>
+text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-r</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-r</code> <span>element</span> <span>represents</span>
+a right-to-left, <span>horizontal mode</span> text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-rt</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-rt</code> <span>element</span> <span>represents</span>
+a <span>turned</span> right-to-left, <span>horizontal mode</span>
+text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-v</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-v</code> <span>element</span> <span>represents</span>
+a top-to-bottom, <span>vertical mode</span> text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-vt</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-vt</code> <span>element</span> <span>represents</span>
+a <span>turned</span> top-to-bottom, <span>vertical mode</span> text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-vb</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-vb</code> <span>element</span> <span>represents</span>
+a bottom-to-top, <span>vertical mode</span> text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-vbt</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-vbt</code> <span>element</span> <span>represents</span>
+a <span>turned</span> bottom-to-top, <span>vertical mode</span> text.
+
+</section>
 
 <section>
 <h1>The <dfn><code>sw-tate</code></dfn> <span>element</span> in the
@@ -6931,7 +7201,15 @@ are <span>expected</span> to be stacked vertically.
 </dl>
 
 <p>The <code>sw-tate</code> <span>element</span> <span>represents</span>
-a <span>vertical mode</span> text.
+a <span>vertical mode</span> text embedded in <span>horizontal
+mode</span>.
+
+<p>The <code>sw-tate</code> <span>element</span>'s <span>horizontal
+orientation</span> and <span>vertical orientation</span> are its
+natural orientation.
+
+<p>The <code>sw-tate</code> <span>element</span> <em class=rfc2119>MUST
+NOT</em> be used in <span>vertical mode</span>.
 
 </section>
 
@@ -6957,12 +7235,325 @@ a <span>vertical mode</span> text.
 </dl>
 
 <p>The <code>yoko</code> <span>element</span> <span>represents</span>
-a <span>horizontal mode</span> text.
+a <span>horizontal mode</span> text embedded in <span>vertical
+mode</span>.
+
+<p>The <code>yoko</code> <span>element</span>'s <span>horizontal
+orientation</span> and <span>vertical orientation</span> are its
+natural orientation.
+
+<p>The <code>yoko</code> <span>element</span> <em class=rfc2119>MUST
+NOT</em> be used in <span>horizontal mode</span>.
 
   <div class=note>
     <p>The <span>element</span> can be used to mark up
-    a <span lang=ja>縦中横</span> text span.
+    a <span lang=ja>縦中横</span> text span or a upright latin letter
+    in a vertical text.
   </div>
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-mirrored</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-mirrored</code> <span>element</span> <span>represents</span>
+a <span>mirrored</span> text.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-left</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-left</code> <span>element</span> <span>represents</span>
+a left-to-right/top-to-bottom <span>directional group</span>
+in <span>horizontal mode</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-right</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-right</code> <span>element</span> <span>represents</span>
+a right-to-left/top-to-bottom <span>directional group</span>
+in <span>horizontal mode</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-vlr</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-vlr</code> <span>element</span> <span>represents</span>
+a top-to-bottom/left-to-right <span>directional group</span>
+in <span>vertical mode</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-vrl</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-vrl</code> <span>element</span> <span>represents</span>
+a top-to-bottom/right-to-left <span>directional group</span>
+in <span>vertical mode</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-leftbox</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-leftbox</code> <span>element</span> <span>represents</span>
+a left-to-right/top-to-bottom <span>directional box</span>
+in <span>horizontal mode</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-rightbox</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-rightbox</code> <span>element</span> <span>represents</span>
+a right-to-left/top-to-bottom <span>directional box</span>
+in <span>horizontal mode</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-leftbtbox</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-leftbtbox</code> <span>element</span> <span>represents</span>
+a left-to-right/bottom-to-top <span>directional box</span>
+in <span>vertical mode</span>.
+
+  <div class=note>
+    <p>Though it is desired that the <span>element</span> be
+    in <span>horizontal mode</span>, it is defined as
+    in <span>vertical mode</span>, such that the bottom-to-top block
+    direction can be emulated by
+    CSS <code>'<span>writing-mode</span>: <span>vertical-lr</span>'</code>
+    with 270-degree rotation.
+  </div>
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-rightbtbox</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-rightbtbox</code> <span>element</span> <span>represents</span>
+a right-to-left/bottom-to-top <span>directional box</span>
+in <span>vertical mode</span>.
+
+  <div class=note>
+    <p>Though it is desired that the <span>element</span> be
+    in <span>horizontal mode</span>, it is defined as
+    in <span>vertical mode</span>, such that the bottom-to-top block
+    direction can be emulated by
+    CSS <code>'<span>writing-mode</span>: <span>vertical-lr</span>'</code>
+    with 270-degree rotation.
+  </div>
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-vlrbox</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-vlrbox</code> <span>element</span> <span>represents</span>
+a bottom-to-top/left-to-right <span>directional box</span>
+in <span>vertical mode</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-vrlbox</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-vrlbox</code> <span>element</span> <span>represents</span>
+a bottom-to-top/right-to-left <span>directional box</span>
+in <span>vertical mode</span>.
 
 </section>
 
@@ -7005,15 +7596,13 @@ if any.
 
 <p>The <dfn>fenced content</dfn> of
 a <code>fenced</code> <span>element</span> is the
-first <span>child</span> <code>fencedtext</code>
-<span>element</span>, if any, after the <span>open fence</span> if
-there is.
+first <span>child</span> <code>fencedtext</code> <span>element</span>,
+if any, after the <span>open fence</span> if there is.
 
 <p>The <dfn>close fence</dfn> of
 a <code>fenced</code> <span>element</span> is the
-first <span>child</span> <code>closefence</code>
-<span>element</span>, if any, after the <span>fenced content</span> if
-there is.
+first <span>child</span> <code>closefence</code> <span>element</span>,
+if any, after the <span>fenced content</span> if there is.
 
 <p>Any other <span>child</span> <span>represents</span> nothing.
 
