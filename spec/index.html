@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 8 November 2020</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 6 June 2021</h2>
 
 
 <dl>
@@ -269,6 +269,8 @@ the <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-sw-cursive-element-in-the-suikawiki/0.9-namespace><span class=secno>9.14.1 </span>The <code>sw-cursive</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-smallcaps-element-in-the-suikawiki/0.9-namespace><span class=secno>9.14.2 </span>The <code>smallcaps</code> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><span class=secno>9.14.3 </span>The <code>sw-br</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
    <li><a href=#qualified-names><span class=secno>9.15 </span>Qualified names</a>
     <ol>
@@ -487,6 +489,7 @@ is <code>xml</code>.
 <a href=https://infra.spec.whatwg.org/#map-key><dfn id=map-key title=map-key>key</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#map-value><dfn id=map-value title=map-value>value</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#map-exists><dfn id=exists>exists</dfn></a>,
+<dfn id=empty>empty</dfn>,
 <dfn id=html-namespace>HTML namespace</dfn>,
 <dfn id=mathml-namespace>MathML namespace</dfn>,
 <dfn id=xml-namespace>XML namespace</dfn>,
@@ -509,21 +512,22 @@ Standard</cite></a> and
 <dfn id=node>node</dfn>,
 <dfn id=parent>parent</dfn>,
 <dfn id=child>child</dfn>,
-<dfn id=append>append</dfn> (of <a href=#node>node</a>),
+<dfn id=append>append</dfn>,
 <dfn id=element>element</dfn>,
 <dfn id=create-an-element>create an element</dfn>,
 <dfn id=concept-element-local-name title=concept-element-local-name>element's local name</dfn>,
 <dfn id=concept-element-namespace title=concept-element-namespace>element's namespace</dfn>,
 <dfn id=concept-element-namespace-prefix title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
+<a href=https://dom.spec.whatwg.org/#concept-descendant-text-content><dfn id=concept-element-text-content title=concept-element-text-content>descendant text content</dfn></a>,
 <dfn id=attribute>attribute</dfn>,
 <dfn id=get-an-attribute-value>get an attribute value</dfn>,
 <dfn id=set-an-attribute-value>set an attribute value</dfn>,
 <dfn id=concept-attribute-local-name title=concept-attribute-local-name>attribute's local name</dfn>,
 <dfn id=concept-attribute-namespace title=concept-attribute-namespace>attribute's namespace</dfn>,
 and
-<dfn id=concept-attribute-namespace-prefix title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>
-<dfn id=attribute-value title="attribute value">value</dfn> (of <a href=#attribute>attribute</a>),
-<dfn id=owner-element title="owner element">element</dfn> (of <a href=#attribute>attribute</a>),
+<dfn id=concept-attribute-namespace-prefix title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>,
+<dfn id=attribute-value title="attribute value">attribute's value</dfn>,
+<dfn id=owner-element title="owner element">attribute's element</dfn>,
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -566,7 +570,7 @@ is
 defined by the <a href=https://mimesniff.spec.whatwg.org/><cite>MIME
 Sniffing Standard</cite></a>.
 
-</p><p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <a href=#space><code class=charname>SPACE</code></a>.
+</p><p><dfn id=white-space-characters>White space characters</dfn> are U+0009 <code class=charname>CHARACTER TABULATION</code> and U+0020 <code class=charname>SPACE</code>.
 
 </p><p><dfn id=digits>Digits</dfn> are characters in the range U+0030 <code class=charname>DIGIT ZERO</code> .. U+0039 <code class=charname>DIGIT
 NINE</code>.
@@ -602,11 +606,16 @@ the <a href=#the-xml:lang-attribute><code>xml:lang</code></a> <a href=#attribute
 
 </p></div>
 
-<p>The <dfn id=concept-element-text-content title=concept-element-text-content>text content</dfn> of
-an <a href=#element>element</a> is the value that would be returned by the
-getter of the
-<a href=https://dom.spec.whatwg.org/#dom-node-textcontent><code>textContent</code></a>
-IDL attribute of the <a href=#element>element</a>.
+<p>Terms
+
+<a href=https://drafts.csswg.org/css-text/#white-space><dfn id=document-white-space>document white space</dfn></a>
+and
+<a href=https://drafts.csswg.org/css-text/#preserved-white-space><dfn id=preserved-white-space>preserved
+white space</dfn></a>
+
+are defined by the
+<a href=https://drafts.csswg.org/css-text/><cite>CSS Text</cite></a>
+specification.
 
 </p></section>
 
@@ -1424,6 +1433,13 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Bold (or sans-serif) text (HTML <a href=#b><code>b</code></a> element)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-br title=concept-BR><code>BR</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Explicit line break (<a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a> element)
 
 </td></tr><tr>
 <!-- SuikaWiki/0.10 -->
@@ -4600,6 +4616,11 @@ following table:
 </td><td><a href=#b><code>b</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-br><code title=concept-BR>BR</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a>
+
+</td></tr><tr>
 <th><a href=#concept-cite><code title=concept-CITE>CITE</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><a href=#cite><code>cite</code></a>
@@ -5046,8 +5067,8 @@ the <a href=#current-element>current element</a>:
 
   <div>
   <dt><a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>, <a href=#the-nsuri-element-in-the-suikawiki/0.10-namespace><code>nsuri</code></a>, <a href=#the-tz-element-in-the-suikawiki/0.9-namespace><code>tz</code></a>, <a href=#the-n-element-in-the-suikawiki/0.9-namespace><code>n</code></a>,
-  <a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a>, <a href=#the-lon-element-in-the-suikawiki/0.9-namespace><code>lon</code></a>, <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a>,
-  or <a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a>
+  <a href=#the-lat-element-in-the-suikawiki/0.9-namespace><code>lat</code></a>, <a href=#the-lon-element-in-the-suikawiki/0.9-namespace><code>lon</code></a>, <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a>, or
+  <a href=#the-superscript-element-in-the-suikawiki/0.9-namespace><code>superscript</code></a>
 
   </dt><dd>
     <ol>
@@ -5823,8 +5844,9 @@ the XML syntax.  It has no dedicated <a href=#mime-type>MIME type</a>.
 
 <p>This specification is <em>the</em> specification for the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a> and the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10
-namespace</a>.  Anything belongging to those namespaces is defined
-in this specification.
+namespace</a>.  Anything belongging to
+those <span title=namespace>namespaces</span> is defined in this
+specification.
 
 </p><p>Elements and attributes in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
 and in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>, as well as
@@ -6039,7 +6061,7 @@ namespace</a>.
 
 </p><hr>
 
-<p>The <dfn id=space><code title=xml:space>space</code></dfn> <a href=#attribute>attribute</a>
+<p>The <dfn id=xml:space title=xml:space><code>space</code></dfn> <a href=#attribute>attribute</a>
 in the <a href=#xml-namespace>XML namespace</a> has no effect for
 the <a href=#element title=element>elements</a> in the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9
 namespace</a> or in the <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a>
@@ -6047,7 +6069,7 @@ and <em class=rfc2119>MUST NOT</em> be used.
 
 </p><p>Unless otherwise specified by other <a href=#applicable-specification>applicable
 specification</a>,
-the <code title=xml:space>space</code> <a href=#attribute>attribute</a> in
+the <a href=#xml:space><code title=xml:space>space</code></a> <a href=#attribute>attribute</a> in
 the <a href=#xml-namespace>XML namespace</a> has no effect for
 the <a href=#element title=element>elements</a> in the <a href=#aa-namespace>AA
 namespace</a>, in the <a href=#html3-namespace>HTML3 namespace</a>, or in
@@ -7609,27 +7631,30 @@ intermixed with <a href=#script-supporting-elements>script-supporting elements</
 <p>The <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
 a chunk of content with parentheses enclosing it.
 
-</p><p>The <dfn id=open-fence>open fence</dfn> of
-a <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> is the
+</p><p>The <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a>'s <dfn id=open-fence>open
+fence</dfn> is the
 first <a href=#child>child</a> <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> <a href=#element>element</a>,
-if any.
+if any, or <code>null</code> instead.
 
-</p><p>The <dfn id=fenced-content>fenced content</dfn> of
-a <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> is the
+</p><p>The <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a>'s <dfn id=fenced-content>fenced
+content</dfn> is the
 first <a href=#child>child</a> <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a> <a href=#element>element</a>,
-if any, after the <a href=#open-fence>open fence</a> if there is.
+if any, after any <a href=#open-fence>open fence</a> of the <a href=#element>element</a>.
 
-</p><p>The <dfn id=close-fence>close fence</dfn> of
-a <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a> is the
+</p><p>The <a href=#the-fenced-element-in-the-suikawiki/0.9-namespace><code>fenced</code></a> <a href=#element>element</a>'s <dfn id=close-fence>close
+fence</dfn> is the
 first <a href=#child>child</a> <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a> <a href=#element>element</a>,
-if any, after the <a href=#fenced-content>fenced content</a> if there is.
+if any, after any <a href=#fenced-content>fenced content</a> of
+the <a href=#element>element</a>.
 
 </p><p>Any other <a href=#child>child</a> <a href=#represents>represents</a> nothing.
 
-</p><p>The <a href=#open-fence>open fence</a> and <a href=#close-fence>close fence</a>
-<em class=rfc2119>MAY</em> be <span>empty</span>.  It is equivalent to
-missing of <a href=#open-fence>open fence</a> or <a href=#close-fence>close fence</a>,
-respectively.
+</p><p>The <a href=#element>element</a>'s non-<code>null</code> <a href=#open-fence>open
+fence</a> or <a href=#close-fence>close
+fence</a>'s <span title=children>child</span> <em class=rfc2119>MAY</em>
+be <a href=#empty>empty</a>.  It is semantically equivalent to
+the <a href=#element>element</a>'s <a href=#open-fence>open fence</a> or <a href=#close-fence>close
+fence</a>, respectively, is <code>null</code>.
 
 </p><p>It is <a href=#expected>expected</a> that the <a href=#open-fence>open fence</a>
 and <a href=#close-fence>close fence</a>, if any, are rendered by the same line
@@ -7651,7 +7676,8 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dt><dd><a href=#nothing>Nothing</a>.
+</dd><dd><a href=#phrasing-content>Phrasing content</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7662,7 +7688,7 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 <p>The <a href=#the-openfence-element-in-the-suikawiki/0.9-namespace><code>openfence</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
 the parenthese before the <a href=#fenced-content>fenced content</a> if it is an
 <a href=#open-fence>open fence</a>.  Otherwise, it <a href=#represents>represents</a>
-its <span>content</span>.
+its <a href=#child title=child>children</a>.
 
 </p></section>
 
@@ -7689,7 +7715,7 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 <p>The <a href=#the-fencedtext-element-in-the-suikawiki/0.9-namespace><code>fencedtext</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
 the content enclosed by parentheses if it is a
 <a href=#fenced-content>fenced content</a>.  Otherwise, it <a href=#represents>represents</a>
-its <span>content</span>.
+its <a href=#child title=child>children</a>.
 
 </p></section>
 
@@ -7705,7 +7731,8 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dt><dd><a href=#nothing>Nothing</a>.
+</dd><dd><a href=#phrasing-content>Phrasing content</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7715,8 +7742,8 @@ the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <p>The <a href=#the-closefence-element-in-the-suikawiki/0.9-namespace><code>closefence</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
 the parenthese after the <a href=#fenced-content>fenced content</a> if it is an
-<a href=#close-fence>close fence</a>.  Otherwise, it <a href=#represents>represents</a> its
-<span>content</span>.
+<a href=#close-fence>close fence</a>.  Otherwise, it <a href=#represents>represents</a>
+its <a href=#child title=child>children</a>.
 
 </p></section>
 
@@ -7884,10 +7911,10 @@ within a quotation to describe that the content has an error that
 occurs in the original text (and is <em>not</em> produced by the
 author of the document).
 
-</p><p>If there is a last <a href=#child>child</a> <a href=#element>element</a> that is a  <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a>
-<a href=#element>element</a>, it is the annotation (and is not part of the
-annotated content).  A user agent is <a href=#expected>expected</a> to show the
-annotation as such.  If there is
+</p><p>If there is a last <a href=#child>child</a> <a href=#element>element</a> that is
+a <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a>, it is the annotation (and
+is not part of the annotated content).  A user agent
+is <a href=#expected>expected</a> to show the annotation as such.  If there is
 no <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a> <a href=#child>child</a>, a
 <span title="user agent">user-agent</span> dependent
 annotation <em class=rfc2119>SHOULD</em> be used instead.
@@ -7914,7 +7941,8 @@ is used as the annotation.
 
 </dd><dt><a href=#content-model>Content model</a>
 
-</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dt><dd><a href=#nothing>Nothing</a>.
+</dd><dd><a href=#phrasing-content>Phrasing content</a>.
 
 </dd><dt><a href=#allowed-attributes>Allowed attributes</a>
 
@@ -7926,12 +7954,15 @@ is used as the annotation.
 the point where some content in the source material are omitted.  It
 is typically used within a quotation.
 
-</p><p>If the <span>content</span> is not <span>empty</span>,
-it <a href=#represents>represents</a> the annotation placed instead of the
-original text.
+</p><p>If the <a href=#element>element</a>'s <a href=#child title=child>children</a>
+is <em>not</em> <a href=#empty>empty</a>, it <a href=#represents>represents</a> the
+annotation placed instead of the original text.
 
-</p><p>It is <a href=#expected>expected</a> that the <span>content</span> of
-the <a href=#element>element</a> is rendered.  If it is <span>empty</span>, a
+</p><p>It is <a href=#expected>expected</a> that
+the <a href=#element>element</a>'s <a href=#child title=child>children</a> are
+rendered.  If
+the <a href=#element>element</a>'s <a href=#child title=child>children</a>
+is <a href=#empty>empty</a>, a
 <span title="user agent">user-agent</span> dependent
 annotation <em class=rfc2119>SHOULD</em> be used instead.
 
@@ -8010,7 +8041,8 @@ secondary ruby text (an <a href=#rt><code>rt</code></a> <a href=#element>element
 
 </p><p>It is <a href=#expected>expected</a> that the first <a href=#rt><code>rt</code></a> 
 <a href=#element>element</a> <a href=#child>child</a>, if any, is rendered
-<span>after</span> the other <span>content</span> before it.
+<span>after</span> the other <a href=#child title=child>children</a> before
+it.
 
 </p></section>
 
@@ -8120,8 +8152,8 @@ or <a href=#span><code>span</code></a> <a href=#element>element</a> <var>parent<
 is no <code title=attr-html-title>title</code> <a href=#attribute>attribute</a>
 in <var>parent</var>.
 
-</p><p>An <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <em class=rfc2119>MUST NOT</em> be used when
-it <a href=#represents>represents</a> nothing.
+</p><p>The <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a> <em class=rfc2119>MUST
+NOT</em> be used when it <a href=#represents>represents</a> nothing.
 
 </p></section>
 
@@ -8157,7 +8189,7 @@ a content with a dot above it.  This is used in mathematical
 expressions, such as recurring decimals.
 
 </p><p>It is <a href=#expected>expected</a> that a dot symbol is rendered above
-the <span>content</span> of the <a href=#element>element</a>.
+the <a href=#element>element</a>'s <a href=#child title=child>children</a>.
 
 </p></section>
 
@@ -8187,7 +8219,7 @@ a content with a dot above it.  This is used in mathematical
 expressions, such as sample mean variables.
 
 </p><p>It is <a href=#expected>expected</a> that an overline is rendered above
-the <span>content</span> of the <a href=#element>element</a>.
+the <a href=#element>element</a>'s <a href=#child title=child>children</a>.
 
 </p></section>
 
@@ -8217,7 +8249,7 @@ a content with a right-pointing arrow above it.  This is used in
 mathematical expressions to denote a vector.
 
 </p><p>It is <a href=#expected>expected</a> that a right-pointing arrow is rendered
-above the <span>content</span> of the <a href=#element>element</a>.
+above the <a href=#element>element</a>'s <a href=#child title=child>children</a>.
 
 </p><p>This <a href=#element>element</a> <em class=rfc2119>SHOULD NOT</em> be used
 for other possible presentations of vectors, such as bold face without
@@ -8744,6 +8776,49 @@ the <a href=#the-smallcaps-element-in-the-suikawiki/0.9-namespace><code>smallcap
 limited to uppercase and lowercase latin letters,
 are <a href=#expected>expected</a> to be rendered using small-capital glyphs,
 whenever possible.
+
+</p></section>
+
+<section>
+<h1 id=the-sw-br-element-in-the-suikawiki/0.9-namespace><span class=secno>9.14.3 </span>The <dfn><code>sw-br</code></dfn> <a href=#element>element</a> in the
+<a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#nothing>Nothing</a>.
+</dd><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-class-attribute><code>class</code></a>
+
+</dd></dl>
+
+<p>The <a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+an explicit line break.
+
+</p><p>The <a href=#element>element</a>'s <a href=#child title=child>children</a>, if
+not <a href=#empty>empty</a>, <a href=#represents>represents</a> the hyphenation
+symbols placed just before the line break.
+
+</p><p>The <a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a> <a href=#element>element</a>
+is <a href=#expected>expected</a> to be rendered as if there were
+a <code>U+000A</code> <code class=charname>LINE
+FEED</code> <span>character</span> at the end of
+the <a href=#element>element</a>.
+
+</p><p><a href=#document-white-space title="document white space">White space characters</a> in
+the <a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a> <a href=#element>element</a> and
+the <code>U+000A</code> <span>character</span> at the end of
+the <a href=#element>element</a> are <a href=#expected>expected</a> to be processed
+as <a href=#preserved-white-space title="preserved white space">preserved white spaces</a>.
 
 </p></section>
 

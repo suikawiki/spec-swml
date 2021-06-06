@@ -230,6 +230,7 @@ is <code>xml</code>.
 <a href=https://infra.spec.whatwg.org/#map-key><dfn title=map-key>key</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#map-value><dfn title=map-value>value</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#map-exists><dfn>exists</dfn></a>,
+<dfn>empty</dfn>,
 <dfn>HTML namespace</dfn>,
 <dfn>MathML namespace</dfn>,
 <dfn>XML namespace</dfn>,
@@ -252,21 +253,22 @@ Standard</cite></a> and
 <dfn>node</dfn>,
 <dfn>parent</dfn>,
 <dfn>child</dfn>,
-<dfn>append</dfn> (of <span>node</span>),
+<dfn>append</dfn>,
 <dfn>element</dfn>,
 <dfn>create an element</dfn>,
 <dfn title=concept-element-local-name>element's local name</dfn>,
 <dfn title=concept-element-namespace>element's namespace</dfn>,
 <dfn title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
+<a href=https://dom.spec.whatwg.org/#concept-descendant-text-content><dfn title=concept-element-text-content>descendant text content</dfn></a>,
 <dfn>attribute</dfn>,
 <dfn>get an attribute value</dfn>,
 <dfn>set an attribute value</dfn>,
 <dfn title=concept-attribute-local-name>attribute's local name</dfn>,
 <dfn title=concept-attribute-namespace>attribute's namespace</dfn>,
 and
-<dfn title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>
-<dfn title="attribute value">value</dfn> (of <span>attribute</span>),
-<dfn title="owner element">element</dfn> (of <span>attribute</span>),
+<dfn title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>,
+<dfn title="attribute value">attribute's value</dfn>,
+<dfn title="owner element">attribute's element</dfn>,
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -352,11 +354,16 @@ the <code>xml:lang</code> <span>attribute</span>.
 
 </div>
 
-<p>The <dfn title=concept-element-text-content>text content</dfn> of
-an <span>element</span> is the value that would be returned by the
-getter of the
-<a href=https://dom.spec.whatwg.org/#dom-node-textcontent><code>textContent</code></a>
-IDL attribute of the <span>element</span>.
+<p>Terms
+
+<a href=https://drafts.csswg.org/css-text/#white-space><dfn>document white space</dfn></a>
+and
+<a href=https://drafts.csswg.org/css-text/#preserved-white-space><dfn>preserved
+white space</dfn></a>
+
+are defined by the
+<a href=https://drafts.csswg.org/css-text/><cite>CSS Text</cite></a>
+specification.
 
 </section>
 
@@ -1327,6 +1334,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Not allowed
 <td>Not allowed
 <td>Bold (or sans-serif) text (HTML <code>b</code> element)
+
+<tr>
+<th scope=row><dfn title=concept-BR><code>BR</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td>Explicit line break (<code>sw-br</code> element)
 
 <tr>
 <!-- SuikaWiki/0.10 -->
@@ -4631,6 +4645,11 @@ following table:
 <td><code>b</code>
 
 <tr>
+<th><code title=concept-BR>BR</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-br</code>
+
+<tr>
 <th><code title=concept-CITE>CITE</code>
 <td>The <span>HTML namespace</span>
 <td><code>cite</code>
@@ -5078,8 +5097,8 @@ the <span>current element</span>:
 
   <div>
   <dt><code>title</code>, <code>nsuri</code>, <code>tz</code>, <code>n</code>,
-  <code>lat</code>, <code>lon</code>, <code>closefence</code>,
-  or <code>superscript</code>
+  <code>lat</code>, <code>lon</code>, <code>closefence</code>, or
+  <code>superscript</code>
 
   <dd>
     <ol>
@@ -5877,8 +5896,9 @@ the XML syntax.  It has no dedicated <span>MIME type</span>.
 
 <p>This specification is <em>the</em> specification for the
 <span>SuikaWiki/0.9 namespace</span> and the <span>SuikaWiki/0.10
-namespace</span>.  Anything belongging to those namespaces is defined
-in this specification.
+namespace</span>.  Anything belongging to
+those <span title=namespace>namespaces</span> is defined in this
+specification.
 
 <p>Elements and attributes in the <span>SuikaWiki/0.9 namespace</span>
 and in the <span>SuikaWiki/0.10 namespace</span>, as well as
@@ -6096,7 +6116,7 @@ namespace</span>.
 
 <hr>
 
-<p>The <dfn><code title=xml:space>space</code></dfn> <span>attribute</span>
+<p>The <dfn title=xml:space><code>space</code></dfn> <span>attribute</span>
 in the <span>XML namespace</span> has no effect for
 the <span title=element>elements</span> in the <span>SuikaWiki/0.9
 namespace</span> or in the <span>SuikaWiki/0.10 namespace</span>
@@ -7673,27 +7693,30 @@ intermixed with <span>script-supporting elements</span>.
 <p>The <code>fenced</code> <span>element</span> <span>represents</span>
 a chunk of content with parentheses enclosing it.
 
-<p>The <dfn>open fence</dfn> of
-a <code>fenced</code> <span>element</span> is the
+<p>The <code>fenced</code> <span>element</span>'s <dfn>open
+fence</dfn> is the
 first <span>child</span> <code>openfence</code> <span>element</span>,
-if any.
+if any, or <code>null</code> instead.
 
-<p>The <dfn>fenced content</dfn> of
-a <code>fenced</code> <span>element</span> is the
+<p>The <code>fenced</code> <span>element</span>'s <dfn>fenced
+content</dfn> is the
 first <span>child</span> <code>fencedtext</code> <span>element</span>,
-if any, after the <span>open fence</span> if there is.
+if any, after any <span>open fence</span> of the <span>element</span>.
 
-<p>The <dfn>close fence</dfn> of
-a <code>fenced</code> <span>element</span> is the
+<p>The <code>fenced</code> <span>element</span>'s <dfn>close
+fence</dfn> is the
 first <span>child</span> <code>closefence</code> <span>element</span>,
-if any, after the <span>fenced content</span> if there is.
+if any, after any <span>fenced content</span> of
+the <span>element</span>.
 
 <p>Any other <span>child</span> <span>represents</span> nothing.
 
-<p>The <span>open fence</span> and <span>close fence</span>
-<em class=rfc2119>MAY</em> be <span>empty</span>.  It is equivalent to
-missing of <span>open fence</span> or <span>close fence</span>,
-respectively.
+<p>The <span>element</span>'s non-<code>null</code> <span>open
+fence</span> or <span>close
+fence</span>'s <span title=children>child</span> <em class=rfc2119>MAY</em>
+be <span>empty</span>.  It is semantically equivalent to
+the <span>element</span>'s <span>open fence</span> or <span>close
+fence</span>, respectively, is <code>null</code>.
 
 <p>It is <span>expected</span> that the <span>open fence</span>
 and <span>close fence</span>, if any, are rendered by the same line
@@ -7715,6 +7738,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Content model</span>
 
+<dd><span>Nothing</span>.
 <dd><span>Phrasing content</span>.
 
 <dt><span>Allowed attributes</span>
@@ -7726,7 +7750,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 <p>The <code>openfence</code> <span>element</span> <span>represents</span>
 the parenthese before the <span>fenced content</span> if it is an
 <span>open fence</span>.  Otherwise, it <span>represents</span>
-its <span>content</span>.
+its <span title=child>children</span>.
 
 </section>
 
@@ -7753,7 +7777,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 <p>The <code>fencedtext</code> <span>element</span> <span>represents</span>
 the content enclosed by parentheses if it is a
 <span>fenced content</span>.  Otherwise, it <span>represents</span>
-its <span>content</span>.
+its <span title=child>children</span>.
 
 </section>
 
@@ -7769,6 +7793,7 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dt><span>Content model</span>
 
+<dd><span>Nothing</span>.
 <dd><span>Phrasing content</span>.
 
 <dt><span>Allowed attributes</span>
@@ -7779,8 +7804,8 @@ the <span>SuikaWiki/0.9 namespace</span></h1>
 
 <p>The <code>closefence</code> <span>element</span> <span>represents</span>
 the parenthese after the <span>fenced content</span> if it is an
-<span>close fence</span>.  Otherwise, it <span>represents</span> its
-<span>content</span>.
+<span>close fence</span>.  Otherwise, it <span>represents</span>
+its <span title=child>children</span>.
 
 </section>
 
@@ -7948,10 +7973,10 @@ within a quotation to describe that the content has an error that
 occurs in the original text (and is <em>not</em> produced by the
 author of the document).
 
-<p>If there is a last <span>child</span> <span>element</span> that is a  <code>title</code>
-<span>element</span>, it is the annotation (and is not part of the
-annotated content).  A user agent is <span>expected</span> to show the
-annotation as such.  If there is
+<p>If there is a last <span>child</span> <span>element</span> that is
+a <code>title</code> <span>element</span>, it is the annotation (and
+is not part of the annotated content).  A user agent
+is <span>expected</span> to show the annotation as such.  If there is
 no <code>title</code> <span>element</span> <span>child</span>, a
 <span title="user agent">user-agent</span> dependent
 annotation <em class=rfc2119>SHOULD</em> be used instead.
@@ -7978,6 +8003,7 @@ is used as the annotation.
 
 <dt><span>Content model</span>
 
+<dd><span>Nothing</span>.
 <dd><span>Phrasing content</span>.
 
 <dt><span>Allowed attributes</span>
@@ -7990,12 +8016,15 @@ is used as the annotation.
 the point where some content in the source material are omitted.  It
 is typically used within a quotation.
 
-<p>If the <span>content</span> is not <span>empty</span>,
-it <span>represents</span> the annotation placed instead of the
-original text.
+<p>If the <span>element</span>'s <span title=child>children</span>
+is <em>not</em> <span>empty</span>, it <span>represents</span> the
+annotation placed instead of the original text.
 
-<p>It is <span>expected</span> that the <span>content</span> of
-the <span>element</span> is rendered.  If it is <span>empty</span>, a
+<p>It is <span>expected</span> that
+the <span>element</span>'s <span title=child>children</span> are
+rendered.  If
+the <span>element</span>'s <span title=child>children</span>
+is <span>empty</span>, a
 <span title="user agent">user-agent</span> dependent
 annotation <em class=rfc2119>SHOULD</em> be used instead.
 
@@ -8074,7 +8103,8 @@ secondary ruby text (an <code>rt</code> <span>element</span>).
 
 <p>It is <span>expected</span> that the first <code>rt</code> 
 <span>element</span> <span>child</span>, if any, is rendered
-<span>after</span> the other <span>content</span> before it.
+<span>after</span> the other <span title=child>children</span> before
+it.
 
 </section>
 
@@ -8184,8 +8214,8 @@ or <code>span</code> <span>element</span> <var>parent</var> when there
 is no <code title=attr-html-title>title</code> <span>attribute</span>
 in <var>parent</var>.
 
-<p>An <code>title</code> <em class=rfc2119>MUST NOT</em> be used when
-it <span>represents</span> nothing.
+<p>The <code>title</code> <span>element</span> <em class=rfc2119>MUST
+NOT</em> be used when it <span>represents</span> nothing.
 
 </section>
 
@@ -8221,7 +8251,7 @@ a content with a dot above it.  This is used in mathematical
 expressions, such as recurring decimals.
 
 <p>It is <span>expected</span> that a dot symbol is rendered above
-the <span>content</span> of the <span>element</span>.
+the <span>element</span>'s <span title=child>children</span>.
 
 </section>
 
@@ -8251,7 +8281,7 @@ a content with a dot above it.  This is used in mathematical
 expressions, such as sample mean variables.
 
 <p>It is <span>expected</span> that an overline is rendered above
-the <span>content</span> of the <span>element</span>.
+the <span>element</span>'s <span title=child>children</span>.
 
 </section>
 
@@ -8281,7 +8311,7 @@ a content with a right-pointing arrow above it.  This is used in
 mathematical expressions to denote a vector.
 
 <p>It is <span>expected</span> that a right-pointing arrow is rendered
-above the <span>content</span> of the <span>element</span>.
+above the <span>element</span>'s <span title=child>children</span>.
 
 <p>This <span>element</span> <em class=rfc2119>SHOULD NOT</em> be used
 for other possible presentations of vectors, such as bold face without
@@ -8808,6 +8838,49 @@ the <code>smallcaps</code> <span>element</span>, including but not
 limited to uppercase and lowercase latin letters,
 are <span>expected</span> to be rendered using small-capital glyphs,
 whenever possible.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-br</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Nothing</span>.
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-br</code> <span>element</span> <span>represents</span>
+an explicit line break.
+
+<p>The <span>element</span>'s <span title=child>children</span>, if
+not <span>empty</span>, <span>represents</span> the hyphenation
+symbols placed just before the line break.
+
+<p>The <code>sw-br</code> <span>element</span>
+is <span>expected</span> to be rendered as if there were
+a <code>U+000A</code> <code class=charname>LINE
+FEED</code> <span>character</span> at the end of
+the <span>element</span>.
+
+<p><span title="document white space">White space characters</span> in
+the <code>sw-br</code> <span>element</span> and
+the <code>U+000A</code> <span>character</span> at the end of
+the <span>element</span> are <span>expected</span> to be processed
+as <span title="preserved white space">preserved white spaces</span>.
 
 </section>
 
