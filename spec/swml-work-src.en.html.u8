@@ -292,10 +292,13 @@ and
 are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
 Standard</cite></a>.
 
-<p>Term
-<dfn>UTF-8</dfn>
-is
-defined by the <a href=https://encoding.spec.whatwg.org/><cite>Encoding
+<p>Terms
+<dfn>convert</dfn>,
+<dfn>UTF-8</dfn>,
+and
+<dfn>UTF-8 decode</dfn>
+are defined by the
+<a href=https://encoding.spec.whatwg.org/><cite>Encoding
 Standard</cite></a>.
 
 <p>Terms
@@ -305,11 +308,14 @@ and
 are defined by the <a href=https://url.spec.whatwg.org/><cite>URL
 Standard</cite></a>.
 
-<p>Term
-<dfn>MIME type</dfn>
-is
-defined by the <a href=https://mimesniff.spec.whatwg.org/><cite>MIME
-Sniffing Standard</cite></a>.
+<p>Terms
+<dfn>MIME type</dfn>,
+<dfn>essence</dfn>,
+and
+<dfn>XML MIME type</dfn>
+are defined by the
+<a href=https://mimesniff.spec.whatwg.org/><cite>MIME Sniffing
+Standard</cite></a>.
 
 <p><dfn>White space characters</dfn> are U+0009 <code
 class=charname>CHARACTER TABULATION</code> and U+0020 <code
@@ -5815,86 +5821,105 @@ check <span title=element>elements</span>' <span title=namespace>namespaces</spa
 </section>
 
 <section>
+<h1>The <dfn>SWML XML serialization</dfn></h1>
+
+<p>A <span>document</span> using
+SWML <span title=element>elements</span>
+and <span title=attribute>attributes</span> can be serialized using
+the XML syntax.
+
+</section>
+
+<section>
 <h1>SWML MIME types</h1>
 
-<p>The <span>SWML text serialization</span> can be identified
-by <span title="MIME type">MIME
-types</span> <dfn><code>text/x-suikawiki</code></dfn>
-and <dfn><code>text/x.suikawiki.image</code></dfn>.
-<span>MIME
+<p>An <dfn>SWML MIME type</dfn> is any <span>MIME type</span>
+whose <span>essence</span> is <dfn><code>text/x-suikawiki</code></dfn>
+or <dfn><code>text/x.suikawiki.image</code></dfn>.
+
+<p>The <span>SWML text serialization</span> can be identified by
+an <span>SWML MIME type</span>.  However, <span>MIME
 type</span> <code>text/x.suikawiki.image</code> <em class=rfc2119>MUST
 NOT</em> be used.
 
+<p>An implementation that recognize any <span>SWML MIME
+type</span> <em class=rfc2119>MUST</em> interpret all
+the <span title="SWML MIME type">SWML MIME types</span> as equivalent.
+
 <div class="note">
 
-<p>It was originally intended that a <span
-title=concept-document>document</span> with <span
-title=concept-format-name>format name</span> equal to <code
-title=concept-magic-format-suikawiki>SuikaWiki</code> is labeled as
-<code>text/x-suikawiki</code> while a <span
-title=concept-document>document</span> with <span
-title=concept-format-name>format name</span> equal to <code
-title=concept-magic-format-suikawikiimage>SuikaWikiImage</code> is
-labeled as <code>text/x.suikawiki.image</code>.
+<p>Historically, a <span title=concept-document>document</span>
+whose <span title=concept-format-name>format name</span>
+is <code title=concept-magic-format-suikawiki>SuikaWiki</code> was
+expected to be labeled as <code>text/x-suikawiki</code>, while
+a <span title=concept-document>document</span>
+whose <span title=concept-format-name>format name</span>
+is <code title=concept-magic-format-suikawikiimage>SuikaWikiImage</code>
+was expected to be labeled as <code>text/x.suikawiki.image</code>.
 
 </div>
 
-<p>If a <span>string</span> is labeled by one of
-these <span title="MIME type">MIME types</span>,
-it <em class=rfc2119>MUST</em> be an <span>SWML text
+<hr>
+
+<p>If a <span>string</span> is labeled by an <span>SWML MIME
+type</span>, it <em class=rfc2119>MUST</em> be an <span>SWML text
 serialization</span> <span title=concept-document>document</span>.
 
-<p>If a <span>byte sequence</span> is labeled by one of
-these <span title="MIME type">MIME types</span>,
-it <em class=rfc2119>MUST</em> be an <span>SWML text
+<p>If a <span>byte sequence</span> is labeled by an <span>SWML MIME
+type</span>, it <em class=rfc2119>MUST</em> be an <span>SWML text
 serialization</span> <span title=concept-document>document</span>,
 encoded in <span>UTF-8</span>.
 
-<p>When a <span>string</span> labeled by one of
-these <span title="MIME type">MIME types</span> is processed,
-the <span title="SWML text serialization
-parser">parser</span> <em class=rfc2119>MUST</em> be used.
+<p>When a <span>string</span> labeled by an <span>SWML MIME
+type</span> is processed, the <span title="SWML text serialization
+parser">parser</span> <em class=rfc2119>MUST</em> be used with
+the <span>string</span> as the input.
+
+<p>When a <span>byte sequence</span> labeled by an <span>SWML MIME
+type</span> is processed, the <span title="SWML text serialization
+parser">parser</span> <em class=rfc2119>MUST</em> be used with
+the <span title="UTF-8 decode">UTF-8
+decoded</span> <span title="convert">I/O-queue-coverted</span> <span>byte
+sequence</span> as the input.
 
 <hr>
 
-<p>If
-the <dfn title=parameter-charset><code>charset</code></dfn> <span>parameter</span>
-is specified with these <span title="MIME type">MIME types</span>, its
+<p>An <span>SWML MIME type</span> <em class=rfc2119>MAY</em> have
+a <dfn title=parameter-charset><code>charset</code></dfn> <span>parameter</span>,
+unless it is not allowed (e.g. when it is used to label
+a <span>string</span>).  If specified, its
 value <em class=rfc2119>MUST</em> be <code>UTF-8</code>, <span>ASCII
-case-insensitive</span>.  It <em class=rfc2119>MUST NOT</em> be used
-to decode a <span>byte sequence</span> labeled with
-the <span title="MIME type">MIME types</span>.
+case-insensitive</span>.
 
-<p>Any other <span>parameter</span> <em class=rfc2119>MUST NOT</em> be
-specified.
+<p>An <span>SWML MIME type</span> <em class=rfc2119>MUST NOT</em> have
+any other <span>parameter</span>.
+
+<p>An implementation that recognize any <span>SWML MIME
+type</span> <em class=rfc2119>MUST</em> ignore
+any <span>parameter</span> (including
+the <code>charset</code> <span>parameter</span>).
 
 <div class=note>
 
 <p>Historically, there was
 the <dfn title=parameter-version><code>version</code></dfn> <span>parameter</span>
 whose value is <dfn title=parameter-version-0.9><code>0.9</code></dfn>
-or <dfn title=parameter-version-0.10><code>0.10</code></dfn>.
-This <span>parameter</span> was used to
-encode <span title=concept-format-version>format version</span> in
-favor of <span title=concept-magic-line>magic line</span>.
+or <dfn title=parameter-version-0.10><code>0.10</code></dfn>.  It was
+used to encode <span title=concept-format-version>format
+version</span> in the <span title=concept-magic-line>magic
+line</span>.
 
 </div>
 
 <p class=XXX>fragment identifier
 
-</section>
+<hr>
+
+<p>The <span>SWML XML serialization</span> has no dedicated <span>MIME
+type</span>.  It can be identified by any <span>XML MIME type</span>.
 
 </section>
 
-<section>
-<h1>The <dfn>SWML XML serialization</dfn></h1>
-
-<p>A <span>document</span> using
-SWML <span title=element>elements</span>
-and <span title=attribute>attributes</span> can be serialized using
-the XML syntax.  It has no dedicated <span>MIME type</span>.
-
-</section>
 
 <section>
 <h1>Semantics of elements and attributes</h1>
