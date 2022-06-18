@@ -5576,9 +5576,14 @@ Reference Table</dfn> is referenced from the parser:
 
   <tbody>
 
+  <tr><th><code>#</code><td><code>#</code>
   <tr><th><code>&amp;</code><td><code>&amp;</code>
   <tr><th><code>'</code><td><code>'</code>
+  <tr><th><code>*</code><td><code>*</code>
+  <tr><th><code>-</code><td><code>-</code>
+  <tr><th><code>:</code><td><code>:</code>
   <tr><th><code>&lt;</code><td><code>&lt;</code>
+  <tr><th><code>=</code><td><code>=</code>
   <tr><th><code>&gt;</code><td><code>&gt;</code>
   <tr><th><code>_</code><td><code>_</code>
   <tr><th><code>[</code><td><code>[</code>
@@ -8867,8 +8872,9 @@ whenever possible.
 an explicit line break.
 
 <p>The <span>element</span>'s <span title=child>children</span>, if
-not <span>empty</span>, <span>represents</span> the hyphenation
-symbols placed just before the line break.
+not <span>empty</span>, <span>represents</span> the hyphenation or
+other symbols indicating the end of the line, placed just before the
+line break.
 
 <p>The <code>sw-br</code> <span>element</span>
 is <span>expected</span> to be rendered as if there were

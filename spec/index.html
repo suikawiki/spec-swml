@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 6 June 2021</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 18 June 2022</h2>
 
 
 <dl>
@@ -5530,9 +5530,14 @@ Reference Table</dfn> is referenced from the parser:
 
   </th></tr></thead><tbody>
 
-  <tr><th><code>&amp;</code></th><td><code>&amp;</code>
+  <tr><th><code>#</code></th><td><code>#</code>
+  </td></tr><tr><th><code>&amp;</code></th><td><code>&amp;</code>
   </td></tr><tr><th><code>'</code></th><td><code>'</code>
+  </td></tr><tr><th><code>*</code></th><td><code>*</code>
+  </td></tr><tr><th><code>-</code></th><td><code>-</code>
+  </td></tr><tr><th><code>:</code></th><td><code>:</code>
   </td></tr><tr><th><code>&lt;</code></th><td><code>&lt;</code>
+  </td></tr><tr><th><code>=</code></th><td><code>=</code>
   </td></tr><tr><th><code>&gt;</code></th><td><code>&gt;</code>
   </td></tr><tr><th><code>_</code></th><td><code>_</code>
   </td></tr><tr><th><code>[</code></th><td><code>[</code>
@@ -8805,8 +8810,9 @@ whenever possible.
 an explicit line break.
 
 </p><p>The <a href=#element>element</a>'s <a href=#child title=child>children</a>, if
-not <a href=#empty>empty</a>, <a href=#represents>represents</a> the hyphenation
-symbols placed just before the line break.
+not <a href=#empty>empty</a>, <a href=#represents>represents</a> the hyphenation or
+other symbols indicating the end of the line, placed just before the
+line break.
 
 </p><p>The <a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a> <a href=#element>element</a>
 is <a href=#expected>expected</a> to be rendered as if there were
