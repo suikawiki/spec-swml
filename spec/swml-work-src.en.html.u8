@@ -122,14 +122,17 @@ different <span title=namespace>namespaces</span>.
 
 <p>The <dfn>AA namespace</dfn> is
 <code>http://pc5.2ch.net/test/read.cgi/hp/1096723178/aavocab#</code>.
-The <span>preferred prefix</span> is <code title>aa</code>.
+The <span>preferred prefix</span>
+is <dfn title=prefix-aa><code>aa</code></dfn>.
 The <dfn><code>aa</code></dfn> <span>element</span> is defined by
 <a href=https://pc5.5ch.net/test/read.cgi/hp/1096723178/16><cite lang=ja>Strict-HTML
 スレッド24</cite> >>16</a>.
 
 <p>The <span>HTML namespace</span>'s <span>preferred prefix</span>
-is <code>html</code>.  Following <span title=element>elements</span>
-are defined by the <a href="https://html.spec.whatwg.org/"><cite>HTML
+is <dfn title=prefix-html><code>html</code></dfn>.
+
+<p>Following <span title=element>elements</span> are defined by
+the <a href="https://html.spec.whatwg.org/"><cite>HTML
 Standard</cite></a>:
 
 <ul class=short>
@@ -139,6 +142,7 @@ Standard</cite></a>:
   <li><dfn title=element-html-body><code>body</code></dfn>
   <li><dfn><code>cite</code></dfn>
   <li><dfn><code>code</code></dfn>
+  <li><a href=https://html.spec.whatwg.org/#the-data-element><dfn><code>data</code></dfn></a>
   <li><dfn><code>dd</code></dfn>
   <li><dfn><code>del</code></dfn>
   <li><dfn><code>dfn</code></dfn>
@@ -172,22 +176,40 @@ Standard</cite></a>:
   <li><dfn><code>tbody</code></dfn>
   <li><dfn><code>td</code></dfn>
   <li><dfn><code>th</code></dfn>
-  <li><dfn><code>time</code></dfn>
+  <li><a href=https://html.spec.whatwg.org/#the-time-element><dfn><code>time</code></dfn></a>
   <li><dfn><code>tr</code></dfn>
   <li><dfn><code>u</code></dfn>
   <li><dfn><code>ul</code></dfn>
   <li><dfn><code>var</code></dfn>
 </ul>
 
+<p>Following <span title=attribute>atributes</span> are defined by
+the <a href="https://html.spec.whatwg.org/"><cite>HTML
+Standard</cite></a>:
+
+<ul class=short>
+  <li><dfn title=attr-html-class><a href=https://html.spec.whatwg.org/#classes><code>class</code></a></dfn>
+  <li><dfn title=attr-html-id><a href=https://html.spec.whatwg.org/#the-id-attribute><code>id</code></a></dfn>
+  <li><a href=https://html.spec.whatwg.org/#attr-itemscope><dfn title=attr-html-itemscope><code>itemscope</code></dfn></a>
+  <li><a href=https://html.spec.whatwg.org/#names:-the-itemprop-attribute><dfn title=attr-html-itemprop><code>itemprop</code></dfn></a>
+  <li><a href=https://html.spec.whatwg.org/#attr-itemid><dfn title=attr-html-itemid><code>itemid</code></dfn></a>
+  <li><dfn title=attr-html-title><a href=https://html.spec.whatwg.org/#attr-title><code>title</code></a></dfn>
+  <li><dfn title=attr-html-data-value><a href=https://html.spec.whatwg.org/#attr-data-value><code>value</code></dfn></a> of <code>data</code>
+  <li><dfn title=attr-html-time-datetime><a href=https://html.spec.whatwg.org/#attr-time-datetime><code>datetime</code></dfn></a> of <code>time</code>
+</ul>
+
 <p>The <dfn>HTML3 namespace</dfn> is
-<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.
-The <dfn><code>note</code></dfn> <span>element</span> is defined in
-the HTML 3.0 specification and belongs to the <span>HTML3
-namespace</span> for the purpose of this specification.
+<code>urn:x-suika-fam-cx:markup:ietf:html:3:draft:00:</code>.  The
+<a href=https://www.w3.org/MarkUp/html3/notes.html><dfn><code>note</code></dfn></a> <span>element</span>
+is defined in the
+<a href=https://www.w3.org/MarkUp/html3/CoverPage.html><cite>HyperText
+Markup Language Specification Version 3.0</cite></a> and belongs to
+the <span>HTML3 namespace</span> for the purpose of this
+specification.
 
 <p>The <span>MathML namespace</span>'s <span>preferred prefix</span>
-is <code>math</code>.  Following <span title=element>elements</span>
-are defined by
+is <dfn title=prefix-math><code>math</code></dfn>.
+Following <span title=element>elements</span> are defined by
 the <a href="https://www.w3.org/Math/draft-spec/mathml.html">MathML
 specification</a>:
 
@@ -202,17 +224,26 @@ specification</a>:
 
 <p>The <dfn>SuikaWiki/0.9 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:9:</code>.  The
-<span>preferred prefix</span> is <code>sw</code>.
+<span>preferred prefix</span>
+is <dfn title=prefix-sw><code>sw</code></dfn>.
 
 <p>The <dfn>SuikaWiki/0.10 namespace</dfn> is
 <code>urn:x-suika-fam-cx:markup:suikawiki:0:10:</code>.  The
-<span>preferred prefix</span> is <code>sw10</code>.
+<span>preferred prefix</span>
+is <dfn title=prefix-sw10><code>sw10</code></dfn>.
 
 <p>The <dfn>XHTML2 namespace</dfn> is
 <code>http://www.w3.org/2002/06/xhtml2/</code>.
 
 <p>The <span>XML namespace</span>'s <span>preferred prefix</span>
-is <code>xml</code>.
+is <dfn title=prefix-xml><code>xml</code></dfn>.
+
+<div class="note memo">
+  <p>The <dfn><code>urn:x-suika-fam-cx:</code></dfn> URN namespace is
+  defined by
+  <a href=https://suika.suikawiki.org/admin/assign/urn><cite>The
+  &lt;<code>urn:x-suika-fam-cx:</code>> Namespace</cite></a>.
+</div>
 
 </section>
 
@@ -223,14 +254,20 @@ is <code>xml</code>.
 <dfn>byte sequence</dfn>,
 <a href=https://infra.spec.whatwg.org/#code-point><dfn>code point</dfn></a>,
 <dfn>string</dfn>,
+<a href=https://infra.spec.whatwg.org/#string-starts-with><dfn>starts with</dfn></a>,
+<a href=https://infra.spec.whatwg.org/#split-on-ascii-whitespace><dfn>split on ASCII whitespace</dfn></a>,
 <dfn>ASCII case-insensitive</dfn>,
-<dfn>forgiving-base64 encode</dfn>,
-<dfn>forgiving-base64 decode</dfn>,
+<a href=https://infra.spec.whatwg.org/#string-concatenate><dfn>concatenate</dfn></a>,
+<a href=https://infra.spec.whatwg.org/#list><dfn>list</dfn></a>,
+<a href=https://infra.spec.whatwg.org/#list-is-empty><dfn>is empty</dfn></a>,
+<a href=https://infra.spec.whatwg.org/#list-append><dfn title=list-append>append</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#ordered-map><dfn>ordered map</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#map-key><dfn title=map-key>key</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#map-value><dfn title=map-value>value</dfn></a>,
 <a href=https://infra.spec.whatwg.org/#map-exists><dfn>exists</dfn></a>,
-<dfn>empty</dfn>,
+<dfn title="For each">for each</dfn>,
+<dfn>forgiving-base64 encode</dfn>,
+<dfn>forgiving-base64 decode</dfn>,
 <dfn>HTML namespace</dfn>,
 <dfn>MathML namespace</dfn>,
 <dfn>XML namespace</dfn>,
@@ -253,6 +290,8 @@ Standard</cite></a> and
 <dfn>node</dfn>,
 <dfn>parent</dfn>,
 <dfn>child</dfn>,
+<a href=https://dom.spec.whatwg.org/#concept-tree-descendant><dfn>descendant</dfn></a>,
+<a href=https://dom.spec.whatwg.org/#concept-tree-ancestor><dfn>ancestor</dfn></a>,
 <dfn>append</dfn>,
 <dfn>element</dfn>,
 <dfn>create an element</dfn>,
@@ -261,14 +300,16 @@ Standard</cite></a> and
 <dfn title=concept-element-namespace-prefix>element's namespace prefix</dfn>,
 <a href=https://dom.spec.whatwg.org/#concept-descendant-text-content><dfn title=concept-element-text-content>descendant text content</dfn></a>,
 <dfn>attribute</dfn>,
+<a href=https://dom.spec.whatwg.org/#concept-element-attribute-has><dfn title=concept-element-attribute-has>has an attribute</dfn></a>,
 <dfn>get an attribute value</dfn>,
-<dfn>set an attribute value</dfn>,
+<a href=https://dom.spec.whatwg.org/#concept-element-attributes-set-value><dfn title=concept-element-attributes-set-value>set an attribute value</dfn></a>,
 <dfn title=concept-attribute-local-name>attribute's local name</dfn>,
 <dfn title=concept-attribute-namespace>attribute's namespace</dfn>,
 and
 <dfn title=concept-attribute-namespace-prefix>attribute's namespace prefix</dfn>,
 <dfn title="attribute value">attribute's value</dfn>,
 <dfn title="owner element">attribute's element</dfn>,
+<a href=https://dom.spec.whatwg.org/#concept-getelementsbytagnamens><dfn>list of elements with namespace and local name</dfn></a>,
 are defined by the <a href=https://dom.spec.whatwg.org/><cite>DOM
 Standard</cite></a>.
 
@@ -278,6 +319,7 @@ Standard</cite></a>.
 <dfn>content attribute</dfn>, <dfn>IDL attribute</dfn>,
 <dfn>valid integer</dfn>, <dfn>rules for parsing integers</dfn>,
 <dfn>valid e-mail address</dfn>,
+<a href=https://html.spec.whatwg.org/#set-of-space-separated-tokens><dfn>set of space-separated tokens</dfn></a>,
 <dfn>HTML element</dfn>,
 <dfn>represents</dfn>,
 <a href="https://www.whatwg.org/specs/web-apps/current-work/complete.html#inter-element-whitespace"><dfn>inter-element
@@ -287,8 +329,11 @@ content">text</dfn></a>,
 <dfn>flow content</dfn>,
 <dfn>phrasing content</dfn>,
 <dfn>script-supporting elements</dfn>,
+<a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn>nothing</dfn></a>,
+<a href=https://html.spec.whatwg.org/#concept-item><dfn>item</dfn></a>,
+<a href=https://html.spec.whatwg.org/#item-types><dfn>item types</dfn></a>,
 and
-<a href=https://html.spec.whatwg.org/#concept-content-nothing><dfn>nothing</dfn></a>
+<a href=https://html.spec.whatwg.org/#property-names><dfn>property names</dfn></a>
 are defined by the <a href=https://html.spec.whatwg.org/><cite>HTML
 Standard</cite></a>.
 
@@ -1379,6 +1424,13 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Title of a section in a work (<code>csection</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-DATA><code>DATA</code></dfn>
+<td>0 or 1
+<td>Allowed
+<td>Allowed
+<td>Data (HTML <code>data</code> element)
+
+<tr>
 <th scope=row><dfn title=concept-DEL><code>DEL</code></dfn>
 <td>0
 <td>Allowed
@@ -1787,20 +1839,53 @@ start tag</span>.
 
 <!-- similar terms are defined in parser specification -->
 <p>A <dfn title=concept-class-specification>class specification</dfn>
-represents class names unless otherwise specified.  The <span
-title=concept-class-specification>class specification</span>
-syntactically consist of a <code>(</code> character followed by the
+represents properties for the construct including it, such as class
+names.  The <span title=concept-class-specification>class
+specification</span> syntactically consist of a <code>(</code>
+character followed by the
 <span title=concept-class-specification-body>body of the class
 specification</span> followed by a <code>)</code> character.
 The <dfn title=concept-class-specification-body>body of a class
 specification</dfn> consists of zero or
 more <span title=concept-character>text characters</span>
 excluding <code>(</code>,
-<code>)</code>, and <code>\</code>.  The <span
-title=concept-class-specification-body>body of the class
-specification</span> has similar semantics and processed similarly to
-HTML <code>class</code> <span>attribute</span>.
+<code>)</code>, and <code>\</code>.
 
+<p>A <span title=concept-class-specification-body>body of a class
+specification</span> is a <span>set of space-separated tokens</span>
+with the following tokens:
+
+  <dl class=switch>
+
+    <div>
+      <dt>A <code>#</code> <span>character</span> followed by zero or
+      more <span title=character>characters</span>
+      <dd>It is a <code>#</code> <span>character</span> followed by an
+      ID value (which is semantically equivalent to the
+      HTML <code title=attr-html-id>id</code> <span>attribute</span>).
+      At most one ID value is allowed in
+      a <span title=concept-class-specification>class
+      specification</span>.
+    </div>
+
+    <div>
+      <dt>A <code>.</code> <span>character</span> followed by zero or
+      more <span title=character>characters</span>
+      <dd>It is a <code>.</code> <span>character</span> followed by an
+      <span title="item types">item type</span> value (which is
+      semantically equivalent to a token in the
+      HTML <code title=attr-html-itemprop>itemprop</code>
+      <span>attribute</span>).
+    </div>
+
+    <div>
+      <dt>Any other value
+      <dd>It is a class value (which is semantically equivalent to a
+      token in the
+      HTML <code title=attr-html-class>class</code> <span>attribute</span>).
+    </div>
+  </dl>
+  
 <dl class=abnf>
 
 <dt><dfn title=abnf-tagged-inline-element>tagged-inline-element</dfn>
@@ -2439,7 +2524,7 @@ class=rfc2119>MUST</em> be processed as follows:
 
 <dl class=switch>
 
-<dt>If <var>line</var> starts with <code>#?</code>
+<dt>If <var>line</var> <span>starts with</span> <code>#?</code>
 
 <dd><span>Parse a magic line</span> <var>line</var>.
 
@@ -2480,8 +2565,8 @@ class=rfc2119>MUST</em> be processed as follows:
 
 </ol>
 
-<dt>If <var>line</var> starts with a <span title="white space
-characters">white space character</span>
+<dt>If <var>line</var> <span>starts with</span> a <span title="white
+space characters">white space character</span>
 
 <dd>
 
@@ -2496,7 +2581,7 @@ characters">white space character</span>
 
 </ol>
 
-<dt>If <var>line</var> starts with <code>*</code>
+<dt>If <var>line</var> <span>starts with</span> <code>*</code>
 
 <dd>
 
@@ -2554,7 +2639,8 @@ to <var>classes</var>.
 </ol>
 
 
-<dt>If <var>line</var> starts with <code>-</code> or <code>=</code>
+<dt>If <var>line</var> <span>starts with</span> <code>-</code>
+or <code>=</code>
 
 <dd>
 
@@ -2587,7 +2673,7 @@ title=list-start-depth>depth</span> set to <var>depth</var>.
 
 </ol>
 
-<dt>If <var>line</var> starts with <code>:</code>
+<dt>If <var>line</var> <span>starts with</span> <code>:</code>
 
 <dd>
 
@@ -2665,7 +2751,7 @@ character will be <code>:</code>.)
 
 </ol>
 
-<dt>If <var>line</var> starts with <code>></code>
+<dt>If <var>line</var> <span>starts with</span> <code>></code>
 
 <dd>
 
@@ -2843,7 +2929,7 @@ the <span>class specification</span>, if any, or null otherwise.
 
 </ol>
 
-<dt>If <var>line</var> starts with <code>@@</code>
+<dt>If <var>line</var> <span>starts with</span> <code>@@</code>
 <!-- SuikaWiki/0.10 addition -->
 
 <dd>
@@ -2867,7 +2953,7 @@ characters will be <code>@@</code>.)
 
 </ol>
 
-<dt>If <var>line</var> starts with <code>;;</code>
+<dt>If <var>line</var> <span>starts with</span> <code>;;</code>
 <!-- SuikaWiki/0.10 addition -->
 
 <dd>
@@ -2919,7 +3005,7 @@ name</span>.
 
 </ol>
 
-<dt>If <var>line</var> starts with <code>,</code>
+<dt>If <var>line</var> <span>starts with</span> <code>,</code>
 
 <dd>
 
@@ -3912,6 +3998,115 @@ tuple unless otherwise specified.
 <p>The <dfn>current element</dfn> is the <span>element node</span>
 of the bottommost entry in the <span>stack of open elements</span>.
 
+<hr>
+
+<p>To <dfn>process classes</dfn>
+with <span>element</span> <var>element</var>
+and <span>string</span> <var>classes</var>, run these steps:
+
+  <ol class=steps>
+
+  <li>Let <var>class list</var> be an <span title="is
+  empty">empty</span> <span>list</span>.
+
+  <li>Let <var>itemprop list</var> be an <span title="is
+  empty">empty</span> <span>list</span>.
+
+  <li>Let <var>tokens</var> be the result of <span title="split on
+  ASCII whitespace">splitting <var>classes</var> on ASCII
+  whitespace</span>.
+
+  <li><span>For each</span> <var>token</var> in <var>tokens</var>:
+
+    <ol>
+
+      <li>If <var>token</var> <span>starts with</span> <code>#</code>:
+
+        <ol>
+
+        <li>Let <var>id</var> be <var>token</var>.
+
+        <li>Remove the first <span>character</span> from <var>id</var>.
+
+        <li>If <var>element</var>
+        does <em>not</em> <span title=concept-element-attribute-has>have</span>
+        an <span>attribute</span>
+        whose <span title=concept-attribute-namespace>namespace</span>
+        is <code>null</code>
+        and <span title=concept-attribute-local-name>local name</span>
+        is <code>id</code>:
+
+          <ol>
+
+          <li><span title=concept-element-attributes-set-value>Set an
+          attribute value</span> for <var>element</var>
+          with <code>id</code> and <var>id</var>.
+
+          </ol>
+
+        </ol>
+
+      <li>Otherwise, if <var>token</var> <span>starts
+      with</span> <code>.</code>:
+
+        <ol>
+
+        <li>Let <var>itemprop</var> be <var>token</var>.
+
+        <li>Remove the first <span>character</span>
+        from <var>itemprop</var>.
+
+        <li><span title=list-append>Append</span> <var>itemprop</var>
+        to <var>itemprop list</var>.
+
+        </ol>
+
+      <li>Otherwise:
+
+        <ol>
+
+        <li><span title=list-append>Append</span> <var>token</var>
+        to <var>class list</var>.
+
+        </ol>
+
+    </ol>
+
+  <li>If <var>class list</var> is <em>not</em> <span title="is
+  empty">empty</span>:
+
+    <ol>
+
+    <li>Let <var>class</var> be
+    the <span title=concatenate>concatenation</span> of <var>class
+    list</var> with
+    a <code>U+0020</code> <code class=charname>SPACE</code> character.
+    
+    <li><span title=concept-element-attributes-set-value>Set an
+    attribute value</span> for <var>element</var>
+    with <code>class</code> and <var>class</var>.
+      
+    </ol>
+
+  <li>If <var>itemprop list</var> is <em>not</em> <span title="is
+  empty">empty</span>:
+
+    <ol>
+
+    <li>Let <var>itemprop</var> be
+    the <span title=concatenate>concatenation</span> of <var>itemprop
+    list</var> with
+    a <code>U+0020</code> <code class=charname>SPACE</code> character.
+    
+    <li><span title=concept-element-attributes-set-value>Set an
+    attribute value</span> for <var>element</var>
+    with <code>itemprop</code> and <var>itemprop</var>.
+      
+    </ol>
+    
+  </ol>
+  
+
 <section>
 <h1>The "<span>in section</span>" <span>insertion mode</span></h1>
 
@@ -4026,23 +4221,23 @@ name</span> is
 the <span>token</span>'s <span title=block-start-tag-tag-name>tag
 name</span>.
 
-<li>Create an <span>element</span>
+<li>Let <var>element</var> be the result of creating
+an <span>element</span>
 whose <span title=concept-element-namespace>namespace</span>
 is <var>row</var>'s <span title=concept-element-namespace>namespace</span>
 and whose <span title=concept-element-local-name>local name</span>
 is <var>row</var>'s <span title=concept-element-namespace>namespace</span>.
 
-<li>Append the element created to the <span>current element</span>.
+<li>Append <var>element</var> to the <span>current element</span>.
 
-<li>Push the element created to the <span>stack of open
-elements</span> with <span>section depth</span> set to zero (0),
-<span>quotation depth</span> set to zero (0), and <span>list
-depth</span> set to zero (0).
+<li>Push <var>element</var> to the <span>stack of open elements</span>
+with <span>section depth</span> set to zero (0), <span>quotation
+depth</span> set to zero (0), and <span>list depth</span> set to zero
+(0).
 
-<li>If
-the <span>token</span>'s <span title=block-start-tag-classes>classes</span>
-is not null, set the <code>class</code> <span>attribute</span> of the
-element created to <span title=block-start-tag-classes>classes</span>.
+<li>Run the steps to <span>process classes</span>
+with <var>element</var>
+and <span>token</span>'s <span title=block-start-tag-classes>classes</span>.
 
 </ol>
 
@@ -4083,15 +4278,15 @@ elements</span>.
 
 <ol class=steps>
 
-<li>Create an <code>hr</code> <span>element</span> in the <span>HTML
+<li>Let <var>element</var> be the result of creating
+an <code>hr</code> <span>element</span> in the <span>HTML
 namespace</span>.
 
-<li>Append the element created to the <span>current element</span>.
+<li>Append <var>element</var> to the <span>current element</span>.
 
-<li>If
-the <span>token</span>'s <span title=block-start-tag-classes>classes</span>
-is not null, set the <code>class</code> <span>attribute</span> of the
-element created to <span title=block-start-tag-classes>classes</span>.
+<li>Run the steps to <span>process classes</span>
+with <var>element</var>
+and <span>token</span>'s <span title=block-element-classes>classes</span>.
 
 </ol>
 
@@ -4317,18 +4512,17 @@ element</span>'s <span title=concept-element-local-name>local
 name</span> is <code>dialogue</code>, pop the <span>current
 element</span> off the <span>stack of open elements</span>.
 
-<li>Create a <code>pre</code> element in the <span>HTML
-namespace</span>.
+<li>Let <var>element</var> be the result of creating
+a <code>pre</code> element in the <span>HTML namespace</span>.
 
-<li>Append the element created to the <span>current element</span>.
+<li>Append <var>element</var> to the <span>current element</span>.
 
-<li>Push the element created to the <span>stack of open
+<li>Push <var>element</var> to the <span>stack of open
 elements</span>.
 
-<li>If
-the <span>token</span>'s <span title=block-start-tag-classes>classes</span>
-is not null, set the <code>class</code> <span>attribute</span> of the
-element created to <span title=block-start-tag-classes>classes</span>.
+<li>Run the steps to <span>process classes</span>
+with <var>element</var>
+and <span>token</span>'s <span title=block-start-tag-classes>classes</span>.
 
 <li>Switch to the "<span>in paragraph</span>" <span>insertion
 mode</span>.
@@ -4610,10 +4804,14 @@ elements</span>.
 
 <ol class=steps>
 
-<li>Create an element.  The namespace and local name of the element is
-determined according to the <span title=inline-start-tag-tag-name>tag
-name</span> of the <span>inline start tag token</span> as shown in the
-following table:
+<li>Let <var>element</var> be the result of creating
+an <span>element</span>.
+The <span title=concept-element-namespace>namespace</span>
+and <span title=concept-element-local-name>local name</span>
+of <var>element</var> is determined according to
+the <span title=inline-start-tag-tag-name>tag name</span> of
+the <span>inline start tag token</span> as shown in the following
+table:
 
 <table>
 
@@ -4623,9 +4821,9 @@ following table:
 
 <th scope=col><span title=inline-start-tag-tag-name>Tag name</span>
 
-<th scope=col>Namespace
+<th scope=col><span title=concept-element-namespace>Namespace</span>
 
-<th scope=col>Local name
+<th scope=col><span title=concept-element-local-name>Local name</span>
 
 <tbody>
 
@@ -4681,6 +4879,11 @@ following table:
 <th><code title=concept-DEL>DEL</code>
 <td>The <span>HTML namespace</span>
 <td><code>del</code>
+
+<tr>
+<th><code title=concept-DATA>DATA</code>
+<td>The <span>HTML namespace</span>
+<td><code>data</code>
 
 <tr>
 <th><code title=concept-DFN>DFN</code>
@@ -4959,22 +5162,21 @@ title=inline-start-tag-tag-name>tag name</span></span>
 
 </table>
 
-<li>If
-the <span>token</span>'s <span title=inline-start-tag-classes>classes</span>
-is not null, set the <code>class</code> <span>attribute</span> of the
-element created
-to <span title=inline-start-tag-classes>classes</span>.
+<li>Run the steps to <span>process classes</span>
+with <var>element</var>
+and <span>token</span>'s <span title=inline-start-tag-classes>classes</span>.
 
 <li>If
 the <span>token</span>'s <span title=inline-start-tag-language>language</span>
-is not null, <span title="set an attribute value">set</span>
+is not
+null, <span title=concept-element-attributes-set-value>set</span>
 the <code title=xml:lang>lang</code> <span>attribute</span> in
-the <span>XML namespace</span> of the element created
+the <span>XML namespace</span> of <var>element</var>
 to <span title=inline-start-tag-language>language</span>.
 
-<li>Append the element created to the <span>current element</span>.
+<li>Append <var>element</var> to the <span>current element</span>.
 
-<li>Push the element created to the <span>stack of open
+<li>Push <var>element</var> to the <span>stack of open
 elements</span>.
 
 <li>Switch
@@ -5090,6 +5292,16 @@ the <span>current element</span>:
   <dl class=switch>
 
   <div>
+  <dt><code>data</code>
+
+  <dd>
+    <ol>
+    <li>Set <var>local name</var> to <code>sw-value</code>.
+    <li>Set <var>namespace</var> to the <span>SuikaWiki/0.9 namespace</span>.
+    </ol>
+  </div>
+
+  <div>
   <dt><code>rt</code>
 
   <dd>
@@ -5103,8 +5315,9 @@ the <span>current element</span>:
 
   <div>
   <dt><code>title</code>, <code>nsuri</code>, <code>tz</code>, <code>n</code>,
-  <code>lat</code>, <code>lon</code>, <code>closefence</code>, or
-  <code>superscript</code>
+  <code>lat</code>, <code>lon</code>, <code>closefence</code>, 
+  <code>superscript</code>, or
+  <code>sw-value</code>
 
   <dd>
     <ol>
@@ -5196,7 +5409,8 @@ name</span> <var>local name</var> in the
 
 <li>If
 the <span>token</span>'s <span title=inline-middle-tag-language>language</span>
-is not null, <span tilte="set an attribute value">set</span>
+is <em>not</em>
+<code>null</code>, <span tilte=concept-element-attributes-set-value>set</span>
 the <code title=xml:lang>lang</code> <span>attribute</span> in
 the <span>XML namespace</span> of the element created
 to <span title=inline-middle-tag-language>language</span>.
@@ -5218,6 +5432,7 @@ elements</span>.
 <code>rt</code>, <code>title</code>, <code>nsuri</code>, <code>mtext</code>,
 <code>line</code>, <code>subscript</code>, <code>superscript</code>,
 <code>fencedtext</code>, <code>openfence</code>, <code>closefence</code>,
+<code>sw-value</code>,
 or <code>attrvalue</code>, pop the element off the <span>stack of open
 elements</span>.
 
@@ -5342,7 +5557,7 @@ is <code>form</code>
 namespace</span>.
 
 <li>If <span title=form-id>id</span> of the <span>form token</span>
-is <em>not</em> null, <span title="set an attribute value">set</span>
+is <em>not</em> <code>null</code>, <span title=concept-element-attributes-set-value>set</span>
 the <code>id</code> <span>attribute</span> of the element created
 to <span title=form-id>id</span> of the <span>form token</span>.
 
@@ -5386,10 +5601,10 @@ attribute</span> of the element created to <span
 title=form-name>name</span> of the <span>form token</span>.
 
 <li>If the <code title=form-id>id</code> of the <span>form
-token</span> is <em>not</em> null, <span title="set an attribute
-value">set</span> the <code>id</code> <span>attribute</span> of the
-element created to <span title=form-id>id</span> of the <span>form
-token</span>.
+token</span>
+is <em>not</em> <code>null</code>, <span title=concept-element-attributes-set-value>set</span>
+the <code>id</code> <span>attribute</span> of the element created
+to <span title=form-id>id</span> of the <span>form token</span>.
 
 <li>If <span title=form-parameters>parameters</span> of <span>form
 token</span> is not empty, set the <code
@@ -5660,6 +5875,20 @@ parser:
     <td><code>insert</code>
     <td><span>SuikaWiki/0.9 namespace</span>
     <td>Insertion.
+    <td>Not allowed.
+
+  <tr>
+    <th><dfn title=concept-ITEMS><code>ITEMS</code></dfn>
+    <td><code>sw-items</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td><span title=item>Items</span>.
+    <td><span title="item types">Item types</span>.
+
+  <tr>
+    <th><dfn title=concept-ITEMTYPES><code>ITEMTYPES</code></dfn>
+    <td><code>sw-itemtypes</code>
+    <td><span>SuikaWiki/0.9 namespace</span>
+    <td><span title="item types">Item types</span>.
     <td>Not allowed.
 
   <tr>
@@ -6129,10 +6358,30 @@ element">HTML elements</span>.
 </section>
 
 <section>
+<h1>The <dfn><code>itemprop</code></dfn> <span>attribute</span></h1>
+
+<p>The <code>itemprop</code> <span>attribute</span> of
+an <span>element</span> in the <span>SuikaWiki/0.9 namespace</span> or
+in the <span>SuikaWiki/0.10 namespace</span> has the same semantics
+and requirements as the <code>itemprop</code> <span>attribute</span>
+of the <span title="HTML element">HTML elements</span>.
+
+<p>Unless otherwise specified by other <span>applicable
+specification</span>, the <code>itemprop</code> <span>attribute</span>
+of an <span>element</span> in the <span>AA namespace</span>, in
+the <span>HTML3 namespace</span>, or in the <span>XHTML2
+namespace</span> has the same semantics and requirements as
+the <code>itemprop</code> <span>attribute</span> of
+the <span title="HTML element">HTML elements</span>.
+
+</section>
+
+<section>
 <h1>The <dfn><code>xml:lang</code></dfn> <span>attribute</span></h1>
 
 <p>The <code title=xml:lang>lang</code> <span>attribute</span> in
-the <span>XML namespace</span> <em class=rfc2119>MAY</em> be set to
+the <span>XML namespace</span>
+(<code>xml:lang</code>) <em class=rfc2119>MAY</em> be set to
 any <span>element</span> in the <span>SuikaWiki/0.9 namespace</span>
 or in the <span>SuikaWiki/0.10 namespace</span>.
 
@@ -6147,10 +6396,11 @@ namespace</span>.
 <hr>
 
 <p>The <dfn title=xml:space><code>space</code></dfn> <span>attribute</span>
-in the <span>XML namespace</span> has no effect for
-the <span title=element>elements</span> in the <span>SuikaWiki/0.9
-namespace</span> or in the <span>SuikaWiki/0.10 namespace</span>
-and <em class=rfc2119>MUST NOT</em> be used.
+in the <span>XML namespace</span> (<code>xml:space</code>) has no
+effect for the <span title=element>elements</span> in
+the <span>SuikaWiki/0.9 namespace</span> or in
+the <span>SuikaWiki/0.10 namespace</span> and <em class=rfc2119>MUST
+NOT</em> be used.
 
 <p>Unless otherwise specified by other <span>applicable
 specification</span>,
@@ -6196,7 +6446,7 @@ in the <span>XHTML2 namespace</span>.
 </dl>
 
 <p>The <code>dr</code> <span>element</span>
-is <span title=represents>semantically</span> equals to the
+is <span title=represents>semantically</span> equivalent to the
 HTML <code>div</code> <span>element</span> that is
 a <span>child</span> of the HTML <code>dl</code> <span>element</span>.
 
@@ -6377,6 +6627,136 @@ center-aligned text, right-aligned text, and vertical text.
 
 </section>
 
+<section>
+<h1>The <dfn><code>sw-items</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Flow content</span>.
+
+<dt><span>Content model</span>
+
+<dd>An optional <code>sw-itemtypes</code> <span>element</span>
+followed by <span>flow content</span>, optionally intermixed
+with <span>script-supporting elements</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-items</code> <span>element</span> <span>represents</span>
+a set of <span title=item>items</span>.
+
+<p>Any
+HTML <code>li</code> <span>element</span> <span>descendant</span> of
+an <code>sw-items</code> <span>element</span> is considered as
+an <span>item</span>
+(i.e. an <code title=attr-html-itemscope>itemscope</code> <span>attribute</span>
+is implied for the purpose of <span title=represents>element
+semantics</span>) whose <span>item types</span> is its
+nearest <span>ancestor</span> <code>sw-items</code> <span>element</span>'s <span>item
+item types</span>.
+
+<p>Any
+HTML <code>li</code> <span>element</span> <span>descendant</span> of
+HTML <code>li</code> <span>element</span> <span>descendant</span> of
+an <code>sw-items</code> <span>element</span> is considered as having
+a <span title="property names">property
+name</span> <dfn title=itemprop-child><code>child</code></dfn>
+(i.e. an <code><code title=attr-html-itemprop>itemprop</code>=<code>child</code></code> <span>attribute</span>
+is implied for the purpose of <span title=represents>element
+semantics</span>).
+
+<p>The <dfn>item item types</dfn> of
+an <code>sw-items</code> <span>element</span> <var>element</var> is
+the result of the following steps:
+
+  <ol class=steps>
+
+  <li>Let <var>types</var> be an <span title="is
+  empty">empty</span> <span>list</span>.
+
+  <li>Let <var>container</var> be the
+  first <code>sw-itemtypes</code> <span>element</span> <span>child</span>
+  of <var>element</var>, if any, or <code>null</code> otherwise.
+
+  <li>If <var>conainer</var> is <code>null</code>,
+  return <var>types</var>.
+
+  <li>Let <var>anchors</var> be the <span title="list of elements with
+  namespace and local name">list of elements</span> with
+  the <span>SuikaWiki/0.9 namespace</span> and <code>anchor</code>.
+
+  <li><span>For each</span> <var>anchor</var> in <var>anchors</var>:
+
+    <ol>
+
+    <li><span title=list-append>Append</span> <var>anchor</var>'s <span>destination</span>
+    to <var>types</var>.
+
+    </ol>
+
+  <li>Return <var>types</var>.
+  
+  </ol>
+
+<p>The <dfn>item ID</dfn> of an
+HTML <code>li</code> <span>element</span> <span>descendant</span> of
+an <code>sw-items</code> <span>element</span> <var>element</var> is
+the result of the following steps:
+
+  <ol class=steps>
+
+  <li>Let <var>end</var> be the
+  first <code>anchor-end</code> <span>element</span> <span>child</span>
+  of <var>element</var>, if any, or <code>null</code> otherwise.
+  
+  <li>If <var>end</var> is <code>null</code>, return <code>null</code>.
+
+  <li>Return a <span>URL</span> that is a unique identifier that is
+  associated with <var>end</var>.
+
+  </ol>
+
+<p>For the purpose of the convertion from
+an <code>sw-items</code> <span>element</span> to a Microdata subtree,
+the <span>item ID</span> of an
+HTML <code>li</code> <span>element</span> can be used as
+the <code title=attr-html-itemid>itemid</code> <span>attribute
+value</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>sw-itemtypes</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>The <code>sw-itemtypes</code> <span>element</span> <span>represents</span>
+a set of <span>item types</span>.
+
+</section>
+
 </section>
 
 <section>
@@ -6512,7 +6892,7 @@ elements</span>.
 
 <section>
 
-<h1>The <dfn><code>anchor</code></dfn> element in the
+<h1>The <dfn><code>anchor</code></dfn> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></h1>
 
 <dl class=element>
@@ -6524,7 +6904,9 @@ elements</span>.
 
 <dt><span>Content model</span>
 
-<dd><span>Phrasing content</span>.
+<dd><span>Phrasing content</span>, optionally followed by
+a <code>title</code> <span>element</span>, optionally intermixed
+with <span>script-supporting elements</span>.
 
 <dt><span>Allowed attributes</span>
 
@@ -6533,8 +6915,29 @@ elements</span>.
 
 </dl>
 
-<p class=XXX>...
+<p>An <code>anchor</code> <span>element</span> <span>represents</span>
+a source anchor of hyperlink.
 
+<p>The hyperlink has a destination, which is identified in the
+application-dependent manner by
+the <span>element</span>'s <span>destination</span>.
+The <dfn>destination</dfn> of
+an <code>anchor</code> <span>element</span> <var>element</var> is the
+result of the following steps:
+
+  <ol class=steps>
+
+  <li>Let <var>title</var> be the
+  first <code>title</code> <span>element</span> <span>child</span>, if
+  any, or <code>null</code> otherwise.
+
+  <li>If <var>title</var> is <code>null</code>,
+  return <var>element</var>'s <span>text content</span>.
+
+  <li>Otherwise, return <var>title</var>'s <span>text content</span>.
+    
+  </ol>
+  
 </section>
 
 <section>
@@ -7744,8 +8147,8 @@ the <span>element</span>.
 <p>The <span>element</span>'s non-<code>null</code> <span>open
 fence</span> or <span>close
 fence</span>'s <span title=children>child</span> <em class=rfc2119>MAY</em>
-be <span>empty</span>.  It is semantically equivalent to
-the <span>element</span>'s <span>open fence</span> or <span>close
+be <span title="is empty">empty</span>.  It is semantically equivalent
+to the <span>element</span>'s <span>open fence</span> or <span>close
 fence</span>, respectively, is <code>null</code>.
 
 <p>It is <span>expected</span> that the <span>open fence</span>
@@ -8047,14 +8450,15 @@ the point where some content in the source material are omitted.  It
 is typically used within a quotation.
 
 <p>If the <span>element</span>'s <span title=child>children</span>
-is <em>not</em> <span>empty</span>, it <span>represents</span> the
-annotation placed instead of the original text.
+is <em>not</em> <span title="is empty">empty</span>,
+it <span>represents</span> the annotation placed instead of the
+original text.
 
 <p>It is <span>expected</span> that
 the <span>element</span>'s <span title=child>children</span> are
 rendered.  If
 the <span>element</span>'s <span title=child>children</span>
-is <span>empty</span>, a
+is <span title="is empty">empty</span>, a
 <span title="user agent">user-agent</span> dependent
 annotation <em class=rfc2119>SHOULD</em> be used instead.
 
@@ -8238,8 +8642,8 @@ Otherwise, it <span>represents</span> nothing.
 <p>A <code>title</code> <span>element</span> <em class=rfc2119>MAY</em>
 be the last
 non-<span title="script-supporting elements">script-supporting</span>
-<span>child</span> <span>element</span> of
-an <code>abbr</code>, <code>dfn</code>,
+<span>child</span> <span>element</span> of an
+HTML <code>abbr</code>, <code>dfn</code>,
 or <code>span</code> <span>element</span> <var>parent</var> when there
 is no <code title=attr-html-title>title</code> <span>attribute</span>
 in <var>parent</var>.
@@ -8657,8 +9061,48 @@ offset given as the <span>element value</span>.
 </section>
 
 <section>
+<h1>The <dfn><code>sw-value</code></dfn> <span>element</span> in the
+<span>SuikaWiki/0.9 namespace</span></h1>
 
-<h1>The <dfn><code>attrvalue</code></dfn> element in the
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd>None.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd>None.
+
+</dl>
+
+<p>The <code>sw-value</code> <span>element</span> <span>represents</span>
+a <span>string</span> that would be specified to
+the <code title=attr-html-data-value>value</code> <span>attribute</span>
+of the <span>parent</span> <code>data</code> <span>element</span>, if
+applicable.  Otherwise, it <span>represents</span> nothing.
+
+<p>A <code>sw-value</code> <span>element</span> <em class=rfc2119>MAY</em>
+be the last
+non-<span title="script-supporting elements">script-supporting</span>
+<span>child</span> <span>element</span> of an
+HTML <code>data</code> <span>element</span> <var>parent</var> when
+there is
+no <code title=attr-html-data-value>value</code> <span>attribute</span>
+in <var>parent</var>.
+
+<p>The <code>sw-value</code> <span>element</span> <em class=rfc2119>MUST
+NOT</em> be used when it <span>represents</span> nothing.
+
+</section>
+
+<section>
+
+<h1>The <dfn><code>attrvalue</code></dfn> <span>element</span> in the
 <span>SuikaWiki/0.10 namespace</span></h1>
 
 <dl class=element>
@@ -8897,9 +9341,9 @@ whenever possible.
 an explicit line break.
 
 <p>The <span>element</span>'s <span title=child>children</span>, if
-not <span>empty</span>, <span>represents</span> the hyphenation or
-other symbols indicating the end of the line, placed just before the
-line break.
+not <span title="is empty">empty</span>, <span>represents</span> the
+hyphenation or other symbols indicating the end of the line, placed
+just before the line break.
 
 <p>The <code>sw-br</code> <span>element</span>
 is <span>expected</span> to be rendered as if there were
@@ -9125,3 +9569,6 @@ to the extent possible under law, the author has waived all copyright
 and related or neighboring rights to this work.
 
 </section>
+
+<sw-ads normal></sw-ads>
+<script src="https://manakai.github.io/js/global.js" async></script>
