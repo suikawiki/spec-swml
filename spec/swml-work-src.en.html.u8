@@ -1255,11 +1255,6 @@ parameter</span>
 <tbody>
 
 <tr>
-<th scope=row><dfn title=concept-external-reference-scheme-EMBED><code>EMBED</code></dfn>
-<td><span>valid URL string</span>
-<td><span>URL</span> of an embedded object
-
-<tr>
 <th scope=row><dfn title=concept-IMG><code>IMG</code></dfn>
 <td><span>valid URL string</span>
 <td><span>URL</span> of an image
@@ -1273,6 +1268,11 @@ parameter</span>
 <td><span title=concept-InterWiki>InterWiki</span> reference
 (An <span title=concept-InterWikiName>InterWikiName</span> followed
 by a parameter)
+
+<tr>
+<th scope=row><dfn title=concept-external-reference-scheme-EMBED><code>M</code></dfn>
+<td><span>valid URL string</span>
+<td><span>URL</span> of an embedded object
 
 <tr>
 <th scope=row><dfn title=concept-MAIL><code>MAIL</code></dfn>
@@ -7151,7 +7151,7 @@ value</span> <em class=rfc2119>MUST</em> be a <span>valid e-mail
 address</span>.
 
 <p>If the <span>element's <code>resScheme</code></span>
-is <code title=concept-external-reference-scheme-EMBED>EMBED</code>,
+is <code title=concept-external-reference-scheme-EMBED>M</code>,
 <code title=concept-IMG>IMG</code>,
 <code title=concept-URL>URL</code>,
 or <code title=concept-URI>URI</code>, the <span>attribute
