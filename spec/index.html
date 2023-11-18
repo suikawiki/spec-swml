@@ -5,7 +5,7 @@
 </head><body><header>
 <hgroup>
 <h1 class="no-toc no-num">SuikaWiki Markup Language (SWML)</h1>
-<h2 class="no-toc no-num">SuikaWiki Project, 23 June 2023</h2>
+<h2 class="no-toc no-num">SuikaWiki Project, 18 November 2023</h2>
 
 
 <dl>
@@ -259,9 +259,15 @@ the <span>SuikaWiki/0.9 namespace</span></a></li></ol></li>
 <span>SuikaWiki/0.9 namespace</span></a></li>
      <li><a href=#the-tz-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.6 </span>The <code>tz</code> <span>element</span> in
 the <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-sw-value-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.7 </span>The <code>sw-value</code> <span>element</span> in the
+     <li><a href=#the-cc-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.7 </span>The <code>cc</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-cn-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.8 </span>The <code>cn</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-ch-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.9 </span>The <code>ch</code> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></a></li>
+     <li><a href=#the-sw-value-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.10 </span>The <code>sw-value</code> <span>element</span> in the
 <span>SuikaWiki/0.9 namespace</span></a></li>
-     <li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.12.8 </span>The <code>attrvalue</code> <span>element</span> in the
+     <li><a href=#the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.12.11 </span>The <code>attrvalue</code> <span>element</span> in the
 <span>SuikaWiki/0.10 namespace</span></a></li></ol></li>
    <li><a href=#conformance-keywords><span class=secno>9.13 </span>Conformance keywords</a>
     <ol>
@@ -1510,12 +1516,33 @@ schemes</span> <a href=#concept-uri><code title=concept-URI>URI</code></a> and <
 </td><td>Explicit line break (<a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a> element)
 
 </td></tr><tr>
+<th scope=row><dfn id=concept-cc title=concept-CC><code>CC</code></dfn>
+</th><td>0 or 1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Character code (<code>sw-cc</code> <a href=#element>element</a>)
+
+</td></tr><tr>
+<th scope=row><dfn id=concept-ch title=concept-CH><code>CH</code></dfn>
+</th><td>0
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td><span>Character</span> (<code>sw-ch</code> <a href=#element>element</a>)
+
+</td></tr><tr>
 <!-- SuikaWiki/0.10 -->
 <th scope=row><dfn id=concept-cite title=concept-CITE><code>CITE</code></dfn>
 </th><td>0
 </td><td>Not allowed
 </td><td>Not allowed
 </td><td>Title of a work (HTML <a href=#cite><code>cite</code></a> element)
+
+  </td></tr><tr>
+<th scope=row><dfn id=concept-cn title=concept-CN><code>CN</code></dfn>
+</th><td>0 or 1
+</td><td>Not allowed
+</td><td>Not allowed
+</td><td>Character name (<code>sw-cn</code> <a href=#element>element</a>)
 
 </td></tr><tr>
 <th scope=row><dfn id=concept-code title=concept-CODE><code>CODE</code></dfn>
@@ -4844,10 +4871,25 @@ table:
 </td><td><a href=#the-sw-br-element-in-the-suikawiki/0.9-namespace><code>sw-br</code></a>
 
 </td></tr><tr>
+<th><a href=#concept-cc><code title=concept-CC>CC</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><code>sw-cc</code>
+
+</td></tr><tr>
+<th><a href=#concept-ch><code title=concept-CH>CH</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><code>sw-ch</code>
+
+</td></tr><tr>
 <th><a href=#concept-cite><code title=concept-CITE>CITE</code></a>
 </th><td>The <a href=#html-namespace>HTML namespace</a>
 </td><td><a href=#cite><code>cite</code></a>
 <!-- SuikaWiki/0.10 -->
+
+</td></tr><tr>
+<th><a href=#concept-cn><code title=concept-CN>CN</code></a>
+</th><td>The <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a>
+</td><td><code>sw-cn</code>
 
 </td></tr><tr>
 <th><a href=#concept-code><code title=concept-CODE>CODE</code></a>
@@ -9026,7 +9068,186 @@ offset given as the <a href=#element-value>element value</a>.
 </p></section>
 
 <section>
-<h1 id=the-sw-value-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.7 </span>The <dfn><code>sw-value</code></dfn> <a href=#element>element</a> in the
+<h1 id=the-cc-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.7 </span>The <dfn><code>cc</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+</dd><dd><a href=#implicit-link-elements>Implicit link elements</a>.
+</dd><dd><a href=#elements-with-value>Elements with value</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
+an <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-class-attribute><code>class</code></a>
+
+</dd></dl>
+
+<p>A <a href=#the-cc-element-in-the-suikawiki/0.9-namespace><code>cc</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a <a href=#character-code>character code</a> (or a sequence of <a href=#character-code title="character
+code">character codes</a>) given as the <a href=#element-value>element value</a>.
+
+</p><p>A <dfn id=character-code>character code</dfn> is a <a href=#string>string</a> that
+identifies a sequence of one or
+more <span title=character>characters</span>.
+
+</p><p>The <a href=#element-value>element value</a> of
+a <a href=#the-cc-element-in-the-suikawiki/0.9-namespace><code>cc</code></a> <a href=#element>element</a> <em class=rfc2119>MUST</em> be
+a <a href=#characters-string>characters string</a>.
+
+</p><p>A <dfn id=characters-string>characters string</dfn> is either one of the followings:
+
+  </p><ul>
+
+  <li>A <a href=#unicode-code-point-string>Unicode code point string</a>.
+
+  </li><li>A <code>U+003C</code> <code class=charname>LESS-THAN SIGN</code>
+  (<code>&lt;</code>) followed by two or more <a href=#unicode-code-point-string title="Unicode
+  code point string">Unicode code point strings</a>, separated by
+  a <code>U+002C</code> <code class=charname>COMMA</code> character
+  (<code>,</code>), followed by
+  a <code>U+003E</code> <code class=charname>GREATER-THAN SIGN</code>
+  (<code>&gt;</code>).  There <em class=rfc2119>MAY</em> be zero or
+  more <span title="space character">space characters</span> before
+  and after any <code class=charname>COMMA</code> character.
+
+  </li></ul>
+
+<p>A <a href=#characters-string>characters string</a> represents
+the <a href=#concatenate title=concatenate>concatenation</a> of the <a href=#code-point>code
+point</a> represented by the <a href=#unicode-code-point-string title="Unicode code point
+string">Unicode code point strings</a> within the <a href=#characters-string>characters
+string</a>, in order.
+
+</p><p>A <dfn id=unicode-code-point-string>Unicode code point string</dfn> is a
+<a href=https://infra.spec.whatwg.org/#code-point>string that
+represents a <span>code point</span> as specified by the <cite>Infra
+Standard</cite></a>.  It represents the <a href=#code-point>code point</a>.
+
+</p><p>If the <a href=#element-value>element value</a> of
+a <a href=#the-cc-element-in-the-suikawiki/0.9-namespace><code>cc</code></a> <a href=#element>element</a> is not a <a href=#characters-string>characters
+string</a>, it represents an invalid character code (or sequence of
+character codes).
+
+</p><div class="note memo">
+
+  <p>The <a href=#the-cc-element-in-the-suikawiki/0.9-namespace><code>cc</code></a> <a href=#element>element</a> is not a character
+  escaping mechanism.  It <a href=#represents>represents</a>
+  a <a href=#character-code title="character code">character code(s)</a>, not
+  a <span>character</span>.
+
+</p></div>
+
+</section>
+
+<section>
+<h1 id=the-cn-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.8 </span>The <dfn><code>cn</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+</dd><dd><a href=#implicit-link-elements>Implicit link elements</a>.
+</dd><dd><a href=#elements-with-value>Elements with value</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>, optionally followed by
+an <a href=#the-title-element-in-the-suikawiki/0.10-namespace><code>title</code></a> <a href=#element>element</a>, optionally intermixed
+with <a href=#script-supporting-elements>script-supporting elements</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-class-attribute><code>class</code></a>
+
+</dd></dl>
+
+<p>A <a href=#the-cn-element-in-the-suikawiki/0.9-namespace><code>cn</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a <a href=#character-name>character name</a> given as the <a href=#element-value>element value</a>.
+
+</p><p>A <dfn id=character-name>character name</dfn> is a <a href=#string>string</a> that
+identifies a sequence of one or
+more <span title=character>characters</span>.
+It <em class=rfc2119>MUST</em> be a name specified by <cite>The
+Unicode Standard</cite> or named in a convention similar to <cite>The
+Unicode Standard</cite> and ISO/IEC 6429.
+  
+</p><p>If the <a href=#element-value>element value</a> of
+a <a href=#the-cn-element-in-the-suikawiki/0.9-namespace><code>cn</code></a> <a href=#element>element</a> is not a <span>characters
+name</span>, it represents an invalid character name.
+
+</p><div class="note memo">
+
+  <p>The <a href=#the-cn-element-in-the-suikawiki/0.9-namespace><code>cn</code></a> <a href=#element>element</a> is not a character
+  escaping mechanism.  It <a href=#represents>represents</a> a <a href=#character-name>character
+  name</a>, not a <span>character</span>.
+
+</p></div>
+
+</section>
+
+<section>
+<h1 id=the-ch-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.9 </span>The <dfn><code>ch</code></dfn> <a href=#element>element</a> in
+the <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
+
+<dl class=element>
+
+<dt><a href=#category>Category</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+</dd><dd><a href=#flow-content>Flow content</a>.
+</dd><dd><a href=#implicit-link-elements>Implicit link elements</a>.
+</dd><dd><a href=#elements-with-value>Elements with value</a>.
+
+</dd><dt><a href=#content-model>Content model</a>
+
+</dt><dd><a href=#phrasing-content>Phrasing content</a>.
+
+</dd><dt><a href=#allowed-attributes>Allowed attributes</a>
+
+</dt><dd><a href=#the-class-attribute><code>class</code></a>
+
+</dd></dl>
+
+<p>A <a href=#the-ch-element-in-the-suikawiki/0.9-namespace><code>ch</code></a> <a href=#element>element</a> <a href=#represents>represents</a>
+a <a href=#single-character-string>single character string</a> given as the <a href=#element-value>element
+value</a>.
+
+</p><p>A <dfn id=single-character-string>single character string</dfn> is a sequence of one or
+more <span title="Unicode code point">Unicode code points</span>.
+It <em class=rfc2119>MUST</em> be a string of one or
+more <a href=#code-point title="code point">code points</a>.
+
+</p><p>If the <a href=#element-value>element value</a> of
+a <a href=#the-cn-element-in-the-suikawiki/0.9-namespace><code>cn</code></a> <a href=#element>element</a> is the <span>empty
+string</span>, it <a href=#represents>represents</a> nothing.
+
+</p><div class="note memo">
+
+<p>Though usually a <a href=#single-character-string>single character string</a> is a
+single <a href=#code-point>code point</a>, it might contain two or
+more <a href=#code-point title="code point">code points</a>,
+e.g. <span title="combining character">combining characters</span>
+and <code class=charname>ZWJ</code>.
+
+</p></div>
+
+</section>
+
+<section>
+<h1 id=the-sw-value-element-in-the-suikawiki/0.9-namespace><span class=secno>9.12.10 </span>The <dfn><code>sw-value</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.9-namespace>SuikaWiki/0.9 namespace</a></h1>
 
 <dl class=element>
@@ -9067,7 +9288,7 @@ NOT</em> be used when it <a href=#represents>represents</a> nothing.
 
 <section>
 
-<h1 id=the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.12.8 </span>The <dfn><code>attrvalue</code></dfn> <a href=#element>element</a> in the
+<h1 id=the-attrvalue-element-in-the-suikawiki/0.10-namespace><span class=secno>9.12.11 </span>The <dfn><code>attrvalue</code></dfn> <a href=#element>element</a> in the
 <a href=#suikawiki/0.10-namespace>SuikaWiki/0.10 namespace</a></h1>
 
 <dl class=element>

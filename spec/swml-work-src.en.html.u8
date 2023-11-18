@@ -1404,12 +1404,33 @@ title=abnf-LALPHA>LALPHA</span>)
 <td>Explicit line break (<code>sw-br</code> element)
 
 <tr>
+<th scope=row><dfn title=concept-CC><code>CC</code></dfn>
+<td>0 or 1
+<td>Not allowed
+<td>Not allowed
+<td>Character code (<code>sw-cc</code> <span>element</span>)
+
+<tr>
+<th scope=row><dfn title=concept-CH><code>CH</code></dfn>
+<td>0
+<td>Not allowed
+<td>Not allowed
+<td><span>Character</span> (<code>sw-ch</code> <span>element</span>)
+
+<tr>
 <!-- SuikaWiki/0.10 -->
 <th scope=row><dfn title=concept-CITE><code>CITE</code></dfn>
 <td>0
 <td>Not allowed
 <td>Not allowed
 <td>Title of a work (HTML <code>cite</code> element)
+
+  <tr>
+<th scope=row><dfn title=concept-CN><code>CN</code></dfn>
+<td>0 or 1
+<td>Not allowed
+<td>Not allowed
+<td>Character name (<code>sw-cn</code> <span>element</span>)
 
 <tr>
 <th scope=row><dfn title=concept-CODE><code>CODE</code></dfn>
@@ -4864,10 +4885,25 @@ table:
 <td><code>sw-br</code>
 
 <tr>
+<th><code title=concept-CC>CC</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-cc</code>
+
+<tr>
+<th><code title=concept-CH>CH</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-ch</code>
+
+<tr>
 <th><code title=concept-CITE>CITE</code>
 <td>The <span>HTML namespace</span>
 <td><code>cite</code>
 <!-- SuikaWiki/0.10 -->
+
+<tr>
+<th><code title=concept-CN>CN</code>
+<td>The <span>SuikaWiki/0.9 namespace</span>
+<td><code>sw-cn</code>
 
 <tr>
 <th><code title=concept-CODE>CODE</code>
@@ -9069,6 +9105,185 @@ with <span>script-supporting elements</span>.
 
 <p>A <code>tz</code> element <span>represents</span> a time-zone
 offset given as the <span>element value</span>.
+
+</section>
+
+<section>
+<h1>The <dfn><code>cc</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+<dd><span>Elements with value</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by
+an <code>title</code> <span>element</span>, optionally intermixed
+with <span>script-supporting elements</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>A <code>cc</code> <span>element</span> <span>represents</span>
+a <span>character code</span> (or a sequence of <span title="character
+code">character codes</span>) given as the <span>element value</span>.
+
+<p>A <dfn>character code</dfn> is a <span>string</span> that
+identifies a sequence of one or
+more <span title=character>characters</span>.
+
+<p>The <span>element value</span> of
+a <code>cc</code> <span>element</span> <em class=rfc2119>MUST</em> be
+a <span>characters string</span>.
+
+<p>A <dfn>characters string</dfn> is either one of the followings:
+
+  <ul>
+
+  <li>A <span>Unicode code point string</span>.
+
+  <li>A <code>U+003C</code> <code class=charname>LESS-THAN SIGN</code>
+  (<code>&lt;</code>) followed by two or more <span title="Unicode
+  code point string">Unicode code point strings</span>, separated by
+  a <code>U+002C</code> <code class=charname>COMMA</code> character
+  (<code>,</code>), followed by
+  a <code>U+003E</code> <code class=charname>GREATER-THAN SIGN</code>
+  (<code>></code>).  There <em class=rfc2119>MAY</em> be zero or
+  more <span title="space character">space characters</span> before
+  and after any <code class=charname>COMMA</code> character.
+
+  </ul>
+
+<p>A <span>characters string</span> represents
+the <span title=concatenate>concatenation</span> of the <span>code
+point</span> represented by the <span title="Unicode code point
+string">Unicode code point strings</span> within the <span>characters
+string</span>, in order.
+
+<p>A <dfn>Unicode code point string</dfn> is a
+<a href=https://infra.spec.whatwg.org/#code-point>string that
+represents a <span>code point</span> as specified by the <cite>Infra
+Standard</cite></a>.  It represents the <span>code point</span>.
+
+<p>If the <span>element value</span> of
+a <code>cc</code> <span>element</span> is not a <span>characters
+string</span>, it represents an invalid character code (or sequence of
+character codes).
+
+<div class="note memo">
+
+  <p>The <code>cc</code> <span>element</span> is not a character
+  escaping mechanism.  It <span>represents</span>
+  a <span title="character code">character code(s)</span>, not
+  a <span>character</span>.
+
+</div>
+
+</section>
+
+<section>
+<h1>The <dfn><code>cn</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+<dd><span>Elements with value</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>, optionally followed by
+an <code>title</code> <span>element</span>, optionally intermixed
+with <span>script-supporting elements</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>A <code>cn</code> <span>element</span> <span>represents</span>
+a <span>character name</span> given as the <span>element value</span>.
+
+<p>A <dfn>character name</dfn> is a <span>string</span> that
+identifies a sequence of one or
+more <span title=character>characters</span>.
+It <em class=rfc2119>MUST</em> be a name specified by <cite>The
+Unicode Standard</cite> or named in a convention similar to <cite>The
+Unicode Standard</cite> and ISO/IEC 6429.
+  
+<p>If the <span>element value</span> of
+a <code>cn</code> <span>element</span> is not a <span>characters
+name</span>, it represents an invalid character name.
+
+<div class="note memo">
+
+  <p>The <code>cn</code> <span>element</span> is not a character
+  escaping mechanism.  It <span>represents</span> a <span>character
+  name</span>, not a <span>character</span>.
+
+</div>
+
+</section>
+
+<section>
+<h1>The <dfn><code>ch</code></dfn> <span>element</span> in
+the <span>SuikaWiki/0.9 namespace</span></h1>
+
+<dl class=element>
+
+<dt><span>Category</span>
+
+<dd><span>Phrasing content</span>.
+<dd><span>Flow content</span>.
+<dd><span>Implicit link elements</span>.
+<dd><span>Elements with value</span>.
+
+<dt><span>Content model</span>
+
+<dd><span>Phrasing content</span>.
+
+<dt><span>Allowed attributes</span>
+
+<dd><code>class</code>
+
+</dl>
+
+<p>A <code>ch</code> <span>element</span> <span>represents</span>
+a <span>single character string</span> given as the <span>element
+value</span>.
+
+<p>A <dfn>single character string</dfn> is a sequence of one or
+more <span title="Unicode code point">Unicode code points</span>.
+It <em class=rfc2119>MUST</em> be a string of one or
+more <span title="code point">code points</span>.
+
+<p>If the <span>element value</span> of
+a <code>cn</code> <span>element</span> is the <span>empty
+string</span>, it <span>represents</span> nothing.
+
+<div class="note memo">
+
+<p>Though usually a <span>single character string</span> is a
+single <span>code point</span>, it might contain two or
+more <span title="code point">code points</span>,
+e.g. <span title="combining character">combining characters</span>
+and <code class=charname>ZWJ</code>.
+
+</div>
 
 </section>
 
